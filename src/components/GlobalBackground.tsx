@@ -8,23 +8,30 @@ const DottedSurface = dynamic(() => import("./ui/dotted-surface"), {
 });
 
 export default function GlobalBackground() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1023px)");
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
-      <DottedSurface
-        gridSize={isMobile ? 30 : 60}
-        dotSize={isMobile ? 2 : 2.2}
-        waveSpeed={isMobile ? 0.5 : 0.8}
-      />
+      {isDesktop ? (
+        <DottedSurface />
+      ) : (
+        /* Static radial gradient on mobile — no JS animation overhead */
+        <div
+          className="h-full w-full"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
+          }}
+        />
+      )}
     </div>
   );
 }
