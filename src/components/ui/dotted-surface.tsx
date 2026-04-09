@@ -54,7 +54,7 @@ export default function DottedSurface({
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 1024 ? 1 : 1.5));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setClearColor(new THREE.Color(fogColor), 1);
     container.appendChild(renderer.domElement);
