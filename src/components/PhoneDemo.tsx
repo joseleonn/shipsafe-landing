@@ -280,20 +280,17 @@ export default function PhoneDemo() {
               style={{ width: "100%", height: "100%" }}
             />
           ) : (
-            /* Mobile: simple crossfade between static screenshots */
+            /* Mobile: smooth crossfade between static screenshots */
             <div className="relative h-full w-full">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={screenIndex}
-                  src={`/${screenshotOrder[screenIndex]}`}
+              {screenshotOrder.map((src, i) => (
+                <img
+                  key={src}
+                  src={`/${src}`}
                   alt="ShipSafe app"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out"
+                  style={{ opacity: i === screenIndex ? 1 : 0 }}
                 />
-              </AnimatePresence>
+              ))}
             </div>
           )}
         </div>
