@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import PhoneShowcase, {
   TOTAL_FRAMES,
 } from "./remotion/PhoneShowcase";
-import { SCREEN_COUNT, SCREEN_DURATION, FPS } from "./remotion/constants";
+import { SCREEN_COUNT, SCREEN_DURATION, FPS, SCREENSHOTS } from "./remotion/constants";
 
 const Player = dynamic(
   () => import("@remotion/player").then((mod) => mod.Player),
@@ -201,9 +201,25 @@ function LabelPill({
 /*  Main component                                                     */
 /* ------------------------------------------------------------------ */
 
+const screenshotOrder = [
+  SCREENSHOTS.dashboard,
+  SCREENSHOTS.analytics,
+  SCREENSHOTS.checklist,
+  SCREENSHOTS.menu,
+];
+
 export default function PhoneDemo() {
   const [screenIndex, setScreenIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const screenDurationMs = (SCREEN_DURATION / FPS) * 1000;
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -250,18 +266,36 @@ export default function PhoneDemo() {
           className="overflow-hidden rounded-[2.6rem] bg-gray-100"
           style={{ aspectRatio: "9/19.5" }}
         >
-          <Player
-            component={PhoneShowcase}
-            compositionWidth={360}
-            compositionHeight={780}
-            durationInFrames={TOTAL_FRAMES}
-            fps={30}
-            loop
-            autoPlay
-            controls={false}
-            acknowledgeRemotionLicense
-            style={{ width: "100%", height: "100%" }}
-          />
+          {isDesktop ? (
+            <Player
+              component={PhoneShowcase}
+              compositionWidth={360}
+              compositionHeight={780}
+              durationInFrames={TOTAL_FRAMES}
+              fps={30}
+              loop
+              autoPlay
+              controls={false}
+              acknowledgeRemotionLicense
+              style={{ width: "100%", height: "100%" }}
+            />
+          ) : (
+            /* Mobile: simple crossfade between static screenshots */
+            <div className="relative h-full w-full">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={screenIndex}
+                  src={`/${screenshotOrder[screenIndex]}`}
+                  alt="ShipSafe app"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </AnimatePresence>
+            </div>
+          )}
         </div>
       </div>
 
