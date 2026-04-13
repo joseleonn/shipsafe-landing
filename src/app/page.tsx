@@ -7,6 +7,7 @@ import RolesBenefits from "@/components/RolesBenefits";
 import Compliance from "@/components/Compliance";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
+import Credibility from "@/components/Credibility";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -26,6 +27,7 @@ export default function Home() {
         <Compliance />
         <Testimonials />
         <FAQ />
+        <Credibility />
         <CTAFinal />
       </main>
       <Footer />
