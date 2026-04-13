@@ -208,6 +208,13 @@ const screenshotOrder = [
   SCREENSHOTS.menu,
 ];
 
+const screenshotAlts = [
+  "Dashboard de seguridad e higiene con KPIs en tiempo real",
+  "Reportes y análisis de inspecciones de seguridad",
+  "Checklist digital de inspección de seguridad e higiene",
+  "Menú de módulos del software de seguridad e higiene SHIPSAFE",
+];
+
 export default function PhoneDemo() {
   const [screenIndex, setScreenIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -286,7 +293,7 @@ export default function PhoneDemo() {
                 <img
                   key={src}
                   src={`/${src}`}
-                  alt="ShipSafe app"
+                  alt={screenshotAlts[i]}
                   className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out"
                   style={{ opacity: i === screenIndex ? 1 : 0 }}
                 />

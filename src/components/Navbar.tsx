@@ -33,7 +33,7 @@ export default function Navbar() {
           <a href="#" className="flex items-center gap-2">
             <Image
               src="/shipsafe-logo.png"
-              alt="SHIPSAFE"
+              alt="SHIPSAFE — Software de seguridad e higiene laboral"
               width={36}
               height={36}
               className="shrink-0"

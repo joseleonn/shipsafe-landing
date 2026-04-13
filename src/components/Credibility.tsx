@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, HardHat, Factory } from "lucide-react";
+import { Code2, HardHat, Factory, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const stats = [
@@ -16,7 +16,16 @@ export default function Credibility() {
         <ScrollReveal variant="blur">
           <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-6 py-12 text-center backdrop-blur-sm sm:px-12">
             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              Desarrollado por Ship Software Team
+              Desarrollado por{" "}
+              <a
+                href="https://shipsoftware.team"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+              >
+                Ship Software Team
+                <ExternalLink className="inline h-4 w-4" />
+              </a>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75">
               Combinamos años de experiencia en desarrollo de software con

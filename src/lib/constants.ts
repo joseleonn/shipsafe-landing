@@ -4,7 +4,7 @@ export const SITE = {
   appUrl: "https://shipsafe-web.fly.dev",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:
-    "Digitalizá inspecciones, desvíos y mediciones. Cumplí con la SRT sin papel. Agendá una demo.",
+    "SHIPSAFE es el software de seguridad e higiene laboral para plantas industriales en Argentina. Digitalizá inspecciones, gestioná desvíos y cumplí con la SRT sin papel ni Excel.",
   title: "SHIPSAFE | Software de Seguridad e Higiene Laboral Argentina",
 };
 
@@ -292,4 +292,4 @@ export const FOOTER_LINKS = {
   ],
 };
 
-export const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+export const GA_MEASUREMENT_ID = "G-N285LPRVM1";

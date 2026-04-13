@@ -61,18 +61,18 @@ export default function Hero() {
               variants={blurIn}
               className="mb-5 inline-flex w-fit items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur-sm"
             >
-              Software de Seguridad e Higiene Laboral
+              Plataforma para plantas industriales
             </motion.p>
 
             <motion.h1
               variants={blurIn}
               className="text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Toda la seguridad de tu planta,{" "}
+              Software de seguridad e higiene:{" "}
               <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
-                en el celular
+                toda tu planta
               </span>{" "}
-              de cada operario.
+              en el celular.
             </motion.h1>
 
             <motion.p

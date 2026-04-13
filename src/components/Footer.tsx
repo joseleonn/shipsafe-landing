@@ -15,7 +15,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Image
                   src="/shipsafe-logo.png"
-                  alt="SHIPSAFE"
+                  alt="SHIPSAFE — Software de seguridad e higiene laboral"
                   width={28}
                   height={28}
                   className="shrink-0"
