@@ -27,10 +27,10 @@ export const CTAS = {
 };
 
 export const NAV_LINKS = [
-  { label: "Funcionalidades", href: "#funcionalidades" },
-  { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Beneficios", href: "#beneficios" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Funcionalidades", href: "/#funcionalidades" },
+  { label: "Cómo funciona", href: "/#como-funciona" },
+  { label: "Beneficios", href: "/#beneficios" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export const PAIN_POINTS = [
@@ -276,11 +276,66 @@ export const FAQS = [
   },
 ];
 
+export const ARTICLES = [
+  {
+    slug: "software-seguridad-higiene-vs-excel",
+    title: "Software de Seguridad e Higiene vs Excel: Comparativa Completa",
+    description:
+      "Descubrí por qué las plantas industriales en Argentina están dejando Excel para gestionar seguridad e higiene. Comparativa real de funcionalidades, riesgos y costos.",
+    datePublished: "2026-04-13",
+    dateModified: "2026-04-13",
+    relatedSlugs: ["como-digitalizar-inspecciones-planta", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "ley-19587-guia-completa",
+    title: "Ley 19.587: Guía Completa de Higiene y Seguridad en el Trabajo",
+    description:
+      "Todo lo que necesitás saber sobre la Ley 19.587 de Higiene y Seguridad en el Trabajo en Argentina. Requisitos, obligaciones y cómo cumplir con la normativa.",
+    datePublished: "2026-04-13",
+    dateModified: "2026-04-13",
+    relatedSlugs: ["que-es-srt-argentina", "software-seguridad-higiene-vs-excel"],
+  },
+  {
+    slug: "como-digitalizar-inspecciones-planta",
+    title: "Cómo Digitalizar Inspecciones de Seguridad en Planta Industrial",
+    description:
+      "Guía paso a paso para pasar de inspecciones en papel o Excel a un sistema digital. Beneficios, proceso de implementación y resultados reales.",
+    datePublished: "2026-04-13",
+    dateModified: "2026-04-13",
+    relatedSlugs: ["software-seguridad-higiene-vs-excel", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "que-es-srt-argentina",
+    title: "¿Qué es la SRT? Guía de Cumplimiento para Empresas en Argentina",
+    description:
+      "Qué es la Superintendencia de Riesgos del Trabajo, qué exige a las empresas argentinas y cómo cumplir con sus resoluciones sin complicaciones.",
+    datePublished: "2026-04-13",
+    dateModified: "2026-04-13",
+    relatedSlugs: ["ley-19587-guia-completa", "software-seguridad-higiene-vs-excel"],
+  },
+  {
+    slug: "gestion-desvios-seguridad-industrial",
+    title: "Gestión de Desvíos en Seguridad Industrial: Guía Práctica",
+    description:
+      "Cómo implementar un sistema efectivo de reporte y gestión de desvíos de seguridad en plantas industriales. Del reporte al cierre.",
+    datePublished: "2026-04-13",
+    dateModified: "2026-04-13",
+    relatedSlugs: ["como-digitalizar-inspecciones-planta", "que-es-srt-argentina"],
+  },
+];
+
 export const FOOTER_LINKS = {
   producto: [
-    { label: "Funcionalidades", href: "#funcionalidades" },
-    { label: "Beneficios", href: "#beneficios" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Funcionalidades", href: "/#funcionalidades" },
+    { label: "Beneficios", href: "/#beneficios" },
+    { label: "FAQ", href: "/#faq" },
+  ],
+  recursos: [
+    { label: "Software vs Excel", href: "/software-seguridad-higiene-vs-excel" },
+    { label: "Guía Ley 19.587", href: "/ley-19587-guia-completa" },
+    { label: "Digitalizar inspecciones", href: "/como-digitalizar-inspecciones-planta" },
+    { label: "¿Qué es la SRT?", href: "/que-es-srt-argentina" },
+    { label: "Gestión de desvíos", href: "/gestion-desvios-seguridad-industrial" },
   ],
   legal: [
     { label: "Términos y condiciones", href: "#" },

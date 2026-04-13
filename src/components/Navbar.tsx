@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { NAV_LINKS, CTAS, SITE } from "@/lib/constants";
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/shipsafe-logo.png"
               alt="SHIPSAFE — Software de seguridad e higiene laboral"
@@ -41,7 +42,7 @@ export default function Navbar() {
             <span className="text-lg font-bold tracking-tight text-white transition-colors duration-300">
               {SITE.name}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden items-center gap-8 lg:flex">

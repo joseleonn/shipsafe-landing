@@ -2,7 +2,7 @@ import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/constants";
 
 export default function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === "G-XXXXXXXXXX") return null;
+  if (!GA_MEASUREMENT_ID) return null;
 
   return (
     <>

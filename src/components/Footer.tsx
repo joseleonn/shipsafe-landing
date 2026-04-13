@@ -2,17 +2,18 @@
 
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import Link from "next/link";
 import { SITE, FOOTER_LINKS } from "@/lib/constants";
 
 export default function Footer() {
   return (
     <footer className="relative z-10 border-t border-white/10 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Logo + tagline */}
           <ScrollReveal variant="fadeUp" delay={0}>
             <div>
-              <div className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <Image
                   src="/shipsafe-logo.png"
                   alt="SHIPSAFE — Software de seguridad e higiene laboral"
@@ -21,7 +22,7 @@ export default function Footer() {
                   className="shrink-0"
                 />
                 <span className="text-lg font-bold text-white">{SITE.name}</span>
-              </div>
+              </Link>
               <p className="mt-3 text-sm leading-relaxed text-white/70">
                 {SITE.tagline}. Digitalizá la seguridad de tu planta industrial.
               </p>
@@ -43,6 +44,27 @@ export default function Footer() {
                     >
                       {link.label}
                     </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
+
+          {/* Recursos */}
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/75">
+                Recursos
+              </h4>
+              <ul className="space-y-2">
+                {FOOTER_LINKS.recursos.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/70 transition-colors duration-200 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

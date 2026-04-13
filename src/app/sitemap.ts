@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/constants";
+import { SITE, ARTICLES } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -9,5 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...ARTICLES.map((article) => ({
+      url: `${SITE.url}/${article.slug}`,
+      lastModified: new Date(article.dateModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }
