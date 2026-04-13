@@ -1,6 +1,6 @@
 export const SITE = {
   name: "SHIPSAFE",
-  url: "https://shipsafe.com.ar",
+  url: "https://shipsafe.lat",
   appUrl: "https://shipsafe-web.fly.dev",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:
