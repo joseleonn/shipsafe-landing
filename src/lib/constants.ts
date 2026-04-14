@@ -349,4 +349,4 @@ export const FOOTER_LINKS = {
 
 export const GA_MEASUREMENT_ID = "G-N285LPRVM1";
 
-export const WEB3FORMS_KEY = "DEFINIR";
+export const WEB3FORMS_KEY = "1870ccde-d48a-40e8-88ce-345015fb7572";
