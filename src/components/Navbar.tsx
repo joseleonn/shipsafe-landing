@@ -57,21 +57,13 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTAs */}
-          <div className="hidden items-center gap-3 lg:flex">
-            <a
-              href={CTAS.secondary.href}
-              className="rounded-lg border border-white/30 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:border-white/60 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
-            >
-              {CTAS.secondary.label}
-            </a>
+          {/* Desktop CTA */}
+          <div className="hidden items-center lg:flex">
             <a
               href={CTAS.primary.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
             >
-              Agendá una demo
+              {CTAS.primary.label}
             </a>
           </div>
 
@@ -135,18 +127,11 @@ export default function Navbar() {
               ))}
               <div className="flex flex-col gap-2 pt-3">
                 <a
-                  href={CTAS.secondary.href}
-                  className="rounded-lg border border-white/30 px-4 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
-                >
-                  {CTAS.secondary.label}
-                </a>
-                <a
                   href={CTAS.primary.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
                   className="rounded-lg bg-accent px-4 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-accent/90"
                 >
-                  Agendá una demo
+                  {CTAS.primary.label}
                 </a>
               </div>
             </div>

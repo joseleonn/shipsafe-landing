@@ -95,18 +95,16 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
               ¿Listo para dejar el papel y el Excel?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
-              Agendá una demo de 15 minutos y te mostramos cómo SHIPSAFE puede
-              transformar la gestión de seguridad en tu planta.
+              Dejanos tus datos y te contactamos para mostrarte cómo SHIPSAFE
+              puede transformar la gestión de seguridad en tu planta.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <a
-                href={CTAS.primary.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/#contacto"
                 className="inline-flex items-center justify-center rounded-lg bg-accent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/25"
               >
-                {CTAS.primary.label}
-              </a>
+                Contactanos
+              </Link>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:border-white/60 hover:bg-white/10"

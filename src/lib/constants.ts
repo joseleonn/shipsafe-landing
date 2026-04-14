@@ -10,8 +10,8 @@ export const SITE = {
 
 export const CTAS = {
   primary: {
-    label: "Agendá una demo",
-    href: "https://cal.com/shipsoftwareteam/chat-with-developer-from-ship-team",
+    label: "Contactanos",
+    href: "#contacto",
   },
   secondary: {
     label: "Hablemos por WhatsApp",
@@ -348,3 +348,5 @@ export const FOOTER_LINKS = {
 };
 
 export const GA_MEASUREMENT_ID = "G-N285LPRVM1";
+
+export const WEB3FORMS_KEY = "DEFINIR";
