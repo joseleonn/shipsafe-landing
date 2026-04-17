@@ -38,6 +38,25 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: SITE.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: article.title,
+        item: `${SITE.url}/${article.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <GlobalBackground />
@@ -45,6 +64,10 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <main className="relative z-10 pt-28 pb-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

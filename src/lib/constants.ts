@@ -274,6 +274,17 @@ export const FAQS = [
     answer:
       "Agendá una demo con nuestro equipo y te mostramos la plataforma funcionando con datos reales. También podés escribirnos por WhatsApp para resolver cualquier duda.",
   },
+  {
+    question:
+      "¿Qué software usan los profesionales de seguridad e higiene en Argentina?",
+    answer:
+      "Los profesionales de seguridad e higiene laboral en Argentina están migrando de planillas Excel a software especializado como SHIPSAFE. Un sistema de gestión de seguridad e higiene permite digitalizar inspecciones, gestionar desvíos, controlar vencimientos y generar reportes para la ART de forma automática.",
+  },
+  {
+    question: "¿SHIPSAFE reemplaza a una app de seguridad industrial?",
+    answer:
+      "SHIPSAFE funciona como una app de seguridad industrial completa, accesible desde el navegador del celular sin necesidad de descarga. Cubre inspecciones con QR, gestión de desvíos, capacitaciones, mediciones ambientales y todo lo que necesitás para la gestión de seguridad e higiene laboral en planta.",
+  },
 ];
 
 export const ARTICLES = [
@@ -338,8 +349,8 @@ export const FOOTER_LINKS = {
     { label: "Gestión de desvíos", href: "/gestion-desvios-seguridad-industrial" },
   ],
   legal: [
-    { label: "Términos y condiciones", href: "#" },
-    { label: "Política de privacidad", href: "#" },
+    { label: "Términos y condiciones", href: "/terminos" },
+    { label: "Política de privacidad", href: "/politica-privacidad" },
   ],
   contacto: [
     { label: "shipsoftwareteam@gmail.com", href: "mailto:shipsoftwareteam@gmail.com" },
