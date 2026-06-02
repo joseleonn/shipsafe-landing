@@ -15,10 +15,10 @@ export const CTAS = {
   },
   secondary: {
     label: "Hablemos por WhatsApp",
-    href: "https://wa.me/DEFINIR?text=Hola%2C%20quiero%20consultar%20sobre%20SHIPSAFE",
+    href: "https://wa.me/5493413067158?text=Hola%2C%20quiero%20consultar%20sobre%20SHIPSAFE",
   },
   whatsapp: {
-    number: "DEFINIR",
+    number: "5493413067158",
     message: "Hola, quiero consultar sobre SHIPSAFE",
     get url() {
       return `https://wa.me/${this.number}?text=${encodeURIComponent(this.message)}`;
