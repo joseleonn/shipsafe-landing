@@ -4,7 +4,7 @@ export const SITE = {
   appUrl: "https://shipsafe-web.fly.dev",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:
-    "SHIPSAFE es el software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Digitalizá inspecciones, gestioná desvíos, evitá multas y cumplí con la SRT sin papel ni Excel.",
+    "SHIPSAFE es el software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Digitalizá inspecciones, gestioná desvíos y centralizá toda tu gestión sin papel ni Excel.",
   title: "SHIPSAFE | Software de Seguridad e Higiene Laboral Argentina",
 };
 
@@ -101,9 +101,9 @@ export const FEATURES = [
   },
   {
     icon: "Shield",
-    title: "Cumplimiento normativo",
+    title: "Normativa argentina",
     description:
-      "Alineado con Ley 19.587, Dec. 351/79 y resoluciones SRT vigentes.",
+      "Checklists y registros basados en la Ley 19.587, el Dec. 351/79 y resoluciones SRT.",
   },
   {
     icon: "BellRing",
@@ -166,7 +166,7 @@ export const BENEFITS = [
     ],
   },
   {
-    title: "Cumplimiento y auditoría",
+    title: "Documentación y auditoría",
     subtitle: "Para cuando llega la ART o la auditoría interna",
     icon: "ShieldCheck",
     benefits: [
@@ -174,7 +174,7 @@ export const BENEFITS = [
       "Historial de inspecciones con evidencia",
       "Registros de capacitaciones con firmas",
       "Mediciones ambientales contra límites legales",
-      "Exportación en formatos que las ART aceptan",
+      "Exportación en PDF lista para presentar",
     ],
   },
 ];
@@ -254,14 +254,14 @@ export const PRICING = {
       id: "empresa",
       name: "Empresa",
       target:
-        "Para PyMEs industriales, constructoras, logísticas y frigoríficos",
+        "Para empresas de industria, energía, logística y servicios",
       price: "Desde $400.000",
       priceDetail: "por mes, según equipos y usuarios + setup inicial único",
       features: [
         "Acceso de gerencia y resumen mensual automático por mail",
         "Hasta 60 operarios y 3 técnicos supervisores",
         "Desvíos con fotos y línea de tiempo hasta el cierre",
-        "Reporte mensual listo para la ART incluido",
+        "Reporte mensual con el progreso de tu gestión",
         "Onboarding asistido y soporte por WhatsApp",
       ],
       cta: { label: "Hablemos de tu operación", href: "/#contacto" },
@@ -398,9 +398,9 @@ export const FAQS = [
       "Sí. Tenemos herramientas de importación masiva para equipos, operarios, sectores y datos históricos. Te acompañamos en el proceso de migración.",
   },
   {
-    question: "¿Cumple con la normativa SRT vigente?",
+    question: "¿Me sirve para trabajar con la normativa SRT?",
     answer:
-      "Sí. SHIPSAFE está diseñado para cumplir con la Ley 19.587, Decreto 351/79, Res. SRT 299/11 y Res. SRT 3067/14. Los reportes se generan en los formatos que las ART requieren.",
+      "SHIPSAFE incluye los checklists y cuestionarios que se usan en Argentina (RGRL, entregas de EPP, mediciones, capacitaciones) y genera reportes en PDF listos para presentar. Es una herramienta para ordenar, centralizar y documentar tu gestión: el cumplimiento normativo sigue siendo responsabilidad de cada empresa y de su responsable de seguridad e higiene.",
   },
   {
     question: "¿Funciona sin conexión a internet?",

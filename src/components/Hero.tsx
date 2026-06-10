@@ -79,9 +79,10 @@ export default function Hero() {
               variants={blurIn}
               className="mt-6 max-w-xl text-lg leading-relaxed text-white/75"
             >
-              Digitalizá inspecciones, desvíos, capacitaciones y el RGRL.
-              Demostrá cumplimiento ante la SRT y evitá multas, sin Excel ni
-              papel. Desde el celular, en tiempo real.
+              Digitalizá inspecciones, desvíos, capacitaciones y mediciones.
+              Dejá el papel y el Excel: todo centralizado, con tableros para
+              analizar tu gestión y responder desvíos más rápido. Desde el
+              celular, en tiempo real.
             </motion.p>
 
             <motion.div

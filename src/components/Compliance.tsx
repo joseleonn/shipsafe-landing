@@ -25,11 +25,12 @@ export default function Compliance() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur">
           <h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Cumplimiento normativo sin dolor de cabeza
+            Tu documentación de SyH, ordenada y trazable
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-white/75">
-            SHIPSAFE te ayuda a cumplir con toda la normativa vigente de
-            seguridad e higiene laboral argentina.
+            SHIPSAFE incluye los checklists y registros que se usan en la
+            normativa argentina de seguridad e higiene, listos para usar y
+            personalizar.
           </p>
         </ScrollReveal>
 
@@ -64,9 +65,9 @@ export default function Compliance() {
 
         <ScrollReveal delay={0.3} variant="scale">
           <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-white/65">
-            Generá toda la documentación que tu ART necesita con un clic.
-            Registros de inspecciones, entregas de EPP, capacitaciones y
-            mediciones ambientales — todo con trazabilidad completa.
+            Generá la documentación de tu gestión con un clic. Registros de
+            inspecciones, entregas de EPP, capacitaciones y mediciones
+            ambientales — todo con trazabilidad completa.
           </p>
         </ScrollReveal>
       </div>
