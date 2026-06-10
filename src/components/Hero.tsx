@@ -61,7 +61,7 @@ export default function Hero() {
               variants={blurIn}
               className="mb-5 inline-flex w-fit items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur-sm"
             >
-              Plataforma para plantas industriales
+              Para empresas, consultores y técnicos de SyH
             </motion.p>
 
             <motion.h1
@@ -70,7 +70,7 @@ export default function Hero() {
             >
               Software de seguridad e higiene:{" "}
               <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
-                toda tu planta
+                toda tu operación
               </span>{" "}
               en el celular.
             </motion.h1>
@@ -79,9 +79,9 @@ export default function Hero() {
               variants={blurIn}
               className="mt-6 max-w-xl text-lg leading-relaxed text-white/75"
             >
-              Digitalizá inspecciones, desvíos, capacitaciones y mediciones
-              ambientales. Cumplí con la SRT sin Excel ni papel. Desde el
-              celular, en tiempo real.
+              Digitalizá inspecciones, desvíos, capacitaciones y el RGRL.
+              Demostrá cumplimiento ante la SRT y evitá multas, sin Excel ni
+              papel. Desde el celular, en tiempo real.
             </motion.p>
 
             <motion.div

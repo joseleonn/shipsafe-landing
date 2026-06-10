@@ -4,7 +4,7 @@ export const SITE = {
   appUrl: "https://shipsafe-web.fly.dev",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:
-    "SHIPSAFE es el software de seguridad e higiene laboral para plantas industriales en Argentina. Digitalizá inspecciones, gestioná desvíos y cumplí con la SRT sin papel ni Excel.",
+    "SHIPSAFE es el software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Digitalizá inspecciones, gestioná desvíos, evitá multas y cumplí con la SRT sin papel ni Excel.",
   title: "SHIPSAFE | Software de Seguridad e Higiene Laboral Argentina",
 };
 
@@ -40,7 +40,7 @@ export const PAIN_POINTS = [
   "El operario tuvo un accidente y no hay registro del último relevamiento de riesgos del puesto.",
   "Cargaste todo para la auditoría, pero te falta el registro de entrega de EPP firmado por el operario.",
   "Tu equipo reporta desvíos por WhatsApp y se pierden entre mensajes de grupo.",
-  "Cada planta maneja su propia planilla y cuando consolidás datos, nada coincide.",
+  "Armar el RGRL te lleva días de carga manual cada vez que lo tenés que presentar.",
   "Te enterás de que un matafuego venció porque lo viste de casualidad en la recorrida.",
 ];
 
@@ -85,13 +85,13 @@ export const FEATURES = [
     icon: "Smartphone",
     title: "100% mobile",
     description:
-      "Toda la información disponible desde el celular. Ideal para recorridas en planta.",
+      "Toda la información disponible desde el celular. Ideal para recorridas e inspecciones en campo.",
   },
   {
     icon: "Building2",
-    title: "Multi-planta",
+    title: "Multi-establecimiento",
     description:
-      "Gestioná múltiples plantas desde una sola cuenta. Datos consolidados al instante.",
+      "Gestioná múltiples establecimientos o sucursales desde una sola cuenta. Datos consolidados al instante.",
   },
   {
     icon: "Download",
@@ -113,9 +113,9 @@ export const FEATURES = [
   },
   {
     icon: "ClipboardCheck",
-    title: "Cuestionarios y checklists",
+    title: "RGRL y checklists",
     description:
-      "Incluye todos los cuestionarios requeridos por la ley argentina. Personalizá los existentes o creá checklists nuevos para cada caso.",
+      "Incluye el RGRL completo (161 ítems) y todos los cuestionarios requeridos por la ley argentina. Personalizá los existentes o creá checklists nuevos para cada caso.",
   },
 ];
 
@@ -124,7 +124,7 @@ export const STEPS = [
     number: "01",
     title: "Cargá tu empresa",
     description:
-      "Configurá plantas, sectores, puestos y equipos en minutos. Importá datos desde Excel si ya los tenés.",
+      "Configurá establecimientos, sectores, puestos y equipos en minutos. Importá datos desde Excel si ya los tenés.",
   },
   {
     number: "02",
@@ -143,14 +143,14 @@ export const STEPS = [
 export const BENEFITS = [
   {
     title: "Operación diaria",
-    subtitle: "Para quienes están en planta todos los días",
+    subtitle: "Para quienes están en el día a día de la operación",
     icon: "HardHat",
     benefits: [
       "Inspecciones desde el celular en segundos",
       "Reportá desvíos con foto y ubicación al instante",
       "Alertas automáticas de vencimientos",
       "Firma digital de capacitaciones y entregas de EPP",
-      "Menos tiempo en Excel, más tiempo en planta",
+      "Menos tiempo en Excel, más tiempo en la operación",
     ],
   },
   {
@@ -159,7 +159,7 @@ export const BENEFITS = [
     icon: "BarChart3",
     benefits: [
       "Dashboards en tiempo real con indicadores clave",
-      "Visión consolidada de todas las plantas",
+      "Visión consolidada de todos tus establecimientos",
       "Reportes listos para la ART con un clic",
       "Trazabilidad completa de cada acción",
       "Datos para tomar decisiones informadas",
@@ -213,7 +213,7 @@ export const CASE_STUDIES = [
     // TODO(founder): confirmar con el cliente si se puede publicar el nombre
     // de la empresa. Mientras tanto se muestra de forma anónima.
     company: "Empresa industrial — Neuquén",
-    industry: "Planta industrial",
+    industry: "Industria",
     employees: "60 empleados",
     summary:
       "Reemplazó las planillas de Excel y los reportes por WhatsApp con SHIPSAFE: inspecciones desde el celular, desvíos con seguimiento hasta el cierre y tableros en tiempo real para todo el equipo.",
@@ -254,7 +254,7 @@ export const PRICING = {
       id: "empresa",
       name: "Empresa",
       target:
-        "Para PyMEs industriales, constructoras y logísticas con planta propia",
+        "Para PyMEs industriales, constructoras, logísticas y frigoríficos",
       price: "Desde $400.000",
       priceDetail: "por mes, según equipos y usuarios + setup inicial único",
       features: [
@@ -264,7 +264,7 @@ export const PRICING = {
         "Reporte mensual listo para la ART incluido",
         "Onboarding asistido y soporte por WhatsApp",
       ],
-      cta: { label: "Hablemos de tu planta", href: "/#contacto" },
+      cta: { label: "Hablemos de tu operación", href: "/#contacto" },
       highlighted: true,
       badge: "Más elegido" as string | null,
     },
@@ -272,7 +272,7 @@ export const PRICING = {
       id: "enterprise",
       name: "Enterprise",
       target:
-        "Para empresas grandes y holdings: miles de equipos, múltiples plantas, requisitos corporativos",
+        "Para empresas grandes y holdings: miles de equipos, múltiples establecimientos, requisitos corporativos",
       price: "A medida",
       priceDetail: "propuesta tras una reunión de descubrimiento",
       features: [
@@ -280,7 +280,7 @@ export const PRICING = {
         "SSO corporativo e integraciones (SAP, Active Directory)",
         "White-label con tu marca",
         "SLA 24/7 y account manager dedicado",
-        "Implementación white-glove multi-planta",
+        "Implementación white-glove multi-establecimiento",
       ],
       cta: { label: "Coordiná una reunión", href: CTAS.whatsapp.url },
       highlighted: false,
@@ -410,7 +410,7 @@ export const FAQS = [
   {
     question: "¿Cuánto tiempo lleva implementarlo?",
     answer:
-      "La configuración básica lleva menos de un día. Podés cargar tu empresa, plantas y sectores en minutos. La importación de datos históricos puede llevar unos días dependiendo del volumen.",
+      "La configuración básica lleva menos de un día. Podés cargar tu empresa, establecimientos y sectores en minutos. La importación de datos históricos puede llevar unos días dependiendo del volumen.",
   },
   {
     question: "¿Mis datos están seguros?",

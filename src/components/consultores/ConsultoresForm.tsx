@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Send, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
 import ScrollReveal from "../ScrollReveal";
 import { WEB3FORMS_KEY, PROVINCIAS } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
@@ -16,7 +16,13 @@ const CLIENTES_OPTIONS = ["0 (estoy arrancando)", "1-3", "4-5", "Más de 5"];
 
 const inputClasses =
   "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50";
-const selectClasses = `${inputClasses} [&>option]:bg-primary`;
+const selectClasses = `${inputClasses} appearance-none pr-10 [&>option]:bg-primary [&:invalid]:text-white/30`;
+
+function SelectChevron() {
+  return (
+    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+  );
+}
 
 export default function ConsultoresForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -176,22 +182,25 @@ export default function ConsultoresForm() {
                   >
                     Provincia
                   </label>
-                  <select
-                    id="provincia"
-                    name="provincia"
-                    required
-                    defaultValue=""
-                    className={selectClasses}
-                  >
-                    <option value="" disabled>
-                      Elegí tu provincia
-                    </option>
-                    {PROVINCIAS.map((p) => (
-                      <option key={p} value={p}>
-                        {p}
+                  <div className="relative">
+                    <select
+                      id="provincia"
+                      name="provincia"
+                      required
+                      defaultValue=""
+                      className={selectClasses}
+                    >
+                      <option value="" disabled>
+                        Elegí tu provincia
                       </option>
-                    ))}
-                  </select>
+                      {PROVINCIAS.map((p) => (
+                        <option key={p} value={p}>
+                          {p}
+                        </option>
+                      ))}
+                    </select>
+                    <SelectChevron />
+                  </div>
                 </div>
               </div>
 
@@ -203,22 +212,25 @@ export default function ConsultoresForm() {
                   >
                     ¿Tenés matrícula habilitante?
                   </label>
-                  <select
-                    id="matricula"
-                    name="matricula"
-                    required
-                    defaultValue=""
-                    className={selectClasses}
-                  >
-                    <option value="" disabled>
-                      Elegí una opción
-                    </option>
-                    {MATRICULA_OPTIONS.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
+                  <div className="relative">
+                    <select
+                      id="matricula"
+                      name="matricula"
+                      required
+                      defaultValue=""
+                      className={selectClasses}
+                    >
+                      <option value="" disabled>
+                        Elegí una opción
                       </option>
-                    ))}
-                  </select>
+                      {MATRICULA_OPTIONS.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                    <SelectChevron />
+                  </div>
                 </div>
                 <div>
                   <label
@@ -227,22 +239,25 @@ export default function ConsultoresForm() {
                   >
                     Empresas-cliente que gestionás hoy
                   </label>
-                  <select
-                    id="clientes"
-                    name="clientes"
-                    required
-                    defaultValue=""
-                    className={selectClasses}
-                  >
-                    <option value="" disabled>
-                      Elegí un rango
-                    </option>
-                    {CLIENTES_OPTIONS.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
+                  <div className="relative">
+                    <select
+                      id="clientes"
+                      name="clientes"
+                      required
+                      defaultValue=""
+                      className={selectClasses}
+                    >
+                      <option value="" disabled>
+                        Elegí un rango
                       </option>
-                    ))}
-                  </select>
+                      {CLIENTES_OPTIONS.map((c) => (
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                    <SelectChevron />
+                  </div>
                 </div>
               </div>
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Send, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { WEB3FORMS_KEY } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
@@ -11,7 +11,7 @@ import { trackEvent, EVENTS } from "@/lib/analytics";
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const ROLES = [
-  { value: "empresa", label: "Empresa / planta industrial" },
+  { value: "empresa", label: "Empresa / establecimiento" },
   { value: "consultor", label: "Consultor o estudio de SyH" },
   { value: "independiente", label: "Profesional independiente" },
   { value: "otro", label: "Otro" },
@@ -27,6 +27,15 @@ const EQUIPOS = [
   "Más de 1.000",
   "No sé todavía",
 ];
+
+const selectClasses =
+  "w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 pr-10 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary [&:invalid]:text-white/30";
+
+function SelectChevron() {
+  return (
+    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+  );
+}
 
 export default function CTAFinal() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -89,7 +98,7 @@ export default function CTAFinal() {
         <ScrollReveal variant="blur" duration={0.8}>
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Digitalizá la seguridad de tu planta hoy
+              Digitalizá tu gestión de seguridad e higiene hoy
             </h2>
             <p className="mt-4 text-lg text-white/75">
               Dejanos tus datos y te contactamos para mostrarte cómo funciona
@@ -177,23 +186,26 @@ export default function CTAFinal() {
                   >
                     ¿Quién sos?
                   </label>
-                  <select
-                    id="rol"
-                    name="rol"
-                    required
-                    value={rol}
-                    onChange={(e) => setRol(e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary"
-                  >
-                    <option value="" disabled>
-                      Elegí una opción
-                    </option>
-                    {ROLES.map((r) => (
-                      <option key={r.value} value={r.value}>
-                        {r.label}
+                  <div className="relative">
+                    <select
+                      id="rol"
+                      name="rol"
+                      required
+                      value={rol}
+                      onChange={(e) => setRol(e.target.value)}
+                      className={selectClasses}
+                    >
+                      <option value="" disabled>
+                        Elegí una opción
                       </option>
-                    ))}
-                  </select>
+                      {ROLES.map((r) => (
+                        <option key={r.value} value={r.value}>
+                          {r.label}
+                        </option>
+                      ))}
+                    </select>
+                    <SelectChevron />
+                  </div>
                   {(rol === "consultor" || rol === "independiente") && (
                     <p className="mt-2 text-xs text-white/60">
                       ¿Gestionás varios clientes? Mirá el{" "}
@@ -211,27 +223,27 @@ export default function CTAFinal() {
                     htmlFor="equipos"
                     className="mb-1.5 block text-sm font-medium text-white/80"
                   >
-                    Equipos a controlar{" "}
-                    <span className="text-white/40">
-                      (matafuegos, tableros, máquinas...)
-                    </span>
+                    Equipos a controlar
                   </label>
-                  <select
-                    id="equipos"
-                    name="equipos"
-                    required
-                    defaultValue=""
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary"
-                  >
-                    <option value="" disabled>
-                      Elegí un rango
-                    </option>
-                    {EQUIPOS.map((e) => (
-                      <option key={e} value={e}>
-                        {e}
+                  <div className="relative">
+                    <select
+                      id="equipos"
+                      name="equipos"
+                      required
+                      defaultValue=""
+                      className={selectClasses}
+                    >
+                      <option value="" disabled>
+                        Matafuegos, tableros, máquinas...
                       </option>
-                    ))}
-                  </select>
+                      {EQUIPOS.map((e) => (
+                        <option key={e} value={e}>
+                          {e}
+                        </option>
+                      ))}
+                    </select>
+                    <SelectChevron />
+                  </div>
                 </div>
               </div>
 

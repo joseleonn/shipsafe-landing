@@ -25,7 +25,7 @@ export default function Footer() {
                 <span className="text-lg font-bold text-white">{SITE.name}</span>
               </Link>
               <p className="mt-3 text-sm leading-relaxed text-white/70">
-                {SITE.tagline}. Digitalizá la seguridad de tu planta industrial.
+                {SITE.tagline}. Digitalizá la seguridad de tu empresa.
               </p>
             </div>
           </ScrollReveal>

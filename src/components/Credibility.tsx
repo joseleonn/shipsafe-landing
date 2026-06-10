@@ -33,9 +33,9 @@ export default function Credibility() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75">
               Combinamos años de experiencia en desarrollo de software con
-              conocimiento profundo del sector de seguridad e higiene industrial
+              conocimiento profundo del sector de seguridad e higiene
               en Argentina. Creamos SHIPSAFE porque sabemos que la tecnología
-              tiene que adaptarse a la planta — no al revés.
+              tiene que adaptarse a tu operación — no al revés.
             </p>
 
             <div className="mx-auto mt-10 grid max-w-xl gap-8 sm:grid-cols-3">

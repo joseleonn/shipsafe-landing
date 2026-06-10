@@ -119,7 +119,7 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
               Dejanos tus datos y te contactamos para mostrarte cómo SHIPSAFE
-              puede transformar la gestión de seguridad en tu planta.
+              puede transformar la gestión de seguridad en tu empresa.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link

@@ -11,12 +11,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: `Precios | ${SITE.name} — Planes para PyMEs industriales y consultores`,
   description:
-    "Planes de SHIPSAFE para plantas industriales y consultores de seguridad e higiene en Argentina. Precios orientativos, sin permanencia mínima y con implementación incluida.",
+    "Planes de SHIPSAFE para empresas, consultores y técnicos de seguridad e higiene en Argentina. Precios orientativos, sin permanencia mínima y con prueba guiada de 7 días.",
   alternates: { canonical: "/precios" },
   openGraph: {
     title: `Precios | ${SITE.name}`,
     description:
-      "Planes de SHIPSAFE para plantas industriales y consultores de seguridad e higiene en Argentina.",
+      "Planes de SHIPSAFE para empresas, consultores y técnicos de seguridad e higiene en Argentina.",
     url: `${SITE.url}/precios`,
     type: "website",
     locale: "es_AR",
