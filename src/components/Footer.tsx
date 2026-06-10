@@ -4,6 +4,7 @@ import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import Link from "next/link";
 import { SITE, FOOTER_LINKS } from "@/lib/constants";
+import { trackEvent, EVENTS } from "@/lib/analytics";
 
 export default function Footer() {
   return (
@@ -124,6 +125,14 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      onClick={
+                        link.label === "WhatsApp"
+                          ? () =>
+                              trackEvent(EVENTS.WHATSAPP_CLICK, {
+                                location: "footer",
+                              })
+                          : undefined
+                      }
                       className="text-sm text-white/70 transition-colors duration-200 hover:text-white"
                     >
                       {link.label}

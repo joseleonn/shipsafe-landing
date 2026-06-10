@@ -30,6 +30,8 @@ export const NAV_LINKS = [
   { label: "Funcionalidades", href: "/#funcionalidades" },
   { label: "Cómo funciona", href: "/#como-funciona" },
   { label: "Beneficios", href: "/#beneficios" },
+  { label: "Precios", href: "/#precios" },
+  { label: "Consultores", href: "/consultores" },
   { label: "FAQ", href: "/#faq" },
 ];
 
@@ -206,32 +208,183 @@ export const COMPLIANCE_ITEMS = [
   },
 ];
 
-export const TESTIMONIALS = [
+export const CASE_STUDIES = [
   {
-    name: "María González",
-    role: "Responsable SyH",
-    company: "Metalúrgica del Sur",
-    initials: "MG",
-    quote:
-      "Pasamos de perder horas armando planillas a tener todo actualizado en tiempo real. La ART quedó impresionada en la última auditoría.",
-  },
-  {
-    name: "Carlos Méndez",
-    role: "Gerente de Planta",
-    company: "Alimentos del Litoral",
-    initials: "CM",
-    quote:
-      "Por primera vez tengo visibilidad real de la seguridad en las 3 plantas. Los dashboards me dan tranquilidad.",
-  },
-  {
-    name: "Laura Fernández",
-    role: "Consultora SyH Externa",
-    company: "LF Seguridad Industrial",
-    initials: "LF",
-    quote:
-      "Gestiono 12 clientes desde SHIPSAFE. Lo que antes me llevaba una semana, ahora lo resuelvo en un día.",
+    // TODO(founder): confirmar con el cliente si se puede publicar el nombre
+    // de la empresa. Mientras tanto se muestra de forma anónima.
+    company: "Empresa industrial — Neuquén",
+    industry: "Planta industrial",
+    employees: "60 empleados",
+    summary:
+      "Reemplazó las planillas de Excel y los reportes por WhatsApp con SHIPSAFE: inspecciones desde el celular, desvíos con seguimiento hasta el cierre y tableros en tiempo real para todo el equipo.",
+    // TODO(founder): pedir un quote real al cliente. Mientras esté vacío,
+    // la card muestra solo los hechos del caso, sin testimonio.
+    quote: "",
+    quoteRole: "Responsable de Seguridad e Higiene",
   },
 ];
+
+// Precios públicos: solo los pisos "desde" de cada línea (pre-calificación).
+// La matriz completa de planes vive en la guía interna de pricing — no
+// publicarla. Enterprise nunca con tarifa de lista. Ajustar semestralmente
+// por inflación (política interna: IPC con tope).
+export const PRICING = {
+  disclaimer:
+    "Precios orientativos en ARS, según equipos a controlar y usuarios activos. Pagando anual obtenés entre 15% y 20% de descuento. Te pasamos la propuesta concreta el mismo día de la demo.",
+  tiers: [
+    {
+      id: "profesional",
+      name: "Profesional",
+      target:
+        "Para técnicos y consultores de SyH que atienden sus propios clientes, o PyMEs muy chicas",
+      price: "Desde $90.000",
+      priceDetail: "por mes — incluye hasta 3 empresas-cliente",
+      features: [
+        "Hasta 3 empresas-cliente con datos separados",
+        "Checklists con QR, capacitaciones y gestión de desvíos",
+        "RGRL completo (161 ítems)",
+        "Reporte mensual incluido",
+        "Onboarding con video y soporte por email",
+      ],
+      cta: { label: "Conocé el programa", href: "/consultores" },
+      highlighted: false,
+      badge: null as string | null,
+    },
+    {
+      id: "empresa",
+      name: "Empresa",
+      target:
+        "Para PyMEs industriales, constructoras y logísticas con planta propia",
+      price: "Desde $400.000",
+      priceDetail: "por mes, según equipos y usuarios + setup inicial único",
+      features: [
+        "Acceso de gerencia y resumen mensual automático por mail",
+        "Hasta 60 operarios y 3 técnicos supervisores",
+        "Desvíos con fotos y línea de tiempo hasta el cierre",
+        "Reporte mensual listo para la ART incluido",
+        "Onboarding asistido y soporte por WhatsApp",
+      ],
+      cta: { label: "Hablemos de tu planta", href: "/#contacto" },
+      highlighted: true,
+      badge: "Más elegido" as string | null,
+    },
+    {
+      id: "enterprise",
+      name: "Enterprise",
+      target:
+        "Para empresas grandes y holdings: miles de equipos, múltiples plantas, requisitos corporativos",
+      price: "A medida",
+      priceDetail: "propuesta tras una reunión de descubrimiento",
+      features: [
+        "Todo lo de la línea Empresa, sin límites",
+        "SSO corporativo e integraciones (SAP, Active Directory)",
+        "White-label con tu marca",
+        "SLA 24/7 y account manager dedicado",
+        "Implementación white-glove multi-planta",
+      ],
+      cta: { label: "Coordiná una reunión", href: CTAS.whatsapp.url },
+      highlighted: false,
+      badge: null as string | null,
+    },
+  ],
+};
+
+export const PRICING_FAQS = [
+  {
+    question: "¿Qué define el precio final?",
+    answer:
+      "Dos variables: la cantidad de equipos a controlar (matafuegos, tableros, luces de emergencia, máquinas) y la cantidad de usuarios activos. También influyen los establecimientos y features premium como integraciones o white-label. Con esos datos te pasamos una propuesta concreta el mismo día de la demo.",
+  },
+  {
+    question: "¿Puedo probarlo antes de contratar?",
+    answer:
+      "Sí. Después de la demo te ofrecemos una prueba guiada de 7 días con onboarding incluido: cargás tus equipos reales, lo usás en tu operación y ahí decidís.",
+  },
+  {
+    question: "¿La implementación está incluida?",
+    answer:
+      "En la línea Empresa la puesta en marcha se cubre con un setup inicial único que incluye onboarding, carga inicial de equipos y configuración de checklists. En la línea Profesional el onboarding es con video guiado o asistido según el plan.",
+  },
+  {
+    question: "¿Hay permanencia mínima?",
+    answer:
+      "No. La suscripción es mensual y podés darte de baja cuando quieras. Si pagás anual por adelantado, obtenés entre 15% y 20% de descuento según la línea.",
+  },
+  {
+    question: "¿Tienen un plan para consultores de seguridad e higiene?",
+    answer:
+      "Sí. La línea Profesional arranca en $90.000 por mes e incluye hasta 3 empresas-cliente con datos separados; el plan superior llega a 5. Conocé los detalles en la página del Programa de Consultores.",
+  },
+];
+
+export const PROVINCIAS = [
+  "Buenos Aires",
+  "CABA",
+  "Catamarca",
+  "Chaco",
+  "Chubut",
+  "Córdoba",
+  "Corrientes",
+  "Entre Ríos",
+  "Formosa",
+  "Jujuy",
+  "La Pampa",
+  "La Rioja",
+  "Mendoza",
+  "Misiones",
+  "Neuquén",
+  "Río Negro",
+  "Salta",
+  "San Juan",
+  "San Luis",
+  "Santa Cruz",
+  "Santa Fe",
+  "Santiago del Estero",
+  "Tierra del Fuego",
+  "Tucumán",
+];
+
+export const CONSULTORES = {
+  hero: {
+    badge: "Programa de consultores",
+    title: "Gestioná todos tus clientes desde una sola cuenta",
+    description:
+      "Sumá SHIPSAFE a tu consultora de seguridad e higiene: cada empresa-cliente con sus datos separados, sus inspecciones y sus reportes. Vos cobrás tu servicio profesional; nosotros te damos la herramienta para hacerlo en una fracción del tiempo.",
+    cta: "Aplicar al programa",
+  },
+  pains: [
+    "Tenés un Excel distinto por cada cliente y armás cada informe a mano, todos los meses.",
+    "Cuando la ART le pide documentación a un cliente, salís a perseguir planillas, fotos y firmas por WhatsApp.",
+    "Podrías atender más clientes, pero el tiempo administrativo te pone el techo.",
+  ],
+  steps: [
+    {
+      number: "01",
+      title: "Aplicás al programa",
+      description:
+        "Completás el formulario con tu matrícula y cuántas empresas gestionás hoy. Te contactamos en menos de 24 horas.",
+    },
+    {
+      number: "02",
+      title: "Te damos de alta y migramos tus clientes",
+      description:
+        "Configuramos tu cuenta de consultor y te acompañamos a cargar cada empresa-cliente con sus sucursales, equipos y checklists.",
+    },
+    {
+      number: "03",
+      title: "Elegís el plan según tu cartera",
+      description:
+        "Una sola suscripción mensual que incluye hasta 3 empresas-cliente; si gestionás más, el plan superior llega a 5.",
+    },
+  ],
+  pricing: {
+    price: "Desde $90.000",
+    priceDetail: "por mes — incluye hasta 3 empresas-cliente",
+    note: "¿Gestionás más clientes? El plan Advanced Pro incluye hasta 5 empresas por $170.000/mes. Pagando anual, 15% de descuento.",
+  },
+  programNote:
+    "El programa tiene cupos limitados: estamos sumando a los primeros consultores y acompañamos personalmente la puesta en marcha de cada uno.",
+};
 
 export const FAQS = [
   {
@@ -267,7 +420,7 @@ export const FAQS = [
   {
     question: "¿Puedo gestionar múltiples empresas como consultor?",
     answer:
-      "Sí. El plan para consultores permite gestionar múltiples clientes desde una sola cuenta, con acceso independiente a cada empresa y reportes personalizados con tu marca.",
+      "Sí. La línea Profesional permite gestionar hasta 5 empresas-cliente desde una sola cuenta, con datos y accesos independientes por cliente y reportes mensuales incluidos para presentar a cada uno.",
   },
   {
     question: "¿Cómo puedo ver SHIPSAFE en acción?",
@@ -393,6 +546,8 @@ export const FOOTER_LINKS = {
   producto: [
     { label: "Funcionalidades", href: "/#funcionalidades" },
     { label: "Beneficios", href: "/#beneficios" },
+    { label: "Precios", href: "/precios" },
+    { label: "Programa de Consultores", href: "/consultores" },
     { label: "FAQ", href: "/#faq" },
   ],
   recursos: [

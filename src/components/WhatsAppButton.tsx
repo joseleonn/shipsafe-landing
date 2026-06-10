@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { CTAS } from "@/lib/constants";
+import { trackEvent, EVENTS } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
   return (
@@ -10,6 +11,7 @@ export default function WhatsAppButton() {
       href={CTAS.whatsapp.url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent(EVENTS.WHATSAPP_CLICK, { location: "floating" })}
       className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-colors hover:bg-green-600"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}

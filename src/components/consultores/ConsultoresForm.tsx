@@ -2,36 +2,25 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
-import { WEB3FORMS_KEY } from "@/lib/constants";
+import ScrollReveal from "../ScrollReveal";
+import { WEB3FORMS_KEY, PROVINCIAS } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
-const ROLES = [
-  { value: "empresa", label: "Empresa / planta industrial" },
-  { value: "consultor", label: "Consultor o estudio de SyH" },
-  { value: "independiente", label: "Profesional independiente" },
-  { value: "otro", label: "Otro" },
-];
+const MATRICULA_OPTIONS = ["Sí", "En trámite", "No"];
+// Rangos alineados a los planes Profesional: hasta 3 → Starter Pro,
+// hasta 5 → Advanced Pro, más de 5 → conversación a medida.
+const CLIENTES_OPTIONS = ["0 (estoy arrancando)", "1-3", "4-5", "Más de 5"];
 
-// Rangos alineados al árbol de clasificación de la guía interna de pricing:
-// hasta 50/60 → Profesional, hasta 250 → Empresa Starter, hasta 1.000 →
-// Empresa Advanced, más de 1.000 → Enterprise.
-const EQUIPOS = [
-  "Hasta 50",
-  "50-250",
-  "250-1.000",
-  "Más de 1.000",
-  "No sé todavía",
-];
+const inputClasses =
+  "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50";
+const selectClasses = `${inputClasses} [&>option]:bg-primary`;
 
-export default function CTAFinal() {
+export default function ConsultoresForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [rol, setRol] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,16 +29,12 @@ export default function CTAFinal() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const rolValue = (data.get("rol") as string) || "otro";
-    const equipos = (data.get("equipos") as string) || "";
-    const subjectTag =
-      rolValue === "empresa" && equipos && equipos !== "No sé todavía"
-        ? `[EMPRESA | ${equipos} equipos]`
-        : `[${rolValue.toUpperCase()}]`;
+    const clientes = (data.get("clientes") as string) || "";
 
     data.append("access_key", WEB3FORMS_KEY);
-    data.append("subject", `${subjectTag} Contacto SHIPSAFE`);
+    data.append("subject", "[CONSULTOR] Aplicación Programa de Consultores");
     data.append("from_name", "SHIPSAFE Landing");
+    data.append("form_source", "consultores");
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -61,11 +46,10 @@ export default function CTAFinal() {
       if (json.success) {
         setStatus("success");
         trackEvent(EVENTS.GENERATE_LEAD, {
-          lead_segment: rolValue,
-          equipment_range: equipos,
-          form: "contacto",
+          lead_segment: "consultor",
+          clients_range: clientes,
+          form: "consultores",
         });
-        setRol("");
         form.reset();
       } else {
         setStatus("error");
@@ -78,8 +62,7 @@ export default function CTAFinal() {
   }
 
   return (
-    <section id="contacto" className="relative overflow-hidden py-20 lg:py-28">
-      {/* Ambient glow */}
+    <section id="aplicar" className="relative overflow-hidden py-20 lg:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]"
@@ -89,11 +72,11 @@ export default function CTAFinal() {
         <ScrollReveal variant="blur" duration={0.8}>
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Digitalizá la seguridad de tu planta hoy
+              Aplicá al Programa de Consultores
             </h2>
             <p className="mt-4 text-lg text-white/75">
-              Dejanos tus datos y te contactamos para mostrarte cómo funciona
-              SHIPSAFE en tu operación.
+              Contanos sobre tu consultora y te contactamos en menos de 24
+              horas para coordinar la puesta en marcha.
             </p>
           </div>
         </ScrollReveal>
@@ -107,17 +90,17 @@ export default function CTAFinal() {
             >
               <CheckCircle className="mx-auto h-12 w-12 text-accent" />
               <h3 className="mt-4 text-xl font-semibold text-white">
-                ¡Mensaje enviado!
+                ¡Aplicación enviada!
               </h3>
               <p className="mt-2 text-white/70">
-                Te contactamos pronto. Si necesitás algo urgente, escribinos por
-                WhatsApp.
+                Te contactamos pronto. Si querés adelantar la charla,
+                escribinos por WhatsApp.
               </p>
               <button
                 onClick={() => setStatus("idle")}
                 className="mt-6 text-sm font-medium text-accent underline underline-offset-2 transition-colors hover:text-accent/80"
               >
-                Enviar otro mensaje
+                Enviar otra aplicación
               </button>
             </motion.div>
           ) : (
@@ -148,7 +131,7 @@ export default function CTAFinal() {
                     name="name"
                     required
                     placeholder="Tu nombre"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                    className={inputClasses}
                   />
                 </div>
                 <div>
@@ -163,8 +146,8 @@ export default function CTAFinal() {
                     id="email"
                     name="email"
                     required
-                    placeholder="tu@empresa.com"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                    placeholder="tu@consultora.com"
+                    className={inputClasses}
                   />
                 </div>
               </div>
@@ -172,84 +155,95 @@ export default function CTAFinal() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label
-                    htmlFor="rol"
+                    htmlFor="telefono"
                     className="mb-1.5 block text-sm font-medium text-white/80"
                   >
-                    ¿Quién sos?
+                    WhatsApp / teléfono
                   </label>
-                  <select
-                    id="rol"
-                    name="rol"
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
                     required
-                    value={rol}
-                    onChange={(e) => setRol(e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary"
-                  >
-                    <option value="" disabled>
-                      Elegí una opción
-                    </option>
-                    {ROLES.map((r) => (
-                      <option key={r.value} value={r.value}>
-                        {r.label}
-                      </option>
-                    ))}
-                  </select>
-                  {(rol === "consultor" || rol === "independiente") && (
-                    <p className="mt-2 text-xs text-white/60">
-                      ¿Gestionás varios clientes? Mirá el{" "}
-                      <Link
-                        href="/consultores"
-                        className="font-medium text-accent underline underline-offset-2 hover:text-accent/80"
-                      >
-                        Programa de Consultores
-                      </Link>
-                    </p>
-                  )}
+                    placeholder="+54 9 ..."
+                    className={inputClasses}
+                  />
                 </div>
                 <div>
                   <label
-                    htmlFor="equipos"
+                    htmlFor="provincia"
                     className="mb-1.5 block text-sm font-medium text-white/80"
                   >
-                    Equipos a controlar{" "}
-                    <span className="text-white/40">
-                      (matafuegos, tableros, máquinas...)
-                    </span>
+                    Provincia
                   </label>
                   <select
-                    id="equipos"
-                    name="equipos"
+                    id="provincia"
+                    name="provincia"
                     required
                     defaultValue=""
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary"
+                    className={selectClasses}
                   >
                     <option value="" disabled>
-                      Elegí un rango
+                      Elegí tu provincia
                     </option>
-                    {EQUIPOS.map((e) => (
-                      <option key={e} value={e}>
-                        {e}
+                    {PROVINCIAS.map((p) => (
+                      <option key={p} value={p}>
+                        {p}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
 
-              <div>
-                <label
-                  htmlFor="company"
-                  className="mb-1.5 block text-sm font-medium text-white/80"
-                >
-                  Empresa{" "}
-                  <span className="text-white/40">(opcional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  placeholder="Nombre de tu empresa"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
-                />
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="matricula"
+                    className="mb-1.5 block text-sm font-medium text-white/80"
+                  >
+                    ¿Tenés matrícula habilitante?
+                  </label>
+                  <select
+                    id="matricula"
+                    name="matricula"
+                    required
+                    defaultValue=""
+                    className={selectClasses}
+                  >
+                    <option value="" disabled>
+                      Elegí una opción
+                    </option>
+                    {MATRICULA_OPTIONS.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    htmlFor="clientes"
+                    className="mb-1.5 block text-sm font-medium text-white/80"
+                  >
+                    Empresas-cliente que gestionás hoy
+                  </label>
+                  <select
+                    id="clientes"
+                    name="clientes"
+                    required
+                    defaultValue=""
+                    className={selectClasses}
+                  >
+                    <option value="" disabled>
+                      Elegí un rango
+                    </option>
+                    {CLIENTES_OPTIONS.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div>
@@ -257,15 +251,14 @@ export default function CTAFinal() {
                   htmlFor="message"
                   className="mb-1.5 block text-sm font-medium text-white/80"
                 >
-                  Mensaje
+                  Mensaje <span className="text-white/40">(opcional)</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  required
-                  rows={4}
-                  placeholder="Contanos qué necesitás o qué te gustaría saber sobre SHIPSAFE"
-                  className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                  rows={3}
+                  placeholder="Contanos sobre tus clientes y qué te gustaría resolver con SHIPSAFE"
+                  className={`${inputClasses} resize-none`}
                 />
               </div>
 
@@ -293,14 +286,14 @@ export default function CTAFinal() {
                   ) : (
                     <>
                       <Send className="h-4 w-4" />
-                      Enviar mensaje
+                      Aplicar al programa
                     </>
                   )}
                 </span>
               </motion.button>
 
               <p className="text-center text-xs text-white/40">
-                Te respondemos en menos de 24 horas
+                Cupos limitados · Te respondemos en menos de 24 horas
               </p>
             </form>
           )}

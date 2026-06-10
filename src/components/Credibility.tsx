@@ -3,10 +3,14 @@
 import { Code2, HardHat, Factory, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
+// TODO(founder): mantener estos stats siempre defendibles ante un comprador
+// B2B que haga due diligence. Alternativas para el tercero cuando crezcan los
+// números: "X plantas digitalizadas" (real), "X registros de seguridad
+// gestionados" (sacar del sistema).
 const stats = [
   { icon: Code2, value: "10+", label: "años en desarrollo de software" },
   { icon: HardHat, value: "8+", label: "años en seguridad e higiene" },
-  { icon: Factory, value: "50+", label: "plantas digitalizadas" },
+  { icon: Factory, value: "100%", label: "de clientes activos renovando" },
 ];
 
 export default function Credibility() {

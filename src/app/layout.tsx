@@ -80,11 +80,14 @@ const softwareAppSchema = {
   operatingSystem: "Web",
   description: SITE.description,
   url: SITE.url,
+  // Piso público de la línea Profesional. Actualizar junto con PRICING en
+  // constants.ts en cada ajuste semestral.
   offers: {
-    "@type": "Offer",
-    price: "0",
+    "@type": "AggregateOffer",
     priceCurrency: "ARS",
-    description: "Prueba gratuita de 30 días",
+    lowPrice: "90000",
+    offerCount: "3",
+    url: `${SITE.url}/precios`,
   },
   publisher: {
     "@type": "Organization",
