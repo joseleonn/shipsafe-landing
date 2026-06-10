@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 border-t border-white/10 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-6">
           {/* Logo + tagline */}
           <ScrollReveal variant="fadeUp" delay={0}>
             <div>
@@ -58,6 +58,27 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2">
                 {FOOTER_LINKS.recursos.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/70 transition-colors duration-200 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
+
+          {/* Sectores */}
+          <ScrollReveal variant="fadeUp" delay={0.18}>
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/75">
+                Sectores
+              </h4>
+              <ul className="space-y-2">
+                {FOOTER_LINKS.sectores.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}

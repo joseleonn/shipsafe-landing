@@ -17,7 +17,7 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
     datePublished: article.datePublished,

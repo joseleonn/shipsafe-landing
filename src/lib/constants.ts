@@ -333,6 +333,60 @@ export const ARTICLES = [
     dateModified: "2026-04-13",
     relatedSlugs: ["como-digitalizar-inspecciones-planta", "que-es-srt-argentina"],
   },
+  {
+    slug: "mejores-software-seguridad-higiene-argentina",
+    title: "Mejores Software de Seguridad e Higiene en Argentina (2026)",
+    description:
+      "Comparativa de los mejores software de seguridad e higiene laboral en Argentina. Qué mirar antes de elegir, funcionalidades clave y cómo evitar errores comunes.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["software-seguridad-higiene-vs-excel", "software-sg-sst"],
+  },
+  {
+    slug: "software-sg-sst",
+    title: "Software SG-SST: Qué es y Cómo Elegirlo en Argentina",
+    description:
+      "Qué es un software SG-SST (Sistema de Gestión de Seguridad y Salud en el Trabajo), cómo se relaciona con la normativa argentina e ISO 45001, y qué funciones necesita.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["mejores-software-seguridad-higiene-argentina", "ley-19587-guia-completa"],
+  },
+  {
+    slug: "app-inspecciones-seguridad-qr",
+    title: "App de Inspecciones de Seguridad con QR para Planta Industrial",
+    description:
+      "Cómo funciona una app de inspecciones de seguridad con códigos QR en planta: registro desde el celular, sin instalación, con trazabilidad y reportes automáticos.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["como-digitalizar-inspecciones-planta", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "software-seguridad-higiene-industria-alimenticia",
+    title: "Software de Seguridad e Higiene para la Industria Alimenticia",
+    description:
+      "Gestión de seguridad e higiene laboral en plantas de alimentos: riesgos específicos, normativa, BPM y cómo digitalizar inspecciones y desvíos sin papel.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
+  },
+  {
+    slug: "software-seguridad-higiene-metalurgica",
+    title: "Software de Seguridad e Higiene para la Industria Metalúrgica",
+    description:
+      "Riesgos de la industria metalúrgica y cómo un software de seguridad e higiene ayuda a gestionar EPP, mediciones de ruido, trabajos en caliente y cumplimiento SRT.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "software-seguridad-higiene-construccion",
+    title: "Software de Seguridad e Higiene para la Construcción",
+    description:
+      "Seguridad e higiene en obra: legajo técnico, trabajo en altura, AST y cómo digitalizar inspecciones y capacitaciones en construcción según la Res. SRT 51/97 y 35/98.",
+    datePublished: "2026-06-10",
+    dateModified: "2026-06-10",
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "que-es-srt-argentina"],
+  },
 ];
 
 export const FOOTER_LINKS = {
@@ -342,11 +396,19 @@ export const FOOTER_LINKS = {
     { label: "FAQ", href: "/#faq" },
   ],
   recursos: [
+    { label: "Mejores software de SyH", href: "/mejores-software-seguridad-higiene-argentina" },
+    { label: "Qué es un software SG-SST", href: "/software-sg-sst" },
+    { label: "App de inspecciones con QR", href: "/app-inspecciones-seguridad-qr" },
     { label: "Software vs Excel", href: "/software-seguridad-higiene-vs-excel" },
     { label: "Guía Ley 19.587", href: "/ley-19587-guia-completa" },
     { label: "Digitalizar inspecciones", href: "/como-digitalizar-inspecciones-planta" },
     { label: "¿Qué es la SRT?", href: "/que-es-srt-argentina" },
     { label: "Gestión de desvíos", href: "/gestion-desvios-seguridad-industrial" },
+  ],
+  sectores: [
+    { label: "Industria alimenticia", href: "/software-seguridad-higiene-industria-alimenticia" },
+    { label: "Industria metalúrgica", href: "/software-seguridad-higiene-metalurgica" },
+    { label: "Construcción", href: "/software-seguridad-higiene-construccion" },
   ],
   legal: [
     { label: "Términos y condiciones", href: "/terminos" },
