@@ -61,7 +61,7 @@ export default function Hero() {
               variants={blurIn}
               className="mb-5 inline-flex w-fit items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur-sm"
             >
-              Para empresas, consultores y técnicos de SyH
+              Para empresas, consultores y técnicos
             </motion.p>
 
             <motion.h1

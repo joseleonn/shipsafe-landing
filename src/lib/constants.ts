@@ -236,7 +236,7 @@ export const PRICING = {
       id: "profesional",
       name: "Profesional",
       target:
-        "Para técnicos y consultores de SyH que atienden sus propios clientes, o PyMEs muy chicas",
+        "Para técnicos y consultores de seguridad e higiene que atienden sus propios clientes, o PyMEs muy chicas",
       price: "Desde $90.000",
       priceDetail: "por mes — incluye hasta 3 empresas-cliente",
       features: [

@@ -25,7 +25,7 @@ export default function Compliance() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur">
           <h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Tu documentación de SyH, ordenada y trazable
+            Tu documentación de seguridad e higiene, ordenada y trazable
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-white/75">
             SHIPSAFE incluye los checklists y registros que se usan en la

@@ -12,7 +12,7 @@ type FormStatus = "idle" | "sending" | "success" | "error";
 
 const ROLES = [
   { value: "empresa", label: "Empresa / establecimiento" },
-  { value: "consultor", label: "Consultor o estudio de SyH" },
+  { value: "consultor", label: "Consultor o estudio de seguridad e higiene" },
   { value: "independiente", label: "Profesional independiente" },
   { value: "otro", label: "Otro" },
 ];
