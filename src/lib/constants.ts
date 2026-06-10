@@ -551,7 +551,7 @@ export const FOOTER_LINKS = {
     { label: "FAQ", href: "/#faq" },
   ],
   recursos: [
-    { label: "Mejores software de SyH", href: "/mejores-software-seguridad-higiene-argentina" },
+    { label: "Mejores software de seguridad e higiene", href: "/mejores-software-seguridad-higiene-argentina" },
     { label: "Qué es un software SG-SST", href: "/software-sg-sst" },
     { label: "App de inspecciones con QR", href: "/app-inspecciones-seguridad-qr" },
     { label: "Software vs Excel", href: "/software-seguridad-higiene-vs-excel" },
