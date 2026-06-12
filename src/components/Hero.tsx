@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { CTAS } from "@/lib/constants";
+import { CTAS, STATS } from "@/lib/constants";
+import NumberTicker from "./ui/NumberTicker";
+import Magnetic from "./ui/Magnetic";
 import PhoneDemo from "./PhoneDemo";
 
 const stagger = {
@@ -47,6 +49,10 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-svh overflow-x-clip">
+      {/* Blueprint grid + film grain, detrás del contenido */}
+      <div aria-hidden="true" className="hero-grid pointer-events-none absolute inset-0" />
+      <div aria-hidden="true" className="noise pointer-events-none absolute inset-0 opacity-[0.025]" />
+
       {/* Content: text left + logo right */}
       <div className="relative z-10 mx-auto flex min-h-svh max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -69,7 +75,7 @@ export default function Hero() {
               className="text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
               Software de seguridad e higiene:{" "}
-              <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-accent to-blue-400 bg-clip-text text-transparent">
                 toda tu operación
               </span>{" "}
               en el celular.
@@ -89,13 +95,15 @@ export default function Hero() {
               variants={blurIn}
               className="mt-8 flex flex-col gap-4 sm:flex-row"
             >
-              <a
-                href={CTAS.primary.href}
-                className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-accent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary active:scale-[0.98]"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="relative">{CTAS.primary.label}</span>
-              </a>
+              <Magnetic className="w-fit">
+                <a
+                  href={CTAS.primary.href}
+                  className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-accent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary active:scale-[0.98]"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="relative">{CTAS.primary.label}</span>
+                </a>
+              </Magnetic>
             </motion.div>
 
             <motion.p
@@ -104,6 +112,24 @@ export default function Hero() {
             >
               Sin compromiso · Te respondemos en menos de 24hs
             </motion.p>
+
+            <motion.div
+              variants={blurIn}
+              className="mt-10 flex w-fit divide-x divide-white/10"
+            >
+              {STATS.map((stat) => (
+                <div key={stat.label} className="px-5 first:pl-0 last:pr-0">
+                  <NumberTicker
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    className="font-display text-2xl font-bold text-white sm:text-3xl"
+                  />
+                  <p className="mt-1 max-w-[10rem] text-xs leading-snug text-white/60">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Phone demo — right */}

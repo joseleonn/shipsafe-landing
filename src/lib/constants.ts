@@ -575,6 +575,16 @@ export const FOOTER_LINKS = {
   ],
 };
 
+// TODO(founder): mantener estos stats siempre defendibles ante un comprador
+// B2B que haga due diligence. Alternativas para el tercero cuando crezcan los
+// números: "X operaciones digitalizadas" (real), "X registros de seguridad
+// gestionados" (sacar del sistema).
+export const STATS = [
+  { icon: "Code2", value: 10, suffix: "+", label: "años en desarrollo de software" },
+  { icon: "HardHat", value: 8, suffix: "+", label: "años en seguridad e higiene" },
+  { icon: "Factory", value: 100, suffix: "%", label: "de clientes activos renovando" },
+];
+
 export const GA_MEASUREMENT_ID = "G-N285LPRVM1";
 
 export const WEB3FORMS_KEY = "1870ccde-d48a-40e8-88ce-345015fb7572";

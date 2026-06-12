@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Send, CheckCircle, AlertCircle, Loader2, ChevronDown } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import AnimatedHeading from "./ui/AnimatedHeading";
+import SpotlightCard from "./ui/SpotlightCard";
 import { WEB3FORMS_KEY } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
@@ -29,7 +31,7 @@ const EQUIPOS = [
 ];
 
 const selectClasses =
-  "w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 pr-10 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50 [&>option]:bg-primary [&:invalid]:text-white/30";
+  "w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 pr-10 text-sm text-white transition-colors focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/40 [&>option]:bg-primary [&:invalid]:text-white/30";
 
 function SelectChevron() {
   return (
@@ -97,9 +99,9 @@ export default function CTAFinal() {
       <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur" duration={0.8}>
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <AnimatedHeading className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Digitalizá tu gestión de seguridad e higiene hoy
-            </h2>
+            </AnimatedHeading>
             <p className="mt-4 text-lg text-white/75">
               Dejanos tus datos y te contactamos para mostrarte cómo funciona
               SHIPSAFE en tu operación.
@@ -130,10 +132,11 @@ export default function CTAFinal() {
               </button>
             </motion.div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="mt-10 space-y-5 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 backdrop-blur-sm sm:px-10 sm:py-10"
+            <SpotlightCard
+              spotlightColor="rgba(37, 99, 235, 0.08)"
+              className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 backdrop-blur-sm sm:px-10 sm:py-10"
             >
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* Honeypot */}
               <input
                 type="checkbox"
@@ -157,7 +160,7 @@ export default function CTAFinal() {
                     name="name"
                     required
                     placeholder="Tu nombre"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/40"
                   />
                 </div>
                 <div>
@@ -173,7 +176,7 @@ export default function CTAFinal() {
                     name="email"
                     required
                     placeholder="tu@empresa.com"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/40"
                   />
                 </div>
               </div>
@@ -260,7 +263,7 @@ export default function CTAFinal() {
                   id="company"
                   name="company"
                   placeholder="Nombre de tu empresa"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/40"
                 />
               </div>
 
@@ -277,7 +280,7 @@ export default function CTAFinal() {
                   required
                   rows={4}
                   placeholder="Contanos qué necesitás o qué te gustaría saber sobre SHIPSAFE"
-                  className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50"
+                  className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/40"
                 />
               </div>
 
@@ -315,6 +318,7 @@ export default function CTAFinal() {
                 Te respondemos en menos de 24 horas
               </p>
             </form>
+            </SpotlightCard>
           )}
         </ScrollReveal>
       </div>

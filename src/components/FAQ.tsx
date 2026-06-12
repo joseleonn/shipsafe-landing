@@ -25,7 +25,11 @@ export default function FAQ() {
               <ScrollReveal key={i} delay={i * 0.06} variant="fadeUp">
                 <motion.div
                   layout
-                  className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.05] backdrop-blur-sm transition-shadow duration-300 hover:shadow-md hover:shadow-accent/5"
+                  className={`overflow-hidden rounded-xl border backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-accent/5 ${
+                    isOpen
+                      ? "border-accent/30 bg-white/[0.07]"
+                      : "border-white/10 bg-white/[0.05]"
+                  }`}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : i)}
@@ -40,7 +44,11 @@ export default function FAQ() {
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                     >
-                      <ChevronDown className="h-5 w-5 shrink-0 text-white/65" />
+                      <ChevronDown
+                        className={`h-5 w-5 shrink-0 transition-colors duration-300 ${
+                          isOpen ? "text-accent" : "text-white/65"
+                        }`}
+                      />
                     </motion.div>
                   </button>
                   <AnimatePresence initial={false}>

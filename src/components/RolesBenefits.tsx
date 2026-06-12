@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, HardHat, BarChart3, ShieldCheck } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import SpotlightCard from "./ui/SpotlightCard";
 import { BENEFITS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -43,8 +44,9 @@ export default function RolesBenefits() {
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="group h-full rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-shadow duration-300 hover:shadow-2xl hover:shadow-accent/10"
+                  className="group h-full"
                 >
+                <SpotlightCard className="h-full rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-shadow duration-300 group-hover:shadow-2xl group-hover:shadow-accent/10">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 transition-all duration-300 group-hover:bg-accent group-hover:shadow-lg group-hover:shadow-accent/25">
                     {Icon && (
                       <Icon className="h-6 w-6 text-accent transition-colors duration-300 group-hover:text-white" />
@@ -73,6 +75,7 @@ export default function RolesBenefits() {
                       </motion.li>
                     ))}
                   </ul>
+                </SpotlightCard>
                 </motion.div>
               </ScrollReveal>
             );

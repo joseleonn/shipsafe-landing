@@ -2,16 +2,14 @@
 
 import { Code2, HardHat, Factory, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import NumberTicker from "./ui/NumberTicker";
+import { STATS } from "@/lib/constants";
 
-// TODO(founder): mantener estos stats siempre defendibles ante un comprador
-// B2B que haga due diligence. Alternativas para el tercero cuando crezcan los
-// números: "X plantas digitalizadas" (real), "X registros de seguridad
-// gestionados" (sacar del sistema).
-const stats = [
-  { icon: Code2, value: "10+", label: "años en desarrollo de software" },
-  { icon: HardHat, value: "8+", label: "años en seguridad e higiene" },
-  { icon: Factory, value: "100%", label: "de clientes activos renovando" },
-];
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Code2,
+  HardHat,
+  Factory,
+};
 
 export default function Credibility() {
   return (
@@ -39,17 +37,22 @@ export default function Credibility() {
             </p>
 
             <div className="mx-auto mt-10 grid max-w-xl gap-8 sm:grid-cols-3">
-              {stats.map((stat, i) => (
-                <ScrollReveal key={stat.label} delay={0.1 + i * 0.1} variant="fadeUp">
-                  <div className="flex flex-col items-center gap-2">
-                    <stat.icon className="h-5 w-5 text-accent" />
-                    <span className="text-2xl font-bold text-accent">
-                      {stat.value}
-                    </span>
-                    <span className="text-sm text-white/65">{stat.label}</span>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {STATS.map((stat, i) => {
+                const Icon = iconMap[stat.icon];
+                return (
+                  <ScrollReveal key={stat.label} delay={0.1 + i * 0.1} variant="fadeUp">
+                    <div className="flex flex-col items-center gap-2">
+                      {Icon && <Icon className="h-5 w-5 text-accent" />}
+                      <NumberTicker
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        className="font-display text-2xl font-bold text-accent"
+                      />
+                      <span className="text-sm text-white/65">{stat.label}</span>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </ScrollReveal>

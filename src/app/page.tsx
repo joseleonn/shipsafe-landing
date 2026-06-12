@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/ui/Marquee";
+import { COMPLIANCE_ITEMS } from "@/lib/constants";
 import PainPoints from "@/components/PainPoints";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
@@ -21,6 +23,17 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10">
         <Hero />
+        <section aria-label="Normativa argentina de referencia" className="py-10">
+          <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-white/40">
+            Basado en la normativa argentina
+          </p>
+          <Marquee
+            items={[
+              ...COMPLIANCE_ITEMS.map((item) => item.title),
+              "RGRL completo (161 ítems)",
+            ]}
+          />
+        </section>
         <PainPoints />
         <Features />
         <HowItWorks />
