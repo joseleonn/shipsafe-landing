@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import AnimatedHeading from "./ui/AnimatedHeading";
+import SpotlightCard from "./ui/SpotlightCard";
 import { PRICING } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
@@ -16,9 +18,9 @@ export default function Pricing({ page = "home" }: PricingProps) {
     <section id="precios" className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <AnimatedHeading className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Planes pensados para tu operación
-          </h2>
+          </AnimatedHeading>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-white/75">
             Sin letra chica: elegí el plan según cómo trabajás y te pasamos una
             propuesta concreta en menos de 24 horas.
@@ -41,18 +43,26 @@ export default function Pricing({ page = "home" }: PricingProps) {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                  className={`relative flex h-full flex-col rounded-2xl border p-8 backdrop-blur-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/10 ${
-                    tier.highlighted
-                      ? "border-accent/40 bg-white/[0.07]"
-                      : "border-white/10 bg-white/[0.05]"
-                  }`}
+                  className="relative h-full"
                 >
                   {tier.badge && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-accent/30">
+                    <span className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-accent/30">
                       {tier.badge}
                     </span>
                   )}
 
+                  <SpotlightCard
+                    spotlightColor={
+                      tier.highlighted
+                        ? "rgba(37, 99, 235, 0.22)"
+                        : "rgba(37, 99, 235, 0.14)"
+                    }
+                    className={`flex h-full flex-col rounded-2xl border p-8 backdrop-blur-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/10 ${
+                      tier.highlighted
+                        ? "border-accent/40 bg-white/[0.07]"
+                        : "border-white/10 bg-white/[0.05]"
+                    }`}
+                  >
                   <h3 className="text-xl font-semibold text-white">{tier.name}</h3>
                   <p className="mt-2 text-sm text-white/65">{tier.target}</p>
 
@@ -86,6 +96,7 @@ export default function Pricing({ page = "home" }: PricingProps) {
                       {tier.cta.label}
                     </a>
                   )}
+                  </SpotlightCard>
                 </motion.div>
               </ScrollReveal>
             );

@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import SpotlightCard from "./ui/SpotlightCard";
 import { COMPLIANCE_ITEMS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -46,17 +47,19 @@ export default function Compliance() {
                 <motion.div
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="flex h-full items-start gap-4 rounded-xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-accent/10"
+                  className="h-full"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                    {Icon && <Icon className="h-6 w-6 text-accent" />}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-white/70">
-                      {item.description}
-                    </p>
-                  </div>
+                  <SpotlightCard className="flex h-full items-start gap-4 rounded-xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-accent/10">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+                      {Icon && <Icon className="h-6 w-6 text-accent" />}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-white/70">
+                        {item.description}
+                      </p>
+                    </div>
+                  </SpotlightCard>
                 </motion.div>
               </ScrollReveal>
             );
