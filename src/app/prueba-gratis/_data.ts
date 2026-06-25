@@ -12,9 +12,56 @@
  */
 
 // Destino único de TODOS los CTAs. El registro real vive en app.shipsafe.lat.
-// Los parámetros UTM permiten medir la campaña en GA4.
-export const TRIAL_URL =
-  "https://app.shipsafe.lat/?utm_source=meta&utm_medium=paid&utm_campaign=prueba-gratis";
+export const TRIAL_BASE_URL = "https://app.shipsafe.lat/";
+
+// UTM por defecto si el visitante llegó SIN parámetros (tráfico directo/orgánico).
+const DEFAULT_UTM: Record<string, string> = {
+  utm_source: "prueba-gratis",
+  utm_medium: "landing",
+  utm_campaign: "prueba-gratis",
+};
+
+// Parámetros que reenviamos de la landing al registro para no perder atribución.
+// Incluye los click-id de cada red (ttclid=TikTok, fbclid=Meta, gclid=Google).
+const FORWARDED_PARAMS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "ttclid",
+  "fbclid",
+  "gclid",
+];
+
+/**
+ * Construye la URL del trial reenviando los UTM/click-id con los que el
+ * visitante llegó a la landing. Así un clic de un ad de TikTok conserva
+ * utm_source=tiktok hasta el registro, en vez de un valor hardcodeado.
+ * Si la landing se abrió sin UTM, aplica DEFAULT_UTM.
+ */
+export function buildTrialUrl(search = ""): string {
+  const incoming = new URLSearchParams(search);
+  const url = new URL(TRIAL_BASE_URL);
+  let hasUtm = false;
+  for (const key of FORWARDED_PARAMS) {
+    const value = incoming.get(key);
+    if (value) {
+      url.searchParams.set(key, value);
+      if (key.startsWith("utm_")) hasUtm = true;
+    }
+  }
+  if (!hasUtm) {
+    for (const [key, value] of Object.entries(DEFAULT_UTM)) {
+      url.searchParams.set(key, value);
+    }
+  }
+  return url.toString();
+}
+
+// Valor por defecto para el render del servidor (antes de leer la URL real en
+// el cliente). Se reemplaza al montar con los UTM reales del visitante.
+export const TRIAL_URL = buildTrialUrl();
 
 // Trial sin tarjeta → es el mayor argumento de conversión, se repite en todos los CTAs.
 export const CTA_LABEL = "Probá gratis 14 días — sin tarjeta";

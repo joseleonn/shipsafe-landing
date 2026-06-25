@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Magnetic from "@/components/ui/Magnetic";
 import { cn } from "@/lib/utils";
 import { trackEvent, EVENTS } from "@/lib/analytics";
-import { TRIAL_URL, CTA_LABEL } from "../_data";
+import { TRIAL_URL, buildTrialUrl, CTA_LABEL } from "../_data";
 
 interface CtaButtonProps {
   /** Sección desde la que se dispara, para medir en analytics */
@@ -28,10 +29,17 @@ export default function CtaButton({
       ? "px-8 py-4 text-base sm:text-lg"
       : "px-7 py-3.5 text-sm sm:text-base";
 
+  // Render del servidor usa TRIAL_URL (UTM por defecto). Al montar, reemplazamos
+  // por la URL con los UTM/click-id reales con los que llegó el visitante.
+  const [href, setHref] = useState(TRIAL_URL);
+  useEffect(() => {
+    setHref(buildTrialUrl(window.location.search));
+  }, []);
+
   return (
     <Magnetic className={fullWidth ? "w-full" : "w-fit"}>
       <a
-        href={TRIAL_URL}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() =>

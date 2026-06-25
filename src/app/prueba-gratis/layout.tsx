@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import GlobalBackground from "@/components/GlobalBackground";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import TikTokPixel from "@/components/TikTokPixel";
 import CampaignHeader from "./_components/CampaignHeader";
 import CampaignFooter from "./_components/CampaignFooter";
 
@@ -18,6 +19,7 @@ export default function PruebaGratisLayout({
 }) {
   return (
     <>
+      <TikTokPixel />
       <GlobalBackground />
       <CampaignHeader />
       <main className="relative z-10">{children}</main>
