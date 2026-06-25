@@ -587,4 +587,8 @@ export const STATS = [
 
 export const GA_MEASUREMENT_ID = "G-N285LPRVM1";
 
+// Pixel de TikTok. Se carga SOLO en la landing de campaña /prueba-gratis
+// (destino de tráfico pago de TikTok Ads), no en todo el sitio.
+export const TIKTOK_PIXEL_ID = "D8UN64RC77U4L9S4U7EG";
+
 export const WEB3FORMS_KEY = "1870ccde-d48a-40e8-88ce-345015fb7572";
