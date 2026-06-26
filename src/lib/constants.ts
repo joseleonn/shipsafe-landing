@@ -587,8 +587,12 @@ export const STATS = [
 
 export const GA_MEASUREMENT_ID = "G-N285LPRVM1";
 
-// Pixel de TikTok. Se carga SOLO en la landing de campaña /prueba-gratis
-// (destino de tráfico pago de TikTok Ads), no en todo el sitio.
-export const TIKTOK_PIXEL_ID = "D8UN64RC77U4L9S4U7EG";
+// Pixels de TikTok. Se cargan SOLO en la landing de campaña /prueba-gratis
+// (destino de tráfico pago de TikTok Ads), no en todo el sitio. Al cargar
+// varios, ttq.page() y ttq.track() disparan a todos automáticamente.
+export const TIKTOK_PIXEL_IDS = [
+  "D8UN64RC77U4L9S4U7EG",
+  "D8V7G7JC77U6CH9FIGO0",
+];
 
 export const WEB3FORMS_KEY = "1870ccde-d48a-40e8-88ce-345015fb7572";
