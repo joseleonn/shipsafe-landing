@@ -11,8 +11,8 @@
  * Aislada a propósito de src/lib/constants.ts para no afectar el home.
  */
 
-// Destino único de TODOS los CTAs. El registro real vive en app.shipsafe.lat.
-export const TRIAL_BASE_URL = "https://app.shipsafe.lat/";
+// Destino único de TODOS los CTAs: la pantalla de registro de la app.
+export const TRIAL_BASE_URL = "https://app.shipsafe.lat/registro";
 
 // UTM por defecto si el visitante llegó SIN parámetros (tráfico directo/orgánico).
 const DEFAULT_UTM: Record<string, string> = {
