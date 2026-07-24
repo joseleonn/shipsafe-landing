@@ -3,8 +3,10 @@
 import {
   QrCode,
   AlertTriangle,
+  HardHat,
+  FileCheck,
+  Brain,
   LayoutDashboard,
-  Building2,
   type LucideIcon,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -15,8 +17,10 @@ import { FEATURES } from "../_data";
 const iconMap: Record<string, LucideIcon> = {
   QrCode,
   AlertTriangle,
+  HardHat,
+  FileCheck,
+  Brain,
   LayoutDashboard,
-  Building2,
 };
 
 export default function FeatureBenefits() {

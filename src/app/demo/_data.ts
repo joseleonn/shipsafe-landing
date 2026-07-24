@@ -2,7 +2,7 @@
  * Datos y configuración de la landing de campaña /demo.
  *
  * Esta landing es un destino de tráfico pago dirigido a EMPRESAS (equipos de
- * seguridad e higiene, jefes de operaciones/planta, gerencia). A diferencia de
+ * SST, jefes de operaciones, gerencia). A diferencia de
  * /prueba-gratis (self-service, trial), acá la venta es asistida: el objetivo
  * único es AGENDAR UNA DEMO en Calendly.
  *
@@ -99,21 +99,21 @@ export const VSL: {
 };
 
 export const HERO = {
-  eyebrow: "Software de inspecciones para empresas",
+  eyebrow: "Software de SST para empresas",
   // Benefit-driven, ataca el dolor de la empresa (visibilidad y estándar único).
   headline:
-    "Todas las inspecciones de tu empresa ordenadas, con visibilidad en tiempo real.",
+    "Toda la gestión de SST de tu empresa, ordenada y en un solo lugar.",
   subheadline:
-    "SHIPSAFE centraliza las inspecciones, los desvíos y los reportes de todos tus establecimientos en un solo lugar. Agendá una demo y te lo mostramos con tu propia operación.",
+    "SHIPSAFE centraliza inspecciones, entrega de EPP, permisos de trabajo, accidentes y reportes de todos tus establecimientos. Agendá una demo y te lo mostramos con tu propia operación.",
 };
 
-// Dolores del público EMPRESA (equipos de S&H, operaciones, gerencia).
+// Dolores del público EMPRESA (equipos de SST, operaciones, gerencia).
 // Tono operativo, cero promesas legales.
 export const PAINS = [
   "Cada establecimiento maneja sus propios Excel y no hay un estándar único para todo tu equipo.",
   "No tenés visibilidad en tiempo real de qué se inspeccionó y qué desvíos siguen abiertos.",
-  "Los reportes para gerencia te llevan horas de armar y consolidar planillas.",
-  "La información de las inspecciones queda dispersa entre papeles, WhatsApp y computadoras distintas.",
+  "Las entregas de EPP y los permisos de trabajo quedan en papeles sueltos que después no encontrás.",
+  "Cuando pasa un accidente, reconstruir qué pasó y por qué te lleva días de trabajo.",
 ];
 
 export const STEPS = [
@@ -138,10 +138,11 @@ export const STEPS = [
 ];
 
 // Feature → beneficio (no features sueltas). Cada bloque usa un screenshot real.
+// Cubre toda la plataforma de SST, no solo inspecciones.
 export const FEATURES = [
   {
     icon: "QrCode",
-    title: "Checklists con QR",
+    title: "Inspecciones y checklists con QR",
     benefit:
       "Tu equipo escanea el QR del equipo y completa la inspección en minutos desde el celular. Un estándar único para toda la empresa.",
     screenshot: "/screenshots/checklist.jpg",
@@ -156,20 +157,36 @@ export const FEATURES = [
     alt: "Gestión de desvíos en SHIPSAFE",
   },
   {
-    icon: "LayoutDashboard",
-    title: "Visibilidad para gerencia",
+    icon: "HardHat",
+    title: "Entrega de EPP con constancia",
     benefit:
-      "Tableros en tiempo real por establecimiento y reportes exportables en PDF. Los informes que antes llevaban horas, en un clic.",
+      "Registrás la entrega de EPP a cada trabajador y queda la constancia firmada (formato Res. 299). Controlás stock y quién tiene qué.",
     screenshot: "/screenshots/dashboard.jpg",
-    alt: "Tablero de indicadores y reportes en SHIPSAFE",
+    alt: "Control y entrega de EPP en SHIPSAFE",
   },
   {
-    icon: "Building2",
-    title: "Multi-establecimiento",
+    icon: "FileCheck",
+    title: "Permisos de trabajo y ATS",
     benefit:
-      "Gestioná varias plantas, sucursales o equipos con datos separados y una vista consolidada para toda la organización.",
+      "Generás y aprobás permisos de trabajo y análisis de trabajo seguro desde el celular, con toda la trazabilidad guardada.",
+    screenshot: "/screenshots/menu.jpg",
+    alt: "Permisos de trabajo y ATS en SHIPSAFE",
+  },
+  {
+    icon: "Brain",
+    title: "Accidentes con análisis de causa raíz por IA",
+    benefit:
+      "Cargás el accidente y la IA te ayuda a armar el análisis de causa raíz y las acciones. Lo que llevaba días, en minutos.",
     screenshot: "/screenshots/analytics.jpg",
-    alt: "Vista consolidada de varios establecimientos en SHIPSAFE",
+    alt: "Análisis de accidentes con IA en SHIPSAFE",
+  },
+  {
+    icon: "LayoutDashboard",
+    title: "Gráficos y reportes para gerencia",
+    benefit:
+      "Tableros y gráficos en tiempo real por establecimiento, con vista consolidada de toda la organización y reportes exportables en PDF.",
+    screenshot: "/screenshots/dashboard.jpg",
+    alt: "Tableros, gráficos y reportes en SHIPSAFE",
   },
 ] as const;
 
@@ -177,13 +194,15 @@ export const PLANS = [
   {
     id: "empresa",
     name: "Empresa",
-    price: "Desde $90.000",
+    price: "Desde $400.000",
     priceDetail: "por mes",
-    target: "Para una empresa con un establecimiento a controlar.",
+    target: "Para una empresa con un establecimiento y su equipo de SST.",
     features: [
-      "Checklists con QR ilimitados",
+      "Inspecciones y checklists con QR ilimitados",
       "Gestión de desvíos con foto y seguimiento",
-      "Tableros y reportes exportables en PDF",
+      "Entrega de EPP con constancia (Res. 299) y control de stock",
+      "Permisos de trabajo y ATS",
+      "Gráficos, tableros y reportes exportables en PDF",
       "Usuarios para todo tu equipo",
       "Soporte por email",
     ],
@@ -200,10 +219,8 @@ export const PLANS = [
       "Todo lo del plan Empresa",
       "Varios establecimientos con datos separados",
       "Vista consolidada para gerencia",
-      "Plus — Módulo de EPP: entregas y control de stock",
-      "Plus — Módulo de permisos de trabajo",
-      "Plus — Módulo de ATS (análisis de trabajo seguro)",
-      "Plus — Módulo de accidentología con IA",
+      "Plus — Accidentología con análisis de causa raíz por IA",
+      "Plus — Módulo de análisis y estadística",
       "Onboarding acompañado y soporte prioritario",
     ],
     highlighted: true,
@@ -215,7 +232,7 @@ export const FAQS = [
   {
     question: "¿Qué pasa en la demo?",
     answer:
-      "Son 30 minutos por videollamada donde te mostramos SHIPSAFE funcionando con tu operación: tus checklists, tus desvíos y los reportes que necesitás. Sin compromiso.",
+      "Son 30 minutos por videollamada donde te mostramos SHIPSAFE funcionando con tu operación: inspecciones, entrega de EPP, permisos de trabajo, accidentes con IA y los reportes que necesitás. Sin compromiso.",
   },
   {
     question: "¿Necesito preparar algo?",
@@ -225,7 +242,7 @@ export const FAQS = [
   {
     question: "¿Cuánto sale?",
     answer:
-      "El precio depende de la cantidad de establecimientos, equipos a controlar y usuarios. En la misma demo te pasamos una propuesta concreta y clara, sin sorpresas.",
+      "El plan Empresa arranca desde $400.000 por mes. El precio final depende de la cantidad de establecimientos, los módulos que uses y los usuarios. En la misma demo te pasamos una propuesta concreta y clara, sin sorpresas.",
   },
   {
     question: "¿Necesito instalar algo?",
