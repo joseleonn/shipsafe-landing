@@ -190,41 +190,28 @@ export const FEATURES = [
   },
 ] as const;
 
+// Un solo plan con TODO incluido. Lo único que mueve el precio es el tamaño de
+// la empresa (establecimientos y usuarios), no los módulos.
 export const PLANS = [
   {
     id: "empresa",
-    name: "Empresa",
-    price: "Desde $400.000",
-    priceDetail: "por mes",
-    target: "Para una empresa con un establecimiento y su equipo de SST.",
+    name: "Empresa — todo incluido",
+    price: "A medida",
+    priceDetail: "según el tamaño de tu empresa",
+    target: "Todos los módulos incluidos. Te armamos la propuesta según tu operación.",
     features: [
       "Inspecciones y checklists con QR ilimitados",
       "Gestión de desvíos con foto y seguimiento",
       "Entrega de EPP con constancia (Res. 299) y control de stock",
       "Permisos de trabajo y ATS",
+      "Accidentología con análisis de causa raíz por IA",
       "Gráficos, tableros y reportes exportables en PDF",
+      "Varios establecimientos con datos separados y vista consolidada",
       "Usuarios para todo tu equipo",
-      "Soporte por email",
-    ],
-    highlighted: false,
-    badge: null as string | null,
-  },
-  {
-    id: "multi",
-    name: "Multi-establecimiento",
-    price: "A medida",
-    priceDetail: "según tu operación",
-    target: "Para empresas con varias plantas, sucursales o equipos.",
-    features: [
-      "Todo lo del plan Empresa",
-      "Varios establecimientos con datos separados",
-      "Vista consolidada para gerencia",
-      "Plus — Accidentología con análisis de causa raíz por IA",
-      "Plus — Módulo de análisis y estadística",
-      "Onboarding acompañado y soporte prioritario",
+      "Onboarding y seguimiento personalizado",
     ],
     highlighted: true,
-    badge: "Más elegido",
+    badge: "Todo incluido",
   },
 ] as const;
 
@@ -242,7 +229,7 @@ export const FAQS = [
   {
     question: "¿Cuánto sale?",
     answer:
-      "El plan Empresa arranca desde $400.000 por mes. El precio final depende de la cantidad de establecimientos, los módulos que uses y los usuarios. En la misma demo te pasamos una propuesta concreta y clara, sin sorpresas.",
+      "El plan Empresa incluye todos los módulos. El precio depende del tamaño de tu empresa (establecimientos y usuarios) y del onboarding y seguimiento personalizado que necesites. En la misma demo te pasamos una propuesta concreta y clara, sin sorpresas.",
   },
   {
     question: "¿Necesito instalar algo?",

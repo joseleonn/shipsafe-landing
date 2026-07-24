@@ -15,14 +15,14 @@ export default function PricingSection() {
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur">
           <AnimatedHeading className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Precios orientativos, propuesta a medida
+            Un solo plan, con todo incluido
           </AnimatedHeading>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-white/75">
-            El precio depende de tus establecimientos y equipos. En la demo te pasamos la propuesta concreta el mismo día.
+            Todos los módulos vienen incluidos. El precio depende del tamaño de tu empresa y del onboarding y seguimiento personalizado que necesites. En la demo te pasamos la propuesta concreta el mismo día.
           </p>
         </ScrollReveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-md gap-6">
           {PLANS.map((plan, i) => (
             <ScrollReveal key={plan.id} delay={i * 0.1} variant="fadeUp" className="h-full">
               <SpotlightCard
