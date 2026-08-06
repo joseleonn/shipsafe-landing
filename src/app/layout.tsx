@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import { SITE, FAQS } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -102,19 +102,9 @@ const softwareAppSchema = {
   },
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
-
+// El FAQPage vive en la home (src/app/page.tsx), no acá: Google exige que el
+// structured data de FAQ corresponda a contenido visible en esa misma página,
+// y las FAQs solo se renderizan en la home.
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -139,10 +129,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(softwareAppSchema),
           }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
         <script
           type="application/ld+json"

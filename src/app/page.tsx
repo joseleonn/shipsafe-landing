@@ -13,10 +13,30 @@ import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import GlobalBackground from "@/components/GlobalBackground";
+import { FAQS } from "@/lib/constants";
+
+// Solo acá: el componente <FAQ /> renderiza estas mismas preguntas, y Google
+// exige que el structured data corresponda a contenido visible en la página.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <GlobalBackground />
       <Navbar />
       <main className="relative z-10">

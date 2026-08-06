@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { SITE, ARTICLES, CTAS } from "@/lib/constants";
+import { SITE, ARTICLES } from "@/lib/constants";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
@@ -9,11 +9,37 @@ import GlobalBackground from "./GlobalBackground";
 interface ArticleLayoutProps {
   slug: string;
   children: React.ReactNode;
+  /**
+   * FAQs del artículo, para emitir structured data FAQPage. Pasarlas SOLO si
+   * las mismas preguntas y respuestas están visibles en el cuerpo del
+   * artículo: Google exige que el structured data corresponda a contenido
+   * visible en la página.
+   */
+  faqs?: { question: string; answer: string }[];
 }
 
-export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
+export default function ArticleLayout({
+  slug,
+  children,
+  faqs,
+}: ArticleLayoutProps) {
   const article = ARTICLES.find((a) => a.slug === slug)!;
   const related = ARTICLES.filter((a) => article.relatedSlugs.includes(a.slug));
+
+  const faqSchema = faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -69,6 +95,12 @@ export default function ArticleLayout({ slug, children }: ArticleLayoutProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <main className="relative z-10 pt-28 pb-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}

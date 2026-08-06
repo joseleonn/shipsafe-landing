@@ -21,9 +21,43 @@ export const metadata: Metadata = {
   },
 };
 
+// Fuente única: se renderizan en el cuerpo del artículo y alimentan el
+// structured data FAQPage, así el schema no puede desincronizarse del texto
+// visible.
+const ARTICLE_FAQS = [
+  {
+    question: "¿Cuál es el mejor software de seguridad e higiene en Argentina?",
+    answer:
+      "No hay uno mejor en abstracto. Para una PyME o un consultor que necesita que el operario registre desde el celular, SHIPSAFE y Previnnova son las opciones locales más directas. Para una corporación con operaciones internacionales, VelocityEHS o Vector EHS. Para certificar ISO 45001, SGO Suite. El criterio decisivo es cuál va a usar tu equipo todos los días: un sistema que el operario no abre termina siendo un Excel más caro.",
+  },
+  {
+    question: "¿Cuánto cuesta un software de seguridad e higiene en Argentina?",
+    answer:
+      "La mayoría no publica precios y trabaja a presupuesto. SHIPSAFE es una de las excepciones: desde $90.000 por mes para consultores con hasta 3 empresas-cliente y desde $400.000 por mes para empresas, según cantidad de equipos a controlar y usuarios activos. Como referencia general, el precio se define por esas dos variables más la cantidad de establecimientos.",
+  },
+  {
+    question: "¿Un software reemplaza al técnico de seguridad e higiene?",
+    answer:
+      "No. El software ordena, centraliza y da trazabilidad al trabajo, pero el criterio técnico, la evaluación de riesgos y la responsabilidad profesional siguen siendo de la persona matriculada. Lo que cambia es que deja de perder horas armando carpetas y planillas.",
+  },
+  {
+    question: "¿Sirve si tengo un solo establecimiento?",
+    answer:
+      "Sí, aunque el retorno es más evidente cuando hay varias ubicaciones o muchos equipos con vencimientos. Con un solo establecimiento chico y pocos equipos, una planilla ordenada puede alcanzar por un tiempo; el problema aparece cuando llega una auditoría y hay que reconstruir el historial.",
+  },
+  {
+    question: "¿Puedo migrar mis datos actuales desde Excel?",
+    answer:
+      "En general sí, y conviene confirmarlo antes de contratar. En SHIPSAFE la importación de tus planillas se hace durante el onboarding, sin que tengas que empezar de cero.",
+  },
+];
+
 export default function Page() {
   return (
-    <ArticleLayout slug="mejores-software-seguridad-higiene-argentina">
+    <ArticleLayout
+      slug="mejores-software-seguridad-higiene-argentina"
+      faqs={ARTICLE_FAQS}
+    >
       <p>
         <strong>Respuesta corta:</strong> las opciones más usadas en Argentina
         para gestionar seguridad e higiene laboral son SHIPSAFE, Previnnova,
@@ -349,49 +383,14 @@ export default function Page() {
       </ul>
 
       <h2>Preguntas frecuentes</h2>
-
-      <h3>¿Cuál es el mejor software de seguridad e higiene en Argentina?</h3>
+      {ARTICLE_FAQS.map((faq) => (
+        <div key={faq.question}>
+          <h3>{faq.question}</h3>
+          <p>{faq.answer}</p>
+        </div>
+      ))}
       <p>
-        No hay uno mejor en abstracto. Para una PyME o un consultor que necesita
-        que el operario registre desde el celular, SHIPSAFE y Previnnova son las
-        opciones locales más directas. Para una corporación con operaciones
-        internacionales, VelocityEHS o Vector EHS. Para certificar ISO 45001,
-        SGO Suite. El criterio decisivo es cuál va a usar tu equipo todos los
-        días: un sistema que el operario no abre termina siendo un Excel más
-        caro.
-      </p>
-
-      <h3>¿Cuánto cuesta un software de seguridad e higiene en Argentina?</h3>
-      <p>
-        La mayoría no publica precios y trabaja a presupuesto. SHIPSAFE es una
-        de las excepciones: desde $90.000 por mes para consultores con hasta 3
-        empresas-cliente y desde $400.000 por mes para empresas, según cantidad
-        de equipos a controlar y usuarios activos. Como referencia general, el
-        precio se define por esas dos variables más la cantidad de
-        establecimientos.
-      </p>
-
-      <h3>¿Un software reemplaza al técnico de seguridad e higiene?</h3>
-      <p>
-        No. El software ordena, centraliza y da trazabilidad al trabajo, pero el
-        criterio técnico, la evaluación de riesgos y la responsabilidad
-        profesional siguen siendo de la persona matriculada. Lo que cambia es
-        que deja de perder horas armando carpetas y planillas.
-      </p>
-
-      <h3>¿Sirve si tengo un solo establecimiento?</h3>
-      <p>
-        Sí, aunque el retorno es más evidente cuando hay varias ubicaciones o
-        muchos equipos con vencimientos. Con un solo establecimiento chico y
-        pocos equipos, una planilla ordenada puede alcanzar por un tiempo; el
-        problema aparece cuando llega una auditoría y hay que reconstruir el
-        historial.
-      </p>
-
-      <h3>¿Puedo migrar mis datos actuales desde Excel?</h3>
-      <p>
-        En general sí, y conviene confirmarlo antes de contratar. En SHIPSAFE la
-        importación se hace durante el onboarding. Ver la{" "}
+        Sobre la migración, ver la{" "}
         <Link href="/software-seguridad-higiene-vs-excel">
           comparativa con Excel
         </Link>
