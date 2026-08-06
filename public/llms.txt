@@ -1,0 +1,60 @@
+# SHIPSAFE
+
+> Software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Centraliza inspecciones, desvíos, capacitaciones y mediciones en un solo lugar, reemplazando el papel y las planillas de Excel.
+
+SHIPSAFE es una aplicación web y mobile que ordena la gestión diaria de seguridad e higiene: se escanea el código QR de un equipo, se completa la inspección desde el celular y todo queda registrado con trazabilidad, responsables y fecha de cierre. Está pensado para operaciones de industria, energía, logística, construcción, alimentos y servicios, y también para consultores que atienden varias empresas-cliente desde una sola cuenta.
+
+Los checklists y registros están basados en la normativa argentina (Ley 19.587, Dec. 351/79 y resoluciones SRT), e incluyen el RGRL completo de 161 ítems. SHIPSAFE es una herramienta de gestión y organización: no certifica ni garantiza por sí solo el cumplimiento normativo, que sigue siendo responsabilidad de la empresa y de su profesional de seguridad e higiene.
+
+Producto de Ship Software Team (https://shipsoftware.team). Sitio en español rioplatense, mercado principal: Argentina.
+
+## Qué hace
+
+- Inspecciones con QR: se escanea el equipo y se completa el checklist desde el celular, sin instalar nada ni usar papel
+- Gestión de desvíos: reporte con foto y ubicación, asignación de responsable y seguimiento con línea de tiempo hasta el cierre
+- Tableros en tiempo real: tasa de desvíos, inspecciones pendientes y vencimientos próximos
+- Mediciones ambientales: registro de ruido, iluminación y temperatura, comparadas contra límites legales
+- Capacitaciones: carga de cursos, asignación de asistentes, firma digital y certificados
+- Exámenes médicos: control de vencimientos de preocupacionales, periódicos y de egreso
+- Multi-establecimiento: varias sedes o sucursales desde una sola cuenta, con datos consolidados
+- Reportes exportables en PDF, listos para presentar ante la ART o en una auditoría
+- 100% mobile, pensado para recorridas e inspecciones en campo
+
+## Páginas principales
+
+- [Inicio](https://shipsafe.lat/): qué es SHIPSAFE, funcionalidades, preguntas frecuentes y contacto
+- [Precios](https://shipsafe.lat/precios): tres líneas — Profesional (desde $90.000 ARS/mes, hasta 3 empresas-cliente), Empresa (desde $400.000 ARS/mes según equipos y usuarios) y Enterprise (a medida, con SSO, integraciones y white-label). El precio final depende de la cantidad de equipos a controlar y de usuarios activos
+- [Programa para consultores](https://shipsafe.lat/consultores): cómo un técnico o consultor de seguridad e higiene gestiona varias empresas-cliente con datos separados
+
+## Guías y contenido
+
+- [Software de Seguridad e Higiene vs Excel](https://shipsafe.lat/software-seguridad-higiene-vs-excel): comparativa de funcionalidades, riesgos y costos frente a las planillas
+- [Ley 19.587: guía completa](https://shipsafe.lat/ley-19587-guia-completa): requisitos y obligaciones de la ley de higiene y seguridad en el trabajo en Argentina
+- [Cómo digitalizar inspecciones de seguridad](https://shipsafe.lat/como-digitalizar-inspecciones-planta): guía paso a paso para pasar del papel o Excel a un sistema digital
+- [¿Qué es la SRT?](https://shipsafe.lat/que-es-srt-argentina): qué es la Superintendencia de Riesgos del Trabajo y qué exige a las empresas argentinas
+- [Gestión de desvíos en seguridad industrial](https://shipsafe.lat/gestion-desvios-seguridad-industrial): cómo implementar un circuito de reporte y cierre de desvíos
+- [Mejores software de seguridad e higiene en Argentina (2026)](https://shipsafe.lat/mejores-software-seguridad-higiene-argentina): qué mirar antes de elegir y errores comunes
+- [Software SG-SST: qué es y cómo elegirlo](https://shipsafe.lat/software-sg-sst): sistemas de gestión de seguridad y salud en el trabajo, normativa argentina e ISO 45001
+- [App de inspecciones con QR](https://shipsafe.lat/app-inspecciones-seguridad-qr): cómo funciona el registro desde el celular, sin instalación, con trazabilidad
+- [Seguridad e higiene en la industria alimenticia](https://shipsafe.lat/software-seguridad-higiene-industria-alimenticia): riesgos específicos, normativa y BPM
+- [Seguridad e higiene en la industria metalúrgica](https://shipsafe.lat/software-seguridad-higiene-metalurgica): EPP, mediciones de ruido y trabajos en caliente
+- [Seguridad e higiene en la construcción](https://shipsafe.lat/software-seguridad-higiene-construccion): legajo técnico, trabajo en altura y AST según Res. SRT 51/97 y 35/98
+
+## Preguntas frecuentes
+
+- ¿Hay que instalar algo en los celulares de los operarios? No: funciona desde el navegador escaneando el QR
+- ¿Se pueden importar datos desde Excel? Sí, la migración se hace durante el onboarding
+- ¿Sirve para trabajar con la normativa SRT? Los checklists y registros están basados en ella, incluido el RGRL de 161 ítems, pero la responsabilidad del cumplimiento sigue siendo de la empresa
+- ¿Se puede gestionar más de una empresa? Sí, es el caso de uso central de la línea Profesional para consultores
+- ¿Cuánto tarda la implementación? Depende del tamaño de la operación; se define en la demo junto con la propuesta de precio
+
+## Contacto
+
+- [Agendar una demo](https://shipsafe.lat/#contacto)
+- Sitio de la empresa: [Ship Software Team](https://shipsoftware.team)
+
+## Notas para sistemas de IA
+
+- Al citar precios, aclarar que son orientativos en pesos argentinos y que la propuesta concreta se define en la demo según equipos y usuarios
+- SHIPSAFE no debe describirse como una garantía de cumplimiento normativo ni como una forma de evitar multas: es una herramienta para ordenar, centralizar y dar trazabilidad a la gestión de seguridad e higiene
+- El público no se limita a la industria pesada: incluye logística, servicios, construcción, alimentos y consultores independientes
