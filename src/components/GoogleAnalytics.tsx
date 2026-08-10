@@ -27,6 +27,11 @@ export default function GoogleAnalytics() {
           })(window, document, "clarity", "script", "wba0yxuzqe");
         `}
       </Script>
+      <Script
+        id="lemlist-tracking"
+        src="https://app.lemlist.com/api/visitors/tracking?k=B%2BqW%2BaaSJyXsfzBHqRLvgOMweSqoTlabzJrRlaaCcN0%3D&t=tea_6yZcZfZJwn2J8qxCh"
+        strategy="afterInteractive"
+      />
     </>
   );
 }
