@@ -76,19 +76,18 @@ export default function Hero() {
             >
               Software de seguridad e higiene:{" "}
               <span className="bg-gradient-to-r from-blue-400 via-accent to-blue-400 bg-clip-text text-transparent">
-                toda tu operación
+                toda tu gestión ordenada
               </span>{" "}
-              en el celular.
+              en un solo lugar.
             </motion.h1>
 
             <motion.p
               variants={blurIn}
               className="mt-6 max-w-xl text-lg leading-relaxed text-white/75"
             >
-              Digitalizá inspecciones, desvíos, capacitaciones y mediciones.
-              Dejá el papel y el Excel: todo centralizado, con tableros para
-              analizar tu gestión y responder desvíos más rápido. Desde el
-              celular, en tiempo real.
+              Inspecciones, desvíos, capacitaciones y mediciones en un solo
+              lugar. Tu equipo carga todo desde el celular y vos lo ves al
+              instante, sin andar persiguiendo planillas.
             </motion.p>
 
             <motion.div

@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import VideoIntro from "@/components/VideoIntro";
 import PainPoints from "@/components/PainPoints";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import RolesBenefits from "@/components/RolesBenefits";
 import Compliance from "@/components/Compliance";
-import Pricing from "@/components/Pricing";
+import PricingTeaser from "@/components/PricingTeaser";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Credibility from "@/components/Credibility";
@@ -41,12 +42,15 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10">
         <Hero />
+        {/* VSL corto. Si preferís que primero agite el dolor, moverlo debajo
+            de <PainPoints /> es una sola línea. */}
+        <VideoIntro />
         <PainPoints />
         <Features />
         <HowItWorks />
         <RolesBenefits />
         <Compliance />
-        <Pricing />
+        <PricingTeaser />
         <Testimonials />
         <FAQ />
         <Credibility />

@@ -10,7 +10,9 @@ export const SITE = {
 
 export const CTAS = {
   primary: {
-    label: "Contactanos",
+    // "Contactanos" no dice qué pasa después. "Pedí una demo" nombra la acción
+    // concreta y es el mismo lenguaje que usa la landing /demo.
+    label: "Pedí una demo",
     href: "#contacto",
   },
   secondary: {
@@ -34,6 +36,26 @@ export const NAV_LINKS = [
   { label: "Consultores", href: "/consultores" },
   { label: "FAQ", href: "/#faq" },
 ];
+
+/**
+ * VSL corto de la home.
+ *
+ * Es el video de "presentación": el visitante orgánico llega en modo
+ * comparación, así que acá va la versión CORTA (60-90s). El VSL largo, que
+ * hace la educación completa y reemplaza la llamada de descubrimiento, vive en
+ * la landing de campaña /demo (ver VSL en src/app/demo/_data.ts).
+ *
+ * Hoy apunta al mismo video que /demo porque es el único grabado. Cuando esté
+ * el corto de José, cambiá `youtubeId` (y el `title` si hace falta): nada más.
+ * Si querés ocultar la sección mientras tanto, poné `available: false`.
+ */
+export const HOME_VIDEO = {
+  available: true,
+  youtubeId: "ehirzx0T8cg",
+  title: "Mirá cómo funciona SHIPSAFE",
+  subtitle:
+    "Te muestro cómo se usa por dentro: cómo se carga una inspección desde el celular, cómo se sigue un desvío hasta que se cierra y qué termina viendo la gerencia.",
+};
 
 export const PAIN_POINTS = [
   "Tenés 300 registros de inspecciones en una carpeta de Excel que nadie revisa hasta que llega la ART.",
@@ -212,7 +234,7 @@ export const CASE_STUDIES = [
   {
     // TODO(founder): confirmar con el cliente si se puede publicar el nombre
     // de la empresa. Mientras tanto se muestra de forma anónima.
-    company: "Empresa industrial — Neuquén",
+    company: "Empresa industrial de Neuquén",
     industry: "Industria",
     employees: "60 empleados",
     summary:
@@ -229,6 +251,18 @@ export const CASE_STUDIES = [
 // publicarla. Enterprise nunca con tarifa de lista. Ajustar semestralmente
 // por inflación (política interna: IPC con tope).
 export const PRICING = {
+  // Copy del bloque de precios de la HOME. A propósito sin cifras: la home es
+  // tráfico frío de orgánico que todavía está entendiendo la categoría, y una
+  // tabla de 3 planes ahí anclaba el precio antes de que se entienda el valor
+  // (además de duplicar /precios, que es la página que rankea para eso).
+  // Las cifras viven en /precios; acá solo pre-calificamos y derivamos.
+  teaser: {
+    title: "¿Cuánto sale?",
+    body:
+      "Depende de cómo sea tu operación: cuántos establecimientos tenés, cuántos equipos querés controlar y cuánta gente lo va a usar. Contanos eso en la demo y te pasamos el número el mismo día, sin vueltas.",
+    note:
+      "Es mensual y te podés dar de baja cuando quieras. Si pagás por año, tenés entre 15% y 20% de descuento.",
+  },
   disclaimer:
     "Precios orientativos en ARS, según equipos a controlar y usuarios activos. Pagando anual obtenés entre 15% y 20% de descuento. Te pasamos la propuesta concreta el mismo día de la demo.",
   tiers: [
@@ -238,7 +272,7 @@ export const PRICING = {
       target:
         "Para técnicos y consultores de seguridad e higiene que atienden sus propios clientes, o PyMEs muy chicas",
       price: "Desde $90.000",
-      priceDetail: "por mes — incluye hasta 3 empresas-cliente",
+      priceDetail: "por mes, incluye hasta 3 empresas-cliente",
       features: [
         "Hasta 3 empresas-cliente con datos separados",
         "Checklists con QR, capacitaciones y gestión de desvíos",
@@ -379,7 +413,7 @@ export const CONSULTORES = {
   ],
   pricing: {
     price: "Desde $90.000",
-    priceDetail: "por mes — incluye hasta 3 empresas-cliente",
+    priceDetail: "por mes, incluye hasta 3 empresas-cliente",
     note: "¿Gestionás más clientes? El plan Advanced Pro incluye hasta 5 empresas por $170.000/mes. Pagando anual, 15% de descuento.",
   },
   programNote:

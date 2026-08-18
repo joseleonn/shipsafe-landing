@@ -6,15 +6,21 @@ import ScrollReveal from "./ScrollReveal";
 import { CASE_STUDIES } from "@/lib/constants";
 
 export default function Testimonials() {
+  // Título en singular mientras haya un solo caso: un "Casos reales" en plural
+  // sobre una sola card es la clase de detalle que un comprador B2B nota.
+  const many = CASE_STUDIES.length > 1;
+
   return (
     <section className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="blur">
           <h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Casos reales
+            {many ? "Casos reales" : "Un caso real"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-white/75">
-            Empresas que ya gestionan su seguridad e higiene con SHIPSAFE.
+            {many
+              ? "Empresas que ya gestionan su seguridad e higiene con SHIPSAFE."
+              : "Una empresa que ya lo está usando todos los días en su operación."}
           </p>
         </ScrollReveal>
 
