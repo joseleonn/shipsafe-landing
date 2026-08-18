@@ -9,7 +9,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: `Precios | ${SITE.name} — Planes para PyMEs industriales y consultores`,
+  title: `Precios | ${SITE.name}: planes para PyMEs industriales y consultores`,
   description:
     "Planes de SHIPSAFE para empresas, consultores y técnicos de seguridad e higiene en Argentina. Precios orientativos, sin permanencia mínima y con prueba guiada de 7 días.",
   alternates: { canonical: "/precios" },

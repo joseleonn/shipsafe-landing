@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SHIPSAFE — Software de Seguridad e Higiene Laboral",
+        alt: "SHIPSAFE, software de seguridad e higiene laboral",
       },
     ],
   },

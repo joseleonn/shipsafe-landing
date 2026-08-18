@@ -57,7 +57,7 @@ export default function CtaButton({
       >
         <span className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <span className="relative">
-          {label} <span aria-hidden="true">→</span>
+          {label}
         </span>
       </a>
     </Magnetic>

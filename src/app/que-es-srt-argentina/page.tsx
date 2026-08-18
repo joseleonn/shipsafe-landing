@@ -70,7 +70,7 @@ export default function Page() {
 
       <h2>Resoluciones SRT que más impactan en la operación diaria</h2>
 
-      <h3>Res. SRT 299/11 — Entrega de EPP</h3>
+      <h3>Res. SRT 299/11: entrega de EPP</h3>
       <p>
         Establece la obligatoriedad de registrar la entrega de elementos de
         protección personal (EPP) con la <strong>firma del trabajador</strong>.
@@ -79,7 +79,7 @@ export default function Page() {
         puede demostrar que proveyó la protección adecuada.
       </p>
 
-      <h3>Res. SRT 3067/14 — Relevamiento de agentes de riesgo</h3>
+      <h3>Res. SRT 3067/14: relevamiento de agentes de riesgo</h3>
       <p>
         Obliga a los empleadores a realizar relevamientos de los agentes de
         riesgo presentes en los puestos de trabajo y a efectuar{" "}
@@ -88,7 +88,7 @@ export default function Page() {
         límites legales establecidos por el Decreto 351/79.
       </p>
 
-      <h3>Res. SRT 905/15 — Autoseguro</h3>
+      <h3>Res. SRT 905/15: autoseguro</h3>
       <p>
         Regula el régimen de autoseguro para empresas grandes que optan por no
         contratar una ART y gestionar los riesgos laborales por cuenta propia.

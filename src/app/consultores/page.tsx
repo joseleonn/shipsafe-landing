@@ -8,7 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import ConsultoresForm from "@/components/consultores/ConsultoresForm";
 
 export const metadata: Metadata = {
-  title: `Programa de Consultores | ${SITE.name} — Gestioná todos tus clientes desde una cuenta`,
+  title: `Programa de Consultores | ${SITE.name}: gestioná todos tus clientes desde una cuenta`,
   description:
     "Programa de SHIPSAFE para consultores de seguridad e higiene en Argentina: gestioná todas tus empresas-cliente desde una sola cuenta, con datos separados y reportes listos para la ART. Pagás por empresa gestionada.",
   alternates: { canonical: "/consultores" },

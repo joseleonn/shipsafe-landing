@@ -70,7 +70,7 @@ export default function Compliance() {
           <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-white/65">
             Generá la documentación de tu gestión con un clic. Registros de
             inspecciones, entregas de EPP, capacitaciones y mediciones
-            ambientales — todo con trazabilidad completa.
+            ambientales, todo con trazabilidad completa.
           </p>
         </ScrollReveal>
       </div>

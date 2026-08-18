@@ -195,7 +195,7 @@ export const FEATURES = [
 export const PLANS = [
   {
     id: "empresa",
-    name: "Empresa — todo incluido",
+    name: "Empresa, todo incluido",
     price: "A medida",
     priceDetail: "según el tamaño de tu empresa",
     target: "Todos los módulos incluidos. Te armamos la propuesta según tu operación.",

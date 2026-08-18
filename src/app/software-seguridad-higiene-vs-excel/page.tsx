@@ -99,23 +99,23 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Pérdida de datos</strong> — archivos corruptos, borrados
+          <strong>Pérdida de datos</strong>: archivos corruptos, borrados
           accidentales, versiones que se sobreescriben. Sin backup automático.
         </li>
         <li>
-          <strong>Incumplimiento normativo</strong> — si no podés demostrar
+          <strong>Incumplimiento normativo</strong>: si no podés demostrar
           trazabilidad, para la ART es como si no hubieras hecho nada.
         </li>
         <li>
-          <strong>Tiempo perdido</strong> — cargar datos dos veces (papel → Excel),
+          <strong>Tiempo perdido</strong>: cargar datos dos veces, del papel al Excel,
           armar reportes a mano, buscar información entre 20 archivos.
         </li>
         <li>
-          <strong>Cero visibilidad en tiempo real</strong> — el gerente de planta
+          <strong>Cero visibilidad en tiempo real</strong>: el gerente de planta
           no sabe el estado actual hasta que alguien actualice la planilla.
         </li>
         <li>
-          <strong>Escalabilidad</strong> — lo que funciona con 1 planta colapsa
+          <strong>Escalabilidad</strong>: lo que funciona con 1 planta colapsa
           con 3. Cada planta hace las cosas diferente.
         </li>
       </ul>

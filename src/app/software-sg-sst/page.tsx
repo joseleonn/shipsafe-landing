@@ -54,11 +54,11 @@ export default function Page() {
       <h2>Qué funciones necesita un software SG-SST</h2>
       <ul>
         <li>
-          <strong>Identificación de peligros y evaluación de riesgos</strong> —
+          <strong>Identificación de peligros y evaluación de riesgos</strong>:
           matrices por puesto y sector, actualizables.
         </li>
         <li>
-          <strong>Inspecciones y checklists</strong> — relevamientos planificados
+          <strong>Inspecciones y checklists</strong>: relevamientos planificados
           con evidencia. Ver{" "}
           <Link href="/app-inspecciones-seguridad-qr">
             app de inspecciones con QR
@@ -66,19 +66,19 @@ export default function Page() {
           .
         </li>
         <li>
-          <strong>Gestión de incidentes y desvíos</strong> — registro,
+          <strong>Gestión de incidentes y desvíos</strong>: registro,
           investigación, acciones correctivas y cierre.
         </li>
         <li>
-          <strong>Capacitaciones</strong> — planificación, asistencia con firma
+          <strong>Capacitaciones</strong>: planificación, asistencia con firma
           digital y certificados.
         </li>
         <li>
-          <strong>Control de EPP y vencimientos</strong> — entrega registrada y
+          <strong>Control de EPP y vencimientos</strong>: entrega registrada y
           alertas automáticas.
         </li>
         <li>
-          <strong>Indicadores y reportes</strong> — tableros de gestión y
+          <strong>Indicadores y reportes</strong>: tableros de gestión y
           exportación para auditorías o la ART.
         </li>
       </ul>

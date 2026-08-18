@@ -50,8 +50,8 @@ export default function PricingSection() {
 
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((feature) => {
-                    const isPlus = feature.startsWith("Plus — ");
-                    const label = isPlus ? feature.replace("Plus — ", "") : feature;
+                    const isPlus = feature.startsWith("Plus: ");
+                    const label = isPlus ? feature.replace("Plus: ", "") : feature;
                     return (
                       <li
                         key={feature}

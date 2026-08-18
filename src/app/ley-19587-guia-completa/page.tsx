@@ -107,15 +107,15 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Res. SRT 299/11</strong> — Obligatoriedad del registro de
+          <strong>Res. SRT 299/11</strong>: Obligatoriedad del registro de
           entrega de elementos de protección personal con firma del trabajador.
         </li>
         <li>
-          <strong>Res. SRT 3067/14</strong> — Relevamiento de agentes de riesgo
+          <strong>Res. SRT 3067/14</strong>: Relevamiento de agentes de riesgo
           y mediciones ambientales obligatorias.
         </li>
         <li>
-          <strong>Res. SRT 905/15</strong> — Régimen de autoseguro y
+          <strong>Res. SRT 905/15</strong>: Régimen de autoseguro y
           requerimientos de documentación.
         </li>
       </ul>
@@ -169,7 +169,7 @@ export default function Page() {
       </ul>
       <p>
         La clave es que los datos se generen directamente desde la operación
-        diaria — no que alguien los cargue después en una planilla. Así el
+        diaria, no que alguien los cargue después en una planilla. Así el
         cumplimiento es un subproducto del trabajo, no una tarea extra.
       </p>
     </ArticleLayout>

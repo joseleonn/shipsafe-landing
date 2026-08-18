@@ -312,12 +312,12 @@ export default function Page() {
       <h2>Los 7 criterios para comparar</h2>
       <ol>
         <li>
-          <strong>Uso en campo sin fricción</strong> — ¿el operario puede
+          <strong>Uso en campo sin fricción</strong>: ¿el operario puede
           registrar desde el celular, sin instalar una app ni recordar una
           contraseña? Si requiere capacitación de horas, no se va a adoptar.
         </li>
         <li>
-          <strong>Alineación con la normativa argentina</strong> — que los
+          <strong>Alineación con la normativa argentina</strong>: que los
           checklists y registros estén construidos sobre la{" "}
           <Link href="/ley-19587-guia-completa">Ley 19.587</Link>, el Decreto
           351/79 y las resoluciones de la{" "}
@@ -325,12 +325,12 @@ export default function Page() {
           salgan en formatos presentables ante la ART.
         </li>
         <li>
-          <strong>Inspecciones y checklists configurables</strong> — que puedas
+          <strong>Inspecciones y checklists configurables</strong>: que puedas
           adaptar los cuestionarios a tus equipos y sectores, no formularios
           rígidos.
         </li>
         <li>
-          <strong>Gestión de desvíos de punta a punta</strong> — del reporte con
+          <strong>Gestión de desvíos de punta a punta</strong>: del reporte con
           foto al cierre con responsable asignado. Ver{" "}
           <Link href="/gestion-desvios-seguridad-industrial">
             gestión de desvíos
@@ -338,15 +338,15 @@ export default function Page() {
           .
         </li>
         <li>
-          <strong>Control de vencimientos</strong> — EPP, matafuegos, exámenes
+          <strong>Control de vencimientos</strong>: EPP, matafuegos, exámenes
           médicos y mediciones, con alertas automáticas antes de que venzan.
         </li>
         <li>
-          <strong>Multi-establecimiento y tableros en tiempo real</strong> —
+          <strong>Multi-establecimiento y tableros en tiempo real</strong>:
           visibilidad consolidada si gestionás más de una ubicación.
         </li>
         <li>
-          <strong>Migración desde Excel</strong> — que puedas importar tus datos
+          <strong>Migración desde Excel</strong>: que puedas importar tus datos
           actuales sin empezar de cero. Comparativa completa en{" "}
           <Link href="/software-seguridad-higiene-vs-excel">
             software vs Excel
@@ -358,26 +358,26 @@ export default function Page() {
       <h2>Cuál elegir según tu caso</h2>
       <ul>
         <li>
-          <strong>Sos consultor o técnico con varias empresas-cliente</strong> —
+          <strong>Sos consultor o técnico con varias empresas-cliente</strong>:
           mirá SHIPSAFE en su línea Profesional o Genesis Broker. Lo que importa
           es la separación de datos entre clientes. Ver el{" "}
           <Link href="/consultores">programa para consultores</Link>.
         </li>
         <li>
-          <strong>Sos una PyME que hoy vive en Excel y papel</strong> — SHIPSAFE
+          <strong>Sos una PyME que hoy vive en Excel y papel</strong>: SHIPSAFE
           o Previnnova. Priorizá que el operario registre desde el celular y que
           la migración de tus datos actuales esté incluida.
         </li>
         <li>
-          <strong>Tu problema es la documentación desordenada</strong> —
+          <strong>Tu problema es la documentación desordenada</strong>:
           GuardianSST está construido alrededor de eso.
         </li>
         <li>
-          <strong>Vas a certificar ISO 45001</strong> — SGO Suite o cualquier
+          <strong>Vas a certificar ISO 45001</strong>: SGO Suite o cualquier
           software de SG-SST orientado a la norma.
         </li>
         <li>
-          <strong>Sos una corporación multinacional</strong> — VelocityEHS,
+          <strong>Sos una corporación multinacional</strong>: VelocityEHS,
           Vector EHS o ZYGHT, según cuánto peso tenga la normativa local.
         </li>
       </ul>

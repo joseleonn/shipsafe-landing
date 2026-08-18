@@ -34,23 +34,23 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Trabajos en caliente</strong> — soldadura, corte y amolado, con
+          <strong>Trabajos en caliente</strong>: soldadura, corte y amolado, con
           riesgo de incendio, quemaduras y proyección de partículas.
         </li>
         <li>
-          <strong>Exposición a ruido</strong> — niveles que con frecuencia
+          <strong>Exposición a ruido</strong>: niveles que con frecuencia
           superan los límites legales y exigen mediciones periódicas.
         </li>
         <li>
-          <strong>Humos metálicos y gases de soldadura</strong> — riesgo
+          <strong>Humos metálicos y gases de soldadura</strong>: riesgo
           respiratorio que requiere ventilación y EPP específico.
         </li>
         <li>
-          <strong>Máquinas, prensas y autoelevadores</strong> — riesgo de
+          <strong>Máquinas, prensas y autoelevadores</strong>: riesgo de
           atrapamiento, aplastamiento y golpes.
         </li>
         <li>
-          <strong>Manipulación de cargas</strong> — puentes grúa, eslingas y
+          <strong>Manipulación de cargas</strong>: puentes grúa, eslingas y
           aparejos que deben inspeccionarse y certificarse.
         </li>
       </ul>
@@ -66,7 +66,7 @@ export default function Page() {
           comparadas contra los límites de la Res. SRT 3067/14.
         </li>
         <li>
-          <strong>Control de EPP</strong> — máscaras de soldar, protección
+          <strong>Control de EPP</strong>: máscaras de soldar, protección
           auditiva y respiratoria, con entrega registrada y firmada.
         </li>
         <li>
@@ -75,7 +75,7 @@ export default function Page() {
           alertas de vencimiento.
         </li>
         <li>
-          <strong>Gestión de desvíos</strong> de punta a punta — ver{" "}
+          <strong>Gestión de desvíos</strong> de punta a punta. Ver{" "}
           <Link href="/gestion-desvios-seguridad-industrial">
             gestión de desvíos en seguridad industrial
           </Link>

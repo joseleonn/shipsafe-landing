@@ -54,23 +54,23 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>No hay registro formal</strong> — si no queda anotado, para la
+          <strong>No hay registro formal</strong>: si no queda anotado, para la
           ART no existió.
         </li>
         <li>
-          <strong>No se asignan responsables</strong> — el desvío se reporta
+          <strong>No se asignan responsables</strong>: el desvío se reporta
           pero nadie se hace cargo de resolverlo.
         </li>
         <li>
-          <strong>No hay seguimiento</strong> — se reporta, se "anota" y queda
+          <strong>No hay seguimiento</strong>: se reporta, se "anota" y queda
           en el limbo.
         </li>
         <li>
-          <strong>No hay datos para prevenir</strong> — sin estadísticas, no
+          <strong>No hay datos para prevenir</strong>: sin estadísticas, no
           sabés dónde están los problemas recurrentes.
         </li>
         <li>
-          <strong>No se puede demostrar acción preventiva</strong> — ante una
+          <strong>No se puede demostrar acción preventiva</strong>: ante una
           auditoría o un accidente, no hay evidencia de que se actuó.
         </li>
       </ul>
@@ -79,28 +79,28 @@ export default function Page() {
       <p>Un sistema efectivo de gestión de desvíos sigue este ciclo:</p>
       <ol>
         <li>
-          <strong>Detección y reporte</strong> — cualquier persona en planta
+          <strong>Detección y reporte</strong>: cualquier persona en planta
           identifica el desvío y lo reporta con la mayor información posible
           (descripción, ubicación, evidencia fotográfica).
         </li>
         <li>
-          <strong>Clasificación</strong> — se evalúa la gravedad (crítico, alto,
+          <strong>Clasificación</strong>: se evalúa la gravedad (crítico, alto,
           medio, bajo) y el tipo (condición insegura, acto inseguro, ambiental).
         </li>
         <li>
-          <strong>Asignación</strong> — se designa un responsable de resolver el
+          <strong>Asignación</strong>: se designa un responsable de resolver el
           desvío con un plazo definido.
         </li>
         <li>
-          <strong>Acción correctiva</strong> — el responsable ejecuta la
+          <strong>Acción correctiva</strong>: el responsable ejecuta la
           corrección y documenta lo que hizo.
         </li>
         <li>
-          <strong>Verificación</strong> — se verifica que la corrección fue
+          <strong>Verificación</strong>: se verifica que la corrección fue
           efectiva y se cierra el desvío.
         </li>
         <li>
-          <strong>Análisis</strong> — se analizan los datos para identificar
+          <strong>Análisis</strong>: se analizan los datos para identificar
           patrones y actuar preventivamente.
         </li>
       </ol>
@@ -112,7 +112,7 @@ export default function Page() {
         Con SHIPSAFE, cualquier operario puede reportar un desvío desde el
         celular: saca una foto, marca la ubicación, describe el problema y lo
         envía. El reporte queda registrado con fecha, hora, usuario y evidencia.
-        No necesita instalar ninguna app — funciona desde el navegador.
+        No necesita instalar ninguna app: funciona desde el navegador.
       </p>
 
       <h3>Asignación y seguimiento automático</h3>
@@ -133,7 +133,7 @@ export default function Page() {
 
       <h2>La conexión con el cumplimiento normativo</h2>
       <p>
-        La gestión de desvíos no es solo una buena práctica — es una obligación
+        La gestión de desvíos no es solo una buena práctica: es una obligación
         implícita de la{" "}
         <Link href="/ley-19587-guia-completa">Ley 19.587</Link> y las
         resoluciones de la{" "}

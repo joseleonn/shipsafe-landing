@@ -64,7 +64,7 @@ export function buildTrialUrl(search = ""): string {
 export const TRIAL_URL = buildTrialUrl();
 
 // Trial sin tarjeta → es el mayor argumento de conversión, se repite en todos los CTAs.
-export const CTA_LABEL = "Probá gratis 14 días — sin tarjeta";
+export const CTA_LABEL = "Probá gratis 14 días, sin tarjeta";
 
 export const MICRO_TRUST =
   "Sin instalar nada · Funciona desde el navegador del celular · Listo en minutos";
@@ -194,11 +194,11 @@ export const PLANS = [
       "Todo lo del plan Básico",
       "Hasta 3 empresas-cliente con datos separados",
       "Más usuarios y establecimientos",
-      "Plus — Módulo de EPP: entregas y control de stock",
-      "Plus — Módulo de análisis",
-      "Plus — Módulo de permisos de trabajo",
-      "Plus — Módulo de ATS (análisis de trabajo seguro)",
-      "Plus — Módulo de accidentología con IA",
+      "Plus: Módulo de EPP, entregas y control de stock",
+      "Plus: Módulo de análisis",
+      "Plus: Módulo de permisos de trabajo",
+      "Plus: Módulo de ATS (análisis de trabajo seguro)",
+      "Plus: Módulo de accidentología con IA",
       "Soporte prioritario por email",
     ],
     highlighted: true,

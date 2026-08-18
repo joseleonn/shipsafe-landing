@@ -38,22 +38,22 @@ export default function Page() {
       <h2>Cómo funciona el QR en planta</h2>
       <ol>
         <li>
-          <strong>Cada equipo o sector tiene su código QR</strong> — matafuegos,
+          <strong>Cada equipo o sector tiene su código QR</strong>: matafuegos,
           tableros eléctricos, máquinas, puestos de trabajo. Se imprime y se pega
           una sola vez.
         </li>
         <li>
-          <strong>El operario escanea con la cámara del celular</strong> — sin
+          <strong>El operario escanea con la cámara del celular</strong>: sin
           instalar ninguna app, se abre directamente la inspección de ese equipo
           en el navegador.
         </li>
         <li>
-          <strong>Completa el checklist en el momento</strong> — responde el
+          <strong>Completa el checklist en el momento</strong>: responde el
           cuestionario, saca fotos y, si detecta algo, reporta el desvío al
           instante.
         </li>
         <li>
-          <strong>Todo queda registrado con fecha, hora y usuario</strong> — sin
+          <strong>Todo queda registrado con fecha, hora y usuario</strong>: sin
           recargar nada después. La trazabilidad es automática.
         </li>
       </ol>

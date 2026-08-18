@@ -48,19 +48,19 @@ export default function Page() {
       <h2>Riesgos críticos a gestionar</h2>
       <ul>
         <li>
-          <strong>Trabajo en altura</strong> — la principal causa de accidentes
+          <strong>Trabajo en altura</strong>: la principal causa de accidentes
           fatales en el sector; exige permisos, arnés y verificación previa.
         </li>
         <li>
-          <strong>Excavaciones y derrumbes</strong> — entibado y control de
+          <strong>Excavaciones y derrumbes</strong>: entibado y control de
           taludes.
         </li>
         <li>
-          <strong>Riesgo eléctrico</strong> — instalaciones provisorias y
+          <strong>Riesgo eléctrico</strong>: instalaciones provisorias y
           herramientas en ambientes húmedos.
         </li>
         <li>
-          <strong>Caída de objetos y orden y limpieza</strong> — gestión del
+          <strong>Caída de objetos y orden y limpieza</strong>: gestión del
           obrador y circulación.
         </li>
       </ul>
@@ -84,7 +84,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Gestión de desvíos</strong> con foto y ubicación, del reporte al
-          cierre — ver{" "}
+          cierre. Ver{" "}
           <Link href="/gestion-desvios-seguridad-industrial">
             gestión de desvíos
           </Link>

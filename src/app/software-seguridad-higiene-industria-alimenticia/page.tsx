@@ -34,19 +34,19 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Cámaras de frío</strong> — exposición a bajas temperaturas,
+          <strong>Cámaras de frío</strong>: exposición a bajas temperaturas,
           pisos resbaladizos por condensación y riesgo de atrapamiento.
         </li>
         <li>
-          <strong>Limpieza con químicos</strong> — manipulación de productos de
+          <strong>Limpieza con químicos</strong>: manipulación de productos de
           sanitización que exige EPP específico y registro de uso.
         </li>
         <li>
-          <strong>Máquinas de proceso y cintas</strong> — riesgo mecánico, corte
+          <strong>Máquinas de proceso y cintas</strong>: riesgo mecánico, corte
           y atrapamiento en líneas de producción.
         </li>
         <li>
-          <strong>Pisos húmedos y caídas</strong> — la causa más frecuente de
+          <strong>Pisos húmedos y caídas</strong>: la causa más frecuente de
           accidentes en el sector.
         </li>
       </ul>

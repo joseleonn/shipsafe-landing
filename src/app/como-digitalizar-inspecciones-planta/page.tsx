@@ -122,19 +122,19 @@ export default function Page() {
       <h2>Resultados que se ven rápido</h2>
       <ul>
         <li>
-          <strong>Tiempo de carga reducido un 70-80%</strong> — el dato se
+          <strong>Tiempo de carga reducido un 70-80%</strong>: el dato se
           captura una sola vez, en el momento.
         </li>
         <li>
-          <strong>100% de trazabilidad</strong> — cada inspección tiene fecha,
+          <strong>100% de trazabilidad</strong>: cada inspección tiene fecha,
           hora, usuario y evidencia.
         </li>
         <li>
-          <strong>Visibilidad inmediata</strong> — el supervisor ve el estado
+          <strong>Visibilidad inmediata</strong>: el supervisor ve el estado
           actualizado sin esperar.
         </li>
         <li>
-          <strong>Reportes automáticos</strong> — la información para la ART se
+          <strong>Reportes automáticos</strong>: la información para la ART se
           genera desde los datos operativos.
         </li>
       </ul>
@@ -146,7 +146,7 @@ export default function Page() {
         resoluciones de la{" "}
         <Link href="/que-es-srt-argentina">SRT</Link> deja de ser una tarea
         separada. Los registros se generan automáticamente, con la evidencia que
-        las auditorías requieren. No tenés que "preparar" nada para la ART — los
+        las auditorías requieren. No tenés que "preparar" nada para la ART: los
         datos ya están ahí.
       </p>
       <p>
