@@ -58,6 +58,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Las animaciones de entrada horizontales (ScrollReveal fadeLeft/fadeRight) y
+   los blobs decorativos arrancan fuera del viewport y generaban ~24px de
+   scroll horizontal en mobile. `clip` los recorta sin crear un contenedor de
+   scroll (a diferencia de `hidden`), así que no rompe scroll-behavior ni
+   position: sticky. La línea `hidden` es fallback para Safari < 16. */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
