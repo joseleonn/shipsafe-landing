@@ -3,10 +3,11 @@ import CampaignHero from "./_components/CampaignHero";
 import PainSection from "./_components/PainSection";
 import HowItWorks from "./_components/HowItWorks";
 import FeatureBenefits from "./_components/FeatureBenefits";
-import SocialProof from "./_components/SocialProof";
+import SocialProof from "@/components/campaign/SocialProof";
 import PricingSection from "./_components/PricingSection";
-import FaqSection from "./_components/FaqSection";
+import FaqSection from "@/components/campaign/FaqSection";
 import FinalCta from "./_components/FinalCta";
+import { FAQS } from "./_data";
 
 export const metadata: Metadata = {
   title: "Pedí una demo de SHIPSAFE | Inspecciones para empresas",
@@ -25,7 +26,7 @@ export default function DemoPage() {
       <FeatureBenefits />
       <SocialProof />
       <PricingSection />
-      <FaqSection />
+      <FaqSection faqs={FAQS} />
       <FinalCta />
     </>
   );

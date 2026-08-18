@@ -9,6 +9,8 @@ import { CASE_STUDIES } from "@/lib/constants";
  * Prueba social cerca del CTA. Reutiliza el caso real publicado en el sitio
  * (solo lectura de constants.ts). SOLO datos reales: si no hay quote, se
  * muestran únicamente los hechos del caso.
+ *
+ * Compartido entre landings de campaña: no depende del _data.ts de ninguna.
  */
 export default function SocialProof() {
   const caseStudy = CASE_STUDIES[0];
@@ -46,7 +48,7 @@ export default function SocialProof() {
               <blockquote className="mt-6 border-l-2 border-accent/40 pl-4 text-base italic leading-relaxed text-white/75">
                 &ldquo;{caseStudy.quote}&rdquo;
                 <footer className="mt-2 text-sm not-italic text-white/55">
-                  — {caseStudy.quoteRole}
+                  {caseStudy.quoteRole}
                 </footer>
               </blockquote>
             )}

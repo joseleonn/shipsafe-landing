@@ -3,8 +3,11 @@ import Link from "next/link";
 import { CTAS } from "@/lib/constants";
 
 /**
- * Footer minimalista: logo + links legales + WhatsApp. Nada más.
- * Sin el árbol de links del footer del sitio, para no fugar conversión.
+ * Footer minimalista de las landings de campaña: logo + links legales +
+ * WhatsApp. Nada más. Sin el árbol de links del footer del sitio, para no
+ * fugar conversión.
+ *
+ * Compartido entre landings: no depende del _data.ts de ninguna.
  */
 export default function CampaignFooter() {
   return (

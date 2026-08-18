@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import GlobalBackground from "@/components/GlobalBackground";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import CampaignHeader from "./_components/CampaignHeader";
-import CampaignFooter from "./_components/CampaignFooter";
+import CampaignHeader from "@/components/campaign/CampaignHeader";
+import CampaignFooter from "@/components/campaign/CampaignFooter";
 
 /**
  * Layout aislado de la landing de campaña /demo.

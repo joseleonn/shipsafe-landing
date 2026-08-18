@@ -4,9 +4,23 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { FAQS } from "../_data";
 
-export default function FaqSection() {
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+/**
+ * Acordeón de FAQs de las landings de campaña.
+ *
+ * Compartido entre landings: las preguntas llegan por prop porque cada landing
+ * tiene su propio set en su _data.ts (la de /demo habla de la demo, la de
+ * /prueba-gratis del trial).
+ *
+ * Ojo: NO emite structured data de FAQPage. Estas landings son noindex, y
+ * Google exige que el schema corresponda a una página indexable.
+ */
+export default function FaqSection({ faqs }: { faqs: readonly Faq[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -19,7 +33,7 @@ export default function FaqSection() {
         </ScrollReveal>
 
         <div className="mt-12 space-y-3">
-          {FAQS.map((faq, i) => {
+          {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <ScrollReveal key={i} delay={i * 0.06} variant="fadeUp">

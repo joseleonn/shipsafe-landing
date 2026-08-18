@@ -1,8 +1,10 @@
 import Image from "next/image";
 
 /**
- * Header minimalista de la landing de campaña.
+ * Header minimalista de las landings de campaña (/demo, /prueba-gratis).
  * Solo el logo, sin links de menú: cada link extra es una fuga de conversión.
+ *
+ * Compartido entre landings: no depende del _data.ts de ninguna.
  */
 export default function CampaignHeader() {
   return (
