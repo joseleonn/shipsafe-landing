@@ -32,6 +32,27 @@ export interface Recurso {
 }
 
 export const RECURSOS: Record<string, Recurso> = {
+  "checklists-planta": {
+    slug: "checklists-planta",
+    kicker: "Para responsables de Seguridad e Higiene",
+    titulo: "10 checklists listos para usar en planta, y qué hacer con cada No OK",
+    subtitulo:
+      "Los checklists son la parte fácil. Lo difícil empieza cuando algo da No OK: quién se hace cargo, en cuánto tiempo, con qué evidencia se cierra y quién verifica. Acá van los diez que más se usan, y el criterio para que ninguno quede anotado y sin cerrar.",
+    incluye: [
+      "Los 10 checklists completos, listos para imprimir o cargar en tu sistema",
+      "Qué mirar en cada punto, no solo qué tildar",
+      "Los tres ítems que más se pasan por alto en cada uno",
+      "Qué hacer cuando algo da No OK: responsable, plazo, evidencia y verificación",
+      "Cómo armar tus propios checklists sin que queden en una lista de deseos",
+    ],
+    cta: "Quiero los 10 checklists",
+    archivo: "checklists-planta.pdf",
+    archivoListo: true,
+    metaTitle: "10 checklists de seguridad para planta | SHIPSAFE",
+    metaDescription:
+      "Diez checklists de inspección listos para usar en planta, con qué mirar en cada punto y qué hacer cuando algo da No OK.",
+  },
+
   "carpeta-auditoria": {
     slug: "carpeta-auditoria",
     kicker: "Para responsables de Seguridad e Higiene",
@@ -74,7 +95,7 @@ export const RECURSOS: Record<string, Recurso> = {
 };
 
 /** El que está corriendo en campaña ahora. Se cambia acá y en el anuncio. */
-export const RECURSO_ACTIVO = "carpeta-auditoria";
+export const RECURSO_ACTIVO = "checklists-planta";
 
 export function getRecurso(slug: string): Recurso | null {
   return RECURSOS[slug] ?? null;
