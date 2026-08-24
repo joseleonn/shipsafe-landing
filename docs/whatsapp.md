@@ -240,14 +240,11 @@ más confiable.
 
 ## 6. El cron
 
-Está en `vercel.json`, cada 15 minutos:
+Corre desde un cron externo, no desde `vercel.json`: el plan Hobby de Vercel
+solo admite crons diarios y una expresión más frecuente **hace fallar el
+deployment entero**. El detalle completo está en `docs/crons.md`.
 
-```json
-{ "crons": [{ "path": "/api/cron/recordatorios", "schedule": "*/15 * * * *" }] }
-```
-
-**Si tu plan de Vercel no permite esa frecuencia**, el endpoint funciona igual
-desde cualquier cron externo. En `cron-job.org` (gratis):
+En `cron-job.org` (gratis):
 
 - URL: `https://shipsafe.lat/api/cron/recordatorios`
 - Cada 15 minutos

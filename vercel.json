@@ -1,16 +1,3 @@
 {
-  "crons": [
-    {
-      "path": "/api/cron/recordatorios",
-      "schedule": "*/15 * * * *"
-    },
-    {
-      "path": "/api/cron/etapas",
-      "schedule": "*/15 * * * *"
-    },
-    {
-      "path": "/api/cron/setting",
-      "schedule": "0 * * * *"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
