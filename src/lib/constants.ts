@@ -630,3 +630,9 @@ export const TIKTOK_PIXEL_IDS = [
 ];
 
 export const WEB3FORMS_KEY = "1870ccde-d48a-40e8-88ce-345015fb7572";
+
+/**
+ * Pixel de Meta. Se lee de env para no versionar el ID y poder tener uno
+ * distinto en staging. Si está vacío, MetaPixel no renderiza nada.
+ */
+export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";

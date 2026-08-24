@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MetaPixel from "@/components/MetaPixel";
 import { SITE } from "@/lib/constants";
 
 const inter = Inter({
@@ -76,6 +77,16 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // Verificación de dominio de Meta (Business Manager → Seguridad de la marca →
+  // Dominios). Hace falta para que Meta pueda atribuir conversiones en iOS.
+  // Alternativa más robusta si tenés acceso al DNS: un registro TXT con
+  // facebook-domain-verification=<el mismo código>, que cubre también los
+  // subdominios y no depende de que esta página se renderice.
+  verification: {
+    other: {
+      "facebook-domain-verification": "m68q3sdlfaq6eejsup5pfltqr4jpmv",
+    },
+  },
 };
 
 const softwareAppSchema = {
@@ -137,6 +148,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full">
         <GoogleAnalytics />
+        <MetaPixel />
         {children}
       </body>
     </html>
