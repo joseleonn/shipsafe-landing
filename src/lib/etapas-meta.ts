@@ -13,6 +13,7 @@
 import { createHash } from "crypto";
 import { sendMetaEvent, buildFbc, type MetaEventName } from "./meta-capi";
 import { findContactByEmail } from "./hubspot";
+import { SITE } from "./constants";
 
 export interface EtapaMeta {
   /** Nombre corto, el que acepta /api/etapa */
@@ -95,7 +96,7 @@ export async function enviarEventoDeEtapa(opciones: {
   const resultado = await sendMetaEvent({
     eventName: etapa.evento,
     eventId,
-    eventSourceUrl: "https://shipsafe.lat/",
+    eventSourceUrl: `${SITE.url}/`,
     user: {
       email,
       phone: guardado.phone ?? undefined,

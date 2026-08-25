@@ -12,7 +12,7 @@ export const metadata: Metadata = {
  * Página de gracias posterior a agendar.
  *
  * Se configura en Calendly: evento de 30 min → Confirmation Page → Redirect to
- * an external site → https://shipsafe.lat/demo/agendado, con "Pass event
+ * an external site → https://www.shipsafe.lat/demo/agendado, con "Pass event
  * details to your redirected page" activado.
  *
  * Para qué sirve, además de agradecer: el video de nurturing hace la mitad de

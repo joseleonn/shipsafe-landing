@@ -18,7 +18,7 @@
  *     -H "Authorization: Bearer $CALENDLY_TOKEN" \
  *     -H "Content-Type: application/json" \
  *     -d '{
- *       "url": "https://shipsafe.lat/api/calendly/webhook",
+ *       "url": "https://www.shipsafe.lat/api/calendly/webhook",
  *       "events": ["invitee.created", "invitee.canceled"],
  *       "organization": "https://api.calendly.com/organizations/XXXX",
  *       "scope": "organization",
@@ -31,6 +31,7 @@ import { sendMetaEvent, buildFbc } from "@/lib/meta-capi";
 import { findContactByEmail, upsertContact } from "@/lib/hubspot";
 import { crearNegocioSiNoExiste, type ResultadoNegocio } from "@/lib/hubspot-deals";
 import { enviarPlantilla, formatearFechaAR } from "@/lib/whatsapp";
+import { SITE } from "@/lib/constants";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -187,7 +188,7 @@ export async function POST(request: Request) {
     sendMetaEvent({
       eventName: "Schedule",
       eventId,
-      eventSourceUrl: "https://shipsafe.lat/demo",
+      eventSourceUrl: `${SITE.url}/demo`,
       user: {
         email,
         phone: telefono,

@@ -205,7 +205,7 @@ curl -X POST https://api.calendly.com/webhook_subscriptions \
   -H "Authorization: Bearer $CALENDLY_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "url": "https://shipsafe.lat/api/calendly/webhook",
+    "url": "https://www.shipsafe.lat/api/calendly/webhook",
     "events": ["invitee.created", "invitee.canceled"],
     "organization": "https://api.calendly.com/organizations/XXXX",
     "scope": "organization",
@@ -220,7 +220,7 @@ El mismo `signing_key` va en `CALENDLY_WEBHOOK_SECRET`. Si no coincide, el endpo
 Evento de 30 min → Confirmation Page → **Redirect to an external site**:
 
 ```
-https://shipsafe.lat/demo/agendado
+https://www.shipsafe.lat/demo/agendado
 ```
 
 **Activá "Pass event details to your redirected page".** Sin eso Calendly no manda `invitee_uuid`, el pixel no puede usar el mismo `event_id` que el servidor, y Meta cuenta la agenda dos veces.

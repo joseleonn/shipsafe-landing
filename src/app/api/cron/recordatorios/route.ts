@@ -94,8 +94,8 @@ export async function GET(request: Request) {
   // configurado, el cron responde 200 y no hace nada, en vez de tirar un error
   // cada 15 minutos y ensuciar los logs de Vercel.
   const configurado =
-    process.env.WHATSAPP_PHONE_NUMBER_ID &&
-    process.env.WHATSAPP_ACCESS_TOKEN &&
+    process.env.YCLOUD_API_KEY &&
+    process.env.WHATSAPP_FROM &&
     process.env.CALENDLY_TOKEN &&
     process.env.CALENDLY_ORGANIZATION;
 

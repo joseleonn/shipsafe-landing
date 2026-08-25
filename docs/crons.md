@@ -27,6 +27,11 @@ y en cualquier plan.
 
 ---
 
+> **Usá siempre `www.shipsafe.lat`, nunca el apex.** `shipsafe.lat` devuelve un
+> 307 hacia el www, y **ni los crons ni los webhooks siguen redirecciones**. En
+> el navegador no se nota porque Chrome la sigue solo; en un cron, la tarea
+> "funciona" sin llegar nunca al endpoint.
+
 ## Configuración en cron-job.org (gratis)
 
 Creá tres tareas en `cron-job.org`, una por endpoint. Para las tres:
@@ -37,9 +42,9 @@ Creá tres tareas en `cron-job.org`, una por endpoint. Para las tres:
 
 | Título | URL | Intervalo |
 |---|---|---|
-| ShipSafe · etapas a Meta | `https://shipsafe.lat/api/cron/etapas` | cada 15 min |
-| ShipSafe · recordatorios WhatsApp | `https://shipsafe.lat/api/cron/recordatorios` | cada 15 min |
-| ShipSafe · cola de setting | `https://shipsafe.lat/api/cron/setting` | cada 1 hora |
+| ShipSafe · etapas a Meta | `https://www.shipsafe.lat/api/cron/etapas` | cada 15 min |
+| ShipSafe · recordatorios WhatsApp | `https://www.shipsafe.lat/api/cron/recordatorios` | cada 15 min |
+| ShipSafe · cola de setting | `https://www.shipsafe.lat/api/cron/setting` | cada 1 hora |
 
 El `WEBHOOK_SHARED_SECRET` es el mismo que está en `.env.local` y en Vercel. Sin
 el header, los endpoints devuelven 401 — es a propósito: son públicos y sin eso
@@ -51,7 +56,7 @@ cualquiera podría dispararlos.
 source .env.local
 for e in etapas recordatorios setting; do
   printf "%-14s " "$e"
-  curl -s "https://shipsafe.lat/api/cron/$e" \
+  curl -s "https://www.shipsafe.lat/api/cron/$e" \
     -H "Authorization: Bearer $WEBHOOK_SHARED_SECRET" | head -c 120; echo
 done
 ```

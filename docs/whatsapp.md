@@ -9,127 +9,93 @@ de ads: son las mismas agendas, mejor aprovechadas.
 
 ---
 
-## ⚠️ Antes que nada: la decisión del número
+## La decisión del número: resuelta
 
-**Un número que conectás a la Cloud API deja de funcionar en la app de WhatsApp
-Business del celular.** No hay vuelta atrás sin dar de baja y volver a
-registrar, con días de por medio.
+**Se migra el 341 306-7158 a YCloud.** Un solo número para todo: los
+recordatorios salen de ahí y las conversaciones entran ahí.
 
-Tu número actual **341 306-7158** está en toda la comunicación de ShipSafe: la
-web, los anuncios, la firma. Y hoy lo usás para conversaciones a mano.
+Esto se puede hacer porque **YCloud tiene bandeja de entrada compartida**. Con
+la Cloud API de Meta pelada no habría alcanzado: un número conectado
+directamente a la API pierde la app del celular y los mensajes entrantes solo
+llegan a un webhook, así que todo lo que la gente escriba desde el sitio
+terminaría en un log que nadie mira.
 
-| Camino | Qué pasa |
-|---|---|
-| **Línea nueva dedicada** *(recomendado)* | Los automáticos salen de un número nuevo. El 341 306-7158 sigue intacto para hablar a mano. Cuesta una línea prepaga |
-| **Migrar el número actual** | Todo sale del número que la gente ya conoce, que es mejor para la tasa de respuesta. Pero perdés la app en el celular: toda conversación pasa a ser por API o por la bandeja de Business Manager |
+Y el embudo manda gente a escribir a ese número: el botón de WhatsApp está en la
+página de gracias del recurso —el único canal humano del que **no** califica— y
+en la de post-agenda.
 
-> No arranques el paso 1 sin decidir esto. Es lo único de todo el sistema que no se puede deshacer con un clic.
+**Lo que cambia en tu día a día:** dejás de contestar desde la app del celular y
+pasás a contestar desde la bandeja web de YCloud. Los links `wa.me` del sitio no
+se tocan: es el mismo número.
 
-### De dónde sacar el número
+**Por qué YCloud y no otro:** el plan gratuito no tiene cuota de plataforma —solo
+se pagan las conversaciones de Meta, igual que yendo directo— e incluye API,
+webhooks y bandeja compartida. 360dialog y Wati cobran del orden de USD 50 por
+mes por lo mismo.
 
-Meta pide que el número sea tuyo, que tenga código de país y de área, y que
-pueda **recibir un SMS o una llamada de voz** para el código de verificación.
-Nada más. No hace falta que sea un celular, ni que la SIM viva en un teléfono
-después: la verificación se hace una sola vez y de ahí en más todo corre en la
-nube de Meta.
-
-| Opción | Cómo | Costo | Veredicto |
-|---|---|---|---|
-| **SIM prepaga** (Personal, Claro, Movistar) | Local de la operadora o kiosco. Se registra con DNI | Bajo, pago único | ✅ **La más simple** |
-| **El fijo de la oficina** | Verificación por llamada de voz | Gratis si ya lo tenés | ✅ Buena para B2B: un fijo de Rosario da imagen de empresa establecida |
-| **Número VoIP** (Twilio, Zadarma) | Verificación **por voz**, no por SMS | Mensual | ⚠️ Solo si necesitás un número de otro país. Meta desaconseja el SMS en VoIP |
-| **Número de prueba de Meta** | Se genera solo al crear la app | Gratis | 🔧 Solo para QA: envía a un puñado de números que autorizás a mano |
-
-**Tres condiciones que no se pueden saltear:**
-
-1. **El número no puede tener una cuenta de WhatsApp activa.** Si la tiene, hay
-   que borrarla desde la app antes de registrarlo (Ajustes → Cuenta → Eliminar
-   mi cuenta). Una SIM nueva ya viene limpia.
-2. **Durante la verificación, desactivá desvío de llamadas e IVR** si usás un
-   fijo. El código llega por llamada y tiene que atender la línea, no un menú.
-3. **Mantené la línea activa.** Meta puede pedir re-verificar. Una prepaga que
-   se da de baja por falta de uso es un número perdido.
-
-### El orden que ahorra plata y dolores de cabeza
-
-1. Creá la app en Meta y usá **el número de prueba** para validar el circuito
-   completo: que salgan los mensajes, que los botones vuelvan a HubSpot, que el
-   cron no duplique.
-2. Recién cuando eso funcione, conseguí el número definitivo y registralo.
-
-Así, si algo del código o de la configuración falla, te enterás antes de haber
-comprado nada.
-
-### Verificá el negocio, o vas a aparecer como un número desconocido
-
-Configuración del negocio → Centro de seguridad → **Verificación del negocio**.
-
-Sin eso, tus mensajes llegan desde un número que la persona no tiene agendado y
-sin nombre. Con la verificación aprobada, en el chat aparece **ShipSafe**.
-
-Es la diferencia entre "quién me escribe" y "ah, la reunión que agendé". Cuando
-el número es nuevo y nadie lo tiene en la agenda, esto pasa de ser un detalle
-estético a ser lo que define si el mensaje se lee o se ignora. **Hacelo antes de
-mandar el primer recordatorio.**
+> **Verificá que sean BSP oficial de Meta** en el directorio de Meta Business
+> Partners antes de conectar la cuenta. Lo afirman en su propio material y no
+> pude confirmarlo en una fuente independiente. Con tu cuenta publicitaria de
+> por medio, no es un detalle menor.
 
 ---
 
-## 1. Crear la app en Meta
+## 1. Cuenta y número
 
-`developers.facebook.com` → Mis apps → Crear app → tipo **Negocio**.
+1. Creá la cuenta en `ycloud.com`, plan **Free**.
+2. **WhatsApp → conectar número.** El alta es guiada: YCloud abre el flujo de
+   Meta y te pide confirmar el número. Vas a tener que verificarlo con el código
+   que llega por SMS o llamada al 341.
 
-Dentro de la app: Agregar producto → **WhatsApp** → Configurar.
+> **El número no puede tener una cuenta de WhatsApp activa.** Si el 341 está hoy
+> en la app de WhatsApp Business del celular, hay que **eliminar esa cuenta**
+> desde la app antes de migrarlo (Ajustes → Cuenta → Eliminar mi cuenta).
+> **Exportá antes las conversaciones que te importen**: se pierden.
 
-Ahí mismo:
-
-1. **Agregar número de teléfono.** Verificación por SMS o llamada.
-2. **Copiar el "Identificador del número de teléfono"** (no el número, el ID):
+3. **Developers → API Key.** Copiala:
 
 ```
-WHATSAPP_PHONE_NUMBER_ID=<el id>
+YCLOUD_API_KEY=<la key>
+WHATSAPP_FROM=5493413067158
 ```
 
-> El token temporal que muestra esa pantalla dura 24 horas. Sirve para probar, no para producción. El permanente sale en el paso siguiente.
+`WHATSAPP_FROM` va en formato internacional, sin el `+`.
 
 ---
 
-## 2. Token permanente
+## 2. Webhook
 
-Configuración del negocio → Usuarios → **Usuarios del sistema** → Agregar.
-
-- Nombre: `ShipSafe API` · Rol: Administrador
-- Agregar activos → tu app de WhatsApp → control total
-- Generar nuevo token → seleccioná la app → permisos:
-
-```
-whatsapp_business_messaging
-whatsapp_business_management
-```
-
-- Vencimiento: **Nunca**
-
-```
-WHATSAPP_ACCESS_TOKEN=<el token>
-```
-
----
-
-## 3. Webhook
-
-En la app → WhatsApp → Configuración → Webhooks → Editar.
+**Developers → Webhook → crear endpoint:**
 
 | Campo | Valor |
 |---|---|
-| URL de devolución de llamada | `https://shipsafe.lat/api/whatsapp/webhook` |
-| Token de verificación | Uno que inventes vos |
+| URL | `https://www.shipsafe.lat/api/whatsapp/webhook` |
+| Eventos | mensajes entrantes de WhatsApp |
+
+Copiá el secreto del endpoint:
 
 ```
-WHATSAPP_VERIFY_TOKEN=<el mismo que pusiste ahí>
+YCLOUD_WEBHOOK_SECRET=<el secreto>
 ```
 
-Verificar y guardar → después **Administrar** → suscribite al campo `messages`.
+El endpoint verifica la firma `YCloud-Signature` con HMAC-SHA256 sobre
+`{timestamp}.{cuerpo}`, con tolerancia de 5 minutos. Sin firma válida devuelve
+401 y no procesa nada.
 
-> Cargá primero la variable en Vercel y deployá. Si el endpoint no está publicado con el token correcto, la verificación falla.
+---
+
+## 3. Verificación del negocio
+
+**Configuración del negocio de Meta → Centro de seguridad → Verificación del
+negocio.** Pide documentación legal de Ship Software Team y **tarda días**.
+
+Sin ella, tus mensajes llegan sin nombre. Con ella, en el chat aparece
+**ShipSafe**. Como estás migrando un número que la gente ya tiene agendado, esto
+pesa menos que con un número nuevo — pero hacela igual: define si un mensaje se
+lee o se ignora cuando el destinatario no te tiene agendado.
+
+**Arrancala hoy**, en paralelo con todo lo demás. No depende de YCloud ni del
+número.
 
 ---
 
@@ -140,9 +106,11 @@ dentro de las 24 h posteriores a *su* último mensaje. Fuera de esa ventana, sol
 plantillas aprobadas por Meta. Todos los recordatorios caen fuera. Por eso el
 texto tiene que estar aprobado **antes** de poder usarse.
 
-Administrador de WhatsApp → Herramientas de la cuenta → **Plantillas de mensajes** → Crear.
+En YCloud: **WhatsApp → Templates → Create**. YCloud las manda a Meta para
+aprobación; el resultado es el mismo que crearlas en la consola de Meta, con
+mejor interfaz.
 
-Para las cinco: idioma **Español (ARG)**, categoría **Utilidad**.
+Para las cinco: idioma **Español (ARG)** (`es_AR`), categoría **Utilidad**.
 
 > **La categoría importa.** "Utilidad" es para algo que la persona pidió o agendó — se aprueba rápido y es la tarifa más barata. Si las cargás como "Marketing" tardan más y cuestan más. Un recordatorio de una reunión que la persona agendó es utilidad.
 
@@ -246,7 +214,7 @@ deployment entero**. El detalle completo está en `docs/crons.md`.
 
 En `cron-job.org` (gratis):
 
-- URL: `https://shipsafe.lat/api/cron/recordatorios`
+- URL: `https://www.shipsafe.lat/api/cron/recordatorios`
 - Cada 15 minutos
 - Header: `Authorization: Bearer <WEBHOOK_SHARED_SECRET>`
 
@@ -282,7 +250,7 @@ documentación de precios de WhatsApp Business antes de presupuestar.
 
 ## 8. QA
 
-- [ ] Las cinco plantillas figuran **Aprobadas** en el Administrador de WhatsApp
+- [ ] Las cinco plantillas figuran **Aprobadas** en YCloud
 - [ ] Variables cargadas en Vercel y deploy hecho
 - [ ] Agendar una reunión de prueba con tu propio número
 - [ ] Llega `demo_confirmada` con tu nombre y la fecha bien formateada, en hora argentina
@@ -290,7 +258,7 @@ documentación de precios de WhatsApp Business antes de presupuestar.
 - [ ] Llamar al cron a mano y ver que responde `{"ok":true,...}`:
 
 ```bash
-curl -s https://shipsafe.lat/api/cron/recordatorios \
+curl -s https://www.shipsafe.lat/api/cron/recordatorios \
   -H "Authorization: Bearer $WEBHOOK_SHARED_SECRET" | jq
 ```
 
@@ -298,7 +266,7 @@ curl -s https://shipsafe.lat/api/cron/recordatorios \
 - [ ] Cancelar una reunión de prueba → llega `demo_reagendar`
 - [ ] Confirmar que un segundo ciclo del cron **no** vuelve a mandar lo mismo
 
-**Si algo no sale:** Vercel → Logs, filtrá por `[whatsapp]`, `[cron]` o `[calendly]`. Un error de plantilla no aprobada aparece con el nombre exacto de la plantilla.
+**Si algo no sale:** Vercel → Logs, filtrá por `[whatsapp]`, `[cron]` o `[calendly]`. Un error de plantilla no aprobada aparece con el nombre exacto de la plantilla. YCloud además tiene su propio registro de envíos en Developers → Logs.
 
 ---
 
@@ -354,7 +322,7 @@ que no puede, ahí lo reagendás vos, con la persona del otro lado.
 
 ## Qué NO hace esto
 
-- **No contesta preguntas.** Si alguien escribe algo que no es confirmar o reagendar, queda en el log y lo atendés vos. Es a propósito: un bot contestando dudas comerciales de un SaaS B2B hace más daño que bien.
+- **No contesta preguntas.** Si alguien escribe algo que no es confirmar o reagendar, el mensaje queda en la bandeja de YCloud para que lo atienda una persona. Es a propósito: un bot contestando dudas comerciales de un SaaS B2B hace más daño que bien.
 - **No hace el setting del lead que no agendó.** Eso sigue siendo tarea manual desde HubSpot, con los mensajes de `operacion-comercial-shipsafe.md`. Automatizar el primer contacto en frío tiene otro riesgo: te bloquean el número.
 - **No manda el mensaje de T–10 min si la reunión se agendó hace 5 minutos.** El cron solo mira reuniones futuras dentro de su ventana.
 - **No cancela reuniones por su cuenta.** Solo cancela cuando la persona tocó "Necesito reagendar". Ver la sección de arriba.

@@ -1,6 +1,8 @@
 export const SITE = {
   name: "SHIPSAFE",
-  url: "https://shipsafe.lat",
+  // Dominio canónico: el apex redirige 307 al www, y hay cosas que NO siguen
+  // redirecciones (los crons y los webhooks). Siempre www.
+  url: "https://www.shipsafe.lat",
   appUrl: "https://shipsafe-web.fly.dev",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:

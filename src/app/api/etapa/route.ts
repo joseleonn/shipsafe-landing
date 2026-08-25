@@ -20,7 +20,7 @@
  *
  * Configuración en HubSpot (Automation → Workflows, uno por etapa):
  *   Disparador: "Etapa del negocio es igual a [etapa]"
- *   Acción: Send a webhook → POST → https://shipsafe.lat/api/etapa
+ *   Acción: Send a webhook → POST → https://www.shipsafe.lat/api/etapa
  *   Header: x-shipsafe-secret: <WEBHOOK_SHARED_SECRET>
  *   Body:   { "email": "{{contact.email}}", "etapa": "prueba_iniciada" }
  */

@@ -29,7 +29,7 @@ const RECREAR = process.argv.includes("--recrear");
 const ARCHIVO_ENV = ".env.local";
 
 const URL_WEBHOOK =
-  process.env.CALENDLY_WEBHOOK_URL ?? "https://shipsafe.lat/api/calendly/webhook";
+  process.env.CALENDLY_WEBHOOK_URL ?? "https://www.shipsafe.lat/api/calendly/webhook";
 const EVENTOS = ["invitee.created", "invitee.canceled"];
 const BASE = "https://api.calendly.com";
 
@@ -186,7 +186,7 @@ async function main() {
 
   console.log("\nFalta una sola cosa, y es a mano en la interfaz de Calendly:");
   console.log("  Evento de 30 min → Confirmation Page → Redirect to an external site");
-  console.log("    URL: https://shipsafe.lat/demo/agendado");
+  console.log("    URL: https://www.shipsafe.lat/demo/agendado");
   console.log("  Y activá el tilde \"Pass event details to your redirected page\".");
   console.log("  Sin ese tilde, Meta cuenta cada agenda DOS veces.\n");
 }
