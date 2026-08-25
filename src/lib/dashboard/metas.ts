@@ -38,6 +38,10 @@ export const METAS: Record<string, Meta> = {
     min: 1, direccion: "mayor_mejor",
     diagnostico: "Es el ángulo, no el presupuesto.",
   },
+  hookRate: {
+    min: 25, direccion: "mayor_mejor",
+    diagnostico: "Los primeros 3 segundos del video. Con hook alto y CTR bajo el gancho funciona y se cae después; con hook bajo no pasaron del primer plano.",
+  },
   conversionLanding: {
     min: 15, max: 30, direccion: "mayor_mejor",
     diagnostico: "El titular de la landing no matchea el anuncio, o el formulario pide demasiado.",

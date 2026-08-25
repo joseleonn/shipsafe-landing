@@ -45,11 +45,35 @@ function porcentaje(parte: number, total: number): number | null {
   return (parte / total) * 100;
 }
 
+/**
+ * Mediana, no promedio.
+ *
+ * En tiempos de ciclo un solo negocio que estuvo dormido cuatro meses te
+ * corre el promedio y te hace creer que el embudo entero es más lento de lo
+ * que es. La mediana dice qué le pasa al caso del medio, que es la pregunta.
+ */
+function mediana(valores: number[]): number | null {
+  if (valores.length === 0) return null;
+  const orden = [...valores].sort((a, b) => a - b);
+  const medio = Math.floor(orden.length / 2);
+  return orden.length % 2 === 0 ? (orden[medio - 1] + orden[medio]) / 2 : orden[medio];
+}
+
+const DIA_MS = 24 * 60 * 60 * 1000;
+
 export interface EtapaEmbudo {
   etiqueta: string;
   cantidad: number;
   /** Conversión desde la etapa anterior, en porcentaje. */
   desdeAnterior: number | null;
+  /**
+   * Mediana de días que tardaron en pasar desde la etapa anterior.
+   *
+   * Solo se calcula entre etapas de negocio, o sea desde "Demo agendada" en
+   * adelante: el paso de Lead a Demo agendada cruza de contacto a negocio y
+   * medirlo exigiría una consulta de asociaciones por cada lead.
+   */
+  diasDesdeAnterior: number | null;
 }
 
 export interface FilaCreativo {
@@ -75,6 +99,7 @@ export interface Metricas {
   impresiones: number | null;
   cpmUsd: number | null;
   ctrEnlace: number | null;
+  hookRate: number | null;
   clicsEnlace: number | null;
 
   // Embudo
@@ -96,6 +121,8 @@ export interface Metricas {
   cacUsd: number | null;
   ltvCac: number | null;
   facturacionArs: number | null;
+  /** Mediana de días entre agendar la demo y cerrar. El ciclo de venta real. */
+  cicloVentaDias: number | null;
 
   // Detalle
   porCreativo: FilaCreativo[];
@@ -153,13 +180,43 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
 
   const embudo: EtapaEmbudo[] = ORDEN_ETAPAS.map((etiqueta, i) => {
     const cantidad = cantidades[etiqueta] ?? 0;
-    const anterior = i === 0 ? null : (cantidades[ORDEN_ETAPAS[i - 1]] ?? 0);
+    const previa = i === 0 ? null : ORDEN_ETAPAS[i - 1];
+    const anterior = previa === null ? null : (cantidades[previa] ?? 0);
+
+    // Días solo entre etapas de negocio: "Lead" vive en contactos y no tiene
+    // fecha de etapa, así que el primer salto medible es hacia "Demo realizada".
+    let dias: number | null = null;
+    if (previa !== null && previa !== "Lead") {
+      const saltos = hs.negocios
+        .map((n) => {
+          const desdeEtapa = n.fechas[previa];
+          const hastaEtapa = n.fechas[etiqueta];
+          if (!desdeEtapa || !hastaEtapa || hastaEtapa < desdeEtapa) return null;
+          return (hastaEtapa - desdeEtapa) / DIA_MS;
+        })
+        .filter((d): d is number => d !== null);
+      dias = mediana(saltos);
+    }
+
     return {
       etiqueta,
       cantidad,
       desdeAnterior: anterior === null ? null : porcentaje(cantidad, anterior),
+      diasDesdeAnterior: dias,
     };
   });
+
+  // Ciclo de venta real: de agendar la demo a cerrar.
+  const cicloVentaDias = mediana(
+    hs.negocios
+      .map((n) => {
+        const inicio = n.fechas["Demo agendada"];
+        const fin = n.fechas["Ganado"];
+        if (!inicio || !fin || fin < inicio) return null;
+        return (fin - inicio) / DIA_MS;
+      })
+      .filter((d): d is number => d !== null)
+  );
 
   // ── Facturación: la suma real de los negocios ganados. Si están sin monto
   //    cargado, se estima con el ticket, y se avisa en la página.
@@ -257,6 +314,7 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     impresiones: meta.datos?.impresiones ?? null,
     cpmUsd: meta.datos?.cpm !== undefined && meta.datos !== null ? aUsd(meta.datos.cpm) : null,
     ctrEnlace: meta.datos?.ctrEnlace ?? null,
+    hookRate: meta.datos?.hookRate ?? null,
     clicsEnlace: meta.datos?.clicsEnlace ?? null,
     embudo,
     leads,
@@ -274,6 +332,7 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     cacUsd,
     ltvCac: dividir(ticketUsd * MESES_RETENCION, cacUsd),
     facturacionArs,
+    cicloVentaDias,
     porCreativo: Array.from(filas.values()).sort(
       (a, b) => (b.gastoUsd ?? 0) - (a.gastoUsd ?? 0) || b.leads - a.leads
     ),

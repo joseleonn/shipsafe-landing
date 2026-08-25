@@ -47,6 +47,12 @@ export interface Negocio {
   utmContent: string | null;
   /** Etiquetas de etapa por las que pasó, según hs_date_entered_*. */
   alcanzo: Set<string>;
+  /**
+   * Cuándo entró a cada etapa, en epoch ms. Solo fechas reales de HubSpot:
+   * a diferencia de `alcanzo`, acá no hay relleno por deducción, porque una
+   * fecha inventada arruinaría la mediana del ciclo de venta.
+   */
+  fechas: Record<string, number>;
 }
 
 export interface DatosHubSpot {
@@ -173,8 +179,14 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
 
       negocios = deals.map((d) => {
         const alcanzo = new Set<string>();
+        const fechas: Record<string, number> = {};
         for (const [id, etiqueta] of etapas) {
-          if (d.properties[`hs_date_entered_${id}`]) alcanzo.add(etiqueta.trim());
+          const crudo = d.properties[`hs_date_entered_${id}`];
+          if (crudo) {
+            alcanzo.add(etiqueta.trim());
+            const t = aMillis(crudo);
+            if (t > 0) fechas[etiqueta.trim()] = t;
+          }
         }
 
         // Red de seguridad: si por lo que sea falta hs_date_entered_, damos por
@@ -193,6 +205,7 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
           monto: d.properties.amount ? Number(d.properties.amount) : null,
           utmContent: d.properties.ss_utm_content?.trim() || null,
           alcanzo,
+          fechas,
         };
       });
     }

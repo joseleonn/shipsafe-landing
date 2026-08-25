@@ -17,6 +17,8 @@ export interface EntregaAnuncio {
   gasto: number;
   impresiones: number;
   clicsEnlace: number;
+  /** Reproducciones de 3 segundos. 0 si el anuncio no es de video. */
+  vistas3s: number;
 }
 
 export interface DatosMeta {
@@ -28,6 +30,16 @@ export interface DatosMeta {
   cpm: number | null;
   /** CTR de enlace en porcentaje. Es el que compara el playbook, no el CTR total. */
   ctrEnlace: number | null;
+  /**
+   * Reproducciones de 3 segundos sobre impresiones, en porcentaje.
+   *
+   * Es el que separa "el problema son los primeros 3 segundos" de "el problema
+   * es el resto del anuncio": con hook alto y CTR bajo, el gancho funciona y se
+   * cae después; con hook bajo, no pasaron del primer plano.
+   *
+   * `null` si no hay anuncios de video en el período.
+   */
+  hookRate: number | null;
   porAnuncio: EntregaAnuncio[];
   /** Gasto por día, para la línea de tiempo. Clave: YYYY-MM-DD. */
   porDia: Record<string, number>;
@@ -76,6 +88,17 @@ const num = (v: unknown): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
+/**
+ * Las métricas de video no vienen como número sino como un array de acciones:
+ *   [{ action_type: "video_view", value: "1234" }]
+ * Si el anuncio no es de video, el campo directamente no viene.
+ */
+const accion = (v: unknown): number => {
+  if (!Array.isArray(v) || v.length === 0) return 0;
+  const primera = v[0] as { value?: unknown };
+  return num(primera?.value);
+};
+
 export async function leerMeta(desde: number, hasta: number): Promise<ResultadoMeta> {
   const act = cuenta();
 
@@ -94,12 +117,12 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
     // Van en paralelo porque son independientes entre sí.
     const [total, porAnuncio, porDia] = await Promise.all([
       pedir(`${act}/insights`, {
-        fields: "spend,impressions,inline_link_clicks,cpm,account_currency",
+        fields: "spend,impressions,inline_link_clicks,cpm,account_currency,video_3_sec_watched_actions",
         time_range: rango,
         level: "account",
       }),
       pedir(`${act}/insights`, {
-        fields: "ad_name,spend,impressions,inline_link_clicks",
+        fields: "ad_name,spend,impressions,inline_link_clicks,video_3_sec_watched_actions",
         time_range: rango,
         level: "ad",
         limit: "200",
@@ -115,6 +138,7 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
     const t = total[0] ?? {};
     const impresiones = num(t.impressions);
     const clicsEnlace = num(t.inline_link_clicks);
+    const vistas3s = accion(t.video_3_sec_watched_actions);
 
     return {
       datos: {
@@ -124,12 +148,15 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
         clicsEnlace,
         cpm: t.cpm !== undefined ? num(t.cpm) : null,
         ctrEnlace: impresiones > 0 ? (clicsEnlace / impresiones) * 100 : null,
+        hookRate:
+          vistas3s > 0 && impresiones > 0 ? (vistas3s / impresiones) * 100 : null,
         porAnuncio: porAnuncio
           .map((a) => ({
             nombre: String(a.ad_name ?? "sin nombre"),
             gasto: num(a.spend),
             impresiones: num(a.impressions),
             clicsEnlace: num(a.inline_link_clicks),
+            vistas3s: accion(a.video_3_sec_watched_actions),
           }))
           .sort((a, b) => b.gasto - a.gasto),
         porDia: Object.fromEntries(

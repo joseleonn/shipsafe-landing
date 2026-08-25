@@ -135,6 +135,13 @@ export default async function DashboardPage({
               evaluacion={evaluar("cpm", m.cpmUsd)}
             />
             <Tile
+              titulo="Hook rate"
+              valor={pct(m.hookRate)}
+              objetivo={rangoTexto("hookRate", "pct")}
+              evaluacion={evaluar("hookRate", m.hookRate)}
+              nota="Reproducciones de 3 segundos sobre impresiones. Solo aplica a anuncios de video."
+            />
+            <Tile
               titulo="CTR de enlace"
               valor={pct(m.ctrEnlace)}
               objetivo={rangoTexto("ctr", "pct")}
@@ -171,6 +178,14 @@ export default async function DashboardPage({
               valor={pct(m.demoACierre)}
               objetivo={rangoTexto("demoACierre", "pct")}
               evaluacion={evaluar("demoACierre", m.demoACierre)}
+            />
+            <Tile
+              titulo="Ciclo de venta"
+              valor={
+                m.cicloVentaDias === null ? null : `${nf.format(m.cicloVentaDias)} días`
+              }
+              objetivo="Referencia del playbook: 60 a 75 días"
+              nota="Mediana entre agendar la demo y cerrar. Si al día 45 medís el canal en clientes cerrados, vas a apagar algo que está funcionando."
             />
           </div>
         </section>

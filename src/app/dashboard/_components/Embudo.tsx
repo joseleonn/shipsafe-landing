@@ -24,6 +24,11 @@ export default function Embudo({ etapas }: { etapas: EtapaEmbudo[] }) {
         De la gente que entró en este período, cuántos llegaron hasta cada etapa.
         Un lead de agosto que cierra en octubre sigue contando en agosto.
       </p>
+      <p className="mt-2 text-sm text-white/40">
+        Los días son la mediana de lo que tarda un negocio en pasar de una etapa a
+        la siguiente. La etapa que se estira es la que hay que mirar. El salto de
+        Lead a Demo agendada no se mide: cruza de contacto a negocio.
+      </p>
 
       {!hayDatos ? (
         <p className="mt-8 text-sm text-white/40">
@@ -37,9 +42,14 @@ export default function Embudo({ etapas }: { etapas: EtapaEmbudo[] }) {
               <li key={etapa.etiqueta}>
                 <div className="flex items-baseline justify-between gap-4 text-sm">
                   <span className="text-white/80">{etapa.etiqueta}</span>
-                  <span className="flex items-baseline gap-3">
+                  <span className="flex flex-wrap items-baseline justify-end gap-x-3 gap-y-1">
+                    {etapa.diasDesdeAnterior !== null && (
+                      <span className="whitespace-nowrap text-xs tabular-nums text-white/45">
+                        {etapa.diasDesdeAnterior.toFixed(0)} días de mediana
+                      </span>
+                    )}
                     {etapa.desdeAnterior !== null && (
-                      <span className="text-xs tabular-nums text-white/45">
+                      <span className="whitespace-nowrap text-xs tabular-nums text-white/45">
                         {etapa.desdeAnterior.toFixed(0)}% de la etapa anterior
                       </span>
                     )}
