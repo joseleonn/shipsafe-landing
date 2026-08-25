@@ -104,7 +104,7 @@ HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx node scripts/setup-hubspot.mjs --dry-run
 HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx node scripts/setup-hubspot.mjs
 ```
 
-Crea 17 propiedades de contacto, 5 de negocio, el grupo "Embudo Meta Ads" y el pipeline **ShipSafe — Ventas** con sus 8 etapas. **Es idempotente**: corrélo las veces que quieras, lo que ya existe no se toca.
+Crea 17 propiedades de contacto, 5 de negocio, el grupo "Embudo Meta Ads" y el pipeline **SHIPSAFE — Ventas** con sus 8 etapas. **Es idempotente**: corrélo las veces que quieras, lo que ya existe no se toca.
 
 Al terminar imprime los IDs. Copialos a `.env.local` y a Vercel:
 
@@ -143,7 +143,7 @@ avise cuando algo cambia, preguntamos nosotros.**
 | Etapa → evento a Meta | `/api/cron/etapas`, cada 15 min. **Ya construido** |
 | Playbook de asistencia | `/api/cron/recordatorios` + WhatsApp. **Ya construido** |
 | Entrega del recurso por mail | El recurso se descarga en la página de gracias. La landing ya no promete un mail |
-| Cola de setting a las 24 h | ⏳ Pendiente: un tercer cron que cree tareas en HubSpot |
+| Cola de setting a las 24 h | `/api/cron/setting`, cada hora. **Ya construido** |
 | Nurturing del que no califica | ⏳ Pendiente: necesita un servicio de email |
 
 Para Meta el resultado es idéntico. La única diferencia es una demora de hasta
@@ -170,6 +170,15 @@ propias, siguen ahí.
 > actualizá también `src/lib/etapas-meta.ts`.
 
 ### 2.6 Vistas e informes
+
+**Vista de contactos "Cola de setting"** — es tu lista de trabajo diaria. Filtros:
+`ss_calificacion` es `califica` · `ss_setting_encolado` tiene valor · `ss_setting_mensaje` tiene valor.
+Columnas: Nombre · Empresa · `ss_rubro` · `ss_cantidad_empleados` · `ss_utm_content` · `ss_setting_mensaje`.
+
+> El mensaje de WhatsApp viene ya redactado y personalizado en `ss_setting_mensaje`:
+> abrís el contacto, copiás y pegás. **No usamos el objeto Tarea de HubSpot
+> porque HubSpot no expone sus scopes a las private apps** — no aparecen en la
+> interfaz y no es cosa del plan Free.
 
 **Vista de contactos "Leads de Meta"** — filtro `ss_utm_source = meta`, columnas: Nombre · Empresa · `ss_utm_content` · `ss_calificacion` · `ss_rubro` · `ss_cantidad_empleados` · Fecha de creación.
 

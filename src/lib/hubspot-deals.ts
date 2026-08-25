@@ -215,8 +215,8 @@ export async function crearNegocioSiNoExiste(datos: DatosNegocio): Promise<Resul
     }
 
     const nombre = datos.empresa?.trim()
-      ? `${datos.empresa.trim()} — ShipSafe`
-      : `${datos.email} — ShipSafe`;
+      ? `${datos.empresa.trim()} — SHIPSAFE`
+      : `${datos.email} — SHIPSAFE`;
 
     const properties: Record<string, string> = {
       dealname: nombre,

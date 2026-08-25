@@ -114,7 +114,39 @@ async function main() {
     process.exit(1);
   }
 
-  const yaExiste = (existentes.body.collection ?? []).find((w) => w.callback_url === URL_WEBHOOK);
+  const suscripciones = existentes.body.collection ?? [];
+  const yaExiste = suscripciones.find((w) => w.callback_url === URL_WEBHOOK);
+
+  /**
+   * Suscripciones que apuntan al MISMO path pero a otro host — típicamente el
+   * apex cuando el dominio canónico es el www, o al revés.
+   *
+   * Esto pasó de verdad: el webhook estaba registrado contra shipsafe.lat, que
+   * devuelve un 307 hacia www.shipsafe.lat, y los webhooks NO siguen
+   * redirecciones. Al corregir la URL, la comparación exacta no reconoció al
+   * viejo y quedaron dos: uno inútil recibiendo errores para siempre.
+   */
+  const rutaObjetivo = new URL(URL_WEBHOOK).pathname;
+  const huerfanos = suscripciones.filter(
+    (w) => w.callback_url !== URL_WEBHOOK && (() => {
+      try { return new URL(w.callback_url).pathname === rutaObjetivo; } catch { return false; }
+    })()
+  );
+
+  if (huerfanos.length) {
+    console.log(`\n  ⚠ Hay ${huerfanos.length} webhook(s) apuntando al mismo path en otro host:`);
+    for (const h of huerfanos) console.log(`      ${h.callback_url}`);
+    if (RECREAR && !DRY_RUN) {
+      for (const h of huerfanos) {
+        const uuid = h.uri.split("/").pop();
+        const r = await api(`/webhook_subscriptions/${uuid}`, { method: "DELETE" });
+        r.ok ? ok(`Borrado el huérfano ${h.callback_url}`)
+             : fail(`No pude borrar ${h.callback_url} (HTTP ${r.status})`);
+      }
+    } else {
+      console.log("    Corré con --recrear para borrarlos.\n");
+    }
+  }
 
   if (yaExiste && !RECREAR) {
     info(`Ya existe un webhook para ${URL_WEBHOOK}`);

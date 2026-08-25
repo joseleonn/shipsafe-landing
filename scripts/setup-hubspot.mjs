@@ -4,9 +4,9 @@
  *
  * Crea, si no existen ya:
  *   - el grupo de propiedades "Embudo Meta Ads"
- *   - 17 propiedades de contacto (calificación + atribución + estado de WhatsApp)
+ *   - 18 propiedades de contacto (calificación + atribución + estado de WhatsApp)
  *   - 5 propiedades de negocio (atribución a nivel deal + control de eventos)
- *   - el pipeline "ShipSafe — Ventas" con sus 8 etapas
+ *   - el pipeline "SHIPSAFE — Ventas" con sus 8 etapas
  *
  * Es IDEMPOTENTE: se puede correr todas las veces que quieras. Lo que ya existe
  * no se toca ni se duplica.
@@ -41,15 +41,6 @@ const SCOPES_NECESARIOS = [
   "crm.schemas.contacts.write",
   "crm.schemas.deals.read",
   "crm.schemas.deals.write",
-];
-
-/**
- * Hacen falta solo para la cola de setting (/api/cron/setting), que crea tareas.
- * Si faltan, el script avisa pero sigue: el resto del embudo funciona igual.
- */
-const SCOPES_OPCIONALES = [
-  "crm.objects.tasks.read",
-  "crm.objects.tasks.write",
 ];
 
 if (!TOKEN) {
@@ -205,7 +196,12 @@ const PROPIEDADES_CONTACTO = [
   {
     name: "ss_setting_encolado", label: "Setting · encolado",
     type: "string", fieldType: "text",
-    description: "Fecha en que se creó la tarea de contacto manual, o 'agendó' si no hizo falta. Lo maneja el cron: no lo edites a mano.",
+    description: "Fecha en que entró a la cola de contacto manual, o 'agendó' si no hizo falta. Lo maneja el cron: no lo edites a mano.",
+  },
+  {
+    name: "ss_setting_mensaje", label: "Setting · mensaje sugerido",
+    type: "string", fieldType: "textarea",
+    description: "El mensaje de WhatsApp ya escrito y personalizado para este lead. Lo genera el cron: copiá y pegá.",
   },
 ];
 
@@ -236,7 +232,7 @@ const ETAPAS = [
   { label: "Perdido", probability: "0.0", closed: true },
 ];
 
-const PIPELINE_LABEL = "ShipSafe — Ventas";
+const PIPELINE_LABEL = "SHIPSAFE — Ventas";
 
 // ─────────────────────────────────────────── ejecución
 
@@ -284,6 +280,23 @@ async function crearPipeline() {
   if (existente) {
     skip(`Pipeline "${PIPELINE_LABEL}"`);
     return existente;
+  }
+
+  /**
+   * En HubSpot Free solo se permite un pipeline de negocios, así que las etapas
+   * se agregaron al que ya existía y NO hay ninguno con nuestro label.
+   *
+   * Si ese pipeline ya tiene las 8 etapas, el trabajo está hecho: no tiene
+   * sentido intentar crear uno nuevo para chocar contra el límite y mostrar un
+   * error rojo en cada corrida. Lo detectamos y seguimos.
+   */
+  const yaAdaptado = actuales.body.results.find((p) => {
+    const etiquetas = new Set((p.stages ?? []).map((e) => e.label.trim().toLowerCase()));
+    return ETAPAS.every((e) => etiquetas.has(e.label.toLowerCase()));
+  });
+  if (yaAdaptado) {
+    skip(`Las ${ETAPAS.length} etapas ya están en el pipeline "${yaAdaptado.label}"`);
+    return yaAdaptado;
   }
   if (DRY_RUN) { ok(`[dry-run] crearía el pipeline "${PIPELINE_LABEL}"`); return null; }
 
@@ -411,21 +424,6 @@ async function main() {
     process.exit(1);
   }
   ok("Token válido, con los scopes necesarios");
-
-  // Los de tareas no bloquean, pero conviene saber si faltan
-  try {
-    const info = await fetch(`${BASE}/oauth/v1/access-tokens/${TOKEN}`);
-    const datos = await info.json();
-    if (Array.isArray(datos.scopes)) {
-      const faltan = SCOPES_OPCIONALES.filter((s) => !datos.scopes.includes(s));
-      if (faltan.length) {
-        console.log("\n  ⚠ Faltan scopes opcionales, solo para la cola de setting:");
-        for (const s of faltan) console.log(`      ${s}`);
-        console.log("    Sin ellos /api/cron/setting no puede crear tareas.");
-        console.log("    El resto del embudo funciona igual.");
-      }
-    }
-  } catch { /* si no se puede consultar, seguimos */ }
 
   console.log("\nPropiedades de contacto");
   await crearGrupo("contacts");

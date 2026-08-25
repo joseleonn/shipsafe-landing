@@ -11,18 +11,29 @@
  *   - NO tienen negocio asociado, o sea que no agendaron
  *   - todavía no fueron encolados
  *
- * Y les crea una tarea de llamado en HubSpot, con el contexto que hace falta
- * para escribirle sin tener que ir a buscar nada.
+ * Y les escribe en el contacto el mensaje de WhatsApp ya redactado y
+ * personalizado, para que contactarlos sea copiar y pegar.
  *
- * Reemplaza a un workflow de HubSpot, que en el plan Free no existe. Las tareas
- * sí existen en Free, así que el resultado para vos es el mismo: te aparece en
- * tu lista de tareas.
+ * Por qué no crea una tarea de HubSpot: **HubSpot no expone los scopes de
+ * tareas a las private apps** — no aparecen en la interfaz y no son cosa del
+ * plan Free. Así que la cola vive en dos propiedades del contacto y se trabaja
+ * desde una vista filtrada.
+ *
+ * Sale mejor: el mensaje queda en el registro del contacto, a la vista, en vez
+ * de en una tarea aparte.
+ *
+ * LA VISTA QUE HAY QUE CREAR EN HUBSPOT (Contactos → guardar vista):
+ *   ss_calificacion    es igual a          califica
+ *   ss_setting_encolado  tiene valor
+ *   ss_setting_mensaje   tiene valor
+ * Columnas: Nombre · Empresa · ss_rubro · ss_cantidad_empleados ·
+ *           ss_utm_content · ss_setting_mensaje
+ * Nombre sugerido: "Cola de setting"
  */
 import { NextResponse } from "next/server";
 import { createHash, timingSafeEqual } from "crypto";
 import { candidatosASetting, tieneNegocio, upsertContact } from "@/lib/hubspot";
-import { crearTarea } from "@/lib/hubspot-tasks";
-import { RUBRO_OPCIONES, EMPLEADOS_OPCIONES } from "@/lib/calificacion";
+import { RUBRO_OPCIONES } from "@/lib/calificacion";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,11 +56,10 @@ const etiqueta = (
 ) => opciones.find((o) => o.value === valor)?.label ?? valor;
 
 /**
- * El cuerpo de la tarea trae el mensaje ya escrito y personalizado, para que
- * escribirle sea copiar y pegar. Es el Mensaje 1 de la sección 1.1 de
- * operacion-comercial-shipsafe.md.
+ * El mensaje ya escrito y personalizado, para que escribirle sea copiar y
+ * pegar. Es el Mensaje 1 de la sección 1.1 de operacion-comercial-shipsafe.md.
  */
-function cuerpoTarea(c: {
+function mensajeSugerido(c: {
   nombre: string;
   empresa: string;
   rubro: string;
@@ -61,17 +71,7 @@ function cuerpoTarea(c: {
   const rubroLegible = c.rubro ? etiqueta(RUBRO_OPCIONES, c.rubro).toLowerCase() : "tu rubro";
 
   return [
-    `Lead calificado que descargó el recurso y no agendó en 24 h.`,
-    ``,
-    `Empresa: ${c.empresa || "—"}`,
-    `Rubro: ${c.rubro ? etiqueta(RUBRO_OPCIONES, c.rubro) : "—"}`,
-    `Empleados: ${c.empleados ? etiqueta(EMPLEADOS_OPCIONES, c.empleados) : "—"}`,
-    `Vino del anuncio: ${c.utmContent || "—"}`,
-    `Email: ${c.email}`,
-    ``,
-    `── Mensaje sugerido (WhatsApp) ──`,
-    ``,
-    `Hola ${primerNombre}, soy José de ShipSafe. Vi que bajaste el recurso.`,
+    `Hola ${primerNombre}, soy José de SHIPSAFE. Vi que bajaste el recurso.`,
     ``,
     `Te escribo por algo puntual: en ${rubroLegible} lo que más se complica no suele ser armar la documentación, es que quede toda junta cuando la piden. ¿Cómo lo están manejando hoy en ${c.empresa || "tu empresa"}?`,
     ``,
@@ -104,28 +104,21 @@ export async function GET(request: Request) {
       continue;
     }
 
-    const tarea = await crearTarea({
-      contactId: c.contactId,
-      titulo: `Setting: ${c.empresa || c.nombre || c.email}`,
-      cuerpo: cuerpoTarea(c),
-      prioridad: "HIGH",
-      tipo: "CALL",
-    });
-
-    if (!tarea.ok) {
-      fallidos.push({ email: c.email, motivo: tarea.error ?? "error" });
-      continue;
-    }
-
-    await upsertContact({
+    const guardado = await upsertContact({
       email: c.email,
       ss_setting_encolado: new Date().toISOString(),
+      ss_setting_mensaje: mensajeSugerido(c),
     });
+
+    if (!guardado.ok) {
+      fallidos.push({ email: c.email, motivo: guardado.error ?? "error" });
+      continue;
+    }
     encolados.push(c.email);
   }
 
   console.log(
-    `[cron-setting] ${candidatos.length} revisados, ${encolados.length} tareas creadas, ${yaAgendaron.length} ya habían agendado`
+    `[cron-setting] ${candidatos.length} revisados, ${encolados.length} encolados, ${yaAgendaron.length} ya habían agendado`
   );
 
   return NextResponse.json({

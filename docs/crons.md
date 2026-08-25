@@ -42,9 +42,9 @@ Creá tres tareas en `cron-job.org`, una por endpoint. Para las tres:
 
 | Título | URL | Intervalo |
 |---|---|---|
-| ShipSafe · etapas a Meta | `https://www.shipsafe.lat/api/cron/etapas` | cada 15 min |
-| ShipSafe · recordatorios WhatsApp | `https://www.shipsafe.lat/api/cron/recordatorios` | cada 15 min |
-| ShipSafe · cola de setting | `https://www.shipsafe.lat/api/cron/setting` | cada 1 hora |
+| SHIPSAFE · etapas a Meta | `https://www.shipsafe.lat/api/cron/etapas` | cada 15 min |
+| SHIPSAFE · recordatorios WhatsApp | `https://www.shipsafe.lat/api/cron/recordatorios` | cada 15 min |
+| SHIPSAFE · cola de setting | `https://www.shipsafe.lat/api/cron/setting` | cada 1 hora |
 
 El `WEBHOOK_SHARED_SECRET` es el mismo que está en `.env.local` y en Vercel. Sin
 el header, los endpoints devuelven 401 — es a propósito: son públicos y sin eso

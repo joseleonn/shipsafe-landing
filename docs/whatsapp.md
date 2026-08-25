@@ -90,7 +90,7 @@ El endpoint verifica la firma `YCloud-Signature` con HMAC-SHA256 sobre
 negocio.** Pide documentación legal de Ship Software Team y **tarda días**.
 
 Sin ella, tus mensajes llegan sin nombre. Con ella, en el chat aparece
-**ShipSafe**. Como estás migrando un número que la gente ya tiene agendado, esto
+**SHIPSAFE**. Como estás migrando un número que la gente ya tiene agendado, esto
 pesa menos que con un número nuevo — pero hacela igual: define si un mensaje se
 lee o se ignora cuando el destinatario no te tiene agendado.
 
@@ -119,7 +119,7 @@ Para las cinco: idioma **Español (ARG)** (`es_AR`), categoría **Utilidad**.
 **Cuerpo:**
 
 ```
-Hola {{1}}, quedó confirmada tu reunión de ShipSafe para el {{2}}.
+Hola {{1}}, quedó confirmada tu reunión de SHIPSAFE para el {{2}}.
 
 Un pedido: si podés, sumá a quien tiene que aprobar una herramienta así. No es
 para venderle, es al revés: nos ahorra a los dos una reunión entera de repetir
@@ -140,7 +140,7 @@ Te llegó la invitación con el link por mail.
 ### 4.2 `demo_recordatorio_24h`
 
 ```
-Hola {{1}}, mañana a las {{2}} tenemos la reunión de ShipSafe.
+Hola {{1}}, mañana a las {{2}} tenemos la reunión de SHIPSAFE.
 
 El link está en la invitación que te llegó por mail. Si se te complicó, avisame
 por acá y la movemos.

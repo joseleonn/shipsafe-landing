@@ -55,8 +55,10 @@ export interface LeadProperties {
   ss_wa_respuesta?: "confirmo" | "reagendar";
   /** "true" cuando la reunión está cerca y todavía no confirmó. Dispara la tarea de llamado */
   ss_wa_sin_confirmar?: string;
-  /** Fecha ISO en que se creó la tarea de setting. Evita encolarlo dos veces */
+  /** Fecha ISO en que entró a la cola de setting. Evita encolarlo dos veces */
   ss_setting_encolado?: string;
+  /** El mensaje de WhatsApp ya redactado para este lead, listo para copiar */
+  ss_setting_mensaje?: string;
 }
 
 export interface HubSpotResult {

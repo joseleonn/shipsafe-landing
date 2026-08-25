@@ -45,7 +45,7 @@ export default function AgendadoPage() {
           </h2>
           <p className="mb-6 mt-2 text-white/60">
             Son {NURTURING.duracion}. Así llegamos con contexto y usamos el
-            tiempo en tu operación, no en explicarte qué es ShipSafe.
+            tiempo en tu operación, no en explicarte qué es SHIPSAFE.
           </p>
 
           {NURTURING.disponible ? (
