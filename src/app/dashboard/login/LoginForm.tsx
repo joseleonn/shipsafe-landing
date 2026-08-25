@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
-  const router = useRouter();
   const params = useSearchParams();
   const [error, setError] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
@@ -37,8 +36,20 @@ export default function LoginForm() {
       }
 
       const volver = params.get("volver");
-      router.push(volver?.startsWith("/dashboard") ? volver : "/dashboard");
-      router.refresh();
+      const destino = volver?.startsWith("/dashboard") ? volver : "/dashboard";
+
+      // Navegación dura, no router.push().
+      //
+      // Con router.push() el cliente pide /dashboard por RSC, y esa respuesta
+      // puede salir de la caché del router: la que se guardó hace un momento,
+      // cuando /dashboard todavía redirigía al login porque no había cookie.
+      // Resultado: volvés al formulario sin ningún error, con la cookie ya
+      // puesta. El router.refresh() que venía atrás empeoraba la carrera.
+      //
+      // window.location fuerza una carga completa: el middleware corre en el
+      // servidor con la cookie fresca y no hay caché de por medio.
+      window.location.assign(destino);
+      return;
     } catch {
       setError("Se cortó la conexión. Probá de nuevo.");
       setEnviando(false);

@@ -1,14 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 export default function CerrarSesion() {
-  const router = useRouter();
-
   async function salir() {
     await fetch("/api/dashboard/login", { method: "DELETE" });
-    router.push("/dashboard/login");
-    router.refresh();
+    // Igual que en el login: carga completa, para que no quede en caché una
+    // versión del dashboard renderizada cuando todavía había sesión.
+    window.location.assign("/dashboard/login");
   }
 
   return (
