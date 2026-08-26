@@ -158,7 +158,9 @@ const PROPIEDADES_CONTACTO = [
     type: "enumeration", fieldType: "select",
     options: opciones([
       ["excel", "Excel y planillas"], ["papel", "Papel y carpetas"],
-      ["mixto", "Un poco de todo"], ["otra_plataforma", "Ya usa otra plataforma"],
+      ["mixto", "Un poco de todo"],
+      ["sistema_incompleto", "Tiene un sistema que no le alcanza"],
+      ["otra_plataforma", "Ya usa una plataforma de SST que le funciona"],
     ]),
   },
   {
@@ -250,6 +252,33 @@ async function crearGrupo(objeto) {
   res.ok ? ok(`Grupo de propiedades en ${objeto}`) : fail(`Grupo en ${objeto}`, res.body?.message);
 }
 
+/**
+ * Agrega a una propiedad de tipo enumeration las opciones que le falten.
+ * Devuelve cuántas agregó. No toca nada si la propiedad no es enumeration.
+ */
+async function agregarOpcionesFaltantes(objeto, def, actual) {
+  if (def.type !== "enumeration" || !def.options || !actual) return 0;
+
+  const yaEstan = new Set((actual.options ?? []).map((o) => o.value));
+  const faltantes = def.options.filter((o) => !yaEstan.has(o.value));
+  if (faltantes.length === 0) return 0;
+
+  if (DRY_RUN) {
+    for (const o of faltantes) ok(`[dry-run] agregaría ${objeto}.${def.name} = "${o.label}"`);
+    return faltantes.length;
+  }
+
+  const res = await api(`/crm/v3/properties/${objeto}/${def.name}`, {
+    method: "PATCH",
+    body: JSON.stringify({ options: [...(actual.options ?? []), ...faltantes] }),
+  });
+  if (!res.ok) {
+    fail(`${objeto}.${def.name} — no pude agregar opciones`, res.body?.message);
+    return 0;
+  }
+  return faltantes.length;
+}
+
 async function crearPropiedades(objeto, definiciones) {
   const actuales = await api(`/crm/v3/properties/${objeto}`);
   if (!actuales.ok) {
@@ -258,8 +287,23 @@ async function crearPropiedades(objeto, definiciones) {
   }
   const existentes = new Set(actuales.body.results.map((p) => p.name));
 
+  const porNombre = new Map(actuales.body.results.map((p) => [p.name, p]));
+
   for (const def of definiciones) {
-    if (existentes.has(def.name)) { skip(`${objeto}.${def.name}`); continue; }
+    if (existentes.has(def.name)) {
+      // La propiedad existe, pero puede haberle crecido una opción nueva.
+      //
+      // Antes esto salteaba y listo, y ahí quedaba una trampa silenciosa: si el
+      // formulario ofrece un valor que HubSpot no conoce, el contacto se crea
+      // igual pero esa propiedad llega vacía. Sin error, sin aviso.
+      //
+      // Solo AGREGA opciones que falten. Nunca saca las que ya están: sacarlas
+      // dejaría huérfanos a los contactos que ya tienen ese valor cargado.
+      const nuevas = await agregarOpcionesFaltantes(objeto, def, porNombre.get(def.name));
+      if (nuevas > 0) ok(`${objeto}.${def.name} — ${nuevas} opción(es) nueva(s)`);
+      else skip(`${objeto}.${def.name}`);
+      continue;
+    }
     if (DRY_RUN) { ok(`[dry-run] crearía ${objeto}.${def.name}`); continue; }
 
     const res = await api(`/crm/v3/properties/${objeto}`, {

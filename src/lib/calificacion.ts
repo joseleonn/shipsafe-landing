@@ -50,11 +50,37 @@ export const ROL_OPCIONES = [
   { value: "estudiante", label: "Estudiante / otro", califica: false },
 ] as const;
 
+/**
+ * Ojo con cómo está partida esta pregunta.
+ *
+ * La versión anterior descalificaba a cualquiera que tuviera "otra plataforma".
+ * Estaba mal: preguntaba por POSESIÓN cuando lo que importa es si el problema
+ * está RESUELTO. Son cosas distintas, y confundirlas dejaba afuera al mejor
+ * prospecto que hay.
+ *
+ * Quien tiene un sistema que no le alcanza suele calificar mejor que quien
+ * tiene papel: ya aceptó que esto se resuelve con software, ya tiene
+ * presupuesto en esa línea, sabe exactamente qué le falta, y está frustrado
+ * ahora. El caso real de referencia es una empresa grande con SAP que igual
+ * arma los KPIs a mano en un Drive.
+ *
+ * El único que descalifica de verdad es el que tiene una plataforma de SST y le
+ * funciona bien. Ese no tiene problema que resolver.
+ */
 export const GESTION_OPCIONES = [
   { value: "excel", label: "Excel y planillas", califica: true },
   { value: "papel", label: "Papel y carpetas", califica: true },
   { value: "mixto", label: "Un poco de todo (papel, Excel, WhatsApp)", califica: true },
-  { value: "otra_plataforma", label: "Ya usamos otra plataforma", califica: false },
+  {
+    value: "sistema_incompleto",
+    label: "Tenemos un sistema, pero no cubre lo que necesitamos",
+    califica: true,
+  },
+  {
+    value: "otra_plataforma",
+    label: "Ya usamos una plataforma de seguridad e higiene y nos funciona bien",
+    califica: false,
+  },
 ] as const;
 
 export interface RespuestasCalificacion {
@@ -84,8 +110,8 @@ export function calificar(r: RespuestasCalificacion): ResultadoCalificacion {
   if (!evaluar(EMPLEADOS_OPCIONES, r.empleados)) motivos.push("empleados");
   if (!evaluar(RUBRO_OPCIONES, r.rubro)) motivos.push("rubro");
   if (!evaluar(ROL_OPCIONES, r.rol)) motivos.push("rol");
-  // La gestión actual es señal blanda: "ya usamos otra plataforma" descalifica,
-  // pero no responder no descalifica por sí solo.
+  // La gestión actual es señal blanda: solo descalifica quien ya tiene una
+  // plataforma de SST que le funciona. No responder no descalifica por sí solo.
   if (r.gestion && !evaluar(GESTION_OPCIONES, r.gestion)) motivos.push("gestion");
 
   return { califica: motivos.length === 0, motivos };
