@@ -13,9 +13,18 @@
 
 set -euo pipefail
 
+# Sin esto, `git diff --stat` abre `less` y el script queda esperando una tecla
+# que nadie sabe que hay que apretar. En un script no interactivo el paginador
+# no aporta nada.
+export GIT_PAGER=cat
+export PAGER=cat
+
 cd "$(dirname "$0")/.."
 
-MENSAJE="${1:-}"
+# "$*" y no "$1": npm re-parte el string del mensaje en argumentos sueltos, así
+# que `npm run subir "feat: algo largo"` llega acá como varios parámetros. Con
+# $1 el commit se llamaría "feat:" a secas.
+MENSAJE="$*"
 if [ -z "$MENSAJE" ]; then
   echo "Falta el mensaje del commit."
   echo "Uso: npm run subir \"feat: lo que cambiaste\""
@@ -24,7 +33,8 @@ fi
 
 # Solo código y documentación. Sin esto se cuelan .claude/ y cualquier carpeta
 # temporal que haya quedado dando vueltas.
-RUTAS=(src docs scripts public package.json package-lock.json next.config.ts tsconfig.json)
+RUTAS=(src docs scripts public package.json package-lock.json next.config.ts
+       tsconfig.json AGENTS.md CLAUDE.md README.md)
 
 echo "── Cambios que se van a subir ────────────────────────────"
 git add -A -- "${RUTAS[@]}"
@@ -34,7 +44,7 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
-git diff --cached --stat
+git --no-pager diff --cached --stat
 echo
 
 read -r -p "¿Confirmás? [s/N] " RESPUESTA
