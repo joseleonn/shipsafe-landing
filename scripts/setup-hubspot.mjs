@@ -25,11 +25,33 @@
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
+const ARCHIVO_ENV = ".env.local";
+
+/**
+ * Lee .env.local si la variable no vino ya en el entorno.
+ *
+ * Antes había que pasarla en la línea de comandos:
+ *
+ *     HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx node scripts/setup-hubspot.mjs
+ *
+ * Eso funciona, pero deja el token escrito en el historial del shell, que es un
+ * archivo de texto plano que nadie recuerda limpiar. El token ya está en
+ * .env.local: lo leemos de ahí.
+ *
+ * Una variable que ya venga del entorno gana, para no pisar nada en CI.
+ */
+if (!process.env.HUBSPOT_ACCESS_TOKEN && existsSync(ARCHIVO_ENV)) {
+  try {
+    process.loadEnvFile(ARCHIVO_ENV);
+  } catch {
+    // Node < 20.12 no tiene loadEnvFile. Se cae al mensaje de ayuda de abajo.
+  }
+}
+
 const TOKEN = process.env.HUBSPOT_ACCESS_TOKEN;
 const DRY_RUN = process.argv.includes("--dry-run");
 const ESCRIBIR_ENV = process.argv.includes("--escribir-env");
 const ADAPTAR = process.argv.includes("--adaptar-pipeline");
-const ARCHIVO_ENV = ".env.local";
 const BASE = "https://api.hubapi.com";
 const GRUPO = "shipsafe_embudo";
 
@@ -45,6 +67,9 @@ const SCOPES_NECESARIOS = [
 
 if (!TOKEN) {
   console.error("Falta HUBSPOT_ACCESS_TOKEN.\n");
+  console.error(`Se busca primero en el entorno y después en ${ARCHIVO_ENV}.`);
+  console.error("Si el token ya está en ese archivo, revisá que la línea sea");
+  console.error("  HUBSPOT_ACCESS_TOKEN=pat-na1-...   (sin comillas ni espacios)\n");
   console.error("Sacalo de: HubSpot → Settings → Integrations → Private Apps → tu app → Auth");
   console.error("Scopes necesarios:");
   for (const s of SCOPES_NECESARIOS) console.error(`  - ${s}`);

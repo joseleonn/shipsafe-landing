@@ -98,10 +98,10 @@ El token va en `HUBSPOT_ACCESS_TOKEN`.
 
 ```bash
 # Primero mirá qué va a hacer, sin escribir nada
-HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx node scripts/setup-hubspot.mjs --dry-run
+node scripts/setup-hubspot.mjs --dry-run
 
 # Y ahora sí
-HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx node scripts/setup-hubspot.mjs
+node scripts/setup-hubspot.mjs
 ```
 
 Crea 17 propiedades de contacto, 5 de negocio, el grupo "Embudo Meta Ads" y el pipeline **SHIPSAFE — Ventas** con sus 8 etapas. **Es idempotente**: corrélo las veces que quieras, lo que ya existe no se toca.
