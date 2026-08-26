@@ -53,7 +53,11 @@ export default function AgendadoPage() {
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
                   className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/${NURTURING.youtubeId}`}
+                  // nocookie: no le deja cookies de seguimiento a alguien que
+                  // todavía no es cliente. rel=0 limita los videos sugeridos del
+                  // final al propio canal, para que no aparezca la competencia
+                  // justo cuando termina de escucharnos.
+                  src={`https://www.youtube-nocookie.com/embed/${NURTURING.youtubeId}?rel=0`}
                   title={NURTURING.titulo}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

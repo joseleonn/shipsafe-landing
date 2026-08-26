@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "subir": "bash scripts/subir.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.447",
