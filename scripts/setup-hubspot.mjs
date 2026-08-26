@@ -293,9 +293,34 @@ async function agregarOpcionesFaltantes(objeto, def, actual) {
     return faltantes.length;
   }
 
+  /**
+   * Hay que rearmar la lista entera, no concatenar.
+   *
+   * HubSpot exige que el displayOrder sea único dentro de la propiedad, y las
+   * opciones que ya existen se lo quedaron cuando se crearon. Si mandamos la
+   * nueva con el orden que le toca en nuestra definición, choca con el de una
+   * vieja y la API rechaza todo el PATCH.
+   *
+   * Se reconstruye así: primero las de nuestra definición en su orden, después
+   * cualquiera que HubSpot tenga y nosotros no —esas no se tocan ni se pierden,
+   * puede haber contactos con ese valor cargado— y recién ahí se numera de
+   * cero. Como paso extra, esto actualiza las etiquetas: renombrar una opción
+   * conserva su `value`, así que los datos existentes siguen intactos.
+   */
+  const porValor = new Map((actual.options ?? []).map((o) => [o.value, o]));
+  const ordenadas = [];
+  for (const o of def.options) {
+    const existente = porValor.get(o.value);
+    ordenadas.push(existente ? { ...existente, label: o.label } : { ...o });
+    porValor.delete(o.value);
+  }
+  for (const huerfana of porValor.values()) ordenadas.push(huerfana);
+
+  const opciones = ordenadas.map((o, i) => ({ ...o, displayOrder: i }));
+
   const res = await api(`/crm/v3/properties/${objeto}/${def.name}`, {
     method: "PATCH",
-    body: JSON.stringify({ options: [...(actual.options ?? []), ...faltantes] }),
+    body: JSON.stringify({ options: opciones }),
   });
   if (!res.ok) {
     fail(`${objeto}.${def.name} — no pude agregar opciones`, res.body?.message);
@@ -325,8 +350,10 @@ async function crearPropiedades(objeto, definiciones) {
       // Solo AGREGA opciones que falten. Nunca saca las que ya están: sacarlas
       // dejaría huérfanos a los contactos que ya tienen ese valor cargado.
       const nuevas = await agregarOpcionesFaltantes(objeto, def, porNombre.get(def.name));
-      if (nuevas > 0) ok(`${objeto}.${def.name} — ${nuevas} opción(es) nueva(s)`);
-      else skip(`${objeto}.${def.name}`);
+      // En dry-run cada opción ya se imprimió una por una: el resumen sobraría
+      // y hacía parecer que la operación se contaba dos veces.
+      if (nuevas > 0 && !DRY_RUN) ok(`${objeto}.${def.name} — ${nuevas} opción(es) nueva(s)`);
+      else if (nuevas === 0) skip(`${objeto}.${def.name}`);
       continue;
     }
     if (DRY_RUN) { ok(`[dry-run] crearía ${objeto}.${def.name}`); continue; }
