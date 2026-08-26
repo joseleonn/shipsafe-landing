@@ -1,7 +1,7 @@
 /**
  * Video de nurturing previo a la demo.
  *
- * Grabado por Walter y publicado el 26/08/2026. El guion está en
+ * Grabado por José y publicado el 26/08/2026. El guion está en
  * ship-it/guion-video-nurturing.md.
  *
  * Tiene que estar en YouTube como **no listado**, no como privado: un video

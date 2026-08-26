@@ -62,8 +62,9 @@ export default function Page() {
           tareas críticas, completados en el momento.
         </li>
         <li>
-          <strong>Mediciones de ruido, humos e iluminación</strong> registradas y
-          comparadas contra los límites de la Res. SRT 3067/14.
+          <strong>Mediciones de ruido, humos e iluminación</strong> registradas
+          según los protocolos de la Res. SRT 85/2012 y 84/2012, y comparadas
+          contra los límites del Decreto 351/79.
         </li>
         <li>
           <strong>Control de EPP</strong>: máscaras de soldar, protección

@@ -79,13 +79,18 @@ export default function Page() {
         puede demostrar que proveyó la protección adecuada.
       </p>
 
-      <h3>Res. SRT 3067/14: relevamiento de agentes de riesgo</h3>
+      <h3>Res. SRT 463/09: relevamiento general de riesgos laborales</h3>
       <p>
-        Obliga a los empleadores a realizar relevamientos de los agentes de
-        riesgo presentes en los puestos de trabajo y a efectuar{" "}
-        <strong>mediciones ambientales</strong> (ruido, iluminación,
-        contaminantes, carga térmica) para verificar que estén dentro de los
-        límites legales establecidos por el Decreto 351/79.
+        Obliga a los empleadores a completar el <strong>RGRL</strong> y
+        presentarlo ante su ART: un relevamiento de las condiciones de higiene y
+        seguridad del establecimiento, verificadas contra los anexos del Decreto
+        351/79.
+      </p>
+      <p>
+        Las <strong>mediciones ambientales</strong> tienen sus propios
+        protocolos, cada uno con su resolución: ruido (Res. SRT 85/2012) e
+        iluminación (Res. SRT 84/2012). Los valores medidos se comparan contra
+        los límites del Decreto 351/79.
       </p>
 
       <h3>Res. SRT 905/15: autoseguro</h3>

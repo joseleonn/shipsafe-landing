@@ -111,8 +111,12 @@ export default function Page() {
           entrega de elementos de protección personal con firma del trabajador.
         </li>
         <li>
-          <strong>Res. SRT 3067/14</strong>: Relevamiento de agentes de riesgo
-          y mediciones ambientales obligatorias.
+          <strong>Res. SRT 463/09</strong>: Relevamiento General de Riesgos
+          Laborales, a presentar ante la ART.
+        </li>
+        <li>
+          <strong>Res. SRT 85/2012 y 84/2012</strong>: Protocolos obligatorios
+          de medición de ruido y de iluminación en el ambiente laboral.
         </li>
         <li>
           <strong>Res. SRT 905/15</strong>: Régimen de autoseguro y

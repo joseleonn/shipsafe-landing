@@ -220,8 +220,9 @@ export const COMPLIANCE_ITEMS = [
     icon: "HardHat",
   },
   {
-    title: "Res. SRT 3067/14",
-    description: "Relevamiento de agentes de riesgo. Mediciones obligatorias.",
+    title: "Res. SRT 463/09",
+    description:
+      "Relevamiento General de Riesgos Laborales. Formulario obligatorio ante la ART.",
     icon: "Activity",
   },
   {

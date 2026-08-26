@@ -9,43 +9,70 @@ export const metadata: Metadata = {
 };
 
 /**
- * Página de gracias posterior a agendar.
+ * Página de confirmación posterior a agendar.
  *
- * Se configura en Calendly: evento de 30 min → Confirmation Page → Redirect to
- * an external site → https://www.shipsafe.lat/demo/agendado, con "Pass event
- * details to your redirected page" activado.
+ * Se configura en Calendly: evento de 30 min, Confirmation Page, Redirect to an
+ * external site, https://www.shipsafe.lat/demo/agendado, con "Pass event details
+ * to your redirected page" activado.
  *
- * Para qué sirve, además de agradecer: el video de nurturing hace la mitad de
- * la demo antes de la demo. Es lo que acorta el ciclo de venta y lo que baja
- * el no-show, porque el que ya invirtió tres minutos en mirar algo aparece.
+ * Criterio de esta página: **acompaña al video, no compite con él.** Todo lo que
+ * el video ya explica —que no es una demo genérica, que queremos un problema
+ * concreto, que conviene que esté quien decide— acá no se vuelve a desarrollar.
+ * La página confirma, presenta el video y resume las dos cosas que hacen falta.
+ *
+ * Lo que NO va acá, a propósito: funcionalidades, beneficios, testimonios,
+ * precios ni otro CTA de demo. La persona ya convirtió. Ahora se prepara la
+ * reunión.
  */
+
+const REQUISITOS = [
+  {
+    n: "01",
+    titulo: "Un problema real",
+    texto:
+      "Traé el problema que hoy más te cuesta resolver en Seguridad e Higiene. Queremos trabajar sobre algo concreto de tu operación.",
+  },
+  {
+    n: "02",
+    titulo: "La persona que toma la decisión",
+    texto:
+      "Si es posible, sumá a quien también participa de la decisión. Así podemos tener la conversación completa desde el principio.",
+  },
+];
+
 export default function AgendadoPage() {
   return (
-    <main className="min-h-screen bg-primary">
+    // relative z-10: el layout ya no envuelve en un <main> posicionado, así que
+    // sin esto el contenido queda pintado debajo de GlobalBackground.
+    <main className="relative z-10 min-h-screen bg-primary">
       <Suspense fallback={null}>
         <AgendadoClient />
       </Suspense>
 
-      <div className="mx-auto max-w-3xl px-6 py-16 lg:py-24">
-        <p className="mb-4 inline-block rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
+      <div className="mx-auto max-w-2xl px-6 py-20 lg:py-28">
+        {/* ── Confirmación ─────────────────────────────────────────────── */}
+        <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
           Reunión confirmada
         </p>
 
-        <h1 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-          Listo. Te llega la invitación por mail.
+        <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+          Gracias por agendar.
+          <br />
+          Nos vemos en la reunión.
         </h1>
 
-        <p className="mt-4 text-lg text-white/70">
-          Antes de que nos veamos, dos cosas que hacen que los 30 minutos rindan.
+        <p className="mt-4 text-white/60">
+          Te llega la invitación por mail.
         </p>
 
-        <section className="mt-12">
+        {/* ── El video, que es la pieza central ────────────────────────── */}
+        <section className="mt-20">
           <h2 className="font-display text-xl font-semibold text-white">
-            1. Mirá esto antes de la reunión
+            Antes de la reunión, mirá este video
           </h2>
-          <p className="mb-6 mt-2 text-white/60">
-            Son {NURTURING.duracion}. Así llegamos con contexto y usamos el
-            tiempo en tu operación, no en explicarte qué es SHIPSAFE.
+          <p className="mb-7 mt-3 leading-relaxed text-white/70">
+            Te cuento brevemente cómo vamos a trabajar y qué necesitamos de tu
+            lado para aprovechar esos 30 minutos.
           </p>
 
           {NURTURING.disponible ? (
@@ -71,42 +98,44 @@ export default function AgendadoPage() {
           )}
         </section>
 
-        <section className="mt-14">
+        {/* ── Las dos cosas que hacen falta ────────────────────────────── */}
+        <section className="mt-20">
           <h2 className="font-display text-xl font-semibold text-white">
-            2. Si podés, sumá a quien decide
+            Para la reunión, solo necesitamos dos cosas
           </h2>
-          <p className="mt-2 text-white/70">
-            No para venderle. Al revés: nos ahorra a los dos una reunión entera
-            de repetir todo. Reenviale la invitación que te llegó y listo.
-          </p>
-        </section>
 
-        <section className="mt-14 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-          <h2 className="font-display text-lg font-semibold text-white">
-            Qué vamos a hacer en los 30 minutos
-          </h2>
-          <ul className="mt-4 space-y-3 text-white/70">
-            {[
-              "Entender cómo se gestiona hoy la seguridad en tu operación, de punta a punta",
-              "Recorrer el proceso que más te esté costando, con la plataforma abierta",
-              "Ver cómo entra el resto de la gestión: matrices, capacitaciones, EPP, permisos, mediciones",
-              "Definir si tiene sentido avanzar con una Prueba Guiada sobre tu operación",
-            ].map((item) => (
-              <li key={item} className="flex gap-3">
-                <span
-                  aria-hidden
-                  className="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-accent/20 text-xs font-bold text-accent"
-                >
-                  ✓
-                </span>
-                <span>{item}</span>
+          <ol className="mt-8 space-y-10">
+            {REQUISITOS.map((r) => (
+              <li key={r.n}>
+                <div className="flex gap-5">
+                  <span
+                    aria-hidden
+                    className="font-display text-sm font-semibold tabular-nums text-white/30"
+                  >
+                    {r.n}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-white">
+                      {r.titulo}
+                    </h3>
+                    <p className="mt-2 leading-relaxed text-white/70">{r.texto}</p>
+                  </div>
+                </div>
               </li>
             ))}
-          </ul>
+          </ol>
         </section>
 
-        <p className="mt-10 text-sm text-white/40">
-          ¿Te surgió algo antes de la reunión?{" "}
+        {/* ── La expectativa de los 30 minutos ─────────────────────────── */}
+        <p className="mt-20 border-l-2 border-accent/40 pl-6 text-lg leading-relaxed text-white/80">
+          No es una demo genérica. La idea es que esos 30 minutos sean sobre tu
+          operación: entender un problema concreto y mostrarte cómo podríamos
+          resolverlo.
+        </p>
+
+        {/* ── Soporte, sin protagonismo ────────────────────────────────── */}
+        <p className="mt-20 border-t border-white/10 pt-8 text-sm text-white/45">
+          ¿Te quedó alguna pregunta antes de la reunión?{" "}
           <a
             href="https://wa.me/5493413067158?text=Hola%2C%20agend%C3%A9%20una%20demo%20de%20SHIPSAFE%20y%20quer%C3%ADa%20consultar%20algo"
             target="_blank"

@@ -7,6 +7,9 @@ import SocialProof from "@/components/campaign/SocialProof";
 import PricingSection from "./_components/PricingSection";
 import FaqSection from "@/components/campaign/FaqSection";
 import FinalCta from "./_components/FinalCta";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import CampaignHeader from "@/components/campaign/CampaignHeader";
+import CampaignFooter from "@/components/campaign/CampaignFooter";
 import { FAQS } from "./_data";
 
 export const metadata: Metadata = {
@@ -20,6 +23,8 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   return (
     <>
+      <CampaignHeader />
+      <main className="relative z-10">
       <CampaignHero />
       <PainSection />
       <HowItWorks />
@@ -28,6 +33,9 @@ export default function DemoPage() {
       <PricingSection />
       <FaqSection faqs={FAQS} />
       <FinalCta />
+      </main>
+      <CampaignFooter />
+      <WhatsAppButton />
     </>
   );
 }
