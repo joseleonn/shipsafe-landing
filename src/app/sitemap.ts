@@ -29,13 +29,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE.url}/politica-privacidad`,
-      lastModified: new Date("2026-04-17"),
+      lastModified: new Date("2026-08-27"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${SITE.url}/terminos`,
-      lastModified: new Date("2026-04-17"),
+      lastModified: new Date("2026-08-27"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE.url}/tratamiento-de-datos`,
+      lastModified: new Date("2026-08-27"),
       changeFrequency: "yearly",
       priority: 0.3,
     },

@@ -608,6 +608,7 @@ export const FOOTER_LINKS = {
   legal: [
     { label: "Términos y condiciones", href: "/terminos" },
     { label: "Política de privacidad", href: "/politica-privacidad" },
+    { label: "Anexo de tratamiento de datos", href: "/tratamiento-de-datos" },
     { label: "Botón de arrepentimiento", href: "/arrepentimiento" },
   ],
   contacto: [
@@ -631,6 +632,17 @@ export const EMPRESA = {
   cuit: "",
   domicilio: "",
   email: "shipsoftwareteam@gmail.com",
+  /**
+   * Casilla que citan los tres documentos legales como canal de contacto.
+   *
+   * OJO: no es la misma que `email`, y el dominio tampoco es el del sitio
+   * (shipsafe.lat). Sale tal cual de los documentos redactados para la app. Si
+   * la casilla no existe todavía, hay que crearla o corregir el texto legal:
+   * el art. 34 de la Ley 24.240 y la Disposición 954/2025 suponen un canal que
+   * efectivamente recibe. Está acá y no escrita a mano en cada página para que
+   * cambiarla sea una sola línea.
+   */
+  emailLegal: "hola@shipsafe.com.ar",
 };
 
 /** True sólo cuando hay datos reales que mostrar. */
