@@ -608,12 +608,33 @@ export const FOOTER_LINKS = {
   legal: [
     { label: "Términos y condiciones", href: "/terminos" },
     { label: "Política de privacidad", href: "/politica-privacidad" },
+    { label: "Botón de arrepentimiento", href: "/arrepentimiento" },
   ],
   contacto: [
     { label: "shipsoftwareteam@gmail.com", href: "mailto:shipsoftwareteam@gmail.com" },
     { label: "WhatsApp", href: CTAS.whatsapp.url },
   ],
 };
+
+/**
+ * Identificación del proveedor. La Disposición 954/2025 y la Ley 24.240 piden
+ * que el consumidor sepa con quién está contratando, sin tener que preguntarlo.
+ *
+ * Los valores arrancan VACÍOS a propósito. Un CUIT o un domicilio inventado en
+ * una página legal es peor que no tener el dato: convierte una omisión en una
+ * declaración falsa. El bloque del pie sólo se dibuja cuando `razonSocial` y
+ * `cuit` tienen contenido, así que hasta que se carguen los reales no se
+ * publica nada.
+ */
+export const EMPRESA = {
+  razonSocial: "",
+  cuit: "",
+  domicilio: "",
+  email: "shipsoftwareteam@gmail.com",
+};
+
+/** True sólo cuando hay datos reales que mostrar. */
+export const EMPRESA_IDENTIFICADA = Boolean(EMPRESA.razonSocial && EMPRESA.cuit);
 
 // TODO(founder): mantener estos stats siempre defendibles ante un comprador
 // B2B que haga due diligence. Alternativas para el tercero cuando crezcan los

@@ -3,7 +3,12 @@
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import Link from "next/link";
-import { SITE, FOOTER_LINKS } from "@/lib/constants";
+import {
+  SITE,
+  FOOTER_LINKS,
+  EMPRESA,
+  EMPRESA_IDENTIFICADA,
+} from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
 export default function Footer() {
@@ -150,6 +155,14 @@ export default function Footer() {
 
         <ScrollReveal variant="scale" delay={0.2}>
           <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-white/30">
+            {/* Identificación del proveedor. Sólo se dibuja con datos reales
+                cargados: ver el comentario de EMPRESA en constants.ts. */}
+            {EMPRESA_IDENTIFICADA && (
+              <p className="mb-3 text-white/40">
+                {EMPRESA.razonSocial} · CUIT {EMPRESA.cuit}
+                {EMPRESA.domicilio ? ` · ${EMPRESA.domicilio}` : ""}
+              </p>
+            )}
             © 2026 Ship Software Team · shipsoftware.team
           </div>
         </ScrollReveal>
