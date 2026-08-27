@@ -37,13 +37,13 @@ export const RECURSOS: Record<string, Recurso> = {
     kicker: "Para responsables de Seguridad e Higiene",
     titulo: "10 checklists listos para usar en planta, y qué hacer con cada No OK",
     subtitulo:
-      "Los checklists son la parte fácil. Lo difícil empieza cuando algo da No OK: quién se hace cargo, en cuánto tiempo, con qué evidencia se cierra y quién verifica. Acá van los diez que más se usan, y el criterio para que ninguno quede anotado y sin cerrar.",
+      "Cuando llenar la planilla cuesta más que la tarea que estás controlando, la planilla no se llena. No es un problema de disciplina: es cómo está diseñado el checklist. Acá van los diez que más se usan —cortos, concretos y accionables—, con qué mirar en cada punto y qué hacer cuando algo da No OK: quién se hace cargo, en cuánto tiempo y con qué evidencia se cierra.",
     incluye: [
       "Los 10 checklists completos, listos para imprimir o cargar en tu sistema",
       "Qué mirar en cada punto, no solo qué tildar",
       "Los tres ítems que más se pasan por alto en cada uno",
       "Qué hacer cuando algo da No OK: responsable, plazo, evidencia y verificación",
-      "Cómo armar tus propios checklists sin que queden en una lista de deseos",
+      "Cómo armar los tuyos para que se completen en el frente, no en la oficina",
     ],
     cta: "Quiero los 10 checklists",
     archivo: "checklists-planta.pdf",
@@ -92,6 +92,26 @@ export const RECURSOS: Record<string, Recurso> = {
     metaDescription:
       "Planilla para controlar vencimientos de mediciones, capacitaciones, habilitaciones y EPP, con alertas y responsable asignado.",
   },
+};
+
+/**
+ * VSL de la página de gracias.
+ *
+ * No es el video de nurturing: ese vive en /demo/agendado y le habla a alguien
+ * que YA agendó. Este le habla a alguien que acaba de bajar el recurso y
+ * todavía no sabe si quiere hablar con nosotros. Guion en
+ * ship-it/guion-vsl-recurso.md.
+ *
+ * Igual que el otro: en YouTube como **no listado**, nunca como privado, o el
+ * reproductor queda en negro sin ningún error que lo delate.
+ *
+ * Mientras `disponible` sea false la página muestra un texto y no se rompe.
+ */
+export const VSL_RECURSO = {
+  disponible: false,
+  youtubeId: "",
+  titulo: "Por qué las inspecciones no se hacen",
+  duracion: "4 minutos",
 };
 
 /** El que está corriendo en campaña ahora. Se cambia acá y en el anuncio. */

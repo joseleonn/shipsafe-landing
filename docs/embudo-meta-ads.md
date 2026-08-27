@@ -298,7 +298,7 @@ Recorré el embudo entero como si fueras un lead, dos veces.
 |---|---|
 | **Definir el lead magnet con Walter** | Es lo único que frena el lanzamiento |
 | Producir el archivo → `public/recursos/` + `archivoListo: true` en `_data.ts` | Entrega del recurso |
-| Video de nurturing de Walter → `src/app/demo/agendado/_data.ts` | No bloquea, pero acorta el ciclo |
+| Video de nurturing (José) → `src/app/demo/agendado/_data.ts` | ✅ Publicado |
 | Los 5 creativos (guiones en `guiones-creativos-meta.md`) | Lanzamiento |
 | Correr `npm run build` en Mac antes de deployar | Verificación final |
 

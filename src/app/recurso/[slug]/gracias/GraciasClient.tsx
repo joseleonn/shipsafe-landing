@@ -3,7 +3,7 @@
 import { useMemo, useSyncExternalStore } from "react";
 import Script from "next/script";
 import { getAttribution } from "@/lib/attribution";
-import { CALENDLY_URL } from "../../_data";
+import { CALENDLY_URL, VSL_RECURSO } from "../../_data";
 
 interface Props {
   titulo: string;
@@ -78,50 +78,112 @@ export default function GraciasClient({ titulo, archivo, archivoListo }: Props) 
 
   return (
     <main className="min-h-screen bg-primary">
-      <div className="mx-auto max-w-3xl px-6 py-16 lg:py-24">
-        <p className="mb-4 inline-block rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
-          Listo
-        </p>
+      {/* La entrega va acá arriba, en una franja, y no en un botón grande en el
+          medio de la página. Si el botón de descarga es lo más prominente, la
+          persona lo aprieta y se va: ya consiguió lo que vino a buscar y el
+          resto de la página no existe. Achicándolo se entrega igual —el archivo
+          se baja en el momento— pero la atención queda libre para el video. */}
+      <div className="border-b border-emerald-400/20 bg-emerald-400/[0.08]">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-baseline gap-x-3 gap-y-1 px-6 py-3 text-sm">
+          <span className="font-semibold text-emerald-300">Listo, ya es tuyo.</span>
+          {archivoListo ? (
+            <a
+              href={`/recursos/${archivo}`}
+              download
+              className="text-white/70 underline underline-offset-4 transition hover:text-white"
+            >
+              Descargar {titulo.toLowerCase()}
+            </a>
+          ) : (
+            <span className="text-white/60">
+              Lo estamos terminando de preparar. Te escribimos apenas esté.
+            </span>
+          )}
+        </div>
+      </div>
 
+      <div className="mx-auto max-w-3xl px-6 py-14 lg:py-20">
+        {/* El H1 no es un acuse de recibo: es una promesa nueva. La persona ya
+            tiene el archivo, así que repetirle que lo tiene no le mueve nada.
+            Lo que la retiene es enterarse de que el problema es otro. */}
         <h1 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-          Acá tenés {titulo.toLowerCase()}
+          Cómo hacer que esas inspecciones se hagan de verdad, en los frentes
+          donde vos no estás
         </h1>
 
-        <p className="mt-4 text-lg text-white/70">
-          Descargalo y usalo cuando lo necesites. Guardá esta página en favoritos
-          si querés volver.
+        <p className="mt-5 text-lg leading-relaxed text-white/70">
+          Los checklists te dicen qué mirar. No hacen que alguien los complete a
+          200 kilómetros, ni que el «No OK» del martes lo cierre alguien. De eso
+          habla este video.
         </p>
 
-        {archivoListo ? (
-          <a
-            href={`/recursos/${archivo}`}
-            download
-            className="mt-8 inline-flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/15"
-          >
-            Descargarlo ahora
-          </a>
-        ) : (
-          <p className="mt-8 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white/50">
-            Lo estamos terminando de preparar. Te escribimos apenas esté listo.
-          </p>
-        )}
+        <section className="mt-10">
+          {VSL_RECURSO.disponible ? (
+            <>
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                  <iframe
+                    className="absolute inset-0 h-full w-full"
+                    src={`https://www.youtube-nocookie.com/embed/${VSL_RECURSO.youtubeId}?rel=0`}
+                    title={VSL_RECURSO.titulo}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <p className="mt-3 text-sm text-white/45">
+                {VSL_RECURSO.duracion} · con subtítulos
+              </p>
+            </>
+          ) : (
+            <p className="rounded-lg border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white/50">
+              Lo estamos grabando. Mientras tanto, abajo va lo mismo escrito.
+            </p>
+          )}
+        </section>
 
         <hr className="my-12 border-white/10" />
 
         {!listo ? null : califica ? (
           <section>
+            {/* La oferta continúa el recurso, no cambia de tema.
+                La versión anterior arrancaba con "ya que estás" y saltaba a
+                describir el producto —QR, autoelevador, tableros—. Alguien que
+                vino por unos checklists y se encuentra con eso siente el salto,
+                porque es un salto. Acá se nombra lo que el PDF no puede
+                resolver, que es lo que la persona ya sabe que le pasa, y recién
+                después se ofrece la reunión. */}
             <h2 className="font-display text-2xl font-semibold text-white">
-              Ya que estás: ¿lo vemos con tu operación?
+              Los checklists son la parte fácil
             </h2>
             <p className="mt-3 text-white/70">
-              Son 30 minutos. No es una demo genérica: recorremos un proceso
-              tuyo de verdad. El QR pegado en tu autoelevador, la inspección que
-              hace tu gente, el desvío que se abre solo, y cómo lo termina viendo
-              tu gerencia.
+              Los diez que acabás de bajar te resuelven qué mirar. Lo que no
+              resuelven es lo que viene después:
+            </p>
+            <ul className="mt-4 space-y-2 text-white/70">
+              {[
+                "Juntar las planillas de gente que trabaja en distintos lugares",
+                "Saber si el «No OK» del martes lo cerró alguien, y cuándo",
+                "Que un vencimiento te avise antes, y no cuando lo ves de casualidad",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span aria-hidden className="mt-2 h-1 w-1 flex-none rounded-full bg-white/40" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-white/70">
+              La gestión no se rompe al detectar. Se rompe en el seguimiento: que
+              la inspección se cargue donde se hace, que cada desvío quede con
+              responsable y plazo, y que vos veas el estado de todos los frentes
+              sin llamar a nadie.
+            </p>
+            <p className="mt-5 text-white/70">
+              Si querés, lo miramos sobre tu operación. Elegís el proceso que hoy
+              más te cuesta y lo recorremos juntos. Son 30 minutos.
             </p>
             <p className="mt-3 text-sm text-white/50">
-              Si podés, sumá a quien tiene que aprobarlo. Nos ahorra una reunión
-              a los dos.
+              Si es posible, sumá a quien también participa de la decisión.
             </p>
 
             <div

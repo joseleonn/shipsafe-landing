@@ -59,12 +59,15 @@ export const HOME_VIDEO = {
     "Te muestro cómo se usa por dentro: cómo se carga una inspección desde el celular, cómo se sigue un desvío hasta que se cierra y qué termina viendo la gerencia.",
 };
 
+// Ordenados según el manifiesto: primero el costo de registrar, después la
+// ceguera, y recién al final los síntomas. No arrancan por la auditoría a
+// propósito (ver manifiesto-shipsafe.md, §2).
 export const PAIN_POINTS = [
-  "Tenés 300 registros de inspecciones en una carpeta de Excel que nadie revisa hasta que llega la ART.",
-  "El operario tuvo un accidente y no hay registro del último relevamiento de riesgos del puesto.",
-  "Cargaste todo para la auditoría, pero te falta el registro de entrega de EPP firmado por el operario.",
-  "Tu equipo reporta desvíos por WhatsApp y se pierden entre mensajes de grupo.",
-  "Armar el RGRL te lleva días de carga manual cada vez que lo tenés que presentar.",
+  "Mandaste la planilla al frente y no vuelve. No es que no quieran: llenarla y hacerla llegar cuesta más que la tarea que estás controlando.",
+  "Tenés gente trabajando a 200 kilómetros y te enterás de lo que pasó cuando ya pasó.",
+  "Hubo un accidente y te preguntan qué se había hecho. Se hizo, pero el registro está en una planilla adentro de una camioneta.",
+  "El desvío que anotaste el martes sigue anotado: sin responsable, sin plazo y sin nadie que sepa si se cerró.",
+  "No sabés qué EPP vas a tener que reponer dentro de tres meses, así que comprás tarde o comprás de más.",
   "Te enterás de que un matafuego venció porque lo viste de casualidad en la recorrida.",
 ];
 
