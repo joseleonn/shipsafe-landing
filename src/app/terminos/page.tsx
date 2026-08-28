@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE, EMPRESA } from "@/lib/constants";
+import { SITE, PROVEEDOR } from "@/lib/constants";
 import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
@@ -292,7 +292,7 @@ export default function Terminos() {
           Para ejercerlo alcanza con usar el{" "}
           <a href="/arrepentimiento">botón de arrepentimiento</a> disponible en
           el sitio de ShipSafe o escribir a{" "}
-          <a href={`mailto:${EMPRESA.emailLegal}`}>{EMPRESA.emailLegal}</a>. No
+          <a href={`mailto:${PROVEEDOR.emailLegal}`}>{PROVEEDOR.emailLegal}</a>. No
           se requiere registración previa ni ningún trámite adicional, y dentro
           de las VEINTICUATRO (24) horas se informará el código de
           identificación de la revocación, conforme a la{" "}
@@ -338,8 +338,8 @@ export default function Terminos() {
         <h2>13. Contacto</h2>
         <p>
           Para cualquier consulta sobre estos Términos:{" "}
-          <a href={`mailto:${EMPRESA.emailLegal}`}>
-            <strong>{EMPRESA.emailLegal}</strong>
+          <a href={`mailto:${PROVEEDOR.emailLegal}`}>
+            <strong>{PROVEEDOR.emailLegal}</strong>
           </a>
         </p>
       </section>

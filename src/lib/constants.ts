@@ -621,15 +621,25 @@ export const FOOTER_LINKS = {
  * Identificación del proveedor. La Disposición 954/2025 y la Ley 24.240 piden
  * que el consumidor sepa con quién está contratando, sin tener que preguntarlo.
  *
+ * NO hay sociedad: ShipSafe opera a nombre de una persona humana, y "ShipSafe"
+ * es nombre de fantasía. Por eso el campo es `titular` y no `razonSocial`:
+ * poner "Razón social" delante del nombre de una persona sería declarar una
+ * sociedad que no existe. El CUIT de una persona humana empieza con 20, 23, 24
+ * o 27, no con 30 o 33.
+ *
  * Los valores arrancan VACÍOS a propósito. Un CUIT o un domicilio inventado en
  * una página legal es peor que no tener el dato: convierte una omisión en una
- * declaración falsa. El bloque del pie sólo se dibuja cuando `razonSocial` y
- * `cuit` tienen contenido, así que hasta que se carguen los reales no se
- * publica nada.
+ * declaración falsa. El bloque del pie sólo se dibuja cuando `titular` y `cuit`
+ * tienen contenido, así que hasta que se carguen los reales no se publica nada.
  */
-export const EMPRESA = {
-  razonSocial: "",
+export const PROVEEDOR = {
+  /** Nombre y apellido como figuran en AFIP. */
+  titular: "",
   cuit: "",
+  /**
+   * Domicilio comercial. Si es el domicilio particular, pensarlo dos veces:
+   * publicarlo en el pie de un sitio indexado lo expone para siempre.
+   */
   domicilio: "",
   email: "shipsoftwareteam@gmail.com",
   /**
@@ -646,7 +656,7 @@ export const EMPRESA = {
 };
 
 /** True sólo cuando hay datos reales que mostrar. */
-export const EMPRESA_IDENTIFICADA = Boolean(EMPRESA.razonSocial && EMPRESA.cuit);
+export const PROVEEDOR_IDENTIFICADO = Boolean(PROVEEDOR.titular && PROVEEDOR.cuit);
 
 // TODO(founder): mantener estos stats siempre defendibles ante un comprador
 // B2B que haga due diligence. Alternativas para el tercero cuando crezcan los

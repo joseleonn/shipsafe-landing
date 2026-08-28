@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE, EMPRESA } from "@/lib/constants";
+import { SITE, PROVEEDOR } from "@/lib/constants";
 import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
@@ -240,8 +240,8 @@ export default function PoliticaPrivacidad() {
         </p>
         <p>
           <strong>Si tenés cuenta en ShipSafe</strong>, podés escribir a{" "}
-          <a href={`mailto:${EMPRESA.emailLegal}`}>
-            <strong>{EMPRESA.emailLegal}</strong>
+          <a href={`mailto:${PROVEEDOR.emailLegal}`}>
+            <strong>{PROVEEDOR.emailLegal}</strong>
           </a>
           .
         </p>
@@ -286,8 +286,8 @@ export default function PoliticaPrivacidad() {
       <section>
         <h2>10. Contacto</h2>
         <p>
-          <a href={`mailto:${EMPRESA.emailLegal}`}>
-            <strong>{EMPRESA.emailLegal}</strong>
+          <a href={`mailto:${PROVEEDOR.emailLegal}`}>
+            <strong>{PROVEEDOR.emailLegal}</strong>
           </a>
         </p>
       </section>
