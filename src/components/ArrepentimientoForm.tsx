@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle, AlertCircle, Loader2, Undo2 } from "lucide-react";
-import { WEB3FORMS_KEY } from "@/lib/constants";
+import { WEB3FORMS_KEY, PROVEEDOR } from "@/lib/constants";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -101,10 +101,10 @@ export default function ArrepentimientoForm() {
           Si hubo un pago, la devolución se hace por el mismo medio con el que
           pagaste. Cualquier duda, escribinos a{" "}
           <a
-            href="mailto:shipsoftwareteam@gmail.com"
+            href={`mailto:${PROVEEDOR.emailLegal}`}
             className="text-accent underline underline-offset-2"
           >
-            shipsoftwareteam@gmail.com
+            {PROVEEDOR.emailLegal}
           </a>
           .
         </p>

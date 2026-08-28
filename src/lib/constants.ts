@@ -643,16 +643,15 @@ export const PROVEEDOR = {
   domicilio: "Rosario, Provincia de Santa Fe",
   email: "shipsoftwareteam@gmail.com",
   /**
-   * Casilla que citan los tres documentos legales como canal de contacto.
+   * Casilla que citan los tres documentos legales como canal de contacto y de
+   * revocación. El art. 34 de la Ley 24.240 y la Disposición 954/2025 suponen
+   * un canal que efectivamente recibe, así que esta dirección tiene que estar
+   * viva: si deja de andar, la vía de revocación queda rota.
    *
-   * OJO: no es la misma que `email`, y el dominio tampoco es el del sitio
-   * (shipsafe.lat). Sale tal cual de los documentos redactados para la app. Si
-   * la casilla no existe todavía, hay que crearla o corregir el texto legal:
-   * el art. 34 de la Ley 24.240 y la Disposición 954/2025 suponen un canal que
-   * efectivamente recibe. Está acá y no escrita a mano en cada página para que
-   * cambiarla sea una sola línea.
+   * Está acá y no escrita a mano en cada página para que cambiarla sea una
+   * sola línea en los tres documentos y en /arrepentimiento.
    */
-  emailLegal: "hola@shipsafe.com.ar",
+  emailLegal: "hello@shipsafe.lat",
 };
 
 /** True sólo cuando hay datos reales que mostrar. */
