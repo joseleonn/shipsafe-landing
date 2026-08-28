@@ -634,13 +634,13 @@ export const FOOTER_LINKS = {
  */
 export const PROVEEDOR = {
   /** Nombre y apellido como figuran en AFIP. */
-  titular: "",
-  cuit: "",
+  titular: "Jose Leon Caceres Musso",
+  cuit: "20-44235751-0",
   /**
    * Domicilio comercial. Si es el domicilio particular, pensarlo dos veces:
    * publicarlo en el pie de un sitio indexado lo expone para siempre.
    */
-  domicilio: "",
+  domicilio: "Rosario, Provincia de Santa Fe",
   email: "shipsoftwareteam@gmail.com",
   /**
    * Casilla que citan los tres documentos legales como canal de contacto.
