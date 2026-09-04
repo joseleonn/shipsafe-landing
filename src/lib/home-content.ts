@@ -31,19 +31,19 @@ export const NAV = [
 ] as const;
 
 export const HERO = {
-  eyebrow: "Plataforma integral de seguridad e higiene",
-  h1: "Toda la operación de seguridad e higiene,",
-  h1Accent: "en una sola plataforma.",
+  eyebrow: "Software de gestión de seguridad e higiene",
+  h1: "La seguridad e higiene de toda tu operación,",
+  h1Accent: "bajo control y lista para demostrar.",
   pain:
-    "Hoy no sabés qué pasa donde no estás: la planilla que no vuelve del frente, el desvío que nadie cerró, el EPP sin firma, el vencimiento que aparece solo.",
+    "Un cliente te pide tu sistema de gestión para una licitación, una auditoría te pide evidencia, la gerencia te pide estadísticas. Y todo sale de planillas, carpetas y WhatsApp, armado a mano y a las corridas.",
   platform:
-    "SHIPSAFE pone inspecciones, desvíos, permisos de trabajo, EPP, capacitaciones, mediciones y vencimientos en un solo lugar, y a cada persona de la operación trabajando ahí desde su rol: el operario desde el celular, mantenimiento, el supervisor y la gerencia.",
+    "SHIPSAFE reúne inspecciones, EPP, capacitaciones, permisos, mediciones, accidentes y vencimientos en una sola plataforma, con cada rol trabajando desde su lugar, y los informes y estadísticas listos cuando te los piden.",
   secondary: "Ver la plataforma en 90 s",
   proof: [
     "En producción con flota y frentes remotos",
     "Sin instalar nada: QR y navegador",
     "Varias sucursales, una sola cuenta",
-    "Datos cifrados, backups diarios",
+    "Informes y estadísticas listos para presentar",
   ],
   /** Los "eventos" que rotan sobre el escenario del hero: resumen de lo que el producto hace, no pantallas inventadas. */
   events: [
@@ -277,6 +277,7 @@ export const PRICE_NOTES = ["Mensual, sin permanencia", "Pagando por año, entre
 
 export const HOME_FAQS = [
   { q: "¿Hay que instalar algo en los celulares?", a: "No. Funciona desde el navegador: el operario escanea el QR y entra directo. No hay app que descargar ni cuentas que crear en cada teléfono." },
+  { q: "¿Me sirve para auditorías y licitaciones?", a: "Sí. Cada registro queda con fecha, foto y firma, y los informes, las estadísticas de accidentes y el estado de EPP, capacitaciones y vencimientos salen de la plataforma en PDF, listos para presentar a un cliente, a una auditoría o a la aseguradora." },
   { q: "¿Es solo para inspecciones?", a: "No. Las inspecciones son la puerta de entrada porque las hace el que está en el frente, pero la plataforma cubre desvíos, permisos de trabajo, EPP, capacitaciones, mediciones, accidentes, RGRL, equipamiento y vencimientos, con roles para cada persona de la operación." },
   { q: "¿Convive con SAP u otro ERP?", a: "Sí. SHIPSAFE no reemplaza al ERP: es la capa del día a día desde el celular. En la línea Enterprise hay integraciones (SAP, Active Directory) y SSO." },
   { q: "¿Puedo traer lo que ya tengo en Excel?", a: "Sí. Importación masiva de equipos, operarios, sectores e históricos. Te acompañamos en la migración para que el primer día ya tengas tu operación cargada." },
@@ -302,9 +303,9 @@ export const CASE = {
   size: "60 empleados, flota y frentes remotos",
   logo: "/clientes/swpetrol.png" as string | null,
   before:
-    "Las inspecciones de la flota se hacían en papel. Con la gente repartida en frentes, juntar las planillas era tan difícil que terminaban no haciéndose. No había evidencia real de qué pasaba con los vehículos.",
+    "Planillas Excel y un software interno hecho por un supervisor, que no prosperó por falta de tiempo. Necesitaban más control sobre los EPP y un sistema de gestión HSE que respaldara auditorías y licitaciones con sus clientes.",
   today:
-    "Inspecciones de flota, entrega y stock de EPP, y accidentología con imágenes y causa raíz. Saben qué se hizo y qué no, en el momento.",
+    "Inspecciones de flota, entrega y stock de EPP, y accidentología con imágenes y causa raíz. Estadísticas de accidentes, control documental e informes listos para presentar.",
 };
 
 export const FOOTER = {
