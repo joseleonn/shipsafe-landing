@@ -1,0 +1,96 @@
+/* ============================================================
+   motion.css · movimiento nivel 2 y 3 del sitio (v3)
+   Todo respeta prefers-reduced-motion: sin la clase html.ss-motion no hay
+   estados iniciales ocultos ni bucles; solo el estado final.
+   ============================================================ */
+
+/* ---------- 03 · marcapasos del flujo ---------- */
+.ss-site .steps.pace{--p:0;--y:0px}
+.ss-site .steps.pace::before{background:var(--line-2)}
+.ss-site .steps .track{position:absolute;left:24px;top:15px;height:2px;width:calc((100% - 48px) * var(--p));background:linear-gradient(90deg,rgba(0,92,214,.25),var(--accent));border-radius:2px;transition:width 720ms var(--ease),opacity 300ms;pointer-events:none;z-index:0;margin:0}
+.ss-site .steps .track::after{content:"";position:absolute;right:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,92,214,.16),0 0 18px rgba(0,92,214,.55)}
+.ss-site .steps.is-reset .track{opacity:0;transition:opacity 300ms}
+.ss-site .steps.is-static .track{display:none}
+.ss-site .steps li{cursor:default}
+.ss-site .steps li::before{transition:background-color .25s var(--ease) .5s,color .25s var(--ease) .5s,border-color .25s .5s}
+.ss-site .steps li.is-active::before{background:var(--accent);color:#fff;border-color:var(--accent);animation:pace-pulse 1.7s ease-out .55s infinite}
+.ss-site .steps.is-static li.is-active::before{animation:none}
+.ss-site .steps li.is-done::before{background:var(--accent-soft);color:var(--accent-ink)}
+.ss-site .steps li b{transition:color .3s .5s}
+.ss-site .steps li.is-active b{color:var(--accent-ink)}
+.ss-site .steps li .who{transition:background-color .3s .5s,border-color .3s .5s,color .3s .5s}
+.ss-site .steps li.is-active .who{color:var(--accent-ink);border-color:rgba(0,92,214,.35);background:var(--accent-soft)}
+@keyframes pace-pulse{
+  0%{box-shadow:0 0 0 6px var(--bg-2),0 0 0 6px rgba(0,92,214,.45)}
+  100%{box-shadow:0 0 0 6px var(--bg-2),0 0 0 24px rgba(0,92,214,0)}
+}
+@media (max-width:900px){
+  .ss-site .steps .track{left:15px;top:0;width:2px;height:var(--y);transition:height 720ms var(--ease),opacity 300ms}
+  .ss-site .steps .track::after{right:auto;top:auto;left:-4px;bottom:-5px}
+}
+
+/* ---------- cues de sección: la línea del eyebrow se dibuja, el acento del título aparece ---------- */
+html.ss-motion .ss-site .sec-head .eyebrow.num::after{transform:scaleX(0);transform-origin:left center;transition:transform .7s var(--ease) .15s}
+html.ss-motion .ss-site .sec-head.in .eyebrow.num::after{transform:scaleX(1)}
+html.ss-motion .ss-site .sec-head h2 em{opacity:.28;transition:opacity .6s var(--ease) .35s}
+html.ss-motion .ss-site .sec-head.in h2 em{opacity:1}
+html.ss-motion .ss-site .sec-head .lede{opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease) .3s,transform .5s var(--ease) .3s}
+html.ss-motion .ss-site .sec-head.in .lede{opacity:1;transform:none}
+
+/* ---------- 06 · tabla: filas escalonadas, la última se enciende al final ---------- */
+html.ss-motion .ss-site .cmp .row{opacity:0;transform:translateY(8px);transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+html.ss-motion .ss-site .cmp.in .row{opacity:1;transform:none}
+html.ss-motion .ss-site .cmp .row.hi .new::after{opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease) .9s,transform .4s var(--ease) .9s}
+html.ss-motion .ss-site .cmp.in .row.hi .new::after{opacity:1;transform:none}
+
+/* ---------- 05 · botón de reproducir: anillo que respira ---------- */
+html.ss-motion .ss-site .player .play::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:play-ring 2.6s ease-out infinite;pointer-events:none}
+@keyframes play-ring{0%{transform:scale(.9);opacity:.7}70%{transform:scale(1.45);opacity:0}100%{transform:scale(1.45);opacity:0}}
+
+/* ---------- hero: punto "producto real" latiendo, orbes de fondo a la deriva ---------- */
+html.ss-motion .ss-site .browser .live::before{animation:live-dot 2s ease-in-out infinite}
+@keyframes live-dot{0%,100%{box-shadow:0 0 0 3px rgba(17,138,76,.14)}50%{box-shadow:0 0 0 6px rgba(17,138,76,.06)}}
+.ss-site .hero-bg .orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;opacity:.9}
+.ss-site .hero-bg .orb-1{width:52vw;height:52vw;max-width:760px;max-height:760px;right:-12vw;top:-18vw;background:radial-gradient(circle,rgba(0,92,214,.18),rgba(0,92,214,0) 62%)}
+.ss-site .hero-bg .orb-2{width:36vw;height:36vw;max-width:520px;max-height:520px;left:-10vw;top:22%;background:radial-gradient(circle,rgba(20,184,166,.13),rgba(20,184,166,0) 62%)}
+.ss-site .hero-bg .orb-3{width:30vw;height:30vw;max-width:440px;max-height:440px;left:38%;bottom:-10%;background:radial-gradient(circle,rgba(99,102,241,.10),rgba(99,102,241,0) 62%)}
+html.ss-motion .ss-site .hero-bg .orb-1{animation:drift-a 22s ease-in-out infinite alternate}
+html.ss-motion .ss-site .hero-bg .orb-2{animation:drift-b 26s ease-in-out infinite alternate}
+html.ss-motion .ss-site .hero-bg .orb-3{animation:drift-a 30s ease-in-out infinite alternate-reverse}
+@keyframes drift-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-6vw,5vw,0) scale(1.08)}}
+@keyframes drift-b{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(5vw,-4vw,0) scale(1.06)}}
+
+/* ---------- gradientes de fondo en secciones (aire, a lo urbania) ---------- */
+.ss-site .glow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.ss-site .glow::before,.ss-site .glow::after{content:"";position:absolute;border-radius:50%;filter:blur(70px)}
+.ss-site .glow::before{width:46vw;height:46vw;max-width:680px;max-height:680px;background:radial-gradient(circle,rgba(0,92,214,.14),rgba(0,92,214,0) 62%)}
+.ss-site .glow::after{width:34vw;height:34vw;max-width:500px;max-height:500px;background:radial-gradient(circle,rgba(20,184,166,.10),rgba(20,184,166,0) 62%)}
+.ss-site .glow.tl::before{left:-14vw;top:-14vw} .ss-site .glow.tl::after{right:-8vw;bottom:-10vw}
+.ss-site .glow.tr::before{right:-14vw;top:-16vw} .ss-site .glow.tr::after{left:-8vw;bottom:-8vw}
+.ss-site .glow.c::before{left:50%;top:40%;transform:translate(-50%,-50%)} .ss-site .glow.c::after{left:20%;bottom:-12vw}
+.ss-site .glow.navy::before{background:radial-gradient(circle,rgba(0,92,214,.42),rgba(0,92,214,0) 62%)}
+.ss-site .glow.navy::after{background:radial-gradient(circle,rgba(56,189,248,.16),rgba(56,189,248,0) 62%)}
+html.ss-motion .ss-site .glow::before{animation:drift-b 28s ease-in-out infinite alternate}
+html.ss-motion .ss-site .glow::after{animation:drift-a 34s ease-in-out infinite alternate-reverse}
+.ss-site section>.wrap{position:relative;z-index:1}
+
+/* ---------- botón primario: brillo que cruza al pasar el mouse ---------- */
+.ss-site .btn-primary{position:relative;overflow:hidden}
+.ss-site .btn-primary::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-30%;width:28%;background:linear-gradient(105deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));transform:skewX(-18deg) translateX(-160%);transition:transform .6s var(--ease);pointer-events:none}
+.ss-site .btn-primary:hover::after{transform:skewX(-18deg) translateX(520%)}
+
+/* ---------- 02 · explorador: item activo respira levemente cuando rota solo ---------- */
+.ss-site .ex-list.auto .ex-item.is-active{animation:ex-breathe 5s var(--ease) infinite}
+@keyframes ex-breathe{0%{background-color:var(--accent-soft)}50%{background-color:#DCE8FB}100%{background-color:var(--accent-soft)}}
+.ss-site .ex-progress{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);border-radius:2px;pointer-events:none}
+.ss-site .ex-list.auto .ex-item.is-active .ex-progress{animation:ex-progress 5s linear forwards}
+@keyframes ex-progress{from{width:0}to{width:100%}}
+.ss-site .ex-item{position:relative}
+
+@media (prefers-reduced-motion:reduce){
+  .ss-site *{animation:none!important}
+}
+
+/* contenedores con .glow adentro */
+.ss-site .try-card{position:relative;overflow:hidden}
+.ss-site .try-card>*:not(.glow){position:relative;z-index:1}

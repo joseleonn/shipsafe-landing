@@ -16,6 +16,13 @@ export const EVENTS = {
   GENERATE_LEAD: "generate_lead",
   WHATSAPP_CLICK: "whatsapp_click",
   PRICING_TIER_CLICK: "pricing_tier_click",
+  // Home v3: cada CTA manda la sección de origen en `section`.
+  DEMO_CLICK: "demo_click",
+  VSL_PLAY: "vsl_play",
+  ROLE_TAB: "role_tab",
+  MODULE_VIEW: "module_view",
+  PROBALO_START: "probalo_start",
+  PROBALO_COMPLETE: "probalo_complete",
 } as const;
 
 // Mapeo de nuestros eventos internos a los "standard events" de TikTok.

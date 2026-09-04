@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, AlertCircle, Loader2, Undo2 } from "lucide-react";
+import Icon from "@/components/site/Icon";
 import { WEB3FORMS_KEY, PROVEEDOR } from "@/lib/constants";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
-
-const inputClasses =
-  "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/50";
 
 /**
  * Código de identificación de la revocación.
@@ -41,10 +38,14 @@ export default function ArrepentimientoForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
     setStatus("sending");
     setErrorMsg("");
 
-    const form = e.currentTarget;
     const data = new FormData(form);
     const nuevoCodigo = generarCodigo();
 
@@ -78,141 +79,62 @@ export default function ArrepentimientoForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-accent/30 bg-accent/5 p-6 sm:p-8">
-        <div className="flex items-start gap-3">
-          <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-          <div>
-            <h2 className="text-lg font-semibold text-white">
-              Recibimos tu pedido de revocación
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-white/70">
-              Este es el código de identificación de tu trámite. Guardalo: con
-              él podés reclamar el estado de la revocación sin tener que
-              explicar todo de nuevo.
-            </p>
-          </div>
-        </div>
-
-        <p className="mt-6 select-all rounded-lg border border-white/10 bg-primary/60 px-4 py-4 text-center font-mono text-xl tracking-widest text-white">
-          {codigo}
-        </p>
-
-        <p className="mt-6 text-sm leading-relaxed text-white/60">
-          Si hubo un pago, la devolución se hace por el mismo medio con el que
-          pagaste. Cualquier duda, escribinos a{" "}
-          <a
-            href={`mailto:${PROVEEDOR.emailLegal}`}
-            className="text-accent underline underline-offset-2"
-          >
-            {PROVEEDOR.emailLegal}
-          </a>
-          .
+      <div className="form-ok" role="status">
+        <div className="ic"><Icon name="check" /></div>
+        <h3>Recibimos tu pedido de revocación</h3>
+        <p>Este es el código de identificación de tu trámite. Guardalo: con él podés reclamar el estado de la revocación sin tener que explicar todo de nuevo.</p>
+        <p className="code" style={{ userSelect: "all" }}>{codigo}</p>
+        <p>
+          Si hubo un pago, la devolución se hace por el mismo medio con el que pagaste. Cualquier duda, escribinos a{" "}
+          <a href={`mailto:${PROVEEDOR.emailLegal}`} className="link">{PROVEEDOR.emailLegal}</a>.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="arr-nombre" className="mb-1.5 block text-sm text-white/70">
-          Nombre y apellido
-        </label>
-        <input
-          id="arr-nombre"
-          name="nombre"
-          type="text"
-          required
-          autoComplete="name"
-          className={inputClasses}
-          placeholder="Como figura en la contratación"
-        />
+    <form onSubmit={handleSubmit} className="form-card" noValidate>
+      <div className="field">
+        <label htmlFor="arr-nombre">Nombre y apellido</label>
+        <input id="arr-nombre" name="nombre" type="text" required autoComplete="name" placeholder="Como figura en la contratación" />
       </div>
-
-      <div>
-        <label htmlFor="arr-email" className="mb-1.5 block text-sm text-white/70">
-          Email
-        </label>
-        <input
-          id="arr-email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          className={inputClasses}
-          placeholder="El que usaste para contratar, si lo recordás"
-        />
+      <div className="field">
+        <label htmlFor="arr-email">Email</label>
+        <input id="arr-email" name="email" type="email" required autoComplete="email" placeholder="El que usaste para contratar, si lo recordás" />
       </div>
-
-      <div>
-        <label htmlFor="arr-telefono" className="mb-1.5 block text-sm text-white/70">
-          Teléfono <span className="text-white/40">(opcional)</span>
-        </label>
-        <input
-          id="arr-telefono"
-          name="telefono"
-          type="tel"
-          autoComplete="tel"
-          className={inputClasses}
-          placeholder="Por si necesitamos ubicarte"
-        />
+      <div className="form-grid">
+        <div className="field">
+          <label htmlFor="arr-telefono">
+            Teléfono <span className="opt">(opcional)</span>
+          </label>
+          <input id="arr-telefono" name="telefono" type="tel" autoComplete="tel" placeholder="Por si necesitamos ubicarte" />
+        </div>
+        <div className="field">
+          <label htmlFor="arr-referencia">
+            Empresa o número de factura <span className="opt">(opcional)</span>
+          </label>
+          <input id="arr-referencia" name="referencia" type="text" placeholder="Ayuda a encontrar la contratación" />
+        </div>
       </div>
-
-      <div>
-        <label htmlFor="arr-referencia" className="mb-1.5 block text-sm text-white/70">
-          Empresa o número de factura{" "}
-          <span className="text-white/40">(opcional)</span>
+      <div className="field">
+        <label htmlFor="arr-motivo">
+          Motivo <span className="opt">(opcional)</span>
         </label>
-        <input
-          id="arr-referencia"
-          name="referencia"
-          type="text"
-          className={inputClasses}
-          placeholder="Ayuda a encontrar la contratación más rápido"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="arr-motivo" className="mb-1.5 block text-sm text-white/70">
-          Motivo <span className="text-white/40">(opcional)</span>
-        </label>
-        <textarea
-          id="arr-motivo"
-          name="motivo"
-          rows={3}
-          className={inputClasses}
-          placeholder="No hace falta que lo justifiques. Si querés contarnos, nos sirve."
-        />
+        <textarea id="arr-motivo" name="motivo" rows={3} placeholder="No hace falta que lo justifiques. Si querés contarnos, nos sirve." />
       </div>
 
       {status === "error" && (
-        <div className="flex items-start gap-2 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
-          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+        <div className="alert error" role="alert">
+          <Icon name="alert" />
           <span>{errorMsg}</span>
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-primary transition-opacity hover:opacity-90 disabled:opacity-60"
-      >
-        {status === "sending" ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Enviando
-          </>
-        ) : (
-          <>
-            <Undo2 className="h-4 w-4" />
-            Revocar la contratación
-          </>
-        )}
+      <button type="submit" className="btn btn-primary btn-lg" disabled={status === "sending"}>
+        <Icon name="back" />
+        {status === "sending" ? "Enviando…" : "Revocar la contratación"}
       </button>
-
-      <p className="text-center text-xs text-white/40">
-        No hace falta registrarse ni iniciar sesión para usar este formulario.
-      </p>
+      <p className="form-fine">No hace falta registrarse ni iniciar sesión para usar este formulario.</p>
     </form>
   );
 }

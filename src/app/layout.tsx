@@ -1,19 +1,36 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import "./site.css";
+import "./pages.css";
+import "./motion.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import MetaPixel from "@/components/MetaPixel";
 import { SITE } from "@/lib/constants";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+// Tipografía del sistema (v3, 4/9/2026): la misma que el producto.
+// Geist para el cuerpo, Plus Jakarta Sans para títulos, Geist Mono para
+// etiquetas. Autoalojadas (sin pedidos a Google Fonts): src/app/fonts/.
+// `--font-inter` y `--font-space-grotesk` se conservan como alias para que
+// el resto de las páginas sigan resolviendo sus variables sin tocar código.
+const geist = localFont({
+  src: "./fonts/Geist.woff2",
+  variable: "--font-geist",
+  weight: "100 900",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
+const geistMono = localFont({
+  src: "./fonts/GeistMono.woff2",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+  display: "swap",
+});
+
+const jakarta = localFont({
+  src: "./fonts/PlusJakartaSans.woff2",
+  variable: "--font-jakarta",
+  weight: "200 800",
   display: "swap",
 });
 
@@ -133,7 +150,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
+    <html lang="es" className={`${geist.variable} ${geistMono.variable} ${jakarta.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"

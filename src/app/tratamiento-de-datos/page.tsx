@@ -120,21 +120,21 @@ export default function TratamientoDeDatos() {
           ShipSafe recurre a los siguientes proveedores, que actúan como
           subencargados:
         </p>
-        <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[30rem] border-collapse text-sm">
+        <div className="table-wrap">
+          <table>
             <thead>
-              <tr className="border-b border-white/15 text-left text-white/60">
-                <th className="py-2 pr-4 font-medium">Proveedor</th>
-                <th className="py-2 pr-4 font-medium">Servicio</th>
-                <th className="py-2 font-medium">Ubicación</th>
+              <tr>
+                <th>Proveedor</th>
+                <th>Servicio</th>
+                <th>Ubicación</th>
               </tr>
             </thead>
             <tbody>
               {SUBENCARGADOS.map(([proveedor, servicio, ubicacion]) => (
-                <tr key={proveedor} className="border-b border-white/5">
-                  <td className="py-2 pr-4 text-white/90">{proveedor}</td>
-                  <td className="py-2 pr-4">{servicio}</td>
-                  <td className="py-2">{ubicacion}</td>
+                <tr key={proveedor}>
+                  <td><strong>{proveedor}</strong></td>
+                  <td>{servicio}</td>
+                  <td>{ubicacion}</td>
                 </tr>
               ))}
             </tbody>

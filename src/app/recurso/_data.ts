@@ -108,8 +108,8 @@ export const RECURSOS: Record<string, Recurso> = {
  * Mientras `disponible` sea false la página muestra un texto y no se rompe.
  */
 export const VSL_RECURSO = {
-  disponible: false,
-  youtubeId: "",
+  disponible: true,
+  youtubeId: "n9aR7tb4Ymc",
   titulo: "Por qué las inspecciones no se hacen",
   duracion: "4 minutos",
 };

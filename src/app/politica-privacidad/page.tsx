@@ -250,7 +250,7 @@ export default function PoliticaPrivacidad() {
           <strong>Agencia de Acceso a la Información Pública</strong>, órgano de
           control de la Ley 25.326.
         </p>
-        <blockquote className="border-l-2 border-white/20 pl-4 text-sm italic text-white/60">
+        <blockquote>
           El titular de los datos personales tiene la facultad de ejercer el
           derecho de acceso al mismo en forma gratuita a intervalos no
           inferiores a seis meses, salvo que se acredite un interés legítimo al

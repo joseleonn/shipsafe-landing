@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SITE, PRICING_FAQS } from "@/lib/constants";
-import GlobalBackground from "@/components/GlobalBackground";
-import Navbar from "@/components/Navbar";
-import Pricing from "@/components/Pricing";
-import CTAFinal from "@/components/CTAFinal";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ScrollReveal from "@/components/ScrollReveal";
+import SiteShell from "@/components/site/SiteShell";
+import DemoLink from "@/components/site/DemoLink";
+import Icon from "@/components/site/Icon";
+import PricingSection from "@/components/home/PricingSection";
+import Faq from "@/components/home/Faq";
+import CloseSection from "@/components/home/CloseSection";
 
 export const metadata: Metadata = {
   title: `Precios | ${SITE.name}: planes para PyMEs industriales y consultores`,
@@ -24,59 +24,54 @@ export const metadata: Metadata = {
   },
 };
 
+const faqItems = PRICING_FAQS.map((f) => ({ q: f.question, a: f.answer }));
+
 export default function Page() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: PRICING_FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
-    <>
-      <GlobalBackground />
-      <Navbar />
-      <main className="relative z-10">
-        <section className="pt-32 lg:pt-40">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <ScrollReveal variant="blur">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                Precios de{" "}
-                <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
-                  SHIPSAFE
-                </span>
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-                Suscripción mensual, sin permanencia mínima y con prueba
-                guiada de 7 días usando tus equipos reales. Contanos cómo es
-                tu operación y te pasamos una propuesta concreta el mismo día
-                de la demo.
-              </p>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        <Pricing page="precios" />
-
-        <section className="pb-8">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <ScrollReveal variant="blur">
-              <h2 className="text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                Preguntas frecuentes sobre precios
-              </h2>
-            </ScrollReveal>
-            <div className="mt-10 space-y-4">
-              {PRICING_FAQS.map((faq, i) => (
-                <ScrollReveal key={faq.question} delay={i * 0.1} variant="fadeUp">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-sm">
-                    <h3 className="font-semibold text-white">{faq.question}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/75">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
+    <SiteShell>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <main id="main">
+        <section className="page-hero center" id="top">
+          <div className="wrap">
+            <div className="eyebrow">Precios</div>
+            <h1>
+              Precios claros, <em>según tu operación.</em>
+            </h1>
+            <p className="lede">
+              Suscripción mensual, sin permanencia mínima y con prueba guiada de 7 días usando tus equipos reales. Contanos cómo es tu operación y te pasamos una propuesta concreta el mismo día de la demo.
+            </p>
+            <div className="hero-cta">
+              <DemoLink section="precios-hero" />
+              <Link href="#planes" className="btn btn-secondary">
+                Ver los planes <Icon name="chevron" />
+              </Link>
             </div>
           </div>
         </section>
 
-        <CTAFinal />
+        <PricingSection
+          num={null}
+          more={false}
+          id="planes"
+          label="Los planes"
+          title={<>Tres líneas, <em>un valor de partida para cada una.</em></>}
+          lede="Profesional para técnicos y consultores con sus propios clientes; Empresa para la operación de una PyME industrial; Enterprise para holdings y requisitos corporativos. Precios orientativos en ARS."
+        />
+
+        <Faq items={faqItems} num={null} title={<>Preguntas frecuentes <em>sobre precios.</em></>} />
+
+        <CloseSection num={null} source="precios" />
       </main>
-      <Footer />
-      <WhatsAppButton />
-    </>
+    </SiteShell>
   );
 }
