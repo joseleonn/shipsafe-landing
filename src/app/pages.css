@@ -164,3 +164,47 @@
   .ss-site .prose th,.ss-site .prose td{padding:10px 10px;font-size:14px}
   .ss-site .doc-head{margin-bottom:32px;padding-bottom:26px}
 }
+
+/* ============================================================
+   /demo/agendado · confirmación después de agendar
+   Sistema claro del sitio, sin menú: solo el logo arriba, el video en el
+   centro y las dos cosas que hacen falta. Tapa el fondo oscuro fijo del
+   layout de /demo.
+   ============================================================ */
+.ss-site.ss-agendado{position:relative;z-index:1;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+.ss-site.ss-agendado .page{flex:1;padding-bottom:48px}
+.ss-site .ag-top{position:relative;z-index:2}
+.ss-site .ag-top .wrap{display:flex;align-items:center;height:64px}
+.ss-site .ag-top .brand{display:inline-flex}
+.ss-site .ag-hero{padding-top:56px;padding-bottom:40px;background:
+  radial-gradient(ellipse 80% 70% at 50% -30%,rgba(0,92,214,.26),rgba(0,92,214,.08) 48%,rgba(0,92,214,0) 76%),
+  linear-gradient(180deg,#E9F0FB 0%,#F5F7FB 70%)}
+.ss-site.ss-agendado .ag-top{margin-bottom:-64px}
+.ss-site.ss-agendado .ag-hero{padding-top:calc(64px + 48px)}
+.ss-site .ag-hero .eyebrow.ok{color:var(--ok);gap:8px}
+.ss-site .ag-hero .eyebrow.ok .ico{width:16px;height:16px}
+.ss-site .ag-hero h1{max-width:16ch;font-size:clamp(34px,4.6vw,56px)}
+.ss-site .ag-hero .lede{margin-top:18px;font-size:18px;color:var(--text-2);max-width:58ch}
+.ss-site .page .ag-video{padding-top:28px}
+.ss-site .ag-frame{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#0B1F3B;border:1px solid var(--line-2);box-shadow:0 24px 60px -30px rgba(11,31,59,.45)}
+.ss-site .ag-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ss-site .ag-pending{padding:18px 20px;border:1px solid var(--line-2);border-radius:var(--r-lg);background:#fff;color:var(--text-2);font-size:15px}
+.ss-site .page .ag-req{padding-top:72px;padding-bottom:32px}
+.ss-site .ag-req h2{font-size:clamp(26px,3.2vw,36px);max-width:20ch}
+.ss-site .ag-req .what{margin-top:26px;gap:16px}
+/* .what también vive en el cierre navy con texto blanco; acá va oscuro. */
+.ss-site .ag-req .what li{font-size:16.5px;line-height:1.55;color:var(--text-2)}
+.ss-site .ag-req .what li::before{top:5px;color:var(--accent-ink)}
+.ss-site .ag-req .what b{color:var(--text);font-weight:600}
+.ss-site .ag-quote{margin:40px 0 0;padding:4px 0 4px 22px;border-left:3px solid var(--accent);font-size:18px;line-height:1.55;color:var(--text)}
+.ss-site .ag-help{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--text-2)}
+.ss-site .ag-help a{display:inline-flex;align-items:center;gap:6px;color:var(--accent-ink);font-weight:600}
+.ss-site .ag-help a .ico{width:16px;height:16px}
+.ss-site .ag-foot{border-top:1px solid var(--line);padding:22px 0;font-size:13.5px;color:var(--muted)}
+.ss-site .ag-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+.ss-site .ag-foot a{color:var(--text-2)}
+@media (max-width:600px){
+  .ss-site .ag-hero{padding-bottom:28px}
+  .ss-site .ag-hero h1{font-size:34px}
+  .ss-site .page .ag-req{padding-top:52px}
+}
