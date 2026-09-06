@@ -4,6 +4,11 @@ import Icon from "@/components/site/Icon";
 import { HERO, SHOTS } from "@/lib/home-content";
 import HeroStage from "./HeroStage";
 
+/**
+ * Hero: una frase, una línea, dos botones y el VSL como protagonista, dentro
+ * del marco de navegador (con el teléfono y los eventos encima hasta que se
+ * reproduce). Debajo, la fila de pruebas.
+ */
 export default function Hero() {
   return (
     <section className="hero" id="top">
@@ -20,27 +25,18 @@ export default function Hero() {
           <h1>
             {HERO.h1} <em>{HERO.h1Accent}</em>
           </h1>
-          <p className="lede pain">{HERO.pain}</p>
-          <p className="lede platform">{HERO.platform}</p>
+          <p className="lede">{HERO.lede}</p>
           <div className="hero-cta">
             <DemoLink section="hero" className="btn btn-primary btn-lg" />
-            <a className="btn btn-secondary btn-lg" href="#video">
-              <Icon name="play" filled />
+            <a className="btn btn-secondary btn-lg" href="#probalo">
+              <Icon name="scan" />
               {HERO.secondary}
             </a>
           </div>
         </div>
         <HeroStage
-          browser={
-            <div className="browser">
-              <div className="chrome">
-                <span className="dots"><i /><i /><i /></span>
-                <span className="url">{SHOTS.dashboard.url}</span>
-                <span className="live">Producto real</span>
-              </div>
-              <Image src={SHOTS.dashboard.src} alt="" width={SHOTS.dashboard.width} height={SHOTS.dashboard.height} sizes="(max-width: 900px) 100vw, 1040px" priority />
-            </div>
-          }
+          url={SHOTS.dashboard.url}
+          poster={<Image src={SHOTS.dashboard.src} alt="Tablero de SHIPSAFE con desvíos, checklists pendientes y equipos a revisar" width={SHOTS.dashboard.width} height={SHOTS.dashboard.height} sizes="(max-width: 900px) 100vw, 1040px" priority />}
           phone={
             <div className="phone">
               <div className="screen">

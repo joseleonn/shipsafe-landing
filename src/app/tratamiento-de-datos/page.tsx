@@ -23,7 +23,6 @@ export default function TratamientoDeDatos() {
     <LegalLayout
       title="Anexo de Tratamiento de Datos Personales"
       version="Versión 1.0"
-      borrador
       slug="/tratamiento-de-datos"
     >
       <p>

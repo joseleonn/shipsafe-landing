@@ -14,7 +14,6 @@ export default function PoliticaPrivacidad() {
     <LegalLayout
       title="Política de Privacidad de ShipSafe"
       version="Versión 1.0"
-      borrador
       slug="/politica-privacidad"
     >
       <p>

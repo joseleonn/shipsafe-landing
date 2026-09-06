@@ -6,7 +6,6 @@ import Roles from "./Roles";
 import Explorer from "./Explorer";
 import Flow from "./Flow";
 import TryIt from "./TryIt";
-import VideoSection from "./VideoSection";
 import Compare from "./Compare";
 import Proofs from "./Proofs";
 import PricingSection from "./PricingSection";
@@ -27,7 +26,6 @@ export default function Home() {
         <Explorer />
         <Flow />
         <TryIt />
-        <VideoSection />
         <Compare />
         <Proofs />
         <PricingSection />

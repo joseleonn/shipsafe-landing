@@ -13,7 +13,7 @@ import { GESTION_OPCIONES } from "./calificacion";
 
 export const CALENDLY_URL = "https://calendly.com/shipsoftwareteam/30min";
 export const WHATSAPP_NUMBER = "5493413067158";
-export const APP_URL = "https://shipsafe-web.fly.dev";
+export const APP_URL = "https://app.shipsafe.lat";
 export const YOUTUBE_ID = "ehirzx0T8cg";
 /** Adonde apunta el QR de "Probalo por tu cuenta" hasta que exista un checklist público de prueba. */
 export const PROBALO_URL = "/demo?utm_source=landing&utm_medium=qr&utm_campaign=probalo";
@@ -31,14 +31,14 @@ export const NAV = [
 ] as const;
 
 export const HERO = {
-  eyebrow: "Software de gestión de seguridad e higiene",
-  h1: "La seguridad e higiene de toda tu operación,",
+  eyebrow: "Software de gestión SST",
+  h1: "Toda la gestión SST de tu operación,",
   h1Accent: "bajo control y lista para demostrar.",
-  pain:
-    "Un cliente te pide tu sistema de gestión para una licitación, una auditoría te pide evidencia, la gerencia te pide estadísticas. Y todo sale de planillas, carpetas y WhatsApp, armado a mano y a las corridas.",
-  platform:
-    "SHIPSAFE reúne inspecciones, EPP, capacitaciones, permisos, mediciones, accidentes y vencimientos en una sola plataforma, con cada rol trabajando desde su lugar, y los informes y estadísticas listos cuando te los piden.",
-  secondary: "Ver la plataforma en 90 s",
+  lede:
+    "Inspecciones, EPP, capacitaciones, permisos, accidentes y vencimientos en una sola plataforma, con los informes listos cuando un cliente, una auditoría o la gerencia los pide.",
+  secondary: "Probalo por tu cuenta",
+  /** Duración del VSL que se reproduce en el marco del hero. */
+  videoDuration: "1:30",
   proof: [
     "En producción con flota y frentes remotos",
     "Sin instalar nada: QR y navegador",
@@ -55,7 +55,7 @@ export const HERO = {
 
 export type Shot =
   | { kind: "browser"; src: string; url: string; alt: string; width: number; height: number }
-  | { kind: "phone"; src: string; alt: string; width: number; height: number; short?: boolean };
+  | { kind: "phone"; src: string; alt: string; width: number; height: number };
 
 type BrowserShot = Extract<Shot, { kind: "browser" }>;
 type PhoneShot = Extract<Shot, { kind: "phone" }>;
@@ -67,13 +67,13 @@ const B = (file: string, url: string, alt: string, width = 2000, height = 1047):
   width,
   height,
 });
-const P = (file: string, alt: string, short = true): PhoneShot => ({
+// Todas las capturas de celular son 390x844 a 2x (720x1560), con barra de estado.
+const P = (file: string, alt: string): PhoneShot => ({
   kind: "phone",
   src: `/screenshots/v3/${file}`,
   alt,
-  width: short ? 812 : 720,
-  height: short ? 1458 : 1560,
-  short,
+  width: 720,
+  height: 1560,
 });
 
 export const SHOTS = {
@@ -90,7 +90,7 @@ export const SHOTS = {
   mediciones: B("mediciones.jpg", "app.shipsafe.lat/mediciones", "Mediciones reglamentarias con norma, unidad y límite"),
   equipamiento: B("equipamiento.jpg", "app.shipsafe.lat/equipamiento", "Inventario de equipos con código, estado y vencimiento"),
   mapa: B("mapa.jpg", "app.shipsafe.lat/mapa", "Mapa de la organización: filtros y plan de control de riesgos", 1568, 1401),
-  pChecklist: P("p-checklist.jpg", "Ejecución de un checklist de extintores desde el celular", false),
+  pChecklist: P("p-checklist.jpg", "Ejecución de un checklist de extintores desde el celular"),
   mDesvioDetalle: P("m-desvio-detalle.jpg", "Detalle de un desvío en el celular: problema, resolución e historial"),
   mEpp: P("m-epp.jpg", "Entregas de EPP en el celular"),
   mPermisos: P("m-permisos.jpg", "Permisos de trabajo en el celular"),
@@ -225,6 +225,10 @@ export const FLOW_STEPS = [
   { who: "Gerencia", icon: "chart", title: "Lo ve en el tablero, sin pedirlo", text: "Desvíos abiertos bajaron, el vencido ya no está, y el resumen del mes llega solo por mail." },
 ] as const;
 
+/** Apertura de "La vieja forma y la nueva": el dolor que antes abría el hero. */
+export const COMPARE_LEDE =
+  "Un cliente te pide tu sistema de gestión para una licitación, una auditoría te pide evidencia, la gerencia te pide estadísticas. Y todo sale de planillas, carpetas y WhatsApp, armado a mano y a las corridas.";
+
 export const COMPARE_ROWS = [
   ["Dónde se registra", "En papel, en el frente; se carga después, en la oficina", "En el celular, en el lugar, en el momento"],
   ["Quién consolida", "Una persona, a mano, los viernes", "Nadie: ya está consolidado"],
@@ -309,7 +313,7 @@ export const CASE = {
 };
 
 export const FOOTER = {
-  tag: "Plataforma integral de seguridad e higiene para operaciones dispersas. Un producto de Ship Software Team, Rosario.",
+  tag: "Plataforma integral de gestión SST (seguridad y salud en el trabajo) para operaciones dispersas. Un producto de Ship Software Team, Rosario.",
   producto: [
     { label: "Plataforma", href: "#plataforma" },
     { label: "Roles", href: "#roles" },

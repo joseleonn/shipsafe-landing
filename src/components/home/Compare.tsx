@@ -1,4 +1,4 @@
-import { COMPARE_ROWS } from "@/lib/home-content";
+import { COMPARE_ROWS, COMPARE_LEDE } from "@/lib/home-content";
 
 export default function Compare() {
   const last = COMPARE_ROWS.length - 1;
@@ -7,10 +7,11 @@ export default function Compare() {
       <div className="glow navy c" aria-hidden="true" />
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>06</span>La vieja forma y la nueva</div>
+          <div className="eyebrow num"><span>05</span>La vieja forma y la nueva</div>
           <h2>
             No vendemos orden: hacemos que registrar <em>cueste menos que no registrar.</em>
           </h2>
+          <p className="lede">{COMPARE_LEDE}</p>
         </div>
         <div className="cmp">
           <div role="table" aria-label="Comparación entre la vieja forma y la nueva">

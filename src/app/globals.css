@@ -47,10 +47,10 @@ h1, h2, h3 {
    consultores) viven dentro de .ss-site (ver site.css). El html/body siguen
    navy para las landings de campaña (/demo, /prueba-gratis) y /recurso. */
 html:has(.ss-site) {
-  background: #ffffff;
+  background: #f5f7fb;
 }
 html:has(.ss-site) body {
-  background: #ffffff;
+  background: #f5f7fb;
   color: #0b1220;
 }
 

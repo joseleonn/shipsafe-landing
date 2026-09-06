@@ -89,7 +89,10 @@ export default function Explorer() {
           >
             {NUMBERED.map((g) => (
               <div className="ex-group" key={g.name}>
-                <div className="ex-gh"><span className="n">{pad(g.items.length)}</span>{g.name}</div>
+                <div className="ex-gh">
+                  <span>{g.name}</span>
+                  <span className="n">{g.items.length} módulos</span>
+                </div>
                 {g.items.map((it) => {
                   const n = it.n;
                   const on = it.id === activeId;

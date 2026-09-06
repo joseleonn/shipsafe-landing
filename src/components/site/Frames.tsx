@@ -46,7 +46,7 @@ export function PhoneFrame({
   className?: string;
 }) {
   return (
-    <div className={`phone ${shot.short ? "short" : ""} ${className}`}>
+    <div className={`phone ${className}`}>
       <div className="screen">
         <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} sizes={sizes} priority={priority} />
       </div>

@@ -31,7 +31,7 @@ export default function Roles() {
           <h2>
             Cada rol entra por su puerta. <em>Todos ven la misma información.</em>
           </h2>
-          <p className="lede">No es una app de inspecciones para un técnico. Es el lugar donde trabaja toda la operación de seguridad e higiene, y lo que uno carga, el otro lo ve en el momento.</p>
+          <p className="lede">No es una app de inspecciones para un técnico. Es el lugar donde trabaja toda la operación de SST, y lo que uno carga, el otro lo ve en el momento.</p>
         </div>
         <div className="roles-ui">
           <div className="tabs" role="tablist" aria-label="Roles">

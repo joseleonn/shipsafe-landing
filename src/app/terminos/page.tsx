@@ -14,7 +14,6 @@ export default function Terminos() {
     <LegalLayout
       title="Términos y Condiciones de uso de ShipSafe"
       version="Versión 1.0"
-      borrador
       slug="/terminos"
     >
       <p>

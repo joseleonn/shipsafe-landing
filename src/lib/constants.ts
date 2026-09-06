@@ -3,7 +3,7 @@ export const SITE = {
   // Dominio canónico: el apex redirige 307 al www, y hay cosas que NO siguen
   // redirecciones (los crons y los webhooks). Siempre www.
   url: "https://www.shipsafe.lat",
-  appUrl: "https://shipsafe-web.fly.dev",
+  appUrl: "https://app.shipsafe.lat",
   tagline: "Software de Seguridad e Higiene Laboral",
   description:
     "SHIPSAFE es el software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Digitalizá inspecciones, gestioná desvíos y centralizá toda tu gestión sin papel ni Excel.",
@@ -389,7 +389,7 @@ export const CONSULTORES = {
     badge: "Programa de consultores",
     title: "Gestioná todos tus clientes desde una sola cuenta",
     description:
-      "Sumá SHIPSAFE a tu consultora de seguridad e higiene: cada empresa-cliente con sus datos separados, sus inspecciones y sus reportes. Vos cobrás tu servicio profesional; nosotros te damos la herramienta para hacerlo en una fracción del tiempo.",
+      "Sumá SHIPSAFE a tu consultora de SST: cada empresa-cliente con sus datos separados, sus inspecciones y sus reportes. Vos cobrás tu servicio profesional; nosotros te damos la herramienta para hacerlo en una fracción del tiempo.",
     cta: "Aplicar al programa",
   },
   pains: [
