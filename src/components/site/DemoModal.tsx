@@ -42,6 +42,13 @@ export default function DemoModal() {
 
   if (!open) return null;
 
+  // La campaña de Meta ofrece una puesta en marcha, no una demo de producto.
+  // Si el visitante viene de ahí, el modal habla el mismo idioma que el
+  // anuncio y que la landing; desde el resto del sitio, el de siempre.
+  const campana = section.startsWith("modal-puesta");
+  const titulo = campana ? "Reservá tu media hora" : "Agendá una demo";
+  const sub = campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
+
   return (
     <div className="dm-backdrop" onClick={close}>
       <div className="dm" role="dialog" aria-modal="true" aria-labelledby="dm-title" onClick={(e) => e.stopPropagation()}>
@@ -49,10 +56,10 @@ export default function DemoModal() {
           <Icon name="x" />
         </button>
         <div className="panel-head">
-          <b id="dm-title">Agendá una demo</b>
-          <span>30 min · sin compromiso</span>
+          <b id="dm-title">{titulo}</b>
+          <span>{sub}</span>
         </div>
-        <p className="dm-lede">Tres datos y se abre la agenda con tu nombre y email ya cargados.</p>
+        <p className="dm-lede">Unos datos y se abre la agenda con tu nombre y email ya cargados.</p>
         <LeadForm source="home" section={`modal-${section}`} autoFocus />
         <div className="wa">
           ¿Preferís WhatsApp?{" "}

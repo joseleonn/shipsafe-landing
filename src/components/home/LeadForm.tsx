@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent } from "react";
 import Icon from "@/components/site/Icon";
 import { GESTION } from "@/lib/home-content";
+import { EMPLEADOS_OPCIONES, ROL_OPCIONES } from "@/lib/calificacion";
 import { buildDemoUrl } from "@/app/demo/_data";
 import { getAttribution, newEventId, readCookie } from "@/lib/attribution";
 import { trackEvent, EVENTS } from "@/lib/analytics";
@@ -12,12 +13,13 @@ import { loadCalendly, openCalendly } from "@/lib/calendly-embed";
 type State = "idle" | "sending" | "sent";
 
 /**
- * Un solo camino para agendar: tres datos → se abre la agenda (Calendly, en
+ * Un solo camino para agendar: cinco datos → se abre la agenda (Calendly, en
  * un modal sobre la página) con nombre y email ya cargados. Vive en el
  * cierre y dentro del modal de la demo (DemoModal), con la misma lógica.
  *
  * Por qué así y no dos botones: el dato entra a HubSpot antes de la reunión
- * (con la calificación "¿Cómo registran hoy?" que Meta usa para optimizar), la
+ * (con rol, tamaño y "¿Cómo registran hoy?", que son los tres criterios de
+ * calificación), la
  * persona no elige entre "agendar" y "que me contacten", y nadie se va del
  * sitio. Si no encuentra horario o cierra la agenda, ya tenemos cómo
  * escribirle. Si /api/lead falla, la agenda se abre igual: el webhook de
@@ -73,6 +75,8 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
           nombre,
           email,
           gestion: String(data.get("gestion") ?? ""),
+          rol: String(data.get("rol") ?? ""),
+          empleados: String(data.get("empleados") ?? ""),
           leadMagnet: `${source}-demo`,
           eventId,
           fbc: readCookie("_fbc") ?? undefined,
@@ -114,6 +118,24 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       <div className="field">
         <label htmlFor={`${id}-email`}>Email laboral</label>
         <input id={`${id}-email`} name="email" type="email" autoComplete="email" placeholder="nombre@empresa.com.ar" required />
+      </div>
+      <div className="field">
+        <label htmlFor={`${id}-rol`}>¿Cuál es tu rol?</label>
+        <select id={`${id}-rol`} name="rol" required defaultValue="">
+          <option value="" disabled>Elegí una opción</option>
+          {ROL_OPCIONES.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
+      </div>
+      <div className="field">
+        <label htmlFor={`${id}-emp`}>¿Cuántos son en la empresa?</label>
+        <select id={`${id}-emp`} name="empleados" required defaultValue="">
+          <option value="" disabled>Elegí una opción</option>
+          {EMPLEADOS_OPCIONES.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
       </div>
       <div className="field">
         <label htmlFor={`${id}-how`}>¿Cómo registran hoy?</label>

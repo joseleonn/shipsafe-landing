@@ -1,28 +1,53 @@
 /**
- * Criterios de calificación del embudo de Meta Ads.
+ * Criterios de calificación del embudo.
  *
- * Esta es la pieza que define de qué aprende el algoritmo de Meta. El evento
- * `Schedule` solo se dispara para quien califica, así que Meta sale a buscar
- * gente parecida a la que califica — no parecida a cualquiera que dejó un mail.
+ * QUÉ CAMBIÓ (06/09/2026) Y POR QUÉ
  *
- * Contexto de la decisión: la capacidad de implementación es de 1 a 2 clientes
- * por mes. Con ese límite, una demo con una empresa de 20 empleados no es "un
- * lead más": es la hora que le sacaste a la que sí compraba. Por eso el filtro
- * es duro desde el día uno.
+ * El formulario pasó a ser un modal de tres datos y dejó de mandar empleados,
+ * rubro y rol. Como un campo vacío no calificaba, `calificar()` devolvía
+ * `false` para TODO el mundo: cada lead entraba a HubSpot como `no_califica`
+ * y el dato dejó de significar nada.
  *
- * Si cambiás estos criterios, cambiás lo que Meta va a buscar. No es un detalle
- * de formulario.
+ * Además el encuadre viejo era equivocado en el fondo. Decía que el filtro
+ * existía para enseñarle al algoritmo, pero con USD 15 por día son unos 5 a 8
+ * eventos por semana contra los ~50 que Meta necesita para salir de la fase de
+ * aprendizaje: el algoritmo no va a optimizar nada a este volumen. El que
+ * filtra es el creativo y este formulario.
+ *
+ * Entonces el filtro dejó de proteger a Meta y pasa a proteger lo único
+ * escaso: la media hora de la reunión de puesta en marcha.
+ *
+ * SOLO TRES COSAS DESCALIFICAN
+ *
+ *   1. Estudiante o alguien que no trabaja en esto.
+ *   2. Consultor independiente de menos de 10 personas. El consultor con
+ *      estructura queda adentro: es el que revende.
+ *   3. Ya usa una plataforma de seguridad e higiene y le funciona bien. Ese
+ *      no tiene problema que resolver.
+ *
+ * Rubro y tamaño NO descalifican: son dato. Las inspecciones, las mediciones
+ * y la entrega de EPP son transversales a todos los rubros, y una empresa
+ * grande no es un mal prospecto — es otra venta, más lenta. La promesa de la
+ * oferta ("salís con un proceso andando") es verdadera a cualquier tamaño,
+ * porque se configura un proceso, no la empresa entera.
+ *
+ * Un campo que no vino NO descalifica. Es la corrección del bug: el modal no
+ * pregunta rubro, y eso no puede tumbar a nadie.
  */
 
 export const EMPLEADOS_OPCIONES = [
-  { value: "1-9", label: "1 a 9", califica: false },
-  { value: "10-49", label: "10 a 49", califica: false },
+  { value: "1-9", label: "1 a 9", califica: true },
+  { value: "10-49", label: "10 a 49", califica: true },
   { value: "50-99", label: "50 a 99", califica: true },
   { value: "100-249", label: "100 a 249", califica: true },
   { value: "250-499", label: "250 a 499", califica: true },
   { value: "500+", label: "Más de 500", califica: true },
 ] as const;
 
+/**
+ * Ninguno descalifica. Se guarda para saber con quién estás hablando antes de
+ * entrar a la reunión y para elegir qué caso contar, no para dejar afuera.
+ */
 export const RUBRO_OPCIONES = [
   { value: "metalurgica", label: "Metalúrgica", califica: true },
   { value: "construccion", label: "Construcción", califica: true },
@@ -32,40 +57,43 @@ export const RUBRO_OPCIONES = [
   { value: "mantenimiento", label: "Mantenimiento industrial", califica: true },
   { value: "agroindustria", label: "Agroindustria", califica: true },
   { value: "energia", label: "Energía / petroquímica", califica: true },
+  { value: "petroleo", label: "Servicios petroleros", califica: true },
+  { value: "mineria", label: "Minería", califica: true },
+  { value: "vial", label: "Obras viales", califica: true },
+  { value: "electrica", label: "Distribución eléctrica / cuadrillas", califica: true },
   { value: "laboratorio", label: "Laboratorio / química", califica: true },
-  { value: "otro", label: "Otro", califica: false },
+  { value: "otro", label: "Otro", califica: true },
 ] as const;
 
 /**
- * Ojo con el criterio de rol: el responsable de SyH casi nunca firma, pero es
- * el impulsor interno y sin él el proyecto no entra. Califica igual. Lo que
- * hacemos es pedirle que sume al decisor a la llamada, no bloquearlo.
+ * El responsable de SyH casi nunca firma, pero es el impulsor interno y sin él
+ * el proyecto no entra. Califica igual: lo que hacemos es pedirle que sume al
+ * decisor a la llamada, no bloquearlo.
+ *
+ * El consultor califica acá, pero cae por tamaño si es independiente. Ver
+ * `calificar()`.
  */
 export const ROL_OPCIONES = [
   { value: "syh", label: "Responsable de Seguridad e Higiene / HSE", califica: true },
   { value: "gerencia_planta", label: "Gerencia de planta u operaciones", califica: true },
   { value: "direccion", label: "Dirección / dueño", califica: true },
   { value: "rrhh", label: "RRHH con SST a cargo", califica: true },
-  { value: "consultor", label: "Consultor externo de SyH", califica: false },
-  { value: "estudiante", label: "Estudiante / otro", califica: false },
+  { value: "mantenimiento", label: "Mantenimiento", califica: true },
+  { value: "consultor", label: "Consultor externo de SyH", califica: true },
+  { value: "estudiante", label: "Estudiante / no trabajo en esto", califica: false },
 ] as const;
 
 /**
  * Ojo con cómo está partida esta pregunta.
  *
- * La versión anterior descalificaba a cualquiera que tuviera "otra plataforma".
+ * La versión vieja descalificaba a cualquiera que tuviera "otra plataforma".
  * Estaba mal: preguntaba por POSESIÓN cuando lo que importa es si el problema
- * está RESUELTO. Son cosas distintas, y confundirlas dejaba afuera al mejor
- * prospecto que hay.
+ * está RESUELTO.
  *
  * Quien tiene un sistema que no le alcanza suele calificar mejor que quien
- * tiene papel: ya aceptó que esto se resuelve con software, ya tiene
- * presupuesto en esa línea, sabe exactamente qué le falta, y está frustrado
- * ahora. El caso real de referencia es una empresa grande con SAP que igual
- * arma los KPIs a mano en un Drive.
- *
- * El único que descalifica de verdad es el que tiene una plataforma de SST y le
- * funciona bien. Ese no tiene problema que resolver.
+ * tiene papel: ya aceptó que esto se resuelve con software, tiene presupuesto
+ * en esa línea, sabe qué le falta y está frustrado ahora. El caso de
+ * referencia es una empresa grande con SAP que igual arma los KPIs a mano.
  */
 export const GESTION_OPCIONES = [
   { value: "excel", label: "Excel y planillas", califica: true },
@@ -107,11 +135,17 @@ function evaluar(
 export function calificar(r: RespuestasCalificacion): ResultadoCalificacion {
   const motivos: string[] = [];
 
-  if (!evaluar(EMPLEADOS_OPCIONES, r.empleados)) motivos.push("empleados");
-  if (!evaluar(RUBRO_OPCIONES, r.rubro)) motivos.push("rubro");
-  if (!evaluar(ROL_OPCIONES, r.rol)) motivos.push("rol");
-  // La gestión actual es señal blanda: solo descalifica quien ya tiene una
-  // plataforma de SST que le funciona. No responder no descalifica por sí solo.
+  // Un campo que no vino no descalifica: solo evaluamos lo que la persona
+  // efectivamente contestó. El modal pregunta tres cosas; los formularios
+  // largos preguntan más. Los dos tienen que funcionar.
+  if (r.rol && !evaluar(ROL_OPCIONES, r.rol)) motivos.push("rol");
+
+  // Único criterio combinado: el consultor de una sola persona. Con estructura
+  // queda adentro porque revende; solo no llega a implementar.
+  if (r.rol === "consultor" && r.empleados === "1-9") {
+    motivos.push("consultor_independiente");
+  }
+
   if (r.gestion && !evaluar(GESTION_OPCIONES, r.gestion)) motivos.push("gestion");
 
   return { califica: motivos.length === 0, motivos };
