@@ -825,3 +825,29 @@
 @media (max-width:900px){
   .ss-site .nav.scrolled{background:rgba(255,255,255,.985);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px -22px rgba(11,31,59,.35)}
 }
+
+/* ---------- modal de la demo (DemoModal) ---------- */
+.ss-site .dm-backdrop{position:fixed;inset:0;z-index:80;background:rgba(11,31,59,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:grid;place-items:center;padding:20px;animation:dm-fade .18s var(--ease)}
+.ss-site .dm{position:relative;width:min(460px,100%);max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);overflow:auto;background:#fff;color:var(--text);border-radius:var(--r-lg);padding:26px 28px 24px;box-shadow:0 40px 90px -30px rgba(11,31,59,.6);animation:dm-up .22s var(--ease)}
+.ss-site .dm-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}
+.ss-site .dm-close:hover{background:var(--bg-2);color:var(--text)}
+.ss-site .dm-close .ico{width:20px;height:20px}
+.ss-site .dm .panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 36px 10px 0;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.ss-site .dm .panel-head b{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.01em}
+.ss-site .dm .panel-head span{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+.ss-site .dm .dm-lede{font-size:14.5px;color:var(--text-2);margin:0 0 16px}
+.ss-site .dm form .btn-primary{width:100%;margin-top:6px}
+.ss-site .dm .ok{display:block;text-align:center;padding:16px 4px 4px}
+.ss-site .dm .ok .ic{width:48px;height:48px;border-radius:50%;background:#E8F5EC;color:var(--ok);display:grid;place-items:center;margin:0 auto 14px}
+.ss-site .dm .ok b{display:block;font-size:17px}
+.ss-site .dm .ok p{color:var(--muted);font-size:14px;margin:6px auto 0;max-width:34ch}
+.ss-site .dm .ok .btn{width:100%;margin-top:16px}
+.ss-site .dm .wa{margin-top:16px;padding-top:14px}
+@keyframes dm-fade{from{opacity:0}to{opacity:1}}
+@keyframes dm-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:600px){
+  .ss-site .dm-backdrop{place-items:end center;padding:0}
+  .ss-site .dm{width:100%;max-height:92vh;max-height:92dvh;border-radius:22px 22px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom))}
+  .ss-site .dm .panel-head{flex-direction:column;align-items:flex-start;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){.ss-site .dm-backdrop,.ss-site .dm{animation:none}}

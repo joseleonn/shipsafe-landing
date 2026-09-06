@@ -6,6 +6,8 @@ import Wordmark from "./Wordmark";
 import Icon from "./Icon";
 import DemoLink from "./DemoLink";
 import { NAV, APP_URL } from "@/lib/home-content";
+import { useScrollLock } from "./useScrollLock";
+import { onDemoModal } from "@/lib/demo-modal";
 
 /**
  * Barra del sitio (v3): en desktop con fondo desde el primer píxel y sombra
@@ -14,9 +16,10 @@ import { NAV, APP_URL } from "@/lib/home-content";
  * funcionen desde cualquier página.
  *
  * El menú mobile es una capa a pantalla completa con su propia barra (logo y
- * cruz) y con el scroll de la página bloqueado de verdad. Antes dependía de
- * la barra pegajosa de abajo, y en iOS bastaba con deslizar con el menú
- * abierto para que la cruz se fuera con la página: no se podía cerrar.
+ * cruz) y con el scroll de la página bloqueado de verdad (useScrollLock).
+ * Antes dependía de la barra pegajosa de abajo, y en iOS bastaba con deslizar
+ * con el menú abierto para que la cruz se fuera con la página: no se podía
+ * cerrar.
  */
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,35 +32,18 @@ export default function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
-    // Bloqueo de scroll que iOS respeta: el body queda fijo en la posición
-    // actual y se la devolvemos al cerrar (sin el scroll suave del html).
-    const html = document.documentElement;
-    const body = document.body;
-    const y = window.scrollY;
-    const prev = { position: body.style.position, top: body.style.top, left: body.style.left, right: body.style.right, width: body.style.width, overflow: html.style.overflow, behavior: html.style.scrollBehavior };
-    body.style.position = "fixed";
-    body.style.top = `-${y}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.width = "100%";
-    html.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      body.style.position = prev.position;
-      body.style.top = prev.top;
-      body.style.left = prev.left;
-      body.style.right = prev.right;
-      body.style.width = prev.width;
-      html.style.overflow = prev.overflow;
-      html.style.scrollBehavior = "auto";
-      window.scrollTo(0, y);
-      html.style.scrollBehavior = prev.behavior;
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  // Si desde el menú se toca "Agendá una demo", el menú se cierra y queda el
+  // modal de la demo solo.
+  useEffect(() => onDemoModal(() => setOpen(false)), []);
 
   const close = () => setOpen(false);
 

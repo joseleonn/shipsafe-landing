@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import SiteNav from "./SiteNav";
 import SiteFooter from "./SiteFooter";
+import DemoModal from "./DemoModal";
 
 /**
  * Envoltorio de todas las páginas que usan el sistema visual v3: tokens claros
@@ -15,6 +16,7 @@ export default function SiteShell({ children, className = "" }: { children: Reac
       <SiteNav />
       {children}
       <SiteFooter />
+      <DemoModal />
     </div>
   );
 }

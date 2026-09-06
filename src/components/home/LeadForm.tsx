@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import Icon from "@/components/site/Icon";
 import { GESTION } from "@/lib/home-content";
 import { buildDemoUrl } from "@/app/demo/_data";
@@ -12,8 +12,9 @@ import { loadCalendly, openCalendly } from "@/lib/calendly-embed";
 type State = "idle" | "sending" | "sent";
 
 /**
- * Un solo camino en el cierre: tres datos → se abre la agenda (Calendly, en
- * un modal sobre la página) con nombre y email ya cargados.
+ * Un solo camino para agendar: tres datos → se abre la agenda (Calendly, en
+ * un modal sobre la página) con nombre y email ya cargados. Vive en el
+ * cierre y dentro del modal de la demo (DemoModal), con la misma lógica.
  *
  * Por qué así y no dos botones: el dato entra a HubSpot antes de la reunión
  * (con la calificación "¿Cómo registran hoy?" que Meta usa para optimizar), la
@@ -22,7 +23,8 @@ type State = "idle" | "sending" | "sent";
  * escribirle. Si /api/lead falla, la agenda se abre igual: el webhook de
  * Calendly crea el contacto de todos modos.
  */
-export default function LeadForm({ source = "home" }: { source?: string }) {
+export default function LeadForm({ source = "home", section = "cierre", autoFocus = false }: { source?: string; section?: string; autoFocus?: boolean }) {
+  const id = useId();
   const [state, setState] = useState<State>("idle");
   const [saved, setSaved] = useState(true);
   const [who, setWho] = useState<{ name: string; email: string }>({ name: "", email: "" });
@@ -33,11 +35,11 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
 
   const agenda = (prefill: { name: string; email: string }) => {
     // Se arma al momento de abrir: reenvía los UTM con los que llegó la persona.
-    const url = withContent(buildDemoUrl(window.location.search), "cierre");
-    trackEvent(EVENTS.DEMO_CLICK, { section: "cierre", source: "home" });
+    const url = withContent(buildDemoUrl(window.location.search), section);
+    trackEvent(EVENTS.DEMO_CLICK, { section, source });
     void openCalendly(url, {
       prefill,
-      onScheduled: () => trackEvent(EVENTS.DEMO_SCHEDULED, { section: "cierre", source: "home" }),
+      onScheduled: () => trackEvent(EVENTS.DEMO_SCHEDULED, { section, source }),
     }).then((ok) => {
       if (!ok) window.location.assign(url);
     });
@@ -83,7 +85,7 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
     } catch {
       ok = false;
     }
-    if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section: "cierre" });
+    if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section });
     setSaved(ok);
     setState("sent");
     agenda(prefill);
@@ -104,18 +106,18 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
   }
 
   return (
-    <form id="lead" onSubmit={onSubmit} noValidate>
+    <form className="lead" onSubmit={onSubmit} noValidate>
       <div className="field">
-        <label htmlFor="f-name">Nombre</label>
-        <input id="f-name" name="nombre" type="text" autoComplete="name" placeholder="Tu nombre" required onFocus={warm} />
+        <label htmlFor={`${id}-name`}>Nombre</label>
+        <input id={`${id}-name`} name="nombre" type="text" autoComplete="name" placeholder="Tu nombre" required onFocus={warm} autoFocus={autoFocus} />
       </div>
       <div className="field">
-        <label htmlFor="f-email">Email laboral</label>
-        <input id="f-email" name="email" type="email" autoComplete="email" placeholder="nombre@empresa.com.ar" required />
+        <label htmlFor={`${id}-email`}>Email laboral</label>
+        <input id={`${id}-email`} name="email" type="email" autoComplete="email" placeholder="nombre@empresa.com.ar" required />
       </div>
       <div className="field">
-        <label htmlFor="f-how">¿Cómo registran hoy?</label>
-        <select id="f-how" name="gestion" required defaultValue="">
+        <label htmlFor={`${id}-how`}>¿Cómo registran hoy?</label>
+        <select id={`${id}-how`} name="gestion" required defaultValue="">
           <option value="" disabled>Elegí una opción</option>
           {GESTION.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
