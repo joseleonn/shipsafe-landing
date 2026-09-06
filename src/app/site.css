@@ -767,3 +767,54 @@
 @media (min-width:901px){
   .ss-site .stage .chip-slot{display:contents}
 }
+
+/* ---------- mobile v3.2 ----------
+   Menú: capa a pantalla completa con su propia barra (logo + cruz), por
+   encima de todo, con scroll propio. Hero: se mete debajo de la barra (que
+   en mobile es transparente) y el lavado azul llega hasta el borde superior. */
+.ss-site .mobile-menu{inset:0;z-index:70;padding:0;border-top:0;background:#fff;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.ss-site .mobile-menu>.wrap{padding-bottom:36px}
+.ss-site .mobile-menu .mm-top{position:sticky;top:0;z-index:1;background:#fff;display:flex;align-items:center;justify-content:space-between;height:64px;margin-bottom:6px}
+.ss-site .mobile-menu .mm-top a{display:inline-flex;padding:0;border:0;font:inherit}
+.ss-site .mobile-menu .mm-top .burger{display:inline-flex}
+.ss-site .mobile-menu .mm-links a{display:block;padding:15px 4px;border-bottom:1px solid var(--line);font-size:19px;font-weight:600;font-family:var(--display);letter-spacing:-.01em;color:var(--text)}
+.ss-site .mobile-menu .mm-links a.quiet{color:var(--muted);font-family:var(--font);font-size:16px;font-weight:500}
+.ss-site .mobile-menu .btn{width:100%;margin-top:26px;display:flex;padding:0 24px;border-bottom:0}
+
+/* Hero debajo de la barra: la barra mide 64 px y es sticky, así que el hero
+   sube 64 px y compensa con padding. El color de arriba es el que se ve a
+   través de la barra transparente en mobile (y teñido, en desktop). */
+.ss-site .hero{margin-top:-64px;padding-top:calc(104px + 64px);background:
+  radial-gradient(ellipse 80% 62% at 50% -18%,rgba(0,92,214,.34),rgba(0,92,214,.11) 48%,rgba(0,92,214,0) 76%),
+  radial-gradient(ellipse 46% 40% at 100% 0%,rgba(56,189,248,.22),rgba(56,189,248,0) 70%),
+  radial-gradient(ellipse 40% 34% at 0% 6%,rgba(99,102,241,.12),rgba(99,102,241,0) 70%),
+  linear-gradient(180deg,#E9F0FB 0%,#F5F7FB 64%,#F5F7FB 100%)}
+.ss-site .hero-bg{background:none}
+@media (max-width:900px){
+  .ss-site .hero{padding-top:calc(64px + 56px);background:
+    radial-gradient(ellipse 150% 54% at 50% -14%,rgba(0,92,214,.42),rgba(0,92,214,.16) 46%,rgba(0,92,214,0) 74%),
+    radial-gradient(ellipse 80% 36% at 110% 2%,rgba(56,189,248,.26),rgba(56,189,248,0) 70%),
+    radial-gradient(ellipse 60% 30% at -10% 10%,rgba(99,102,241,.14),rgba(99,102,241,0) 70%),
+    linear-gradient(180deg,#E0EAF9 0%,#F5F7FB 58%,#F5F7FB 100%)}
+  .ss-site .hero-bg .orb-1{width:120vw;height:120vw;right:-40vw;top:-70vw;background:radial-gradient(circle,rgba(0,92,214,.22),rgba(0,92,214,0) 66%)}
+  .ss-site .hero-bg .orb-2{width:70vw;height:70vw;left:-30vw;top:-8vw;background:radial-gradient(circle,rgba(20,184,166,.14),rgba(20,184,166,0) 66%)}
+  .ss-site .hero-bg .orb-3{display:none}
+}
+
+/* ---------- cierre: un solo camino ---------- */
+.ss-site .close .panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ss-site .close .panel-head b{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+.ss-site .close .panel-head span{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+.ss-site .close .panel form .btn-primary{width:100%;margin-top:6px}
+.ss-site .close .ok .btn{width:100%;margin-top:16px}
+.ss-site .close .ok b{display:block;font-size:17px}
+.ss-site .close .ok p{max-width:34ch;margin-inline:auto}
+@media (max-width:900px){
+  .ss-site .close .wrap{gap:24px}
+  .ss-site .close-copy{display:contents}
+  .ss-site .close-copy>.eyebrow{order:1}
+  .ss-site .close-copy>h2{order:2;margin-top:-8px}
+  .ss-site .close-copy>.lede{order:3;margin-top:-8px}
+  .ss-site .close .panel{order:4}
+  .ss-site .close-copy>.what{order:5;margin-top:4px}
+}

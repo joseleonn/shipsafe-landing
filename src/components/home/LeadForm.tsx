@@ -1,23 +1,47 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import { GESTION } from "@/lib/home-content";
+import { buildDemoUrl } from "@/app/demo/_data";
 import { getAttribution, newEventId, readCookie } from "@/lib/attribution";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+import { loadCalendly, openCalendly } from "@/lib/calendly-embed";
 
-type State = "idle" | "sending" | "sent" | "error";
+type State = "idle" | "sending" | "sent";
 
 /**
- * Formulario corto del cierre: tres campos, sin "Mensaje" obligatorio.
- * POST /api/lead → HubSpot + Meta CAPI (misma ruta que usa /recurso), con la
- * pregunta de calificación "¿Cómo registran hoy?" (GESTION_OPCIONES).
+ * Un solo camino en el cierre: tres datos → se abre la agenda (Calendly, en
+ * un modal sobre la página) con nombre y email ya cargados.
+ *
+ * Por qué así y no dos botones: el dato entra a HubSpot antes de la reunión
+ * (con la calificación "¿Cómo registran hoy?" que Meta usa para optimizar), la
+ * persona no elige entre "agendar" y "que me contacten", y nadie se va del
+ * sitio. Si no encuentra horario o cierra la agenda, ya tenemos cómo
+ * escribirle. Si /api/lead falla, la agenda se abre igual: el webhook de
+ * Calendly crea el contacto de todos modos.
  */
 export default function LeadForm({ source = "home" }: { source?: string }) {
   const [state, setState] = useState<State>("idle");
+  const [saved, setSaved] = useState(true);
   const [who, setWho] = useState<{ name: string; email: string }>({ name: "", email: "" });
+
+  const warm = () => {
+    loadCalendly().catch(() => {});
+  };
+
+  const agenda = (prefill: { name: string; email: string }) => {
+    // Se arma al momento de abrir: reenvía los UTM con los que llegó la persona.
+    const url = withContent(buildDemoUrl(window.location.search), "cierre");
+    trackEvent(EVENTS.DEMO_CLICK, { section: "cierre", source: "home" });
+    void openCalendly(url, {
+      prefill,
+      onScheduled: () => trackEvent(EVENTS.DEMO_SCHEDULED, { section: "cierre", source: "home" }),
+    }).then((ok) => {
+      if (!ok) window.location.assign(url);
+    });
+  };
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,13 +54,15 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
     const eventId = newEventId("lead");
     const nombre = String(data.get("nombre") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
-    setWho({ name: nombre, email });
+    const prefill = { name: nombre, email };
+    setWho(prefill);
     setState("sending");
     try {
       trackMetaEvent("Lead", eventId, { content_name: `${source}-demo` });
     } catch {
       /* el pixel puede no estar */
     }
+    let ok = false;
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -53,26 +79,26 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
           sourceUrl: window.location.href,
         }),
       });
-      if (!res.ok) throw new Error(String(res.status));
-      trackEvent(EVENTS.GENERATE_LEAD, { source, section: "cierre" });
-      setState("sent");
+      ok = res.ok;
     } catch {
-      setState("error");
+      ok = false;
     }
+    if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section: "cierre" });
+    setSaved(ok);
+    setState("sent");
+    agenda(prefill);
   }
 
   if (state === "sent") {
-    // Ya tenemos nombre y email: la agenda sale precargada, en el modal.
     return (
       <div className="ok" role="status">
         <div className="ic"><Icon name="check" /></div>
-        <b>Listo.</b>
-        <p>Te escribimos en menos de 24 h.</p>
-        <p className="ok-more">¿Querés adelantarte? Elegí ahora el día y horario de la demo.</p>
-        <DemoLink section="cierre-post-form" className="btn btn-primary" prefill={{ name: who.name, email: who.email }}>
+        <b>{saved ? "Tus datos quedaron guardados." : "La agenda se abre igual."}</b>
+        <p>{saved ? "Si no encontrás un horario, te escribimos en menos de 24 h." : "No pudimos guardar tus datos, pero podés elegir día y horario ahora mismo."}</p>
+        <button type="button" className="btn btn-primary" onClick={() => agenda(who)} onMouseEnter={warm}>
           <Icon name="calendar" />
           Elegí día y horario
-        </DemoLink>
+        </button>
       </div>
     );
   }
@@ -81,7 +107,7 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
     <form id="lead" onSubmit={onSubmit} noValidate>
       <div className="field">
         <label htmlFor="f-name">Nombre</label>
-        <input id="f-name" name="nombre" type="text" autoComplete="name" placeholder="Tu nombre" required />
+        <input id="f-name" name="nombre" type="text" autoComplete="name" placeholder="Tu nombre" required onFocus={warm} />
       </div>
       <div className="field">
         <label htmlFor="f-email">Email laboral</label>
@@ -96,12 +122,21 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
           ))}
         </select>
       </div>
-      <button className="btn btn-secondary" type="submit" disabled={state === "sending"}>
-        {state === "sending" ? "Enviando…" : "Quiero que me contacten"}
+      <button className="btn btn-primary btn-lg" type="submit" disabled={state === "sending"} onMouseEnter={warm} onTouchStart={warm}>
+        <Icon name="calendar" />
+        {state === "sending" ? "Abriendo la agenda…" : "Elegí día y horario"}
       </button>
-      <p className="fine">
-        {state === "error" ? "No pudimos enviarlo. Probá de nuevo o escribinos por WhatsApp." : "No hace falta escribir un mensaje: con estos datos podemos contactarte con contexto."}
-      </p>
+      <p className="fine">Con estos datos se abre la agenda ya cargada. Si no encontrás horario, te escribimos en menos de 24 h.</p>
     </form>
   );
+}
+
+function withContent(url: string, section: string) {
+  try {
+    const u = new URL(url);
+    if (!u.searchParams.get("utm_content")) u.searchParams.set("utm_content", section);
+    return u.toString();
+  } catch {
+    return url;
+  }
 }

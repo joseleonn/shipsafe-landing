@@ -1,8 +1,13 @@
-import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import LeadForm from "./LeadForm";
 import { whatsappUrl } from "@/lib/home-content";
 
+/**
+ * Cierre: un solo camino. Tres datos y se abre la agenda ahí mismo (modal de
+ * Calendly con nombre y email cargados). WhatsApp queda como alternativa
+ * chica. En mobile el panel va apenas debajo del título; la lista de qué
+ * pasa en la demo, después (site.css).
+ */
 export default function CloseSection({ num = "09", source = "home" }: { num?: string | null; source?: string }) {
   return (
     <section className="close" id="demo">
@@ -21,11 +26,10 @@ export default function CloseSection({ num = "09", source = "home" }: { num?: st
           </ol>
         </div>
         <div className="panel" id="panel">
-          <DemoLink section="cierre" className="btn btn-primary btn-lg">
-            <Icon name="calendar" />
-            Elegí día y horario
-          </DemoLink>
-          <div className="or">o dejanos tus datos y te escribimos en menos de 24 h</div>
+          <div className="panel-head">
+            <b>Elegí día y horario</b>
+            <span>30 min · sin compromiso</span>
+          </div>
           <LeadForm source={source} />
           <div className="wa">
             ¿Preferís WhatsApp?{" "}
