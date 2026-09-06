@@ -271,9 +271,11 @@
 .ss-site .wa{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--text-2)}
 .ss-site .wa a{color:var(--accent-ink);font-weight:500;display:inline-flex;align-items:center;gap:6px}
 .ss-site .wa .ico{width:16px;height:16px}
-.ss-site .close .ok{display:none;text-align:center;padding:24px 8px}
+.ss-site .close .ok{display:block;text-align:center;padding:24px 8px}
 .ss-site .close .ok .ic{width:48px;height:48px;border-radius:50%;background:rgba(52,211,153,.15);color:var(--ok);display:grid;place-items:center;margin:0 auto 14px}
 .ss-site .close .ok p{color:var(--muted);font-size:14px;margin-top:6px}
+.ss-site .close .ok .ok-more{margin:16px 0 12px;color:var(--text-2)}
+.ss-site .close .ok .btn{width:100%}
 .ss-site .close .panel.sent form, .ss-site .close .panel.sent .or, .ss-site .close .panel.sent>.btn{display:none}
 .ss-site .close .panel.sent .ok{display:block}
 .ss-site .footer{background:#05070B;border-top:1px solid var(--line);color:var(--text-2);padding:64px 0 32px;font-size:14px}
@@ -729,3 +731,39 @@
   .ss-site .stage .chip-1{left:12px;bottom:14px}
 }
 @media (max-width:900px){ .ss-site .hero .lede{text-align:left;margin-inline:0} }
+
+/* ---------- caso: "Antes" en rojo, "Hoy" en verde ---------- */
+.ss-site .ba .b .tag{color:var(--danger)}
+
+/* ---------- mobile v3.1 ----------
+   1) Barra transparente arriba del todo; blanca (con sombra) al scrollear y
+      con el menú abierto.
+   2) Comparativa: cada fila es un bloque con el título de la fila, la vieja
+      forma (×) y la nueva (✓). Nada de tabla apretada.
+   3) El chip del hero vive en una ranura de alto fijo: al rotar no mueve el
+      resto de la página. */
+@media (max-width:900px){
+  .ss-site .nav{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent;transition:background-color .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease)}
+  .ss-site .nav.scrolled,.ss-site .nav.open{background:rgba(255,255,255,.985);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(11,31,59,.35)}
+  .ss-site .nav.open{box-shadow:none}
+
+  .ss-site .cmp .row{display:block;position:relative;padding:18px 18px 20px}
+  .ss-site .cmp .row>div{padding:0}
+  .ss-site .cmp .k{padding:0;margin:0 0 12px;font-family:var(--display);font-size:16.5px;font-weight:700;letter-spacing:-.01em;text-transform:none;color:#fff}
+  .ss-site .cmp .old,.ss-site .cmp .new{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;padding:0;font-size:14.5px;line-height:1.45}
+  .ss-site .cmp .old::before,.ss-site .cmp .new::before{content:"";width:20px;height:20px;border-radius:50%;margin:0;background-position:center;background-repeat:no-repeat;background-size:11px 11px}
+  .ss-site .cmp .old::before{background-color:rgba(255,255,255,.08);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23A9B4C6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M2.5 2.5l7 7M9.5 2.5l-7 7'/%3E%3C/svg%3E")}
+  .ss-site .cmp .new::before{background-color:var(--accent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 6.3l2.7 2.7L10 3.5'/%3E%3C/svg%3E")}
+  .ss-site .cmp .old{color:rgba(255,255,255,.62);text-decoration:none}
+  .ss-site .cmp .new{margin-top:9px;color:#fff;font-weight:500;position:static}
+  .ss-site .cmp .row.hi{padding-top:44px;background:linear-gradient(180deg,rgba(0,92,214,.32),rgba(0,92,214,.12))}
+  .ss-site .cmp .row.hi>div{padding-block:0}
+  .ss-site .cmp .row.hi .new::after{position:absolute;left:18px;top:14px;right:auto;margin:0;display:inline-block}
+
+  .ss-site .stage .chip-slot{position:relative;height:66px;margin-top:10px}
+  .ss-site .stage .chip-slot .chip-anchor{position:absolute;left:0;right:0;top:0;display:block}
+  .ss-site .stage .chip-slot .chip{margin-top:0;width:100%}
+}
+@media (min-width:901px){
+  .ss-site .stage .chip-slot{display:contents}
+}

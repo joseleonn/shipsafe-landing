@@ -38,6 +38,13 @@ export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
   keywords: [
+    "software SST",
+    "software de gestión SST",
+    "sistema de gestión SST",
+    "SG-SST",
+    "software seguridad y salud en el trabajo",
+    "software HyS",
+    "software HSE",
     "software de seguridad e higiene",
     "software seguridad e higiene laboral",
     "software seguridad e higiene laboral argentina",
@@ -76,7 +83,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SHIPSAFE, software de seguridad e higiene laboral",
+        alt: "SHIPSAFE, software de gestión SST (seguridad e higiene laboral)",
       },
     ],
   },
@@ -114,6 +121,8 @@ const softwareAppSchema = {
   operatingSystem: "Web",
   description: SITE.description,
   url: SITE.url,
+  areaServed: ["Argentina", "Latinoamérica"],
+  inLanguage: "es",
   // Piso público de la línea Profesional. Actualizar junto con PRICING en
   // constants.ts en cada ajuste semestral.
   offers: {

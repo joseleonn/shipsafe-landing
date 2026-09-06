@@ -24,7 +24,9 @@ export default function MotionCues() {
           io.unobserve(e.target);
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.2 },
+      // Umbral casi cero: la tabla comparativa en mobile es más alta que la
+      // pantalla y con 0.2 nunca llegaba a "entrar" (quedaba vacía).
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 },
     );
     targets.forEach((t) => io.observe(t));
     return () => {

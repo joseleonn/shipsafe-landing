@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useReduce } from "@/components/site/useReduce";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Icon from "@/components/site/Icon";
 import { HERO, YOUTUBE_ID } from "@/lib/home-content";
 import { trackEvent, EVENTS } from "@/lib/analytics";
@@ -22,9 +22,22 @@ export default function HeroStage({ url, poster, phone }: { url: string; poster:
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [inView, setInView] = useState(true);
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  // Los eventos rotan solo mientras el escenario está en pantalla: en mobile
+  // el hero queda arriba y no tiene sentido seguir animando mientras se lee
+  // el resto de la página.
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.1 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (reduce || playing) return;
+    if (reduce || playing || !inView) return;
     let t: ReturnType<typeof setInterval> | undefined;
     const start = () => { stop(); t = setInterval(() => setIdx((i) => (i + 1) % HERO.events.length), 4000); };
     const stop = () => { if (t) clearInterval(t); t = undefined; };
@@ -32,7 +45,7 @@ export default function HeroStage({ url, poster, phone }: { url: string; poster:
     onVis();
     document.addEventListener("visibilitychange", onVis);
     return () => { stop(); document.removeEventListener("visibilitychange", onVis); };
-  }, [reduce, paused, playing]);
+  }, [reduce, paused, playing, inView]);
 
   const events = HERO.events;
   const positions = ["chip-1", "chip-2", "chip-3"];
@@ -66,7 +79,7 @@ export default function HeroStage({ url, poster, phone }: { url: string; poster:
   };
 
   return (
-    <div className={`stage ${playing ? "is-playing" : ""}`} onMouseEnter={() => setPaused(true)} onMouseLeave={onLeave} onMouseMove={onMove}>
+    <div ref={stageRef} className={`stage ${playing ? "is-playing" : ""}`} onMouseEnter={() => setPaused(true)} onMouseLeave={onLeave} onMouseMove={onMove}>
       <motion.div initial={reduce ? false : { opacity: 0.6, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
         <motion.div style={{ x: bx, y: by }}>
           <div className={`browser hero-player ${playing ? "is-playing" : ""}`} id="video">
@@ -113,24 +126,29 @@ export default function HeroStage({ url, poster, phone }: { url: string; poster:
         )}
       </AnimatePresence>
 
-      {!playing &&
-        (reduce ? (
-          events.map((e, i) => <Chip key={e.title} e={e} pos={positions[i]} />)
-        ) : (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.32, ease: EASE }}
-              className={`chip-anchor ${positions[idx]}`}
-              aria-hidden="true"
-            >
-              <Chip e={events[idx]} />
-            </motion.div>
-          </AnimatePresence>
-        ))}
+      {/* En mobile la ranura tiene alto fijo (site.css): el chip rota sin
+          mover el resto de la página. En desktop no genera caja. */}
+      {!playing && (
+        <div className="chip-slot">
+          {reduce ? (
+            events.map((e, i) => <Chip key={e.title} e={e} pos={positions[i]} />)
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.32, ease: EASE }}
+                className={`chip-anchor ${positions[idx]}`}
+                aria-hidden="true"
+              >
+                <Chip e={events[idx]} />
+              </motion.div>
+            </AnimatePresence>
+          )}
+        </div>
+      )}
     </div>
   );
 }

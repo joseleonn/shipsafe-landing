@@ -18,6 +18,9 @@ export const EVENTS = {
   PRICING_TIER_CLICK: "pricing_tier_click",
   // Home v3: cada CTA manda la sección de origen en `section`.
   DEMO_CLICK: "demo_click",
+  // Reunión confirmada dentro del modal de Calendly (el dato de verdad lo
+  // trae el webhook; esto es para el embudo del lado del navegador).
+  DEMO_SCHEDULED: "demo_scheduled",
   VSL_PLAY: "vsl_play",
   ROLE_TAB: "role_tab",
   MODULE_VIEW: "module_view",

@@ -4,10 +4,14 @@ export const SITE = {
   // redirecciones (los crons y los webhooks). Siempre www.
   url: "https://www.shipsafe.lat",
   appUrl: "https://app.shipsafe.lat",
-  tagline: "Software de Seguridad e Higiene Laboral",
+  // SEO: SST primero (vocabulario global) sin soltar las búsquedas locales.
+  // "Seguridad e higiene" y "HyS" siguen en título, descripción y keywords
+  // porque así se busca en Argentina; "Argentina" queda en keywords y en el
+  // schema (areaServed), no en el título.
+  tagline: "Software de gestión SST (seguridad e higiene)",
   description:
-    "SHIPSAFE es el software de seguridad e higiene laboral para empresas, consultores y técnicos en Argentina. Digitalizá inspecciones, gestioná desvíos y centralizá toda tu gestión sin papel ni Excel.",
-  title: "SHIPSAFE | Software de Seguridad e Higiene Laboral Argentina",
+    "Software de gestión SST (seguridad e higiene, HyS) para empresas y consultores: inspecciones con QR, desvíos, EPP y capacitaciones, con informes listos para auditorías.",
+  title: "SHIPSAFE | Software de gestión SST y seguridad e higiene",
 };
 
 export const CTAS = {

@@ -8,9 +8,10 @@ import DemoLink from "./DemoLink";
 import { NAV, APP_URL } from "@/lib/home-content";
 
 /**
- * Barra del sitio (v3): fondo presente desde el primer píxel (nada de slide-in),
- * sombra sutil al scrollear, menú mobile a pantalla completa. Los anclas van
- * con "/" adelante para que funcionen desde cualquier página.
+ * Barra del sitio (v3): en desktop con fondo desde el primer píxel y sombra
+ * sutil al scrollear; en mobile transparente arriba del todo y blanca en
+ * cuanto se scrollea o se abre el menú (site.css). Los anclas van con "/"
+ * adelante para que funcionen desde cualquier página.
  */
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,7 +37,7 @@ export default function SiteNav() {
 
   return (
     <>
-      <header className={`nav ${scrolled ? "scrolled" : ""}`} id="nav">
+      <header className={`nav ${scrolled ? "scrolled" : ""} ${open ? "open" : ""}`} id="nav">
         <div className="wrap">
           <Link className="brand" href="/" aria-label="SHIPSAFE, inicio">
             <Wordmark priority />

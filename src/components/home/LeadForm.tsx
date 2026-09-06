@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import { GESTION } from "@/lib/home-content";
 import { getAttribution, newEventId, readCookie } from "@/lib/attribution";
@@ -16,6 +17,7 @@ type State = "idle" | "sending" | "sent" | "error";
  */
 export default function LeadForm({ source = "home" }: { source?: string }) {
   const [state, setState] = useState<State>("idle");
+  const [who, setWho] = useState<{ name: string; email: string }>({ name: "", email: "" });
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,6 +28,9 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
     }
     const data = new FormData(form);
     const eventId = newEventId("lead");
+    const nombre = String(data.get("nombre") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    setWho({ name: nombre, email });
     setState("sending");
     try {
       trackMetaEvent("Lead", eventId, { content_name: `${source}-demo` });
@@ -37,8 +42,8 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombre: String(data.get("nombre") ?? "").trim(),
-          email: String(data.get("email") ?? "").trim(),
+          nombre,
+          email,
           gestion: String(data.get("gestion") ?? ""),
           leadMagnet: `${source}-demo`,
           eventId,
@@ -57,11 +62,17 @@ export default function LeadForm({ source = "home" }: { source?: string }) {
   }
 
   if (state === "sent") {
+    // Ya tenemos nombre y email: la agenda sale precargada, en el modal.
     return (
       <div className="ok" role="status">
         <div className="ic"><Icon name="check" /></div>
         <b>Listo.</b>
         <p>Te escribimos en menos de 24 h.</p>
+        <p className="ok-more">¿Querés adelantarte? Elegí ahora el día y horario de la demo.</p>
+        <DemoLink section="cierre-post-form" className="btn btn-primary" prefill={{ name: who.name, email: who.email }}>
+          <Icon name="calendar" />
+          Elegí día y horario
+        </DemoLink>
       </div>
     );
   }
