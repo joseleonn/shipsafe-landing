@@ -5,6 +5,7 @@ import Hero from "./Hero";
 import Roles from "./Roles";
 import Explorer from "./Explorer";
 import Flow from "./Flow";
+import Standard from "./Standard";
 import TryIt from "./TryIt";
 import Compare from "./Compare";
 import Proofs from "./Proofs";
@@ -25,6 +26,7 @@ export default function Home() {
         <Roles />
         <Explorer />
         <Flow />
+        <Standard />
         <TryIt />
         <Compare />
         <Proofs />

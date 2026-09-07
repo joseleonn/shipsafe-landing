@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useReduce } from "@/components/site/useReduce";
 import { ShotFrame } from "@/components/site/Frames";
-import { MODULE_GROUPS, MODULE_CHIPS } from "@/lib/home-content";
+import { MODULE_GROUPS, MODULE_CHIPS, CIRCUITO, CIRCUITO_ENTRADAS } from "@/lib/home-content";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
 const EASE = [0.2, 0.8, 0.2, 1] as const;
@@ -73,10 +73,30 @@ export default function Explorer() {
         <div className="sec-head">
           <div className="eyebrow num"><span>02</span>Plataforma</div>
           <h2>
-            Todo lo que hace tu operación, <em>en un solo lugar.</em>
+            Todo lo que pasa en SST <em>queda conectado.</em>
           </h2>
-          <p className="lede">Dieciséis módulos conectados entre sí: un NO OK en un checklist genera un desvío; una entrega de EPP descuenta stock; un permiso vencido avisa. Elegí uno para verlo en detalle.</p>
+          <p className="lede">No son módulos sueltos: es un circuito. Un NO OK en un checklist abre un desvío con dueño y plazo, se cierra con evidencia, y eso alimenta los números que después te piden.</p>
         </div>
+
+        {/* El circuito, antes del catálogo: primero se entiende que las piezas
+            están encadenadas y recién después se abre módulo por módulo. */}
+        <ol className="circuito" aria-label="El recorrido de un hallazgo">
+          {CIRCUITO.map((c) => (
+            <li key={c.n}>
+              <span className="n">{c.n}</span>
+              <b>{c.label}</b>
+              <small>{c.meta}</small>
+            </li>
+          ))}
+        </ol>
+        <p className="circuito-nota">
+          <span>Se entra por cualquier lado:</span>
+          {CIRCUITO_ENTRADAS.map((e) => (
+            <em key={e}>{e}</em>
+          ))}
+        </p>
+
+        <p className="ex-intro">Dieciséis módulos, uno por cada cosa que hoy vive en una planilla distinta. Elegí uno para verlo por dentro.</p>
         <div className="explorer">
           <div
             ref={listRef}

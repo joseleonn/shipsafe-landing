@@ -5,7 +5,7 @@ import Reveal from "@/components/site/Reveal";
 import { TIERS, PRICE_NOTES, whatsappUrl } from "@/lib/home-content";
 
 export default function PricingSection({
-  num = "07",
+  num = "08",
   more = true,
   id = "precios",
   title,

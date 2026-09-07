@@ -16,7 +16,7 @@ export default function TryIt() {
         <div className="try-card">
           <div className="glow tr" aria-hidden="true" />
           <div className="try-copy">
-            <div className="eyebrow num"><span>04</span>Probalo por tu cuenta</div>
+            <div className="eyebrow num"><span>05</span>Probalo por tu cuenta</div>
             <h2>
               Escaneá el QR y hacé una inspección <em>en dos minutos.</em>
             </h2>

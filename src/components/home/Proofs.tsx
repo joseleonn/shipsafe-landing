@@ -9,7 +9,7 @@ export default function Proofs() {
     <section className="proofs" id="caso">
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>06</span>Casos</div>
+          <div className="eyebrow num"><span>07</span>Casos</div>
           <h2>
             Ya pasó en una operación real, <em>y convive con lo que ya tenés.</em>
           </h2>

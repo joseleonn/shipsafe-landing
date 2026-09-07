@@ -7,7 +7,7 @@ export default function Compare() {
       <div className="glow navy c" aria-hidden="true" />
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>05</span>La vieja forma y la nueva</div>
+          <div className="eyebrow num"><span>06</span>La vieja forma y la nueva</div>
           <h2>
             No vendemos orden: hacemos que registrar <em>cueste menos que no registrar.</em>
           </h2>

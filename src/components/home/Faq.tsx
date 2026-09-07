@@ -9,7 +9,7 @@ export type FaqItem = { q: string; a: string };
 /** Acordeón nativo (details/summary): accesible, indexable, un abierto a la vez. */
 export default function Faq({
   items = HOME_FAQS,
-  num = "08",
+  num = "09",
   title,
 }: {
   items?: readonly FaqItem[];

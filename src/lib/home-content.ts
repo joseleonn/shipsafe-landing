@@ -218,6 +218,45 @@ export const MODULE_GROUPS: ModuleGroup[] = [
   },
 ];
 
+/**
+ * El circuito. No es una lista de módulos: es el camino que hace un hallazgo
+ * desde que alguien lo ve hasta que se convierte en un número que se puede
+ * mostrar. Es el reencuadre de "dieciséis módulos": lo que vende no es la
+ * cantidad, es que las piezas están encadenadas.
+ */
+export const CIRCUITO = [
+  { n: "01", label: "Inspección", meta: "QR y checklist" },
+  { n: "02", label: "Desvío", meta: "nace del NO OK" },
+  { n: "03", label: "Responsable", meta: "con fecha límite" },
+  { n: "04", label: "Acción", meta: "lo que se hizo" },
+  { n: "05", label: "Evidencia", meta: "foto y firma" },
+  { n: "06", label: "Cierre", meta: "con historial" },
+  { n: "07", label: "Análisis", meta: "indicadores" },
+] as const;
+
+/** Las otras puertas de entrada al mismo circuito. */
+export const CIRCUITO_ENTRADAS = ["EPP", "Capacitaciones", "Mediciones", "Permisos de trabajo", "Accidentes", "Matrices de riesgo", "Vencimientos"] as const;
+
+/**
+ * Estandarización entre establecimientos. Hasta ahora vivía escondida en un
+ * chip ("Multi-establecimiento") y en una línea del hero, y es de las cosas
+ * más caras de resolver a mano en una empresa con varias sucursales.
+ */
+export const ESTANDAR = {
+  plantilla: "Inspección mensual de extintores",
+  sedes: [
+    { name: "Casa central", meta: "34 equipos" },
+    { name: "Planta Norte", meta: "58 equipos" },
+    { name: "Base Neuquén", meta: "21 equipos" },
+  ],
+  cierre: "Mismos ítems · Mismas fotos obligatorias · Mismo criterio de NO OK",
+  puntos: [
+    { title: "La plantilla se arma una vez", text: "Y se usa en todos los establecimientos. Nadie rehace el checklist en cada sucursal ni lo interpreta a su manera." },
+    { title: "Cada uno ve lo suyo, gerencia ve todo", text: "La sucursal trabaja con sus equipos y sus desvíos; la gerencia mira las tres juntas en una sola vista." },
+    { title: "Los números se pueden comparar", text: "Si las tres miden lo mismo, la diferencia entre sucursales dice algo. Si cada una mide a su manera, no dice nada." },
+  ],
+};
+
 export const MODULE_CHIPS = [
   "ATS · análisis de trabajo seguro",
   "Instructivos",
@@ -333,6 +372,7 @@ export const FOOTER = {
     { label: "Plataforma", href: "#plataforma" },
     { label: "Roles", href: "#roles" },
     { label: "Cómo funciona", href: "#como-funciona" },
+    { label: "Un estándar", href: "#estandar" },
     { label: "Casos", href: "#caso" },
     { label: "Probalo", href: "#probalo" },
     { label: "Precios", href: "/precios" },

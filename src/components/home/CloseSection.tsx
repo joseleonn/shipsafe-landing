@@ -8,7 +8,7 @@ import { whatsappUrl } from "@/lib/home-content";
  * chica. En mobile el panel va apenas debajo del título; la lista de qué
  * pasa en la demo, después (site.css).
  */
-export default function CloseSection({ num = "09", source = "home" }: { num?: string | null; source?: string }) {
+export default function CloseSection({ num = "10", source = "home" }: { num?: string | null; source?: string }) {
   return (
     <section className="close" id="demo">
       <span id="contacto" />
