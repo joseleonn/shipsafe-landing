@@ -851,3 +851,17 @@
   .ss-site .dm .panel-head{flex-direction:column;align-items:flex-start;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){.ss-site .dm-backdrop,.ss-site .dm{animation:none}}
+
+/* ---------- barra y pie mínimos (landings de campaña) ---------- */
+.ss-site .nav.minimal .wrap{justify-content:space-between}
+@media (max-width:900px){
+  .ss-site .nav.minimal .nav-cta .btn{display:inline-flex}
+}
+@media (max-width:420px){
+  .ss-site .nav.minimal .nav-cta .btn{padding:0 12px;font-size:13px}
+}
+.ss-site .footer.minimal{padding:28px 0}
+.ss-site .footer.minimal .bottom{margin-top:0;padding-top:0;border-top:0;flex-direction:column;gap:12px}
+.ss-site .footer.minimal .legal-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.ss-site .footer.minimal .legal-links a{color:rgba(255,255,255,.7)}
+.ss-site .footer.minimal .legal-links a:hover{color:#fff}

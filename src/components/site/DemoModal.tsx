@@ -45,7 +45,9 @@ export default function DemoModal() {
   // La campaña de Meta ofrece una puesta en marcha, no una demo de producto.
   // Si el visitante viene de ahí, el modal habla el mismo idioma que el
   // anuncio y que la landing; desde el resto del sitio, el de siempre.
-  const campana = section.startsWith("modal-puesta");
+  // `section` llega sin prefijo ("puesta-hero", "puesta-nav"…); el "modal-"
+  // se agrega recién al pasárselo al formulario.
+  const campana = section.startsWith("puesta");
   const titulo = campana ? "Reservá tu media hora" : "Agendá una demo";
   const sub = campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
 

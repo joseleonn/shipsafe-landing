@@ -15,13 +15,25 @@ import { onDemoModal } from "@/lib/demo-modal";
  * cuanto se scrollea (site.css). Los anclas van con "/" adelante para que
  * funcionen desde cualquier página.
  *
+ * En modo `minimal` (landings de campaña) queda solo el logo y el botón:
+ * ninguna salida que no sea agendar.
+ *
  * El menú mobile es una capa a pantalla completa con su propia barra (logo y
  * cruz) y con el scroll de la página bloqueado de verdad (useScrollLock).
  * Antes dependía de la barra pegajosa de abajo, y en iOS bastaba con deslizar
  * con el menú abierto para que la cruz se fuera con la página: no se podía
  * cerrar.
  */
-export default function SiteNav() {
+export default function SiteNav({
+  minimal = false,
+  ctaLabel = "Agendá una demo",
+  ctaSection = "nav",
+}: {
+  /** Landings de campaña: solo logo y botón, sin menú ni "Ingresar". */
+  minimal?: boolean;
+  ctaLabel?: string;
+  ctaSection?: string;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -46,6 +58,23 @@ export default function SiteNav() {
   useEffect(() => onDemoModal(() => setOpen(false)), []);
 
   const close = () => setOpen(false);
+
+  if (minimal) {
+    return (
+      <header className={`nav minimal ${scrolled ? "scrolled" : ""}`} id="nav">
+        <div className="wrap">
+          <Link className="brand" href="/" aria-label="SHIPSAFE, inicio">
+            <Wordmark priority />
+          </Link>
+          <div className="nav-cta">
+            <DemoLink section={ctaSection} className="btn btn-primary btn-sm">
+              {ctaLabel}
+            </DemoLink>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <>

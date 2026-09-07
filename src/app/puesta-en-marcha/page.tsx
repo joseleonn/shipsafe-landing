@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/constants";
 import { CASE } from "@/lib/home-content";
 import SiteShell from "@/components/site/SiteShell";
+import StickyBar from "@/components/site/StickyBar";
 import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import Reveal from "@/components/site/Reveal";
@@ -20,6 +21,10 @@ import Reveal from "@/components/site/Reveal";
  * El botón no lleva a otra página: abre el DemoModal (las preguntas) y después
  * Calendly encima. Es el mismo camino que el resto del sitio, así no hay dos
  * formas de agendar.
+ *
+ * Barra y pie en modo mínimo (SiteShell minimal): solo el logo y el botón
+ * arriba, lo legal abajo. Es tráfico pago: la única salida es agendar. En
+ * mobile, la barra flotante con el mismo botón.
  *
  * `robots: noindex` a propósito: es tráfico pago, no la queremos compitiendo
  * en Google con las páginas de SEO.
@@ -99,7 +104,7 @@ const FAQS = [
 
 export default function Page() {
   return (
-    <SiteShell>
+    <SiteShell minimal ctaLabel="Reservá tu media hora" ctaSection="puesta-nav">
       <main id="main">
         <section className="page-hero center" id="top">
           <div className="wrap">
@@ -234,6 +239,7 @@ export default function Page() {
           </div>
         </section>
       </main>
+      <StickyBar heroId="top" closeId="cierre" section="puesta-sticky" label="Reservá tu media hora" />
     </SiteShell>
   );
 }

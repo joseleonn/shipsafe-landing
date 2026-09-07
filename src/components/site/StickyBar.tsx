@@ -12,7 +12,17 @@ import { trackEvent, EVENTS } from "@/lib/analytics";
  * tapar nada de eso. Umbral cero: en mobile esas secciones son más altas que
  * la pantalla y un umbral por porcentaje no se alcanzaba nunca.
  */
-export default function StickyBar({ heroId = "top", closeId = "demo" }: { heroId?: string; closeId?: string }) {
+export default function StickyBar({
+  heroId = "top",
+  closeId = "demo",
+  section = "sticky",
+  label = "Agendá una demo",
+}: {
+  heroId?: string;
+  closeId?: string;
+  section?: string;
+  label?: string;
+}) {
   const [show, setShow] = useState(false);
   useEffect(() => {
     const hero = document.getElementById(heroId);
@@ -31,14 +41,16 @@ export default function StickyBar({ heroId = "top", closeId = "demo" }: { heroId
   }, [heroId, closeId]);
   return (
     <div className={`stickybar ${show ? "show" : ""}`} aria-hidden={!show}>
-      <DemoLink section="sticky" className="btn btn-primary" />
+      <DemoLink section={section} className="btn btn-primary">
+        {label}
+      </DemoLink>
       <a
         className="wa"
         href={whatsappUrl("Hola, quiero agendar una demo de SHIPSAFE")}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Escribinos por WhatsApp"
-        onClick={() => trackEvent(EVENTS.WHATSAPP_CLICK, { section: "sticky" })}
+        onClick={() => trackEvent(EVENTS.WHATSAPP_CLICK, { section })}
       >
         <Icon name="msg" />
       </a>
