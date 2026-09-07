@@ -368,7 +368,11 @@
   --display:var(--font-jakarta),'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;
   --font:var(--font-geist),'Geist',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:var(--font-geist-mono),'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --r-ctl:10px; --r-card:20px; --r-lg:24px; --r-phone:36px;
+  /* Escala de radios, de afuera hacia adentro: los controles son píldoras,
+     igual que la isla de la barra; las tarjetas van redondeadas y los bloques
+     que viven DENTRO de una tarjeta usan un radio menor (12px), que es como
+     se anidan bien las esquinas. */
+  --r-ctl:999px; --r-card:22px; --r-lg:26px; --r-phone:36px;
   --sec:136px; --container:1200px;
   --ease:cubic-bezier(.2,.8,.2,1); --dur:420ms; --fast:180ms;
   --shadow-frame:0 40px 100px -40px rgba(11,31,59,.35), 0 0 0 1px rgba(11,31,59,.06);
@@ -865,3 +869,81 @@
 .ss-site .footer.minimal .legal-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
 .ss-site .footer.minimal .legal-links a{color:rgba(255,255,255,.7)}
 .ss-site .footer.minimal .legal-links a:hover{color:#fff}
+
+/* ============================================================
+   Barra isla (glass) · v3.3
+   Una píldora flotante que no ocupa lugar en el layout: el contenido pasa
+   por debajo y se ve difuminado a través de ella. Las medidas viven en
+   variables porque el hero, las páginas internas y el scroll de los anclas
+   tienen que dejarle el mismo aire (ver más abajo y en pages.css).
+   ============================================================ */
+.ss-site{--nav-h:58px;--nav-top:14px;--nav-space:calc(var(--nav-h) + var(--nav-top) + 14px)}
+
+.ss-site .nav{position:fixed;top:var(--nav-top);left:0;right:0;z-index:70;background:none;border-bottom:0;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  /* el aire alrededor de la isla no debe comerse los clics de la página */
+  pointer-events:none}
+.ss-site .nav .wrap{pointer-events:auto;width:min(1120px,calc(100% - 28px));height:var(--nav-h);padding:0 8px 0 20px;gap:18px;border-radius:999px;
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,.7);
+  /* Tres capas: brillo interno arriba (el canto del vidrio), una línea fina
+     hacia afuera para que la isla se recorte sobre fondos claros planos, y la
+     sombra que la despega de la página. */
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(11,31,59,.055),0 10px 30px -12px rgba(11,31,59,.20);
+  transition:background-color .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.ss-site .nav.scrolled .wrap{background:rgba(255,255,255,.74);border-color:rgba(255,255,255,.9);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 0 0 1px rgba(11,31,59,.07),0 14px 40px -14px rgba(11,31,59,.28)}
+/* Sin soporte de blur (Firefox viejo, algunos Android): vidrio esmerilado opaco. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .ss-site .nav .wrap,.ss-site .mm-panel{background:rgba(255,255,255,.96)}
+}
+.ss-site .nav .links a{color:var(--text-2)}
+.ss-site .nav .links a:hover{color:var(--navy);background:rgba(11,31,59,.06)}
+.ss-site .nav .nav-cta .login{color:var(--text-2)}
+.ss-site .nav .nav-cta .login:hover{color:var(--navy)}
+.ss-site .nav .burger{color:var(--navy);border-radius:999px;transition:background-color var(--fast)}
+.ss-site .nav .burger:hover{background:rgba(11,31,59,.06)}
+@media (max-width:900px){
+  .ss-site{--nav-h:54px;--nav-top:12px}
+  .ss-site .nav .wrap{padding:0 6px 0 16px;width:min(1120px,calc(100% - 24px))}
+}
+
+/* El contenido le deja aire a la isla (antes lo reservaba el propio header). */
+.ss-site .hero{margin-top:0;padding-top:calc(var(--nav-space) + 52px)}
+@media (max-width:900px){.ss-site .hero{padding-top:calc(var(--nav-space) + 24px)}}
+/* Los anclas caen debajo de la isla, no tapados por ella. */
+.ss-site section[id]{scroll-margin-top:calc(var(--nav-space) + 8px)}
+
+/* ---------- menú mobile: la isla se despliega ---------- */
+.ss-site .mobile-menu{display:none;position:fixed;inset:0;z-index:60;padding:0;border:0;overflow:hidden;
+  background:rgba(11,31,59,.32);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.ss-site .mobile-menu.open{display:block;animation:mm-fade .2s var(--ease)}
+.ss-site .mm-panel{position:absolute;left:12px;right:12px;top:calc(var(--nav-top) + var(--nav-h) + 8px);
+  max-height:calc(100vh - var(--nav-top) - var(--nav-h) - 28px);max-height:calc(100dvh - var(--nav-top) - var(--nav-h) - 28px);
+  overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:6px 18px 18px;border-radius:26px;
+  background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(11,31,59,.06),0 26px 60px -22px rgba(11,31,59,.5);
+  animation:mm-in .26s var(--ease)}
+.ss-site .mm-panel .mm-links a{display:block;padding:13px 2px;border-bottom:1px solid rgba(11,31,59,.09);
+  font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--navy)}
+.ss-site .mm-panel .mm-links a:last-child{border-bottom:0}
+.ss-site .mm-panel .mm-links a.quiet{font-family:var(--font);font-size:16px;font-weight:500;color:var(--muted)}
+.ss-site .mm-panel .btn{width:100%;margin-top:14px;display:flex;padding:0 24px;border-bottom:0}
+@keyframes mm-fade{from{opacity:0}to{opacity:1}}
+@keyframes mm-in{from{opacity:0;transform:translateY(-12px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .ss-site .mobile-menu.open,.ss-site .mm-panel{animation:none}
+}
+
+/* El modal de la demo va por encima de la isla. */
+.ss-site .dm-backdrop{z-index:90}
+
+/* ---------- consistencia de forma con la isla ----------
+   Los controles comparten la píldora de la barra: botones, campos, el botón
+   de menú y los estados de hover de los links. */
+.ss-site .nav .links a{border-radius:999px}
+.ss-site .field input,.ss-site .field select{padding-inline:18px}
+.ss-site .field select{padding-right:44px;background-position:right 16px center}

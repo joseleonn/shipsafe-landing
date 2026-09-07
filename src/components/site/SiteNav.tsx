@@ -10,19 +10,23 @@ import { useScrollLock } from "./useScrollLock";
 import { onDemoModal } from "@/lib/demo-modal";
 
 /**
- * Barra del sitio (v3): en desktop con fondo desde el primer píxel y sombra
- * sutil al scrollear; en mobile transparente arriba del todo y blanca en
- * cuanto se scrollea (site.css). Los anclas van con "/" adelante para que
- * funcionen desde cualquier página.
+ * Barra del sitio: una isla flotante de vidrio (site.css). No ocupa lugar en
+ * el layout —es `position: fixed`—, así que el contenido pasa por debajo y se
+ * ve difuminado a través de ella. Al scrollear se vuelve un poco más sólida.
  *
- * En modo `minimal` (landings de campaña) queda solo el logo y el botón:
- * ninguna salida que no sea agendar.
+ * En modo `minimal` (landings de campaña) la isla lleva solo el logo y el
+ * botón: ninguna salida que no sea agendar.
  *
- * El menú mobile es una capa a pantalla completa con su propia barra (logo y
- * cruz) y con el scroll de la página bloqueado de verdad (useScrollLock).
- * Antes dependía de la barra pegajosa de abajo, y en iOS bastaba con deslizar
- * con el menú abierto para que la cruz se fuera con la página: no se podía
- * cerrar.
+ * En mobile el botón de menú despliega la isla: un panel de vidrio justo
+ * debajo, con el fondo atenuado y el scroll de la página bloqueado
+ * (useScrollLock, que es el único bloqueo que iOS respeta). La cruz para
+ * cerrar vive en la isla, que siempre está en pantalla: antes vivía en una
+ * capa que se iba con el scroll y el menú no se podía cerrar.
+ *
+ * El panel lleva los mismos ítems que la barra (más "Ingresar"), no una lista
+ * más larga: si es una isla que se despliega, tiene que quedar aire alrededor
+ * para cerrarla tocando afuera. Probalo y las preguntas frecuentes se
+ * descubren scrolleando y están en el pie.
  */
 export default function SiteNav({
   minimal = false,
@@ -58,6 +62,7 @@ export default function SiteNav({
   useEffect(() => onDemoModal(() => setOpen(false)), []);
 
   const close = () => setOpen(false);
+  const href = (h: string) => (h.startsWith("#") ? `/${h}` : h);
 
   if (minimal) {
     return (
@@ -78,14 +83,14 @@ export default function SiteNav({
 
   return (
     <>
-      <header className={`nav ${scrolled ? "scrolled" : ""}`} id="nav">
+      <header className={`nav ${scrolled ? "scrolled" : ""} ${open ? "open" : ""}`} id="nav">
         <div className="wrap">
-          <Link className="brand" href="/" aria-label="SHIPSAFE, inicio">
+          <Link className="brand" href="/" aria-label="SHIPSAFE, inicio" onClick={close}>
             <Wordmark priority />
           </Link>
           <nav className="links" aria-label="Principal">
             {NAV.map((l) => (
-              <Link key={l.href} href={l.href.startsWith("#") ? `/${l.href}` : l.href} className={"quiet" in l && l.quiet ? "quiet" : undefined}>
+              <Link key={l.href} href={href(l.href)} className={"quiet" in l && l.quiet ? "quiet" : undefined}>
                 {l.label}
               </Link>
             ))}
@@ -95,34 +100,35 @@ export default function SiteNav({
               Ingresar
             </a>
             <DemoLink section="nav" className="btn btn-primary btn-sm" />
-            <button className="burger" aria-expanded={open} aria-controls="mobile-menu" aria-label="Abrir menú" onClick={() => setOpen(true)}>
-              <Icon name="menu" />
+            <button
+              className="burger"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <Icon name={open ? "x" : "menu"} />
             </button>
           </div>
         </div>
       </header>
-      <div className={`mobile-menu ${open ? "open" : ""}`} id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden={!open}>
-        <div className="wrap">
-          <div className="mm-top">
-            <Link className="brand" href="/" aria-label="SHIPSAFE, inicio" onClick={close}>
-              <Wordmark />
-            </Link>
-            <button className="burger" aria-label="Cerrar menú" onClick={close}>
-              <Icon name="x" />
-            </button>
-          </div>
+
+      <div
+        className={`mobile-menu ${open ? "open" : ""}`}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú"
+        aria-hidden={!open}
+        onClick={close}
+      >
+        <div className="mm-panel" onClick={(e) => e.stopPropagation()}>
           <nav className="mm-links" aria-label="Menú">
             {NAV.map((l) => (
-              <Link key={l.href} href={l.href.startsWith("#") ? `/${l.href}` : l.href} className={"quiet" in l && l.quiet ? "quiet" : undefined} onClick={close}>
+              <Link key={l.href} href={href(l.href)} className={"quiet" in l && l.quiet ? "quiet" : undefined} onClick={close}>
                 {l.label}
               </Link>
             ))}
-            <Link href="/#probalo" onClick={close}>
-              Probalo
-            </Link>
-            <Link href="/#faq" onClick={close}>
-              Preguntas frecuentes
-            </Link>
             <a className="quiet" href={APP_URL}>
               Ingresar
             </a>

@@ -208,3 +208,10 @@
   .ss-site .ag-hero h1{font-size:34px}
   .ss-site .page .ag-req{padding-top:52px}
 }
+
+/* Aire para la barra isla (site.css define --nav-space). Va acá porque
+   pages.css se carga después de site.css y gana por orden. */
+.ss-site .page{padding-top:calc(var(--nav-space) + 10px)}
+.ss-site .page-hero{padding-top:calc(var(--nav-space) + 26px)}
+/* /demo/agendado tiene su propia barra en el flujo, no la isla. */
+.ss-site.ss-agendado .page{padding-top:0}
