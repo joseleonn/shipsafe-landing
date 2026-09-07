@@ -22,11 +22,26 @@ export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+/**
+ * Menú del sitio. Cada ítem responde una pregunta distinta del que compra:
+ * qué es, cómo funciona, a quién le funcionó, cuánto sale, soy consultor.
+ *
+ * Dos criterios que se aprendieron probando (07/09/2026):
+ *  - El orden del menú sigue el orden real de la página. Antes "Plataforma"
+ *    estaba primero y llevaba MÁS ABAJO que "Roles", que estaba segundo.
+ *  - "Precios" apunta a la PÁGINA /precios, no al resumen de la home. La
+ *    propia sección de la home dice "detalle de cada línea en la página de
+ *    precios": mandar al resumen es hacerle dar dos pasos al que ya decidió
+ *    que quiere ver el precio.
+ *
+ * "Roles" salió del menú: es un título de sección, no algo que alguien busque
+ * en una barra. La sección sigue en la página, entre Plataforma y el flujo.
+ */
 export const NAV = [
   { label: "Plataforma", href: "#plataforma" },
-  { label: "Roles", href: "#roles" },
   { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Precios", href: "#precios" },
+  { label: "Casos", href: "#caso" },
+  { label: "Precios", href: "/precios" },
   { label: "Consultores", href: "/consultores", quiet: true },
 ] as const;
 
@@ -318,8 +333,9 @@ export const FOOTER = {
     { label: "Plataforma", href: "#plataforma" },
     { label: "Roles", href: "#roles" },
     { label: "Cómo funciona", href: "#como-funciona" },
+    { label: "Casos", href: "#caso" },
     { label: "Probalo", href: "#probalo" },
-    { label: "Precios", href: "#precios" },
+    { label: "Precios", href: "/precios" },
     { label: "Programa de consultores", href: "/consultores" },
     { label: "Ingresar", href: APP_URL },
   ],
