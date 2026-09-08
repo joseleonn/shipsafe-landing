@@ -20,8 +20,8 @@ export const metadata: Metadata = {
  * to your redirected page" activado.
  *
  * Criterio de esta página: **acompaña al video, no compite con él.** Todo lo que
- * el video ya explica —que no es una demo genérica, que queremos un problema
- * concreto, que conviene que esté quien decide— acá no se vuelve a desarrollar.
+ * el video ya explica (que no es una demo genérica, que queremos un problema
+ * concreto, que conviene que esté quien decide) acá no se vuelve a desarrollar.
  * La página confirma, presenta el video y resume las dos cosas que hacen falta.
  *
  * Lo que NO va acá, a propósito: funcionalidades, beneficios, testimonios,

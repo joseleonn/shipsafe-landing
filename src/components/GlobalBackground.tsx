@@ -23,7 +23,7 @@ export default function GlobalBackground() {
       {isDesktop ? (
         <DottedSurface />
       ) : (
-        /* Static radial gradient on mobile — no JS animation overhead */
+        /* Static radial gradient on mobile, no JS animation overhead */
         <div
           className="h-full w-full"
           style={{

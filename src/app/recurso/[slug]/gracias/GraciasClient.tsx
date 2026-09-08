@@ -81,8 +81,8 @@ export default function GraciasClient({ titulo, archivo, archivoListo }: Props) 
       {/* La entrega va acá arriba, en una franja, y no en un botón grande en el
           medio de la página. Si el botón de descarga es lo más prominente, la
           persona lo aprieta y se va: ya consiguió lo que vino a buscar y el
-          resto de la página no existe. Achicándolo se entrega igual —el archivo
-          se baja en el momento— pero la atención queda libre para el video. */}
+          resto de la página no existe. Achicándolo se entrega igual (el archivo
+          se baja en el momento) pero la atención queda libre para el video. */}
       <div className="border-b border-emerald-400/20 bg-emerald-400/[0.08]">
         <div className="mx-auto flex max-w-3xl flex-wrap items-baseline gap-x-3 gap-y-1 px-6 py-3 text-sm">
           <span className="font-semibold text-emerald-300">Listo, ya es tuyo.</span>
@@ -148,7 +148,7 @@ export default function GraciasClient({ titulo, archivo, archivoListo }: Props) 
           <section>
             {/* La oferta continúa el recurso, no cambia de tema.
                 La versión anterior arrancaba con "ya que estás" y saltaba a
-                describir el producto —QR, autoelevador, tableros—. Alguien que
+                describir el producto (QR, autoelevador, tableros). Alguien que
                 vino por unos checklists y se encuentra con eso siente el salto,
                 porque es un salto. Acá se nombra lo que el PDF no puede
                 resolver, que es lo que la persona ya sabe que le pasa, y recién

@@ -57,12 +57,6 @@
 .ss-site .nav-cta .login:hover{color:var(--text)}
 .ss-site .burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;border-radius:var(--r-ctl)}
 .ss-site .burger .ico{width:22px;height:22px}
-.ss-site .mobile-menu{display:none;position:fixed;inset:64px 0 0 0;z-index:49;background:var(--bg);padding:8px 24px 24px;border-top:1px solid var(--line);overflow:auto}
-.ss-site .mobile-menu.open{display:block}
-.ss-site .mobile-menu a{display:block;padding:16px 4px;border-bottom:1px solid var(--line);font-size:18px;font-weight:500;font-family:var(--display)}
-.ss-site .mobile-menu a.quiet{color:var(--muted);font-family:var(--font);font-size:16px}
-.ss-site .mobile-menu .btn{width:100%;margin-top:20px;display:flex}
-.ss-site.menu-open{overflow:hidden}
 .ss-site .hero{padding-block:88px 0;overflow:hidden}
 .ss-site .hero-bg{position:absolute;inset:0;pointer-events:none;
   background:
@@ -373,7 +367,7 @@
      se anidan bien las esquinas. */
   --r-ctl:999px; --r-card:22px; --r-lg:26px; --r-phone:36px;
   --sec:136px; --container:1200px;
-  --ease:cubic-bezier(.2,.8,.2,1); --dur:420ms; --fast:180ms;
+  --ease:cubic-bezier(.2,.8,.2,1); --out:cubic-bezier(.4,0,.2,1); --dur:420ms; --fast:180ms;
   --shadow-frame:0 40px 100px -40px rgba(11,31,59,.35), 0 0 0 1px rgba(11,31,59,.06);
   --shadow-card:0 1px 2px rgba(11,31,59,.04), 0 12px 32px -20px rgba(11,31,59,.18);
 }
@@ -394,7 +388,6 @@
 .ss-site .brand{color:var(--navy)}
 .ss-site .links a{color:var(--text-2)}
 .ss-site .links a:hover{color:var(--text);background:var(--bg-2)}
-.ss-site .mobile-menu{background:#fff}
 .ss-site .hero{padding-top:104px}
 .ss-site .hero-bg{background:radial-gradient(ellipse 55% 45% at 85% 0%,rgba(0,92,214,.12),transparent 60%),radial-gradient(ellipse 40% 30% at 10% 20%,rgba(0,92,214,.05),transparent 60%)}
 .ss-site .hero-bg::before{background-image:linear-gradient(rgba(11,31,59,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(11,31,59,.06) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 55% at 50% 20%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 20%,#000 10%,transparent 70%)}
@@ -560,35 +553,62 @@
 .ss-site .ex-gh{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 12px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}
 .ss-site .ex-gh{justify-content:space-between}
 .ss-site .ex-gh .n{color:var(--muted);font-weight:400;letter-spacing:.06em;text-transform:none;font-size:11px}
-.ss-site .ex-item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:10px 12px;border-radius:10px;color:var(--text-2);font-size:15px;line-height:1.3;border-left:2px solid transparent;transition:background-color var(--fast),color var(--fast),border-color var(--fast)}
+.ss-site .ex-item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:10px 16px;border-radius:var(--r-ctl);color:var(--text-2);font-size:15px;line-height:1.3;transition:background-color var(--fast),color var(--fast)}
+.ss-site .ex-item .t{flex:1;min-width:0}
+/* Cuántas pantallas tiene el recorrido de ese módulo. */
+.ss-site .ex-item .ex-n{flex:none;font-family:var(--mono);font-size:10.5px;color:var(--muted);width:19px;height:19px;border-radius:var(--r-ctl);border:1px solid var(--line-2);display:grid;place-items:center}
 .ss-site .ex-item .i{font-family:var(--mono);font-size:11.5px;color:var(--muted);width:20px;flex:none;transition:color var(--fast)}
 .ss-site .ex-item:hover{background:var(--bg-2);color:var(--text)}
-.ss-site .ex-item.is-active{background:var(--accent-soft);color:var(--text);font-weight:500;border-left-color:var(--accent);border-radius:0 10px 10px 0}
+.ss-site .ex-item.is-active{background:var(--accent-soft);color:var(--text);font-weight:500}
+.ss-site .ex-item.is-active .ex-n{border-color:var(--accent);color:var(--accent-ink)}
 .ss-site .ex-item.is-active .i{color:var(--accent)}
-.ss-site .ex-preview{position:sticky;top:88px}
+.ss-site .ex-preview{position:sticky;top:calc(var(--nav-space) + 16px)}
 .ss-site .ex-panel{opacity:0;transform:translateY(6px);transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ss-site .ex-panel.is-active{opacity:1;transform:none}
 .ss-site .ex-panel[hidden]{display:none}
-.ss-site .ex-frame{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;min-height:460px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ss-site .ex-frame{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;min-height:410px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .ss-site .ex-frame::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 60%,rgba(0,92,214,.10),transparent 70%);pointer-events:none}
 .ss-site .ex-frame .frame{position:relative}
 .ss-site .ex-frame .frame.browser{width:100%;box-shadow:0 30px 70px -30px rgba(11,31,59,.35),0 0 0 1px rgba(11,31,59,.06)}
 .ss-site .ex-frame .frame.phone{width:236px}
-.ss-site .ex-copy{margin-top:22px;max-width:60ch}
+.ss-site .ex-copy{margin-bottom:18px;max-width:60ch;min-height:132px}
 .ss-site .ex-copy .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
 .ss-site .ex-copy h3{font-size:26px;letter-spacing:-.02em}
 .ss-site .ex-copy p{margin-top:8px;color:var(--text-2);font-size:16px}
+
+/* ---------- el recorrido del módulo ----------
+   Riel de pasos con flechas a los costados. Todo comparte el radio de la isla:
+   las flechas son círculos y cada paso una píldora. Con un solo paso (los
+   módulos de configuración) este bloque no se renderiza. */
+.ss-site .ex-pasos{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ss-site .ex-arrow{flex:none;width:34px;height:34px;border-radius:var(--r-ctl);border:1px solid var(--line-2);background:#fff;color:var(--text-2);display:grid;place-items:center;transition:border-color var(--fast),color var(--fast),background-color var(--fast)}
+.ss-site .ex-arrow:hover{border-color:var(--text);color:var(--navy)}
+.ss-site .ex-arrow .ico{width:17px;height:17px}
+.ss-site .ex-rail{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.ss-site .ex-rail::-webkit-scrollbar{display:none}
+.ss-site .ex-rail li{flex:1;min-width:0}
+.ss-site .ex-rail button{display:flex;align-items:center;gap:8px;width:100%;padding:7px 14px 7px 8px;border-radius:var(--r-ctl);border:1px solid var(--line);background:#fff;color:var(--muted);font-size:13px;line-height:1.25;text-align:left;transition:border-color var(--fast),color var(--fast),background-color var(--fast)}
+.ss-site .ex-rail .i{flex:none;width:20px;height:20px;border-radius:var(--r-ctl);background:var(--bg-2);font-family:var(--mono);font-size:10.5px;display:grid;place-items:center;color:var(--muted);transition:background-color var(--fast),color var(--fast)}
+.ss-site .ex-rail .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ss-site .ex-rail button:hover{border-color:var(--line-2);color:var(--text-2)}
+.ss-site .ex-rail .is-done{color:var(--text-2)}
+.ss-site .ex-rail .is-done .i{background:var(--accent-soft);color:var(--accent-ink)}
+.ss-site .ex-rail .is-active{border-color:var(--accent);background:var(--accent-soft);color:var(--navy);font-weight:500}
+.ss-site .ex-rail .is-active .i{background:var(--accent);color:#fff}
+.ss-site .ex-shot{width:100%;display:flex;align-items:center;justify-content:center}
+/* Contador para cuando el riel se corta o no se ve (celular). */
+.ss-site .ex-cuenta{position:absolute;right:14px;bottom:12px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:var(--r-ctl);padding:3px 10px}
 .ss-site .chips-row{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
 .ss-site .chips-row li{font-family:var(--font);font-size:13.5px;padding:8px 14px}
 .ss-site .tryit{background:var(--bg);border-top:1px solid var(--line)}
-.ss-site .try-card{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:48px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:28px;padding:56px}
+.ss-site .try-card{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:48px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:56px}
 .ss-site .try-card h2{font-size:clamp(30px,3.6vw,44px)}
 .ss-site .try-steps{margin-top:26px;display:grid;gap:12px}
 .ss-site .try-steps li{display:flex;gap:12px;align-items:flex-start;color:var(--text-2);font-size:15.5px}
 .ss-site .try-steps .n{width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--line-2);font-family:var(--mono);font-size:12px;display:grid;place-items:center;color:var(--accent-ink);flex:none}
 .ss-site .try-mobile{display:none;margin-top:22px}
 .ss-site .try-visual{display:flex;align-items:center;justify-content:center;gap:36px}
-.ss-site .qr{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 18px 14px;box-shadow:var(--shadow-card);display:grid;gap:10px;justify-items:center}
+.ss-site .qr{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:18px 18px 14px;box-shadow:var(--shadow-card);display:grid;gap:10px;justify-items:center}
 .ss-site .qr img{width:200px;height:200px;image-rendering:pixelated;image-rendering:crisp-edges}
 .ss-site .qr-cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
 .ss-site .qr-cap .ico{width:14px;height:14px}
@@ -606,6 +626,13 @@
 .ss-site .ex-frame{min-height:0;padding:20px}
 .ss-site .ex-frame .frame.phone{width:200px}
 .ss-site .ex-list{gap:18px}
+.ss-site .ex-copy{min-height:0;margin-bottom:14px}
+/* Al elegir un módulo la vista previa sube sola: que no quede debajo de la isla. */
+.ss-site .ex-preview{scroll-margin-top:calc(var(--nav-space) + 8px)}
+.ss-site .ex-pasos{gap:8px}
+.ss-site .ex-rail .t{display:none}
+.ss-site .ex-rail li{flex:none}
+.ss-site .ex-rail button{padding:7px;justify-content:center}
 .ss-site .try-card{grid-template-columns:1fr;padding:28px;gap:28px}
 .ss-site .try-mobile{display:inline-flex}
 .ss-site .qr{display:none}
@@ -764,19 +791,6 @@
   .ss-site .stage .chip-slot{display:contents}
 }
 
-/* ---------- mobile v3.2 ----------
-   Menú: capa a pantalla completa con su propia barra (logo + cruz), por
-   encima de todo, con scroll propio. Hero: se mete debajo de la barra (que
-   en mobile es transparente) y el lavado azul llega hasta el borde superior. */
-.ss-site .mobile-menu{inset:0;z-index:70;padding:0;border-top:0;background:#fff;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-.ss-site .mobile-menu>.wrap{padding-bottom:36px}
-.ss-site .mobile-menu .mm-top{position:sticky;top:0;z-index:1;background:#fff;display:flex;align-items:center;justify-content:space-between;height:64px;margin-bottom:6px}
-.ss-site .mobile-menu .mm-top a{display:inline-flex;padding:0;border:0;font:inherit}
-.ss-site .mobile-menu .mm-top .burger{display:inline-flex}
-.ss-site .mobile-menu .mm-links a{display:block;padding:15px 4px;border-bottom:1px solid var(--line);font-size:19px;font-weight:600;font-family:var(--display);letter-spacing:-.01em;color:var(--text)}
-.ss-site .mobile-menu .mm-links a.quiet{color:var(--muted);font-family:var(--font);font-size:16px;font-weight:500}
-.ss-site .mobile-menu .btn{width:100%;margin-top:26px;display:flex;padding:0 24px;border-bottom:0}
-
 /* Hero debajo de la barra: la barra mide 64 px y es sticky, así que el hero
    sube 64 px y compensa con padding. El color de arriba es el que se ve a
    través de la barra transparente en mobile (y teñido, en desktop). */
@@ -913,9 +927,18 @@
 .ss-site section[id]{scroll-margin-top:calc(var(--nav-space) + 8px)}
 
 /* ---------- menú mobile: la isla se despliega ---------- */
-.ss-site .mobile-menu{display:none;position:fixed;inset:0;z-index:60;padding:0;border:0;overflow:hidden;
-  background:rgba(11,31,59,.32);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-.ss-site .mobile-menu.open{display:block;animation:mm-fade .2s var(--ease)}
+/* Se queda montado y oculto (visibility), no `display:none`: así el cierre
+   también se anima. La visibilidad espera a que termine el fundido al cerrar
+   (transition-delay) y se aplica al instante al abrir. */
+.ss-site .mobile-menu{position:fixed;inset:0;z-index:60;padding:0;border:0;overflow:hidden;
+  background:rgba(11,31,59,.32);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  opacity:0;visibility:hidden;
+  /* La curva de entrada (--ease) arranca muy rápido: perfecta para abrir,
+     pero al cerrar entrega casi todo en los primeros 60 ms y se lee como un
+     corte. La salida usa una curva pareja y un poco más larga. */
+  transition:opacity .26s var(--out),visibility 0s linear .26s}
+.ss-site .mobile-menu.open{opacity:1;visibility:visible;
+  transition:opacity .2s var(--ease),visibility 0s}
 .ss-site .mm-panel{position:absolute;left:12px;right:12px;top:calc(var(--nav-top) + var(--nav-h) + 8px);
   max-height:calc(100vh - var(--nav-top) - var(--nav-h) - 28px);max-height:calc(100dvh - var(--nav-top) - var(--nav-h) - 28px);
   overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
@@ -923,16 +946,18 @@
   background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
   border:1px solid rgba(255,255,255,.8);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(11,31,59,.06),0 26px 60px -22px rgba(11,31,59,.5);
-  animation:mm-in .26s var(--ease)}
+  /* Sale de la isla y vuelve a ella: el origen es el borde de arriba. */
+  transform-origin:top center;opacity:0;transform:translateY(-12px) scale(.96);
+  transition:opacity .24s var(--out),transform .28s var(--out)}
+.ss-site .mobile-menu.open .mm-panel{opacity:1;transform:none;
+  transition:opacity .2s var(--ease),transform .28s var(--ease)}
 .ss-site .mm-panel .mm-links a{display:block;padding:13px 2px;border-bottom:1px solid rgba(11,31,59,.09);
   font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--navy)}
 .ss-site .mm-panel .mm-links a:last-child{border-bottom:0}
 .ss-site .mm-panel .mm-links a.quiet{font-family:var(--font);font-size:16px;font-weight:500;color:var(--muted)}
 .ss-site .mm-panel .btn{width:100%;margin-top:14px;display:flex;padding:0 24px;border-bottom:0}
-@keyframes mm-fade{from{opacity:0}to{opacity:1}}
-@keyframes mm-in{from{opacity:0;transform:translateY(-12px) scale(.97)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){
-  .ss-site .mobile-menu.open,.ss-site .mm-panel{animation:none}
+  .ss-site .mobile-menu,.ss-site .mobile-menu.open,.ss-site .mm-panel{transition-duration:0s}
 }
 
 /* El modal de la demo va por encima de la isla. */
@@ -945,28 +970,7 @@
 .ss-site .field input,.ss-site .field select{padding-inline:18px}
 .ss-site .field select{padding-right:44px;background-position:right 16px center}
 
-/* ---------- 02 · el circuito ----------
-   Una fila de pasos encadenados. En vez de "16 módulos" (cantidad), muestra
-   que las piezas están unidas (sistema). En mobile se apila y la línea que
-   los une pasa de horizontal a vertical. */
-.ss-site .circuito{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin:34px 0 0;counter-reset:c;position:relative}
-.ss-site .circuito li{position:relative;padding:16px 12px 18px;text-align:center;display:grid;gap:3px;align-content:start}
-/* la línea que encadena: nace en el centro de cada paso y llega al siguiente */
-.ss-site .circuito li::before{content:"";position:absolute;left:50%;right:-50%;top:11px;height:2px;background:var(--line-2)}
-.ss-site .circuito li:last-child::before{display:none}
-.ss-site .circuito .n{width:22px;height:22px;margin:0 auto 8px;border-radius:50%;background:#fff;border:1px solid var(--line-2);
-  color:var(--accent-ink);font-family:var(--mono);font-size:10.5px;display:grid;place-items:center;position:relative;z-index:1}
-.ss-site .circuito b{font-family:var(--display);font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text)}
-.ss-site .circuito small{font-size:12.5px;color:var(--muted);line-height:1.35}
-.ss-site .circuito-nota{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px;font-size:13.5px;color:var(--muted)}
-.ss-site .circuito-nota em{font-style:normal;padding:5px 12px;border-radius:999px;border:1px solid var(--line-2);background:#fff;color:var(--text-2);font-size:13px}
-.ss-site .ex-intro{margin-top:30px;color:var(--text-2);font-size:16px;max-width:60ch}
-@media (max-width:900px){
-  .ss-site .circuito{grid-template-columns:1fr 1fr;gap:4px 18px}
-  .ss-site .circuito li{text-align:left;padding:10px 0}
-  .ss-site .circuito li::before{display:none}
-  .ss-site .circuito .n{margin:0 0 6px}
-}
+.ss-site .ex-intro{margin-top:26px;color:var(--text-2);font-size:16px;max-width:60ch}
 
 /* ---------- 04 · un estándar ----------
    Una plantilla arriba, tres sedes en el medio, un criterio abajo. Todo con

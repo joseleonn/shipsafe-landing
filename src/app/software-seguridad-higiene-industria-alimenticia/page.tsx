@@ -27,7 +27,7 @@ export default function Page() {
       <h2>Riesgos específicos de una planta de alimentos</h2>
       <p>
         La industria alimenticia combina los riesgos de seguridad e higiene
-        laboral comunes a toda planta industrial con desafíos propios. Un{" "}
+        laboral comunes a toda planta industrial con problemas propios del rubro. Un{" "}
         <strong>software de seguridad e higiene</strong> para el sector tiene que
         contemplar esa doble exigencia: la seguridad del operario y la inocuidad
         del producto.

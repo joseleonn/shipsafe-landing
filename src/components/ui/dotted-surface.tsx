@@ -73,7 +73,7 @@ export default function DottedSurface({
     camera.position.set(0, 8, 14);
     camera.lookAt(0, 0, 0);
 
-    // Geometry — grid of dots
+    // Geometry: grid of dots
     const positions = new Float32Array(dotCount * 3);
     const baseY = new Float32Array(dotCount);
     const halfGrid = (gridSize * spacing) / 2;

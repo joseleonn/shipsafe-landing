@@ -37,7 +37,7 @@ export const RECURSOS: Record<string, Recurso> = {
     kicker: "Para responsables de Seguridad e Higiene",
     titulo: "10 checklists listos para usar en planta, y qué hacer con cada No OK",
     subtitulo:
-      "Cuando llenar la planilla cuesta más que la tarea que estás controlando, la planilla no se llena. No es un problema de disciplina: es cómo está diseñado el checklist. Acá van los diez que más se usan —cortos, concretos y accionables—, con qué mirar en cada punto y qué hacer cuando algo da No OK: quién se hace cargo, en cuánto tiempo y con qué evidencia se cierra.",
+      "Cuando llenar la planilla cuesta más que la tarea que estás controlando, la planilla no se llena. Casi nunca es un problema de disciplina: es cómo está armado el checklist. Acá van los diez que más se usan, cortos y sin ítems de relleno, con qué mirar en cada punto y qué hacer cuando algo da No OK: quién se hace cargo, en cuánto tiempo y con qué evidencia se cierra.",
     incluye: [
       "Los 10 checklists completos, listos para imprimir o cargar en tu sistema",
       "Qué mirar en cada punto, no solo qué tildar",

@@ -17,13 +17,13 @@ export default function Standard({ num = "04" }: { num?: string | null }) {
     <section className="standard dotted" id="estandar">
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num">{num && <span>{num}</span>}Un estándar</div>
+          <div className="eyebrow num">{num && <span>{num}</span>}Varias sucursales</div>
           <h2>
-            Una empresa. <em>Un estándar.</em>
+            El mismo checklist <em>en todas tus sucursales.</em>
           </h2>
           <p className="lede">
-            Cinco sucursales pueden tener cinco formas de hacer la misma inspección. Acá la plantilla se arma una vez y se usa en todos los
-            establecimientos, así lo que mide una sucursal significa lo mismo que lo que mide la otra.
+            Cinco sucursales terminan con cinco formas de hacer la misma inspección. Acá la plantilla se arma una vez y baja igual a todas,
+            así lo que mide una significa lo mismo que lo que mide la otra.
           </p>
         </div>
 

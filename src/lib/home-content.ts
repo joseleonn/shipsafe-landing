@@ -10,6 +10,8 @@
  * capturas son del producto real; si algo no existe, no se muestra.
  */
 import { GESTION_OPCIONES } from "./calificacion";
+import { RECORRIDOS, type PasoDef } from "./recorridos";
+import { CAPTURAS_V4 } from "./capturas-v4";
 
 export const CALENDLY_URL = "https://calendly.com/shipsoftwareteam/30min";
 export const WHATSAPP_NUMBER = "5493413067158";
@@ -56,7 +58,7 @@ export const HERO = {
   videoDuration: "1:30",
   proof: [
     "En producción con flota y frentes remotos",
-    "Sin instalar nada: QR y navegador",
+    "Funciona en el navegador, sin instalar nada",
     "Varias sucursales, una sola cuenta",
     "Informes y estadísticas listos para presentar",
   ],
@@ -168,74 +170,135 @@ export const ROLES = [
   },
 ] as const;
 
+/**
+ * Un paso del recorrido de un módulo: una captura y la frase que la explica.
+ * `label` es el nombre corto que va en el riel de pasos; queda vacío cuando el
+ * módulo es una sola pantalla (los de configuración) y ahí no hay riel.
+ */
+export interface ModuleStep {
+  label: string;
+  text: string;
+  shot: Shot;
+}
 export interface ModuleItem {
   id: string;
   title: string;
-  text: string;
-  shot: Shot;
+  /** Uno o varios pasos. Con uno solo el módulo se ve como antes. */
+  steps: ModuleStep[];
 }
 export interface ModuleGroup {
   name: string;
   items: ModuleItem[];
 }
 
-export const MODULE_GROUPS: ModuleGroup[] = [
+/**
+ * La base: cada módulo con su captura vieja (v3) como paso único. Es lo que
+ * se ve mientras no estén todas las capturas nuevas de ese módulo.
+ */
+const MODULE_GROUPS_BASE: ModuleGroup[] = [
   {
     name: "Operación",
     items: [
-      { id: "insp", title: "Inspecciones y checklists con QR", text: "Checklists totalmente personalizables: los armás desde cero o partís de plantillas listas para usar (extintores, vehículos, andamios, tableros, EPP…). Preuso y postuso, asignados a cada equipo con su código QR.", shot: SHOTS.checklists },
-      { id: "exec", title: "Ejecución desde el celular", text: "El operario escanea el QR, responde OK / NO OK / N/A, adjunta la foto y firma. Desde el navegador: sin app y sin cuenta que crear.", shot: SHOTS.pChecklist },
-      { id: "desv", title: "Desvíos con dueño y fecha", text: "Cada NO OK genera un desvío con equipo, sucursal, origen, prioridad y plazo. Se filtra por estado, se asigna, se exporta a PDF.", shot: SHOTS.desvios },
-      { id: "desvm", title: "Seguimiento hasta el cierre", text: "Del problema y de la resolución, con historial de cambios: quién lo abrió, quién lo resolvió, cuándo, y el link a la ejecución que lo originó.", shot: SHOTS.desvioDetalle },
-      { id: "perm", title: "Permisos de trabajo", text: "Trabajo en caliente, en altura, espacio confinado. Borrador → pendiente → aprobado → en ejecución, con solicitante, ejecutante y autorizante.", shot: SHOTS.permisos },
-      { id: "firm", title: "Firmas y aprobaciones a distancia", text: "Checklist de condiciones, firma del solicitante y del ejecutante, historial de estados. Se revisa y se aprueba desde otra sucursal, sin frenar la tarea.", shot: SHOTS.permisoFirmas },
+      { id: "insp", title: "Inspecciones y checklists con QR", steps: [
+        { label: "", text: "Los checklists los armás vos, desde cero o partiendo de plantillas listas (extintores, vehículos, andamios, tableros, EPP…). Preuso y postuso, asignados a cada equipo con su código QR.", shot: SHOTS.checklists },
+      ] },
+      { id: "exec", title: "Ejecución desde el celular", steps: [
+        { label: "", text: "El operario escanea el QR, responde OK / NO OK / N/A, adjunta la foto y firma. Desde el navegador: sin app y sin cuenta que crear.", shot: SHOTS.pChecklist },
+      ] },
+      { id: "desv", title: "Desvíos con dueño y fecha", steps: [
+        { label: "El listado", text: "Cada NO OK genera un desvío con equipo, sucursal, origen, prioridad y plazo.", shot: SHOTS.desvios },
+        { label: "Adentro", text: "El problema, la resolución y el historial de quién tocó qué y cuándo.", shot: SHOTS.desvioDetalle },
+        { label: "En el celular", text: "Lo mismo en el teléfono de mantenimiento, sin abrir la computadora.", shot: SHOTS.mDesvios },
+      ] },
+      { id: "desvm", title: "Seguimiento hasta el cierre", steps: [
+        { label: "", text: "Del problema y de la resolución, con historial de cambios: quién lo abrió, quién lo resolvió, cuándo, y el link a la ejecución que lo originó.", shot: SHOTS.desvioDetalle },
+      ] },
+      { id: "perm", title: "Permisos de trabajo", steps: [
+        { label: "", text: "Trabajo en caliente, en altura, espacio confinado. Borrador → pendiente → aprobado → en ejecución, con solicitante, ejecutante y autorizante.", shot: SHOTS.permisos },
+      ] },
+      { id: "firm", title: "Firmas y aprobaciones a distancia", steps: [
+        { label: "", text: "Checklist de condiciones, firma del solicitante y del ejecutante, historial de estados. Se revisa y se aprueba desde otra sucursal, sin frenar la tarea.", shot: SHOTS.permisoFirmas },
+      ] },
     ],
   },
   {
     name: "Personas y recursos",
     items: [
-      { id: "epp", title: "Entregas de EPP con firma", text: "Entregas individuales o masivas, pendientes de firma y firmadas, constancia en PDF. Catálogo, convenios y stock en la misma pantalla.", shot: SHOTS.epp },
-      { id: "eppm", title: "El pañol en el celular", text: "El pañolero entrega, el operario firma en el momento con conformidad, y queda la constancia. Nada de planillas que se pierden.", shot: SHOTS.mEpp },
-      { id: "cap", title: "Capacitaciones", text: "Programa anual, límite por capacitación, duración, asistencia y examen. Las legales, marcadas; las vencidas, a la vista.", shot: SHOTS.capacitaciones },
-      { id: "equ", title: "Equipamiento con QR y vencimientos", text: "Inventario con código, tipo, sucursal, sector, estado y vencimiento. Exportá los QR, pegalos en cada equipo, y el checklist se abre desde ahí.", shot: SHOTS.equipamiento },
+      { id: "epp", title: "Entregas de EPP con firma", steps: [
+        { label: "", text: "Entregas individuales o masivas, pendientes de firma y firmadas, constancia en PDF. Catálogo, convenios y stock en la misma pantalla.", shot: SHOTS.epp },
+      ] },
+      { id: "eppm", title: "El pañol en el celular", steps: [
+        { label: "", text: "El pañolero entrega, el operario firma en el momento con conformidad, y queda la constancia. Nada de planillas que se pierden.", shot: SHOTS.mEpp },
+      ] },
+      { id: "cap", title: "Capacitaciones", steps: [
+        { label: "", text: "Programa anual, límite por capacitación, duración, asistencia y examen. Las legales, marcadas; las vencidas, a la vista.", shot: SHOTS.capacitaciones },
+      ] },
+      { id: "equ", title: "Equipamiento con QR y vencimientos", steps: [
+        { label: "", text: "Inventario con código, tipo, sucursal, sector, estado y vencimiento. Exportá los QR, pegalos en cada equipo, y el checklist se abre desde ahí.", shot: SHOTS.equipamiento },
+      ] },
     ],
   },
   {
     name: "Cumplimiento",
     items: [
-      { id: "med", title: "Mediciones reglamentarias", text: "Puesta a tierra, ruido, iluminación, carga térmica, agua, contaminantes, vibraciones, ergonomía: cada una con su resolución, su unidad y su límite.", shot: SHOTS.mediciones },
-      { id: "acc", title: "Accidentes e investigación", text: "Registro con gravedad, tipo y estado de la investigación, con aviso de los plazos de denuncia. Con imágenes y análisis de causa raíz.", shot: SHOTS.accidentes },
-      { id: "mapa", title: "Matrices y mapa de la organización", text: "Lo que las matrices de riesgo exigen, cruzado con lo que la empresa hizo: sin cumplir, vencidas, vencen en 30 días, por sector y por responsable.", shot: SHOTS.mapa },
+      { id: "med", title: "Mediciones reglamentarias", steps: [
+        { label: "", text: "Puesta a tierra, ruido, iluminación, carga térmica, agua, contaminantes, vibraciones, ergonomía: cada una con su resolución, su unidad y su límite.", shot: SHOTS.mediciones },
+      ] },
+      { id: "acc", title: "Accidentes e investigación", steps: [
+        { label: "", text: "Registro con gravedad, tipo y estado de la investigación, con aviso de los plazos de denuncia. Con imágenes y análisis de causa raíz.", shot: SHOTS.accidentes },
+      ] },
+      { id: "mapa", title: "Matrices y mapa de la organización", steps: [
+        { label: "", text: "Lo que las matrices de riesgo exigen, cruzado con lo que la empresa hizo: sin cumplir, vencidas, vencen en 30 días, por sector y por responsable.", shot: SHOTS.mapa },
+      ] },
     ],
   },
   {
     name: "Gestión",
     items: [
-      { id: "dash", title: "Lo que requiere atención, hoy", text: "Desvíos activos y vencidos, checklists pendientes, equipos a revisar y permisos esperando autorización, con el botón para completar desde ahí.", shot: SHOTS.dashboard },
-      { id: "kpi", title: "Tableros para la gerencia", text: "Desvíos por estado y prioridad, equipos por estado, mapa de lesiones, top de desvíos por sector. Sin armar nada a mano, y con resumen mensual por mail.", shot: SHOTS.dashboardCharts },
-      { id: "mob", title: "Todo también en el celular", text: "La misma plataforma en el teléfono del supervisor: desvíos, permisos, equipos, EPP y tablero. Para recorrer la planta con los datos en la mano.", shot: SHOTS.mPermisos },
+      { id: "dash", title: "Lo que requiere atención, hoy", steps: [
+        { label: "", text: "Desvíos activos y vencidos, checklists pendientes, equipos a revisar y permisos esperando autorización, con el botón para completar desde ahí.", shot: SHOTS.dashboard },
+      ] },
+      { id: "kpi", title: "Tableros para la gerencia", steps: [
+        { label: "", text: "Desvíos por estado y prioridad, equipos por estado, mapa de lesiones, top de desvíos por sector. Sin armar nada a mano, y con resumen mensual por mail.", shot: SHOTS.dashboardCharts },
+      ] },
+      { id: "mob", title: "Todo también en el celular", steps: [
+        { label: "", text: "La misma plataforma en el teléfono del supervisor: desvíos, permisos, equipos, EPP y tablero. Para recorrer la planta con los datos en la mano.", shot: SHOTS.mPermisos },
+      ] },
     ],
   },
 ];
 
 /**
- * El circuito. No es una lista de módulos: es el camino que hace un hallazgo
- * desde que alguien lo ve hasta que se convierte en un número que se puede
- * mostrar. Es el reencuadre de "dieciséis módulos": lo que vende no es la
- * cantidad, es que las piezas están encadenadas.
+ * Enciende el recorrido de un módulo solo cuando están TODAS sus capturas en
+ * el inventario. Con una sola que falte, ese módulo sigue mostrando la
+ * captura vieja: nunca se apunta a un archivo que no existe, y las capturas
+ * se pueden ir subiendo de a tandas.
+ *
+ * Para regenerar el inventario después de agregar archivos:
+ *
+ *     node scripts/capturas.mjs
  */
-export const CIRCUITO = [
-  { n: "01", label: "Inspección", meta: "QR y checklist" },
-  { n: "02", label: "Desvío", meta: "nace del NO OK" },
-  { n: "03", label: "Responsable", meta: "con fecha límite" },
-  { n: "04", label: "Acción", meta: "lo que se hizo" },
-  { n: "05", label: "Evidencia", meta: "foto y firma" },
-  { n: "06", label: "Cierre", meta: "con historial" },
-  { n: "07", label: "Análisis", meta: "indicadores" },
-] as const;
+function aPaso(d: PasoDef): ModuleStep {
+  const [width, height] = CAPTURAS_V4[d.file];
+  const src = `/screenshots/v4/${d.file}`;
+  return {
+    label: d.label,
+    text: d.text,
+    shot:
+      d.kind === "phone"
+        ? { kind: "phone", src, alt: d.alt, width, height }
+        : { kind: "browser", src, url: d.url ?? "app.shipsafe.lat", alt: d.alt, width, height },
+  };
+}
 
-/** Las otras puertas de entrada al mismo circuito. */
-export const CIRCUITO_ENTRADAS = ["EPP", "Capacitaciones", "Mediciones", "Permisos de trabajo", "Accidentes", "Matrices de riesgo", "Vencimientos"] as const;
+export const MODULE_GROUPS: ModuleGroup[] = MODULE_GROUPS_BASE.map((g) => ({
+  ...g,
+  items: g.items.map((it) => {
+    const r = RECORRIDOS[it.id];
+    const completo = r && r.length > 0 && r.every((d) => CAPTURAS_V4[d.file]);
+    return completo ? { ...it, steps: r.map(aPaso) } : it;
+  }),
+}));
 
 /**
  * Estandarización entre establecimientos. Hasta ahora vivía escondida en un
@@ -249,11 +312,11 @@ export const ESTANDAR = {
     { name: "Planta Norte", meta: "58 equipos" },
     { name: "Base Neuquén", meta: "21 equipos" },
   ],
-  cierre: "Mismos ítems · Mismas fotos obligatorias · Mismo criterio de NO OK",
+  cierre: "Los mismos ítems y el mismo criterio para marcar NO OK",
   puntos: [
-    { title: "La plantilla se arma una vez", text: "Y se usa en todos los establecimientos. Nadie rehace el checklist en cada sucursal ni lo interpreta a su manera." },
-    { title: "Cada uno ve lo suyo, gerencia ve todo", text: "La sucursal trabaja con sus equipos y sus desvíos; la gerencia mira las tres juntas en una sola vista." },
-    { title: "Los números se pueden comparar", text: "Si las tres miden lo mismo, la diferencia entre sucursales dice algo. Si cada una mide a su manera, no dice nada." },
+    { title: "La plantilla se arma una vez", text: "Después se usa en todos los establecimientos. Nadie la rehace en cada sucursal ni la interpreta a su manera." },
+    { title: "Cada sucursal ve lo suyo", text: "Trabaja con sus equipos y sus desvíos. La gerencia mira las tres juntas en la misma vista." },
+    { title: "Los números se pueden comparar", text: "Cuando las tres miden lo mismo, la diferencia entre ellas significa algo. Cuando cada una arma su propio checklist, no hay con qué comparar." },
   ],
 };
 
@@ -372,7 +435,7 @@ export const FOOTER = {
     { label: "Plataforma", href: "#plataforma" },
     { label: "Roles", href: "#roles" },
     { label: "Cómo funciona", href: "#como-funciona" },
-    { label: "Un estándar", href: "#estandar" },
+    { label: "Varias sucursales", href: "#estandar" },
     { label: "Casos", href: "#caso" },
     { label: "Probalo", href: "#probalo" },
     { label: "Precios", href: "/precios" },

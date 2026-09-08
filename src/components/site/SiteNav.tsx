@@ -11,7 +11,7 @@ import { onDemoModal } from "@/lib/demo-modal";
 
 /**
  * Barra del sitio: una isla flotante de vidrio (site.css). No ocupa lugar en
- * el layout —es `position: fixed`—, así que el contenido pasa por debajo y se
+ * el layout (es `position: fixed`), así que el contenido pasa por debajo y se
  * ve difuminado a través de ella. Al scrollear se vuelve un poco más sólida.
  *
  * En modo `minimal` (landings de campaña) la isla lleva solo el logo y el
