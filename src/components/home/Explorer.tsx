@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Icon from "@/components/site/Icon";
 import { useReduce } from "@/components/site/useReduce";
 import { ShotFrame } from "@/components/site/Frames";
+import ShotLightbox from "./ShotLightbox";
 import { MODULE_GROUPS, MODULE_CHIPS } from "@/lib/home-content";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
@@ -43,6 +44,10 @@ export default function Explorer() {
   const pasos = active.steps;
   const step = pasos[Math.min(pos.step, pasos.length - 1)];
   const conRecorrido = pasos.length > 1;
+
+  // La captura ampliada. `null` = nunca se abrió, así no se monta ni se baja
+  // la imagen grande; `false` = montado pero cerrado, para animar la salida.
+  const [lb, setLb] = useState<boolean | null>(null);
 
   const previewRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -98,10 +103,21 @@ export default function Explorer() {
 
   // Deslizar en el celular. 45 px de umbral para no robarle el scroll vertical.
   const swipe = useRef(0);
-  const onTouchStart = (e: React.TouchEvent) => { swipe.current = e.touches[0].clientX; };
+  const deslizo = useRef(false);
+  const onTouchStart = (e: React.TouchEvent) => { swipe.current = e.touches[0].clientX; deslizo.current = false; };
   const onTouchEnd = (e: React.TouchEvent) => {
     const d = e.changedTouches[0].clientX - swipe.current;
-    if (conRecorrido && Math.abs(d) > 45) irA(pos.step + (d < 0 ? 1 : -1));
+    if (conRecorrido && Math.abs(d) > 45) {
+      deslizo.current = true; // si no, el touchend termina en click y abre el visor
+      irA(pos.step + (d < 0 ? 1 : -1));
+    }
+  };
+
+  const ampliar = () => {
+    if (deslizo.current) { deslizo.current = false; return; }
+    detener();
+    setLb(true);
+    trackEvent(EVENTS.MODULE_VIEW, { module: active.id, accion: "ampliar" });
   };
 
   return (
@@ -218,7 +234,16 @@ export default function Explorer() {
               </div>
             )}
 
-            <div className="ex-frame" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <div
+              className="ex-frame is-zoom"
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+              onClick={ampliar}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ampliar la captura: ${step.text}`}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ampliar(); } }}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={`${active.id}-${pos.step}`}
@@ -231,6 +256,10 @@ export default function Explorer() {
                   <ShotFrame shot={step.shot} sizes="(max-width: 900px) 100vw, 640px" />
                 </motion.div>
               </AnimatePresence>
+              <span className="ex-zoom" aria-hidden="true">
+                <Icon name="expand" />
+                Ampliar
+              </span>
               {conRecorrido && (
                 <span className="ex-cuenta" aria-hidden="true">
                   {pos.step + 1} / {pasos.length}
@@ -239,6 +268,17 @@ export default function Explorer() {
             </div>
           </div>
         </div>
+        {lb !== null && (
+          <ShotLightbox
+            abierto={lb}
+            pasos={pasos}
+            i={pos.step}
+            titulo={active.title}
+            onIr={irA}
+            onCerrar={() => setLb(false)}
+          />
+        )}
+
         <ul className="chips-row" aria-label="También incluye">
           {MODULE_CHIPS.map((c) => (
             <li key={c}>{c}</li>

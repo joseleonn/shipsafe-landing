@@ -596,6 +596,18 @@
 .ss-site .ex-rail .is-active{border-color:var(--accent);background:var(--accent-soft);color:var(--navy);font-weight:500}
 .ss-site .ex-rail .is-active .i{background:var(--accent);color:#fff}
 .ss-site .ex-shot{width:100%;display:flex;align-items:center;justify-content:center}
+/* La captura se toca para verla de cerca. */
+.ss-site .ex-frame.is-zoom{cursor:zoom-in}
+.ss-site .ex-frame.is-zoom:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ss-site .ex-zoom{position:absolute;right:14px;top:12px;display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--text-2);
+  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--line-2);border-radius:var(--r-ctl);padding:5px 12px 5px 10px;
+  opacity:0;transform:translateY(-4px);transition:opacity var(--fast) var(--ease),transform var(--fast) var(--ease)}
+.ss-site .ex-zoom .ico{width:14px;height:14px;color:var(--accent-ink)}
+.ss-site .ex-frame.is-zoom:hover .ex-zoom,.ss-site .ex-frame.is-zoom:focus-visible .ex-zoom{opacity:1;transform:none}
+/* Sin hover (celular) el cartel se muestra siempre: si no, nadie se entera. */
+@media (hover:none){.ss-site .ex-zoom{opacity:1;transform:none}}
 /* Contador para cuando el riel se corta o no se ve (celular). */
 .ss-site .ex-cuenta{position:absolute;right:14px;bottom:12px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:var(--r-ctl);padding:3px 10px}
 .ss-site .chips-row{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
@@ -958,6 +970,63 @@
 .ss-site .mm-panel .btn{width:100%;margin-top:14px;display:flex;padding:0 24px;border-bottom:0}
 @media (prefers-reduced-motion:reduce){
   .ss-site .mobile-menu,.ss-site .mobile-menu.open,.ss-site .mm-panel{transition-duration:0s}
+}
+
+/* ---------- la captura ampliada ----------
+   Mismo mecanismo que el menú: queda montada y oculta con `visibility` para
+   que el cierre también se anime, con la curva de salida pareja. */
+.ss-site .lb{position:fixed;inset:0;z-index:95;display:flex;align-items:center;justify-content:center;
+  padding:64px 24px 24px;background:rgba(7,17,34,.72);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transition:opacity .26s var(--out),visibility 0s linear .26s}
+.ss-site .lb.open{opacity:1;visibility:visible;transition:opacity .2s var(--ease),visibility 0s}
+.ss-site .lb-caja{margin:0;display:flex;flex-direction:column;gap:16px;align-items:center;
+  /* Ancho explícito: sin esto el .lb-shot al 100% se mide contra un padre que
+     se mide contra su contenido, y la captura queda en cero. */
+  width:100%;max-width:min(1400px,100%);max-height:100%;
+  opacity:0;transform:scale(.97);transition:opacity .24s var(--out),transform .28s var(--out)}
+.ss-site .lb.open .lb-caja{opacity:1;transform:none;transition:opacity .2s var(--ease),transform .28s var(--ease)}
+.ss-site .lb-shot{min-height:0;display:flex;justify-content:center;width:100%}
+.ss-site .lb-marco{min-height:0;max-width:100%;display:flex;justify-content:center}
+.ss-site .lb-shot.browser .lb-marco{width:100%}
+.ss-site .lb-shot.phone .lb-marco{width:min(340px,calc((100vh - 240px) * 250 / 540))}
+.ss-site .lb-shot .frame.browser{width:100%;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+.ss-site .lb-shot .frame.phone{width:100%}
+.ss-site .lb-shot img{max-height:calc(100vh - 210px);width:auto;object-fit:contain}
+.ss-site .lb-shot .frame.phone img{max-height:none;width:100%}
+.ss-site .lb-pie{display:flex;align-items:center;gap:20px;max-width:900px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:12px 16px 12px 20px}
+.ss-site .lb-txt{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.45;text-align:left}
+.ss-site .lb-txt b{color:#fff;font-family:var(--display);font-size:15px;letter-spacing:-.01em}
+.ss-site .lb-txt em{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:#fff;background:rgba(255,255,255,.16);border-radius:var(--r-ctl);padding:3px 10px}
+.ss-site .lb-txt>span{flex:1 0 100%}
+.ss-site .lb-nav{flex:none;display:flex;align-items:center;gap:8px;color:#fff}
+.ss-site .lb-nav b{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.8);min-width:38px;text-align:center}
+.ss-site .lb-nav button,.ss-site .lb-cerrar{width:34px;height:34px;border-radius:var(--r-ctl);display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;
+  transition:background-color var(--fast),border-color var(--fast)}
+.ss-site .lb-nav button:hover,.ss-site .lb-cerrar:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4)}
+.ss-site .lb-nav .ico,.ss-site .lb-cerrar .ico{width:17px;height:17px}
+.ss-site .lb-cerrar{position:absolute;top:16px;right:16px;width:40px;height:40px}
+@media (max-width:900px){
+  .ss-site .lb{padding:60px 12px 12px}
+  .ss-site .lb-caja{gap:12px}
+  .ss-site .lb-shot img{max-height:calc(100dvh - 250px)}
+  .ss-site .lb-shot.phone .lb-marco{width:min(300px,calc((100dvh - 260px) * 250 / 540))}
+  /* Una captura de escritorio metida en 390 px no se lee. Se muestra a un
+     tamaño legible y se recorre de costado, que es más descubrible que
+     esperar a que la persona haga pinza. */
+  .ss-site .lb-shot.browser{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;justify-content:flex-start}
+  .ss-site .lb-shot.browser .lb-marco{width:1100px;max-width:none;flex:none}
+  .ss-site .lb-shot.browser img{max-height:none}
+  .ss-site .lb-shot.browser::-webkit-scrollbar{display:none}
+  .ss-site .lb-shot.browser{scrollbar-width:none}
+  .ss-site .lb-pie{flex-direction:column;align-items:stretch;gap:12px;padding:14px 16px}
+  .ss-site .lb-nav{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .ss-site .lb,.ss-site .lb.open,.ss-site .lb-caja,.ss-site .lb.open .lb-caja{transition-duration:0s}
 }
 
 /* El modal de la demo va por encima de la isla. */

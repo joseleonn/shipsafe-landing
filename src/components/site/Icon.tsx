@@ -8,6 +8,7 @@ const PATHS: Record<string, React.ReactNode> = {
   chevron: <path d="m6 9 6 6 6-6" />,
   left: <path d="m15 18-6-6 6-6" />,
   right: <path d="m9 18 6-6-6-6" />,
+  expand: <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" />,
   menu: <path d="M4 6h16M4 12h16M4 18h16" />,
   x: <path d="M18 6 6 18M6 6l12 12" />,
   msg: <path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.2-4.6A9 9 0 1 1 21 12z" />,
