@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Icon from "@/components/site/Icon";
 import { ShotFrame } from "@/components/site/Frames";
@@ -77,7 +77,14 @@ export default function ShotLightbox({
           pie lo frenan, así que el aire alrededor sigue cerrando. */}
       <figure className="lb-caja">
         <div className={`lb-shot ${paso.shot.kind}`}>
-          <div className="lb-marco" onClick={(e) => e.stopPropagation()}>
+          {/* El ancho lo manda el alto disponible por la proporción de la
+              captura. Si el marco se estira al 100% y la imagen la limita el
+              alto, queda un hueco blanco al costado. */}
+          <div
+            className="lb-marco"
+            style={{ "--ar": paso.shot.width / paso.shot.height } as CSSProperties}
+            onClick={(e) => e.stopPropagation()}
+          >
             <ShotFrame shot={paso.shot} sizes="(max-width: 900px) 1100px, 1400px" />
           </div>
         </div>
