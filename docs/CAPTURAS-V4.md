@@ -3,27 +3,35 @@
 Lista armada recorriendo app.shipsafe.lat el 9/9/2026, entrando adentro de cada
 módulo y no solo a los listados. Cada fila es una captura.
 
-## Cómo sacarlas
+## Ver el recorrido antes de tener las capturas
 
-**Pantallas de escritorio.** Ventana de Chrome a **1440 px de ancho**. En
-DevTools: `Cmd+Shift+P` → *Capture screenshot* (la del viewport, no la de
-página completa). Sale a 2x sola.
+    npm run capturas:rellenos
+    npm run dev
 
-**Pantallas de celular.** Modo dispositivo de Chrome, **390 × 844, DPR 2**, y
-la misma captura de viewport.
+Eso genera una imagen de relleno por cada captura que falta, con el nombre del
+archivo escrito encima, y así se ve el recorrido completo de los dieciséis
+módulos: el orden, los textos y cuántos pasos tiene cada uno. **Los rellenos
+nunca salen publicados**: el sitio compilado los ignora.
 
-**Dónde.** `public/screenshots/v4/` con el nombre exacto de la columna
-"archivo", en `.jpg`. Después:
+## Cómo sacar las de verdad
+
+**Escritorio.** Ventana de Chrome a **1440 px de ancho**. En DevTools:
+`Cmd+Shift+P` → *Capture screenshot* (la del viewport, no la de página
+completa). Sale a 2x sola.
+
+**Celular.** Modo dispositivo de Chrome, **390 × 844, DPR 2**, misma captura.
+
+**Dónde.** Reemplazás el relleno en `public/screenshots/v4/` por la captura
+real, con el mismo nombre, y corrés:
 
     npm run capturas
 
-Cada módulo se enciende solo cuando están **todas** sus capturas. Los que
-falten siguen mostrando la captura vieja.
+El módulo se enciende cuando están **todas** sus capturas reales.
 
 **Antes de disparar:** filtrá la basura de test. En Checklists las filas
 `[E2E Test]` y `E2E — NO TOCAR`; en Accidentes las filas `Test` y `Tat Test`;
-en Analytics aparece un `Test Sector`. Y para Accidentes usá un caso de prueba,
-no el que está cargado como "copia SWP".
+en Analytics aparece un `Test Sector`. Para Accidentes y Permisos usá casos de
+prueba: en esas pantallas se ven nombre y documento de personas reales.
 
 ---
 
@@ -112,7 +120,9 @@ no el que está cargado como "copia SWP".
 | 3 | `cap-3-adentro.jpg` | **Cómo se arma.** Adentro: la descripción con su resolución, la duración, el tipo, si lleva examen y el porcentaje mínimo para aprobar. |
 | 4 | `cap-4-contenidos.jpg` | **Los contenidos.** Los videos y los links que el trabajador va a ver, cargados en la misma capacitación. |
 | 5 | `cap-5-asignacion.jpg` | **A quién le toca.** Se asignan los empleados y les llega la notificación con el link. La app avisa si falta la fecha de comienzo o los contenidos. |
-| 6 | `cap-6-examen.jpg` | **El examen.** Se rinde desde la plataforma, o se registra el resultado de uno que se tomó afuera. Y la asistencia sale en PDF. |
+| 6 | `cap-6-examen.jpg` | **El examen.** Se rinde desde la plataforma, o se registra el resultado de uno que se tomó afuera. |
+| 7 | `cap-7-resultados.jpg` | **Quiénes aprobaron.** La lista de participantes con su resultado, y la asistencia en PDF. Eso es lo que se presenta cuando piden constancia de capacitación. |
+| 8 | `cap-8-tablero.jpg` | **En números.** Y en los tableros, cuántas se dictaron, cuántas están vencidas y qué porcentaje del personal las tiene al día. |
 
 ### 10 · Equipamiento con QR y vencimientos — `/equipamiento`
 
@@ -182,6 +192,4 @@ no el que está cargado como "copia SWP".
 
 ---
 
-**Total: 65 capturas.**
-
-No hace falta que salgan todas juntas. Cada módulo que llegue completo queda andando.
+**Total: 67 capturas.**

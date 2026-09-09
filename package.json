@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "capturas": "node scripts/capturas.mjs",
+    "capturas:rellenos": "node scripts/placeholders.mjs && node scripts/capturas.mjs",
     "subir": "bash scripts/subir.sh"
   },
   "dependencies": {

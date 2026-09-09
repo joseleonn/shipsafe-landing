@@ -346,11 +346,27 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
     },
     {
       label: "El examen",
-      text: "Se rinde desde la plataforma, o se registra el resultado de uno que se tomó afuera. Y la asistencia sale en PDF.",
+      text: "Se rinde desde la plataforma, o se registra el resultado de uno que se tomó afuera.",
       file: "cap-6-examen.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/capacitaciones",
       alt: "Examen de una capacitación y registro de examen externo",
+    },
+    {
+      label: "Quiénes aprobaron",
+      text: "La lista de participantes con su resultado, y la asistencia en PDF. Eso es lo que se presenta cuando piden constancia de capacitación.",
+      file: "cap-7-resultados.jpg",
+      kind: "browser",
+      url: "app.shipsafe.lat/capacitaciones",
+      alt: "Participantes de una capacitación con su resultado y la asistencia en PDF",
+    },
+    {
+      label: "En números",
+      text: "Y en los tableros, cuántas se dictaron, cuántas están vencidas y qué porcentaje del personal las tiene al día.",
+      file: "cap-8-tablero.jpg",
+      kind: "browser",
+      url: "app.shipsafe.lat/analytics",
+      alt: "Indicadores de capacitaciones dictadas, vencidas y al día",
     },
   ],
   equ: [

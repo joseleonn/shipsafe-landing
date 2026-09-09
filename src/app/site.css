@@ -586,7 +586,7 @@
 .ss-site .ex-arrow .ico{width:17px;height:17px}
 .ss-site .ex-rail{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 .ss-site .ex-rail::-webkit-scrollbar{display:none}
-.ss-site .ex-rail li{flex:1;min-width:0}
+.ss-site .ex-rail li{flex:0 0 auto;min-width:0}
 .ss-site .ex-rail button{display:flex;align-items:center;gap:8px;width:100%;padding:7px 14px 7px 8px;border-radius:var(--r-ctl);border:1px solid var(--line);background:#fff;color:var(--muted);font-size:13px;line-height:1.25;text-align:left;transition:border-color var(--fast),color var(--fast),background-color var(--fast)}
 .ss-site .ex-rail .i{flex:none;width:20px;height:20px;border-radius:var(--r-ctl);background:var(--bg-2);font-family:var(--mono);font-size:10.5px;display:grid;place-items:center;color:var(--muted);transition:background-color var(--fast),color var(--fast)}
 .ss-site .ex-rail .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

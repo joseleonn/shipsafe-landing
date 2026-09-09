@@ -11,12 +11,13 @@
  */
 import { GESTION_OPCIONES } from "./calificacion";
 import { RECORRIDOS, type PasoDef } from "./recorridos";
-import { CAPTURAS_V4 } from "./capturas-v4";
+import { CAPTURAS_V4, RELLENOS } from "./capturas-v4";
 
 export const CALENDLY_URL = "https://calendly.com/shipsoftwareteam/30min";
 export const WHATSAPP_NUMBER = "5493413067158";
 export const APP_URL = "https://app.shipsafe.lat";
-export const YOUTUBE_ID = "ehirzx0T8cg";
+/** El VSL del hero: https://youtu.be/Mec-tqEWNHo */
+export const YOUTUBE_ID = "Mec-tqEWNHo";
 /** Adonde apunta el QR de "Probalo por tu cuenta" hasta que exista un checklist público de prueba. */
 export const PROBALO_URL = "/demo?utm_source=landing&utm_medium=qr&utm_campaign=probalo";
 
@@ -280,7 +281,8 @@ const MODULE_GROUPS_BASE: ModuleGroup[] = [
  */
 function aPaso(d: PasoDef): ModuleStep {
   const [width, height] = CAPTURAS_V4[d.file];
-  const src = `/screenshots/v4/${d.file}`;
+  // Un relleno vive en otra carpeta (ver scripts/placeholders.mjs).
+  const src = `/screenshots/${RELLENOS.has(d.file) ? "v4-rellenos" : "v4"}/${d.file}`;
   return {
     label: d.label,
     text: d.text,
@@ -291,11 +293,20 @@ function aPaso(d: PasoDef): ModuleStep {
   };
 }
 
+/**
+ * Una captura sirve si está en el inventario. Las de relleno
+ * (scripts/placeholders.mjs) sirven solo mientras se trabaja: en el sitio
+ * publicado se ignoran, así nunca sale al aire una pantalla que dice "falta la
+ * captura". Con `npm run dev` se ven, que es para lo que están.
+ */
+const sirve = (file: string) =>
+  Boolean(CAPTURAS_V4[file]) && (process.env.NODE_ENV !== "production" || !RELLENOS.has(file));
+
 export const MODULE_GROUPS: ModuleGroup[] = MODULE_GROUPS_BASE.map((g) => ({
   ...g,
   items: g.items.map((it) => {
     const r = RECORRIDOS[it.id];
-    const completo = r && r.length > 0 && r.every((d) => CAPTURAS_V4[d.file]);
+    const completo = r && r.length > 0 && r.every((d) => sirve(d.file));
     return completo ? { ...it, steps: r.map(aPaso) } : it;
   }),
 }));

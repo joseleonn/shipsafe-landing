@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# capturas de relleno (scripts/placeholders.mjs): se regeneran con
+# `npm run capturas:rellenos` y no van al repositorio
+/public/screenshots/v4-rellenos/
+
 # vercel
 .vercel
 

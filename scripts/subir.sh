@@ -34,7 +34,7 @@ fi
 # Solo código y documentación. Sin esto se cuelan .claude/ y cualquier carpeta
 # temporal que haya quedado dando vueltas.
 RUTAS=(src docs scripts public package.json package-lock.json next.config.ts
-       tsconfig.json AGENTS.md CLAUDE.md README.md)
+       tsconfig.json AGENTS.md CLAUDE.md README.md .gitignore)
 
 echo "── Cambios que se van a subir ────────────────────────────"
 git add -A -- "${RUTAS[@]}"
