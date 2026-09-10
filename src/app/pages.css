@@ -147,6 +147,7 @@
 .ss-site .anfitrion p{font-size:15.5px;line-height:1.55;color:var(--text-2)}
 .ss-site .anfitrion b{display:block;margin-top:10px;font-family:var(--display);font-size:15px;color:var(--text)}
 .ss-site .anfitrion span{font-size:13.5px;color:var(--muted)}
+.ss-site .anfitrion small{display:block;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5;color:var(--muted)}
 @media (max-width:600px){
   .ss-site .anfitrion{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 20px}
   .ss-site .anfitrion img{width:72px;height:72px}
@@ -156,7 +157,11 @@
 .ss-site .plan .tier{align-items:center;text-align:center}
 .ss-site .plan .tier .inc{width:100%;text-align:left}
 .ss-site .plan .tier .note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);width:100%}
-.ss-site .steps.compact{grid-template-columns:repeat(3,1fr)}
+/* El riel de arriba es una sola línea horizontal alineada con el primer
+   renglón, así que un ítem que baja queda con su círculo colgando abajo y
+   la línea cortada. Con auto-flow en columna el renglón es siempre uno,
+   sean tres ítems o cuatro. */
+.ss-site .steps.compact{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
 .ss-site .lead-list{margin-top:26px;display:grid;gap:12px}
 .ss-site .lead-list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--text-2)}
 .ss-site .lead-list .ico{width:18px;height:18px;flex:none;color:var(--accent-ink);margin-top:3px}
@@ -171,7 +176,8 @@
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
-  .ss-site .quotes,.ss-site .steps.compact{grid-template-columns:1fr}
+  .ss-site .quotes{grid-template-columns:1fr}
+  .ss-site .steps.compact{grid-auto-flow:row;grid-template-columns:1fr}
   .ss-site .page-hero{padding-top:48px}
 }
 @media (max-width:640px){

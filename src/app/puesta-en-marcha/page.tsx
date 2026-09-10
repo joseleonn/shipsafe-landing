@@ -72,12 +72,23 @@ const LLEVAS = [
  * La foto es opcional. Si el archivo no está, el bloque sale igual con el
  * nombre; en cuanto aparezca en public/equipo/, se muestra sola.
  */
+/**
+ * Los años van acá y no sueltos en el texto. Ojo que no son del mismo rubro:
+ * los de Walter son de higiene y seguridad, los míos de software. Meterlos en
+ * la misma frase daría a entender que los dos venimos de lo mismo, que no es
+ * cierto y encima desaprovecha que sean cosas distintas.
+ */
+const ANIOS = { jose: 6, walter: 13 };
+
 const ANFITRION = {
   nombre: "José Cáceres Musso",
-  rol: "Fundador de SHIPSAFE",
+  rol: `Fundador de SHIPSAFE · +${ANIOS.jose} años desarrollando software`,
   texto:
     "La media hora la doy yo. No es una demo grabada ni un vendedor leyendo un guion: nos sentamos, me contás cómo registran hoy, y lo dejamos armado.",
   foto: "/equipo/jose.jpg",
+  // El socio no está en todas las reuniones, así que no va como segundo
+  // anfitrión: va como refuerzo, que es lo que realmente pasa.
+  suma: `Si tu caso lo pide se suma Walter Rodríguez, mi socio: licenciado en higiene y seguridad, +${ANIOS.walter} años en el rubro.`,
 };
 
 const PASOS = [
@@ -206,6 +217,7 @@ export default function Page() {
                 <p>{ANFITRION.texto}</p>
                 <b>{ANFITRION.nombre}</b>
                 <span>{ANFITRION.rol}</span>
+                <small>{ANFITRION.suma}</small>
               </div>
             </div>
             <p className="fine">
