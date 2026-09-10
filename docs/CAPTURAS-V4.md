@@ -15,20 +15,33 @@ nunca salen publicados**: el sitio compilado los ignora.
 
 ## Cómo sacar las de verdad
 
-**Escritorio.** Ventana de Chrome a **1440 px de ancho**. En DevTools:
-`Cmd+Shift+P` → *Capture screenshot* (la del viewport, no la de página
-completa). Sale a 2x sola.
+Hay un script que las saca solo. Una vez:
 
-**Celular.** Modo dispositivo de Chrome, **390 × 844, DPR 2**, misma captura.
+    npm i -D playwright && npx playwright install chromium
 
-**Dónde.** Reemplazás el relleno en `public/screenshots/v4/` por la captura
-real, con el mismo nombre, y corrés:
+Y después:
+
+    npm run capturar
+
+Abre una ventana de Chrome, espera a que te loguees vos, y a partir de ahí
+navega solo. Las pantallas que se abren con una URL las dispara sin preguntar
+(el listado de desvíos, el tablero, las mediciones, Analytics). Las que
+necesitan un click (abrir un registro, una pestaña, un modal) las deja a mano,
+te dice en la terminal qué tenés que poner en pantalla y espera un Enter.
+
+Guarda cada imagen con el nombre exacto que le toca, en
+`public/screenshots/v4/`. Se puede cortar y retomar: saltea las que ya están.
+
+    npm run capturar -- --solo cap                    solo un módulo
+    npm run capturar -- --rehacer cap-2-calendario.jpg  volver a sacar una
+
+Cuando termines:
 
     npm run capturas
 
-El módulo se enciende cuando están **todas** sus capturas reales.
+Eso arma el inventario y enciende los módulos que quedaron completos.
 
-**Antes de disparar:** filtrá la basura de test. En Checklists las filas
+**Antes de arrancar:** filtrá la basura de test. En Checklists las filas
 `[E2E Test]` y `E2E — NO TOCAR`; en Accidentes las filas `Test` y `Tat Test`;
 en Analytics aparece un `Test Sector`. Para Accidentes y Permisos usá casos de
 prueba: en esas pantallas se ven nombre y documento de personas reales.

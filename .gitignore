@@ -37,6 +37,9 @@ yarn-error.log*
 # `npm run capturas:rellenos` y no van al repositorio
 /public/screenshots/v4-rellenos/
 
+# perfil del navegador que usa scripts/capturar-app.mjs (guarda tu sesión)
+/.playwright-perfil/
+
 # vercel
 .vercel
 
