@@ -19,7 +19,7 @@ export default function Proofs() {
             <div className="k">Caso de éxito</div>
             <div className="client">
               {CASE.logo ? (
-                <Image src={CASE.logo} alt={`Logo de ${CASE.name}`} width={195} height={78} className="client-logo" unoptimized />
+                <Image src={CASE.logo} alt={`Logo de ${CASE.name}`} width={245} height={124} className="client-logo" unoptimized />
               ) : (
                 <span className="client-mark" aria-label={CASE.legal}>
                   {CASE.name}

@@ -6,6 +6,9 @@ import StickyBar from "@/components/site/StickyBar";
 import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import Reveal from "@/components/site/Reveal";
+import Image from "next/image";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 /**
  * Landing de la campaña de Meta Ads.
@@ -60,6 +63,23 @@ const LLEVAS = [
   },
 ];
 
+/**
+ * Quién atiende la reunión. La oferta entera es el uno a uno, y la página
+ * decía "media hora con nosotros" sin decir con quién. Además la persona vino
+ * de un anuncio donde vio esta cara: si la landing no la tiene, se corta la
+ * continuidad justo cuando hay que decidir.
+ *
+ * La foto es opcional. Si el archivo no está, el bloque sale igual con el
+ * nombre; en cuanto aparezca en public/equipo/, se muestra sola.
+ */
+const ANFITRION = {
+  nombre: "José Cáceres Musso",
+  rol: "Fundador de SHIPSAFE",
+  texto:
+    "La media hora la doy yo. No es una demo grabada ni un vendedor leyendo un guion: nos sentamos, me contás cómo registran hoy, y lo dejamos armado.",
+  foto: "/equipo/jose.jpg",
+};
+
 const PASOS = [
   {
     n: "1",
@@ -97,18 +117,26 @@ const FAQS = [
     a: "La comparación no es la app contra nada: es la app contra la planilla de papel. Escanear un QR y tildar es menos trabajo que escribir a mano, buscar la lapicera y hacer llegar el papel desde un frente. El problema de adopción lo tiene el papel.",
   },
   {
+    q: "¿Cuánto sale?",
+    a: "Se cobra por mes y por empresa, no por usuario: no pagás más por sumar gente al frente. Lo que mueve el número es cuántos establecimientos tenés y cuántos módulos vas a usar. Hay una línea para consultores y PyMEs chicas y otra para empresas con operación. El número que te corresponde te lo damos en la media hora, con tu caso adelante, no una lista de precios genérica.",
+  },
+  {
     q: "¿Quién carga todo la primera semana?",
     a: "Arrancamos con un proceso, no con todos. Ese se pone a andar en la media hora, se ve funcionando, y recién después se suma el segundo. Si algo lleva dos semanas, te decimos dos semanas.",
   },
 ];
 
 export default function Page() {
+  // Se resuelve al construir el sitio: si la foto todavía no está, el bloque
+  // sale sin ella en vez de pedir una imagen que no existe.
+  const hayFoto = existsSync(join(process.cwd(), "public", ANFITRION.foto.replace(/^\//, "")));
+
   return (
     <SiteShell minimal ctaLabel="Reservá tu media hora" ctaSection="puesta-nav">
       <main id="main">
         <section className="page-hero center" id="top">
           <div className="wrap">
-            <div className="eyebrow">Para responsables de Seguridad e Higiene</div>
+            <div className="eyebrow">Para quien tiene la seguridad a cargo</div>
             <h1>
               Te dejamos un proceso <em>andando en media hora.</em>
             </h1>
@@ -123,7 +151,7 @@ export default function Page() {
               </DemoLink>
             </div>
             <p className="fine">
-              30 minutos · No hace falta que prepares nada · Quince días para usarlo
+              30 minutos · No hace falta que prepares nada
             </p>
           </div>
         </section>
@@ -170,6 +198,16 @@ export default function Page() {
                 </Reveal>
               ))}
             </ol>
+            <div className="anfitrion">
+              {hayFoto && (
+                <Image src={ANFITRION.foto} alt={ANFITRION.nombre} width={112} height={112} />
+              )}
+              <div>
+                <p>{ANFITRION.texto}</p>
+                <b>{ANFITRION.nombre}</b>
+                <span>{ANFITRION.rol}</span>
+              </div>
+            </div>
             <p className="fine">
               Si de esto decide alguien más, sumalo a la llamada. Con quince
               minutos que pueda estar, alcanza.
@@ -185,6 +223,24 @@ export default function Page() {
                 {CASE.name}, <em>{CASE.size}.</em>
               </h2>
             </div>
+            {/* El logo del cliente antes del Antes/Hoy: una marca real pesa más
+                que la empresa afirmando cosas sobre sí misma. `unoptimized`
+                porque es un PNG chico con transparencia y el optimizador le
+                come el fondo. */}
+            {CASE.logo && (
+              <div className="caso-logo">
+                <Image
+                  src={CASE.logo}
+                  alt={`Logo de ${CASE.legal}`}
+                  width={245}
+                  height={124}
+                  unoptimized
+                />
+                <span>
+                  {CASE.sector} · {CASE.where}
+                </span>
+              </div>
+            )}
             <ul className="quotes">
               <Reveal as="li" className="quote-card">
                 <p>
@@ -198,7 +254,9 @@ export default function Page() {
               </Reveal>
             </ul>
             <p className="fine">
-              {CASE.sector} en {CASE.where}.
+              <a href={CASE.url} target="_blank" rel="noopener noreferrer">
+                {CASE.legal}
+              </a>
             </p>
           </div>
         </section>
