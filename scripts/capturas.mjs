@@ -8,11 +8,15 @@
  * código y sin que nada apunte a un archivo que no existe.
  *
  *     node scripts/capturas.mjs
+ *
+ * Corre solo antes de `npm run dev` y de `npm run build` (predev/prebuild),
+ * así el inventario nunca queda apuntando a archivos que no están. Eso
+ * importa porque los rellenos no van al repositorio: sin esto, un clon nuevo
+ * levantaba en dev con las 67 imágenes rotas.
  */
 import { readdir, writeFile, readFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import sharp from "sharp";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dir = join(raiz, "public/screenshots/v4");
@@ -26,9 +30,34 @@ const reales = await leer(dir);
 const rellenos = (await leer(dirRel)).filter((f) => !reales.includes(f));
 if (!reales.length && !rellenos.length) console.log("No hay capturas todavía en public/screenshots/v4/.");
 
+/**
+ * Medidas de un JPEG o un PNG leyendo la cabecera, sin librerías. Este script
+ * corre antes de `dev` y de `build`, así que no puede depender de nada que no
+ * esté declarado en package.json.
+ */
+function medidas(buf) {
+  // PNG: IHDR en los bytes 16..24
+  if (buf.length > 24 && buf.readUInt32BE(0) === 0x89504e47) {
+    return [buf.readUInt32BE(16), buf.readUInt32BE(20)];
+  }
+  // JPEG: se recorren los segmentos hasta el SOF, que trae alto y ancho
+  if (buf.length > 4 && buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i < buf.length - 9) {
+      if (buf[i] !== 0xff) { i++; continue; }
+      const marca = buf[i + 1];
+      const largo = buf.readUInt16BE(i + 2);
+      const esSOF = marca >= 0xc0 && marca <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marca);
+      if (esSOF) return [buf.readUInt16BE(i + 7), buf.readUInt16BE(i + 5)];
+      i += 2 + largo;
+    }
+  }
+  return [0, 0];
+}
+
 const entradas = [];
 for (const [f, carpeta, esRelleno] of [...reales.map((f) => [f, dir, false]), ...rellenos.map((f) => [f, dirRel, true])]) {
-  const { width, height } = await sharp(join(carpeta, f)).metadata();
+  const [width, height] = medidas(await readFile(join(carpeta, f)));
   if (!width || !height) {
     console.warn(`  ! ${f}: no pude leer las medidas, la salteo`);
     continue;
