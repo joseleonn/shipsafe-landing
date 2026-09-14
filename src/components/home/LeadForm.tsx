@@ -124,26 +124,30 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     if (pasa) agenda(prefill);
   }
 
+  // Ojo con el diseño de este bloque: comparte la clase `ok` con el cierre del
+  // que SÍ agenda, pero NO puede parecerse. Con el tilde verde y un "Listo" la
+  // persona lee "reservé el horario" y se va convencida de que tiene reunión.
+  // Por eso el modificador `aviso`: ícono neutro, sin tilde, el texto al tamaño
+  // del cuerpo y no como letra chica, y una sola acción visible.
   if (state === "sent" && !califica) {
     return (
-      <div className="ok" role="status">
-        <div className="ic"><Icon name="check" /></div>
-        <b>Listo, quedó registrado.</b>
+      <div className="ok aviso" role="status">
+        <div className="ic"><Icon name="msg" /></div>
+        <b>Gracias, ya tenemos tus datos.</b>
         <p>
-          Por lo que nos contaste, la media hora de puesta en marcha no es lo que
-          más te sirve hoy. Si en algún momento cambia, escribinos y la agendamos.
+          No te pedimos que reserves un horario: por lo que nos contaste, la media
+          hora de puesta en marcha no es lo que más te va a servir hoy. Si eso
+          cambia, escribinos y la agendamos.
         </p>
-        <p className="fine">
-          ¿Querés consultar algo puntual?{" "}
-          <a
-            href={whatsappUrl("Hola, dejé mis datos en la web de SHIPSAFE y quiero consultar algo")}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Escribinos por WhatsApp
-          </a>
-          .
-        </p>
+        <a
+          className="btn btn-secondary"
+          href={whatsappUrl("Hola, dejé mis datos en la web de SHIPSAFE y quiero consultar algo")}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="msg" />
+          Escribinos por WhatsApp
+        </a>
       </div>
     );
   }

@@ -865,6 +865,12 @@
 .ss-site .dm .ok p{color:var(--muted);font-size:14px;margin:6px auto 0;max-width:34ch}
 .ss-site .dm .ok .btn{width:100%;margin-top:16px}
 .ss-site .dm .wa{margin-top:16px;padding-top:14px}
+/* Cierre del que NO califica. Deliberadamente distinto del que sí agenda: sin
+   tilde verde, sin color de éxito, y con el texto al tamaño del cuerpo en vez
+   de letra chica. Si se parecen, la persona cree que reservó un horario. */
+.ss-site .ok.aviso .ic{background:var(--line);color:var(--text-2)}
+.ss-site .ok.aviso p{color:var(--text-2);font-size:15px;line-height:1.55;max-width:42ch}
+.ss-site .ok.aviso .btn{margin-top:18px;width:100%}
 @keyframes dm-fade{from{opacity:0}to{opacity:1}}
 @keyframes dm-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (max-width:600px){
