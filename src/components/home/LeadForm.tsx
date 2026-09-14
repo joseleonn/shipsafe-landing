@@ -2,8 +2,8 @@
 
 import { useId, useState, type FormEvent } from "react";
 import Icon from "@/components/site/Icon";
-import { GESTION } from "@/lib/home-content";
-import { EMPLEADOS_OPCIONES, ROL_OPCIONES } from "@/lib/calificacion";
+import { GESTION, whatsappUrl } from "@/lib/home-content";
+import { EMPLEADOS_OPCIONES, ROL_OPCIONES, calificar } from "@/lib/calificacion";
 import { buildDemoUrl } from "@/app/demo/_data";
 import { getAttribution, newEventId, readCookie } from "@/lib/attribution";
 import { trackEvent, EVENTS } from "@/lib/analytics";
@@ -13,22 +13,46 @@ import { loadCalendly, openCalendly } from "@/lib/calendly-embed";
 type State = "idle" | "sending" | "sent";
 
 /**
- * Un solo camino para agendar: cinco datos → se abre la agenda (Calendly, en
- * un modal sobre la página) con nombre y email ya cargados. Vive en el
- * cierre y dentro del modal de la demo (DemoModal), con la misma lógica.
+ * Cinco datos y, según lo que contestó, uno de dos finales.
  *
- * Por qué así y no dos botones: el dato entra a HubSpot antes de la reunión
- * (con rol, tamaño y "¿Cómo registran hoy?", que son los tres criterios de
- * calificación), la
- * persona no elige entre "agendar" y "que me contacten", y nadie se va del
- * sitio. Si no encuentra horario o cierra la agenda, ya tenemos cómo
- * escribirle. Si /api/lead falla, la agenda se abre igual: el webhook de
- * Calendly crea el contacto de todos modos.
+ * El dato entra a HubSpot siempre (con rol, tamaño y "¿Cómo registran hoy?",
+ * que son los tres criterios de calificación). Lo que cambia es el cierre:
+ *
+ *   · Califica     → se abre la agenda (Calendly, en un modal sobre la
+ *                    página) con nombre y email ya cargados.
+ *   · No califica  → cierre corto y WhatsApp. Nunca se le dice "no
+ *                    calificás": se le dice que la media hora no es lo que más
+ *                    le sirve hoy, y queda la puerta abierta. No se le promete
+ *                    ningún envío de material: hoy no hay nada que lo mande
+ *                    (HubSpot Free no tiene workflows y WhatsApp está apagado).
+ *
+ * POR QUÉ SE AGREGÓ LA BIFURCACIÓN (14/09/2026)
+ *
+ * Hasta acá la agenda se abría para todo el mundo. `calificar()` corría, el
+ * contacto quedaba marcado `no_califica` en HubSpot... y la persona agendaba
+ * igual. El filtro etiquetaba sin frenar, justo en la página a la que apuntan
+ * los anuncios. La página de gracias del recurso sí cortaba
+ * (`califica ? <agenda> : <nurturing>`); esto empareja las dos.
+ *
+ * Importa ahora porque entra tráfico de comentarios de Instagram vía DM, que
+ * es mucho más frío que el que clickea un anuncio, y lo único escaso es la
+ * media hora de la reunión.
+ *
+ * La calificación se calcula acá, en el cliente, con la misma función que usa
+ * el servidor. A propósito: si `/api/lead` falla, el corte tiene que seguir
+ * funcionando igual. Al que califica la agenda se le abre aunque no se haya
+ * podido guardar el dato — el webhook de Calendly crea el contacto de todos
+ * modos.
+ *
+ * El evento `Lead` del pixel se manda en los dos casos, como antes. El filtro
+ * no existe para enseñarle al algoritmo (ver `calificacion.ts`): con USD 15
+ * por día el volumen no alcanza para que Meta optimice nada.
  */
 export default function LeadForm({ source = "home", section = "cierre", autoFocus = false }: { source?: string; section?: string; autoFocus?: boolean }) {
   const id = useId();
   const [state, setState] = useState<State>("idle");
   const [saved, setSaved] = useState(true);
+  const [califica, setCalifica] = useState(true);
   const [who, setWho] = useState<{ name: string; email: string }>({ name: "", email: "" });
 
   const warm = () => {
@@ -58,7 +82,11 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     const eventId = newEventId("lead");
     const nombre = String(data.get("nombre") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
+    const rol = String(data.get("rol") ?? "");
+    const empleados = String(data.get("empleados") ?? "");
+    const gestion = String(data.get("gestion") ?? "");
     const prefill = { name: nombre, email };
+    const { califica: pasa } = calificar({ rol, empleados, gestion });
     setWho(prefill);
     setState("sending");
     try {
@@ -74,9 +102,9 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
         body: JSON.stringify({
           nombre,
           email,
-          gestion: String(data.get("gestion") ?? ""),
-          rol: String(data.get("rol") ?? ""),
-          empleados: String(data.get("empleados") ?? ""),
+          gestion,
+          rol,
+          empleados,
           leadMagnet: `${source}-demo`,
           eventId,
           fbc: readCookie("_fbc") ?? undefined,
@@ -91,8 +119,33 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     }
     if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section });
     setSaved(ok);
+    setCalifica(pasa);
     setState("sent");
-    agenda(prefill);
+    if (pasa) agenda(prefill);
+  }
+
+  if (state === "sent" && !califica) {
+    return (
+      <div className="ok" role="status">
+        <div className="ic"><Icon name="check" /></div>
+        <b>Listo, quedó registrado.</b>
+        <p>
+          Por lo que nos contaste, la media hora de puesta en marcha no es lo que
+          más te sirve hoy. Si en algún momento cambia, escribinos y la agendamos.
+        </p>
+        <p className="fine">
+          ¿Querés consultar algo puntual?{" "}
+          <a
+            href={whatsappUrl("Hola, dejé mis datos en la web de SHIPSAFE y quiero consultar algo")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Escribinos por WhatsApp
+          </a>
+          .
+        </p>
+      </div>
+    );
   }
 
   if (state === "sent") {

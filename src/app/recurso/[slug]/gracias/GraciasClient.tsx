@@ -198,15 +198,18 @@ export default function GraciasClient({ titulo, archivo, archivoListo }: Props) 
           </section>
         ) : (
           <section>
-            {/* Al que no califica no se le dice que no. Se le da valor y se lo
-                deja en nurturing: hoy no es cliente, en seis meses puede serlo. */}
+            {/* Al que no califica no se le dice que no, y tampoco se le promete
+                un envío de material: HubSpot Free no tiene workflows y WhatsApp
+                está apagado, así que esa promesa no la cumplía nadie. Se le dice
+                que la media hora no es lo que más le sirve hoy y queda la puerta
+                abierta. Mismo texto que el cierre de LeadForm. */}
             <h2 className="font-display text-2xl font-semibold text-white">
               Una cosa más
             </h2>
             <p className="mt-3 text-white/70">
-              En las próximas semanas te vamos a ir mandando material de gestión
-              SST: normativa, casos concretos y cómo se resuelven de punta a
-              punta. Sin vueltas y sin spam.
+              Por lo que nos contaste, la media hora de puesta en marcha no es lo
+              que más te sirve hoy. Si en algún momento cambia, escribinos y la
+              agendamos.
             </p>
             <p className="mt-3 text-white/70">
               Si querés escribirnos por algo puntual, estamos en{" "}
