@@ -93,11 +93,25 @@ const num = (v: unknown): number => {
  *   [{ action_type: "video_view", value: "1234" }]
  * Si el anuncio no es de video, el campo directamente no viene.
  */
-const accion = (v: unknown): number => {
+const accion = (v: unknown, tipo: string): number => {
   if (!Array.isArray(v) || v.length === 0) return 0;
-  const primera = v[0] as { value?: unknown };
-  return num(primera?.value);
+  const fila = (v as { action_type?: unknown; value?: unknown }[]).find(
+    (a) => String(a?.action_type ?? "") === tipo
+  );
+  return num(fila?.value);
 };
+
+/**
+ * Vistas de 3 segundos. Meta dio de baja `video_3_sec_watched_actions` en la
+ * Marketing API: pedirlo hacía fallar la consulta ENTERA con
+ * "(#100) ... is not valid for fields param", así que el dashboard se quedaba
+ * sin gasto, sin CPM y sin CTR por un campo que solo alimenta el hook rate.
+ * Ahora sale del array `actions`, que es un campo estable, buscando el
+ * action_type `video_view` (así llama Meta a la vista de 3 segundos). Si el
+ * anuncio no es de video, no viene esa fila y el hook rate queda en null.
+ */
+const vistas3sDe = (fila: Record<string, unknown>): number =>
+  accion(fila.actions, "video_view");
 
 export async function leerMeta(desde: number, hasta: number): Promise<ResultadoMeta> {
   const act = cuenta();
@@ -117,12 +131,12 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
     // Van en paralelo porque son independientes entre sí.
     const [total, porAnuncio, porDia] = await Promise.all([
       pedir(`${act}/insights`, {
-        fields: "spend,impressions,inline_link_clicks,cpm,account_currency,video_3_sec_watched_actions",
+        fields: "spend,impressions,inline_link_clicks,cpm,account_currency,actions",
         time_range: rango,
         level: "account",
       }),
       pedir(`${act}/insights`, {
-        fields: "ad_name,spend,impressions,inline_link_clicks,video_3_sec_watched_actions",
+        fields: "ad_name,spend,impressions,inline_link_clicks,actions",
         time_range: rango,
         level: "ad",
         limit: "200",
@@ -138,7 +152,7 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
     const t = total[0] ?? {};
     const impresiones = num(t.impressions);
     const clicsEnlace = num(t.inline_link_clicks);
-    const vistas3s = accion(t.video_3_sec_watched_actions);
+    const vistas3s = vistas3sDe(t);
 
     return {
       datos: {
@@ -156,7 +170,7 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
             gasto: num(a.spend),
             impresiones: num(a.impressions),
             clicsEnlace: num(a.inline_link_clicks),
-            vistas3s: accion(a.video_3_sec_watched_actions),
+            vistas3s: vistas3sDe(a),
           }))
           .sort((a, b) => b.gasto - a.gasto),
         porDia: Object.fromEntries(
