@@ -60,7 +60,7 @@ export default async function DashboardPage({
               Canal de Meta Ads
             </h1>
             <p className="mt-1 text-sm text-white/50">
-              {PERIODOS[periodo].label} · datos en vivo de HubSpot y Meta
+              {PERIODOS[periodo].label} · solo lo atribuido a Meta · datos en vivo
             </p>
           </div>
           <CerrarSesion />
@@ -75,6 +75,24 @@ export default async function DashboardPage({
             {m.errorHubSpot && <Aviso tono="error">{m.errorHubSpot}</Aviso>}
             {m.avisoMeta && <Aviso tono="info">{m.avisoMeta}</Aviso>}
           </div>
+        )}
+
+        {/* Lo que entró al CRM por fuera del canal pagado. No suma a ningún
+            número de esta página; se nombra para que no parezca que se perdió. */}
+        {(m.fueraDeCanal.leads > 0 || m.fueraDeCanal.negocios > 0) && (
+          <p className="text-sm text-white/45">
+            Fuera de este canal en el mismo período:{" "}
+            <span className="text-white/70">
+              {m.fueraDeCanal.leads} {m.fueraDeCanal.leads === 1 ? "lead" : "leads"}
+            </span>{" "}
+            y{" "}
+            <span className="text-white/70">
+              {m.fueraDeCanal.negocios}{" "}
+              {m.fueraDeCanal.negocios === 1 ? "negocio" : "negocios"}
+            </span>{" "}
+            sin atribución de Meta — agendados a mano, de prueba o llegados por
+            otro camino. No entran en ningún costo ni tasa de arriba.
+          </p>
         )}
 
         {/* ── La métrica madre ───────────────────────────────────────────────

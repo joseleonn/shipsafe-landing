@@ -92,6 +92,12 @@ export interface Metricas {
   periodo: ClavePeriodo;
   desde: number;
   hasta: number;
+  /**
+   * Lo que entró al CRM en el período pero NO vino de Meta, y por lo tanto no
+   * toca ningún número de arriba. Se muestra para que quede claro que existe:
+   * un cero acá y un embudo vacío significan cosas muy distintas.
+   */
+  fueraDeCanal: { leads: number; negocios: number };
 
   // Inversión
   moneda: string;
@@ -148,10 +154,25 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
   const hasta = Date.now();
   const desde = hasta - PERIODOS[periodo].dias * 24 * 60 * 60 * 1000;
 
-  const [hs, meta]: [DatosHubSpot, ResultadoMeta] = await Promise.all([
+  const [crudo, meta]: [DatosHubSpot, ResultadoMeta] = await Promise.all([
     leerHubSpot(desde, hasta),
     leerMeta(desde, hasta),
   ]);
+
+  // Este tablero mide UN canal. Todo lo que no trae atribución de Meta —una
+  // demo agendada a mano, un contacto de prueba, alguien que llegó por
+  // recomendación— se cuenta aparte y no entra en ningún costo ni en ninguna
+  // tasa. Mezclarlos hacía que el CPL y el CAC mintieran para abajo.
+  const fueraDeCanal = {
+    leads: crudo.leads.filter((l) => !l.esMeta).length,
+    negocios: crudo.negocios.filter((n) => !n.esMeta).length,
+  };
+
+  const hs: DatosHubSpot = {
+    ...crudo,
+    leads: crudo.leads.filter((l) => l.esMeta),
+    negocios: crudo.negocios.filter((n) => n.esMeta),
+  };
 
   // ── Inversión, siempre convertida a USD para poder compararla con las metas
   const aUsd = (n: number | null): number | null => {
@@ -309,6 +330,7 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     periodo,
     desde,
     hasta,
+    fueraDeCanal,
     moneda: meta.datos?.moneda ?? "USD",
     gastoUsd,
     impresiones: meta.datos?.impresiones ?? null,

@@ -20,6 +20,28 @@ import { etapasDelPipeline } from "../hubspot-deals";
 
 const BASE_URL = "https://api.hubapi.com";
 
+/**
+ * Qué cuenta como "vino de Meta".
+ *
+ * Este tablero se llama "Canal de Meta Ads" pero hasta ahora contaba todo lo
+ * que entrara al pipeline, viniera de donde viniera: una demo agendada a mano
+ * por WhatsApp pesaba igual que una comprada, y eso corre el CPL, el CAC y
+ * todo lo que se derive de ahí.
+ *
+ * El fbclid entra como segunda vía porque solo lo escribe un clic en Meta: si
+ * está, el origen es seguro aunque los UTM se hayan perdido en el camino.
+ */
+const ORIGENES_META = new Set(["meta", "facebook", "fb", "instagram", "ig"]);
+
+function esDeMeta(
+  source: string | null | undefined,
+  fbclid: string | null | undefined
+): boolean {
+  if (fbclid && fbclid.trim()) return true;
+  const s = source?.trim().toLowerCase();
+  return s ? ORIGENES_META.has(s) : false;
+}
+
 /** Orden real del pipeline. Define qué significa "llegó hasta". */
 export const ORDEN_ETAPAS = [
   "Lead",
@@ -38,6 +60,8 @@ export interface Lead {
   califica: boolean;
   utmContent: string | null;
   leadMagnet: string | null;
+  /** Si la atribución lo ubica en el canal pagado de Meta. */
+  esMeta: boolean;
 }
 
 export interface Negocio {
@@ -45,6 +69,8 @@ export interface Negocio {
   etapa: string;
   monto: number | null;
   utmContent: string | null;
+  /** Si la atribución lo ubica en el canal pagado de Meta. */
+  esMeta: boolean;
   /** Etiquetas de etapa por las que pasó, según hs_date_entered_*. */
   alcanzo: Set<string>;
   /**
@@ -152,7 +178,14 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
         { propertyName: "createdate", operator: "LTE", value: String(hasta) },
         { propertyName: "ss_lead_magnet", operator: "HAS_PROPERTY" },
       ],
-      ["createdate", "ss_calificacion", "ss_utm_content", "ss_lead_magnet"]
+      [
+        "createdate",
+        "ss_calificacion",
+        "ss_utm_content",
+        "ss_lead_magnet",
+        "ss_utm_source",
+        "ss_fbclid",
+      ]
     );
 
     const leads: Lead[] = contactos.map((c) => ({
@@ -160,6 +193,7 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
       califica: c.properties.ss_calificacion === "califica",
       utmContent: c.properties.ss_utm_content?.trim() || null,
       leadMagnet: c.properties.ss_lead_magnet?.trim() || null,
+      esMeta: esDeMeta(c.properties.ss_utm_source, c.properties.ss_fbclid),
     }));
 
     // 3. Negocios del pipeline creados en el período.
@@ -174,7 +208,7 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
           { propertyName: "createdate", operator: "GTE", value: String(desde) },
           { propertyName: "createdate", operator: "LTE", value: String(hasta) },
         ],
-        ["createdate", "dealstage", "amount", "ss_utm_content", ...propsFecha]
+        ["createdate", "dealstage", "amount", "ss_utm_content", "ss_utm_source", ...propsFecha]
       );
 
       negocios = deals.map((d) => {
@@ -204,6 +238,7 @@ export async function leerHubSpot(desde: number, hasta: number): Promise<DatosHu
           etapa: etiquetaActual ?? "",
           monto: d.properties.amount ? Number(d.properties.amount) : null,
           utmContent: d.properties.ss_utm_content?.trim() || null,
+          esMeta: esDeMeta(d.properties.ss_utm_source, null),
           alcanzo,
           fechas,
         };
