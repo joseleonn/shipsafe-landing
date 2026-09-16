@@ -21,6 +21,26 @@ export interface EntregaAnuncio {
   vistas3s: number;
 }
 
+/**
+ * Un bloque de campañas que comparten destino.
+ *
+ * Existe porque la cuenta corre dos embudos distintos: las campañas que mandan
+ * a la landing (formulario → filtro → Calendly) y la de comentarios a DM, que
+ * no tiene enlace. Sumarlas para calcular CPM, hook rate o costo por lead
+ * mezclaba peras con manzanas: la de DM aportaba casi la mitad del gasto y el
+ * 80% de las impresiones a números que solo describen a la otra.
+ */
+export interface BloqueEntrega {
+  /** Nombres de las campañas que caen en este bloque. */
+  campanas: string[];
+  gasto: number;
+  impresiones: number;
+  clicsEnlace: number;
+  cpm: number | null;
+  ctrEnlace: number | null;
+  hookRate: number | null;
+}
+
 export interface DatosMeta {
   moneda: string;
   gasto: number;
@@ -45,6 +65,10 @@ export interface DatosMeta {
    * `null` si no hay anuncios de video en el período.
    */
   hookRate: number | null;
+  /** Campañas que mandan a la landing. Es el embudo que mide esta página. */
+  landing: BloqueEntrega;
+  /** El resto —hoy, comentarios a DM—. `null` si no hay ninguna. */
+  otras: BloqueEntrega | null;
   porAnuncio: EntregaAnuncio[];
   /** Gasto por día, para la línea de tiempo. Clave: YYYY-MM-DD. */
   porDia: Record<string, number>;
@@ -132,13 +156,19 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
   const rango = JSON.stringify({ since: aFecha(desde), until: aFecha(hasta) });
 
   try {
-    // Tres consultas: el total, el desglose por anuncio y la serie diaria.
-    // Van en paralelo porque son independientes entre sí.
-    const [total, porAnuncio, porDia] = await Promise.all([
+    // Cuatro consultas: el total, el desglose por campaña, el desglose por
+    // anuncio y la serie diaria. Van en paralelo porque son independientes.
+    const [total, porCampana, porAnuncio, porDia] = await Promise.all([
       pedir(`${act}/insights`, {
         fields: "spend,impressions,inline_link_clicks,cpm,account_currency,actions",
         time_range: rango,
         level: "account",
+      }),
+      pedir(`${act}/insights`, {
+        fields: "campaign_name,spend,impressions,inline_link_clicks,cpm,actions",
+        time_range: rango,
+        level: "campaign",
+        limit: "100",
       }),
       pedir(`${act}/insights`, {
         fields: "ad_name,spend,impressions,inline_link_clicks,actions",
@@ -169,6 +199,44 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
       }))
       .sort((a, b) => b.gasto - a.gasto);
 
+    // Las campañas se parten en dos bloques según manden o no a un enlace.
+    //
+    // Mismo criterio que abajo para el CTR: "registró algún clic al enlace"
+    // alcanza como proxy de "tiene enlace". Una campaña optimizada a ThruPlay
+    // no lleva a ninguna parte y nunca junta clics, así que cae sola del otro
+    // lado sin que haya que hardcodear su nombre.
+    const campanas = porCampana.map((c) => ({
+      nombre: String(c.campaign_name ?? "sin nombre"),
+      gasto: num(c.spend),
+      impresiones: num(c.impressions),
+      clicsEnlace: num(c.inline_link_clicks),
+      gastoPorMil: c.cpm !== undefined ? num(c.cpm) : null,
+      vistas3s: vistas3sDe(c),
+    }));
+
+    const bloque = (grupo: typeof campanas): BloqueEntrega | null => {
+      if (grupo.length === 0) return null;
+      const impr = grupo.reduce((acc, c) => acc + c.impresiones, 0);
+      const gasto = grupo.reduce((acc, c) => acc + c.gasto, 0);
+      const clics = grupo.reduce((acc, c) => acc + c.clicsEnlace, 0);
+      const v3s = grupo.reduce((acc, c) => acc + c.vistas3s, 0);
+      return {
+        campanas: grupo.map((c) => c.nombre),
+        gasto,
+        impresiones: impr,
+        clicsEnlace: clics,
+        // El CPM se recalcula sobre el bloque en vez de promediar los de Meta:
+        // un promedio simple le daría el mismo peso a una campaña de 100
+        // impresiones que a una de 10.000.
+        cpm: impr > 0 ? (gasto / impr) * 1000 : null,
+        ctrEnlace: impr > 0 && clics > 0 ? (clics / impr) * 100 : null,
+        hookRate: v3s > 0 && impr > 0 ? (v3s / impr) * 100 : null,
+      };
+    };
+
+    const landing = bloque(campanas.filter((c) => c.clicsEnlace > 0));
+    const otras = bloque(campanas.filter((c) => c.clicsEnlace === 0));
+
     // El CTR de enlace se calcula solo sobre los anuncios que TIENEN enlace.
     //
     // Si no, un conjunto optimizado a ThruPlay —que no lleva a ninguna parte y
@@ -197,6 +265,16 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
         impresionesConEnlace: impresionesConEnlace || null,
         hookRate:
           vistas3s > 0 && impresiones > 0 ? (vistas3s / impresiones) * 100 : null,
+        landing: landing ?? {
+          campanas: [],
+          gasto: 0,
+          impresiones: 0,
+          clicsEnlace: 0,
+          cpm: null,
+          ctrEnlace: null,
+          hookRate: null,
+        },
+        otras,
         porAnuncio: anuncios,
         porDia: Object.fromEntries(
           porDia.map((d) => [String(d.date_start ?? ""), num(d.spend)])

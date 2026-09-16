@@ -9,8 +9,16 @@
 .pb-demo-note .ico{width:14px;height:14px}
 .pb-app{width:100%;max-width:430px;padding:12px 12px 0;position:relative}
 .pb-head{background:var(--app-card);border:1px solid var(--app-line);border-radius:14px;padding:14px 14px 12px;display:grid;grid-template-columns:auto 1fr;gap:10px 12px;align-items:center;position:sticky;top:8px;z-index:5;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.pb-back{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--app-ink)}
-.pb-back:hover{background:var(--app-bg)}
+/* Botón de salida. 44px de alto es el mínimo táctil; el borde y la palabra
+   son para que se lea como una acción y no como un adorno del encabezado.
+   Vive dentro de .pb-head, que es sticky, así que acompaña todo el scroll. */
+.pb-back{min-height:44px;display:inline-flex;align-items:center;gap:6px;
+  padding:0 12px 0 8px;border-radius:10px;border:1px solid var(--app-line);
+  background:var(--app-bg);color:var(--app-ink);font-size:14px;font-weight:500;
+  line-height:1;white-space:nowrap;transition:background .15s,border-color .15s}
+.pb-back .ico{width:18px;height:18px;flex:none}
+.pb-back:hover{background:var(--app-card);border-color:var(--app-ink)}
+.pb-back:focus-visible{outline:2px solid var(--app-ink);outline-offset:2px}
 .pb-head-t{min-width:0}
 .pb-head-t b{display:block;font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pb-head-t span{display:block;font-size:12.5px;color:var(--app-muted);margin-top:2px}

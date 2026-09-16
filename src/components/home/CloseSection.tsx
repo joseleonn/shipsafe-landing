@@ -18,10 +18,10 @@ export default function CloseSection({ num = "10", source = "home" }: { num?: st
           <h2>
             Agendá una demo <em>sobre tu operación.</em>
           </h2>
-          <p className="lede">Treinta minutos, con tus frentes, tu flota y tus vencimientos. No sobre nuestro producto.</p>
+          <p className="lede">Treinta minutos, con tus frentes, tu flota y tus vencimientos. <b>No sobre nuestro producto.</b></p>
           <ol className="what">
             <li><b>Nos contás cómo registran hoy</b> y dónde se pierde: el frente, la flota, el pañol, la otra sucursal.</li>
-            <li><b>Vemos el flujo completo con un caso tuyo:</b> QR, registro con foto y firma, el desvío que nace, su cierre y lo que ve la gerencia.</li>
+            <li><b>Vemos el flujo completo con un caso tuyo:</b> QR, registro con foto y firma, el desvío que nace y lo que ve la gerencia.</li>
             <li><b>Te llevás una propuesta concreta</b> y lo que haría falta para arrancar. Si no es para vos, también te lo decimos.</li>
           </ol>
         </div>

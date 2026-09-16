@@ -7,40 +7,40 @@
 /* ---------- 03 · marcapasos del flujo ---------- */
 .ss-site .steps.pace{--p:0;--y:0px}
 .ss-site .steps.pace::before{background:var(--line-2)}
-.ss-site .steps .track{position:absolute;left:24px;top:15px;height:2px;width:calc((100% - 48px) * var(--p));background:linear-gradient(90deg,rgba(0,92,214,.25),var(--accent));border-radius:2px;transition:width 720ms var(--ease),opacity 300ms;pointer-events:none;z-index:0;margin:0}
+.ss-site .steps .track{position:absolute;left:24px;top:15px;height:2px;width:calc((100% - 48px) * var(--p));background:linear-gradient(90deg,rgba(0,92,214,.25),var(--accent));border-radius:2px;transition:width 720ms var(--ease),opacity var(--mid);pointer-events:none;z-index:0;margin:0}
 .ss-site .steps .track::after{content:"";position:absolute;right:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,92,214,.16),0 0 18px rgba(0,92,214,.55)}
-.ss-site .steps.is-reset .track{opacity:0;transition:opacity 300ms}
+.ss-site .steps.is-reset .track{opacity:0;transition:opacity var(--mid)}
 .ss-site .steps.is-static .track{display:none}
 .ss-site .steps li{cursor:default}
-.ss-site .steps li::before{transition:background-color .25s var(--ease) .5s,color .25s var(--ease) .5s,border-color .25s .5s}
+.ss-site .steps li::before{transition:background-color var(--mid) var(--ease) calc(var(--hold) * 4),color var(--mid) var(--ease) calc(var(--hold) * 4),border-color var(--mid) var(--ease) calc(var(--hold) * 4)}
 .ss-site .steps li.is-active::before{background:var(--accent);color:#fff;border-color:var(--accent);animation:pace-pulse 1.7s ease-out .55s infinite}
 .ss-site .steps.is-static li.is-active::before{animation:none}
 .ss-site .steps li.is-done::before{background:var(--accent-soft);color:var(--accent-ink)}
-.ss-site .steps li b{transition:color .3s .5s}
+.ss-site .steps li b{transition:color var(--mid) var(--ease) calc(var(--hold) * 4)}
 .ss-site .steps li.is-active b{color:var(--accent-ink)}
-.ss-site .steps li .who{transition:background-color .3s .5s,border-color .3s .5s,color .3s .5s}
+.ss-site .steps li .who{transition:background-color var(--mid) var(--ease) calc(var(--hold) * 4),border-color var(--mid) var(--ease) calc(var(--hold) * 4),color var(--mid) var(--ease) calc(var(--hold) * 4)}
 .ss-site .steps li.is-active .who{color:var(--accent-ink);border-color:rgba(0,92,214,.35);background:var(--accent-soft)}
 @keyframes pace-pulse{
   0%{box-shadow:0 0 0 6px var(--bg-2),0 0 0 6px rgba(0,92,214,.45)}
   100%{box-shadow:0 0 0 6px var(--bg-2),0 0 0 24px rgba(0,92,214,0)}
 }
 @media (max-width:900px){
-  .ss-site .steps .track{left:15px;top:0;width:2px;height:var(--y);transition:height 720ms var(--ease),opacity 300ms}
+  .ss-site .steps .track{left:15px;top:0;width:2px;height:var(--y);transition:height 720ms var(--ease),opacity var(--mid)}
   .ss-site .steps .track::after{right:auto;top:auto;left:-4px;bottom:-5px}
 }
 
 /* ---------- cues de sección: la línea del eyebrow se dibuja, el acento del título aparece ---------- */
-html.ss-motion .ss-site .sec-head .eyebrow.num::after{transform:scaleX(0);transform-origin:left center;transition:transform .7s var(--ease) .15s}
+html.ss-motion .ss-site .sec-head .eyebrow.num::after{transform:scaleX(0);transform-origin:left center;transition:transform var(--slow) var(--ease) var(--hold)}
 html.ss-motion .ss-site .sec-head.in .eyebrow.num::after{transform:scaleX(1)}
-html.ss-motion .ss-site .sec-head h2 em{opacity:.28;transition:opacity .6s var(--ease) .35s}
+html.ss-motion .ss-site .sec-head h2 em{opacity:.28;transition:opacity var(--slow) var(--ease) calc(var(--hold) * 3)}
 html.ss-motion .ss-site .sec-head.in h2 em{opacity:1}
-html.ss-motion .ss-site .sec-head .lede{opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease) .3s,transform .5s var(--ease) .3s}
+html.ss-motion .ss-site .sec-head .lede{opacity:0;transform:translateY(8px);transition:opacity var(--dur) var(--ease) calc(var(--hold) * 2),transform var(--dur) var(--ease) calc(var(--hold) * 2)}
 html.ss-motion .ss-site .sec-head.in .lede{opacity:1;transform:none}
 
 /* ---------- 06 · tabla: filas escalonadas, la última se enciende al final ---------- */
-html.ss-motion .ss-site .cmp .row{opacity:0;transform:translateY(8px);transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+html.ss-motion .ss-site .cmp .row{opacity:0;transform:translateY(8px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);transition-delay:calc(var(--hold) + var(--i,0) * var(--stagger))}
 html.ss-motion .ss-site .cmp.in .row{opacity:1;transform:none}
-html.ss-motion .ss-site .cmp .row.hi .new::after{opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease) .9s,transform .4s var(--ease) .9s}
+html.ss-motion .ss-site .cmp .row.hi .new::after{opacity:0;transform:translateY(6px);transition:opacity var(--dur) var(--ease) calc(var(--hold) * 7),transform var(--dur) var(--ease) calc(var(--hold) * 7)}
 html.ss-motion .ss-site .cmp.in .row.hi .new::after{opacity:1;transform:none}
 
 /* ---------- 05 · botón de reproducir: anillo que respira ---------- */
@@ -79,7 +79,7 @@ html.ss-motion .ss-site .glow::after{animation:drift-a 34s ease-in-out infinite 
 
 /* ---------- botón primario: brillo que cruza al pasar el mouse ---------- */
 .ss-site .btn-primary{position:relative;overflow:hidden}
-.ss-site .btn-primary::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-30%;width:28%;background:linear-gradient(105deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));transform:skewX(-18deg) translateX(-160%);transition:transform .6s var(--ease);pointer-events:none}
+.ss-site .btn-primary::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-30%;width:28%;background:linear-gradient(105deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));transform:skewX(-18deg) translateX(-160%);transition:transform var(--slow) var(--ease);pointer-events:none}
 .ss-site .btn-primary:hover::after{transform:skewX(-18deg) translateX(520%)}
 
 /* ---------- 02 · explorador: item activo respira levemente cuando rota solo ---------- */

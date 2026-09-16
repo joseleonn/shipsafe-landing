@@ -138,11 +138,11 @@ export default async function DashboardPage({
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Tile
-              titulo="Inversión"
-              valor={usd(m.gastoUsd)}
+              titulo="Inversión en la landing"
+              valor={usd(m.gastoLandingUsd)}
               nota={
-                m.impresiones
-                  ? `${nfEntero.format(m.impresiones)} impresiones · ${nfEntero.format(m.clicsEnlace ?? 0)} clics al enlace.`
+                m.impresionesConEnlace
+                  ? `${nfEntero.format(m.impresionesConEnlace)} impresiones · ${nfEntero.format(m.clicsEnlace ?? 0)} clics al enlace. Del canal entero salieron ${usd(m.gastoUsd)}.`
                   : undefined
               }
             />
@@ -151,13 +151,14 @@ export default async function DashboardPage({
               valor={usd(m.cpmUsd)}
               objetivo={rangoTexto("cpm", "usd")}
               evaluacion={evaluar("cpm", m.cpmUsd)}
+              nota="Solo de las campañas que mandan a la landing."
             />
             <Tile
               titulo="Hook rate"
               valor={pct(m.hookRate)}
               objetivo={rangoTexto("hookRate", "pct")}
               evaluacion={evaluar("hookRate", m.hookRate)}
-              nota="Reproducciones de 3 segundos sobre impresiones. Solo aplica a anuncios de video."
+              nota="Reproducciones de 3 segundos sobre impresiones, solo de las campañas que mandan a la landing. Aplica únicamente a anuncios de video."
             />
             <Tile
               titulo="CTR de enlace"
@@ -166,7 +167,7 @@ export default async function DashboardPage({
               evaluacion={evaluar("ctr", m.ctrEnlace)}
               nota={
                 m.impresionesConEnlace
-                  ? `Sobre ${nfEntero.format(m.impresionesConEnlace)} impresiones de anuncios con enlace. Los de solo video no cuentan acá.`
+                  ? `Sobre ${nfEntero.format(m.impresionesConEnlace)} impresiones de campañas con enlace.`
                   : undefined
               }
             />
@@ -175,7 +176,7 @@ export default async function DashboardPage({
               valor={pct(m.conversionLanding)}
               objetivo={rangoTexto("conversionLanding", "pct")}
               evaluacion={evaluar("conversionLanding", m.conversionLanding)}
-              nota="Leads sobre clics al enlace."
+              nota="Leads sobre clics al enlace de las campañas que mandan a la landing."
             />
             <Tile
               titulo="Costo por lead"
@@ -212,6 +213,44 @@ export default async function DashboardPage({
             />
           </div>
         </section>
+
+        {/* El otro embudo. Va aparte y no toca ningún número de arriba: entra
+            por comentario, no por la landing, así que no tiene clics, ni
+            conversión de landing, ni costo por lead que comparar. */}
+        {m.otrasCampanas && (
+          <section>
+            <h2 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
+              El otro embudo: comentario a DM
+            </h2>
+            <p className="mt-2 max-w-[60ch] text-sm text-white/50">
+              {m.otrasCampanas.nombres.join(" · ")}. Entra por comentario y sigue
+              en Instagram, así que no aporta clics al sitio ni leads del
+              formulario. Su gasto no se le carga al costo por lead de arriba.
+            </p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <Tile titulo="Inversión" valor={usd(m.otrasCampanas.gastoUsd)} />
+              <Tile
+                titulo="Impresiones"
+                valor={
+                  m.otrasCampanas.impresiones
+                    ? nfEntero.format(m.otrasCampanas.impresiones)
+                    : null
+                }
+              />
+              <Tile
+                titulo="CPM"
+                valor={usd(m.otrasCampanas.cpmUsd)}
+                nota="Inventario distinto al de la landing. No se comparan entre sí."
+              />
+              <Tile
+                titulo="Hook rate"
+                valor={pct(m.otrasCampanas.hookRate)}
+                objetivo={rangoTexto("hookRate", "pct")}
+                evaluacion={evaluar("hookRate", m.otrasCampanas.hookRate)}
+              />
+            </div>
+          </section>
+        )}
 
         <Embudo etapas={m.embudo} />
 

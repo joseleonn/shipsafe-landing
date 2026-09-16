@@ -89,8 +89,12 @@ export default function Probalo() {
       </div>
       <div className="pb-app">
         <header className="pb-head">
-          <Link href="/" className="pb-back" aria-label="Volver">
+          {/* Salida visible y con texto. Antes era un ícono de 32x32 sin
+              etiqueta: por debajo del mínimo táctil y sin decir qué hace, así
+              que a mitad del checklist la gente no encontraba cómo salir. */}
+          <Link href="/" className="pb-back" aria-label="Salir de la inspección de prueba">
             <Icon name="back" />
+            <span>Salir</span>
           </Link>
           <div className="pb-head-t">
             <b>{CHECKLIST.title}</b>

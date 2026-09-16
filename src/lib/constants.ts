@@ -276,8 +276,14 @@ export const CASE_STUDIES = [
  * cuesta una línea y no rompe nada.
  *
  * Se actualiza acá y en DASHBOARD_ARS_POR_USD (lib/dashboard/metas.ts).
+ *
+ * El fallback es el que termina viviendo en producción, porque la variable no
+ * está seteada en ningún entorno: si solo se cambia el .env local, el sitio
+ * publicado sigue convirtiendo con el número viejo. Por eso el valor vigente
+ * va acá, y la variable queda para corregirlo sin redeployar.
+ * 1570 ARS/USD — confirmado por José el 16/09/2026.
  */
-export const ARS_POR_USD = Number(process.env.NEXT_PUBLIC_ARS_POR_USD ?? 1500);
+export const ARS_POR_USD = Number(process.env.NEXT_PUBLIC_ARS_POR_USD ?? 1570);
 
 /** "Desde $90.000" → "≈ USD 60". `null` si el precio no es una cifra. */
 export function equivalenteUsd(precio: string): string | null {

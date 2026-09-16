@@ -101,7 +101,21 @@ export interface Metricas {
 
   // Inversión
   moneda: string;
+  /** Gasto del canal entero. Es el que manda para CAC y costo por agenda. */
   gastoUsd: number | null;
+  /**
+   * Gasto solo de las campañas que mandan a la landing. Es el que manda para
+   * el costo por lead: la campaña de comentarios a DM no puede producir uno.
+   */
+  gastoLandingUsd: number | null;
+  /** El otro embudo, contado aparte para que no ensucie nada de arriba. */
+  otrasCampanas: {
+    nombres: string[];
+    gastoUsd: number | null;
+    impresiones: number;
+    cpmUsd: number | null;
+    hookRate: number | null;
+  } | null;
   impresiones: number | null;
   cpmUsd: number | null;
   ctrEnlace: number | null;
@@ -183,6 +197,24 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
   };
 
   const gastoUsd = meta.datos ? aUsd(meta.datos.gasto) : null;
+
+  // El costo por lead se calcula sobre el gasto de las campañas que mandan a la
+  // landing, no sobre el total. Los leads salen del formulario, y la campaña de
+  // comentarios a DM —casi la mitad del gasto— no tiene formulario que llenar.
+  // Cargárselos inflaba el CPL sin que nada lo dijera en pantalla.
+  const gastoLandingUsd = meta.datos ? aUsd(meta.datos.landing.gasto) : null;
+  const clicsLanding = meta.datos?.landing.clicsEnlace ?? null;
+
+  const otras = meta.datos?.otras ?? null;
+  const otrasCampanas = otras
+    ? {
+        nombres: otras.campanas,
+        gastoUsd: aUsd(otras.gasto),
+        impresiones: otras.impresiones,
+        cpmUsd: aUsd(otras.cpm),
+        hookRate: otras.hookRate,
+      }
+    : null;
 
   // ── Embudo
   const leads = hs.leads.length;
@@ -336,10 +368,13 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     moneda: meta.datos?.moneda ?? "USD",
     gastoUsd,
     impresiones: meta.datos?.impresiones ?? null,
-    cpmUsd: meta.datos?.cpm !== undefined && meta.datos !== null ? aUsd(meta.datos.cpm) : null,
-    ctrEnlace: meta.datos?.ctrEnlace ?? null,
-    impresionesConEnlace: meta.datos?.impresionesConEnlace ?? null,
-    hookRate: meta.datos?.hookRate ?? null,
+    // CPM, CTR y hook rate describen a los creativos que mandan a la landing.
+    // Mezclarles la campaña de DM —que aporta el 80% de las impresiones— hacía
+    // que el hook rate de arriba fuera, en los hechos, el de la otra campaña.
+    cpmUsd: meta.datos ? aUsd(meta.datos.landing.cpm) : null,
+    ctrEnlace: meta.datos?.landing.ctrEnlace ?? null,
+    impresionesConEnlace: meta.datos?.landing.impresiones || null,
+    hookRate: meta.datos?.landing.hookRate ?? null,
     clicsEnlace: meta.datos?.clicsEnlace ?? null,
     embudo,
     leads,
@@ -348,8 +383,10 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     realizadas,
     pruebas,
     ganados,
-    conversionLanding: meta.datos?.clicsEnlace ? porcentaje(leads, meta.datos.clicsEnlace) : null,
-    cplUsd: dividir(gastoUsd, leads || null),
+    gastoLandingUsd,
+    otrasCampanas,
+    conversionLanding: clicsLanding ? porcentaje(leads, clicsLanding) : null,
+    cplUsd: dividir(gastoLandingUsd, leads || null),
     leadAAgenda: porcentaje(agendadas, leads),
     costoPorAgendaUsd: dividir(gastoUsd, agendadas || null),
     asistencia: porcentaje(realizadas, agendadas),

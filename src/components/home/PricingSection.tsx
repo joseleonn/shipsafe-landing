@@ -3,6 +3,7 @@ import Icon from "@/components/site/Icon";
 import DemoLink from "@/components/site/DemoLink";
 import Reveal from "@/components/site/Reveal";
 import { TIERS, PRICE_NOTES, whatsappUrl } from "@/lib/home-content";
+import { equivalenteUsd } from "@/lib/constants";
 
 export default function PricingSection({
   num = "08",
@@ -10,7 +11,7 @@ export default function PricingSection({
   id = "precios",
   title,
   label = "Precios",
-  lede = "Depende de cuántos establecimientos tenés, cuántos equipos querés controlar y cuánta gente lo va a usar. Estos son los valores de partida de cada línea; la propuesta concreta la recibís el mismo día de la demo.",
+  lede = "Depende de cuántos establecimientos, cuántos equipos y cuánta gente lo va a usar. Estos son los valores de partida; la propuesta concreta la recibís el mismo día de la demo.",
 }: {
   num?: string | null;
   more?: boolean;
@@ -44,6 +45,11 @@ export default function PricingSection({
                 {t.price}
                 {t.unit && <small>{t.unit}</small>}
               </div>
+              {/* El equivalente en dólares, para quien mira desde afuera de
+                  Argentina y no puede evaluar pesos. Va secundario: el precio
+                  de lista sigue siendo en ARS. "A medida" no tiene dígitos,
+                  así que ahí equivalenteUsd devuelve null y no se muestra. */}
+              {equivalenteUsd(t.price) && <div className="price-usd">{equivalenteUsd(t.price)}</div>}
               <p className="who">{t.who}</p>
               <ul className="inc">
                 {t.inc.map((x) => (

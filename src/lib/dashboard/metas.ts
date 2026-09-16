@@ -10,8 +10,10 @@
  * Cambiar un valor acá cambia qué se pinta como "en objetivo". No es cosmético.
  */
 
-/** ARS por USD. Referencia del playbook al 24/08/2026 (oficial mayorista 1.499). */
-export const TIPO_DE_CAMBIO = Number(process.env.DASHBOARD_ARS_POR_USD ?? 1500);
+/** ARS por USD. 1570 al 16/09/2026, confirmado por José. Tiene que seguir al
+ *  de NEXT_PUBLIC_ARS_POR_USD (lib/constants.ts): si los dos no coinciden, el
+ *  CAC del dashboard y el precio de la landing cuentan en monedas distintas. */
+export const TIPO_DE_CAMBIO = Number(process.env.DASHBOARD_ARS_POR_USD ?? 1570);
 
 /** Ticket mensual del plan Empresa. */
 export const TICKET_ARS = Number(process.env.META_VALOR_CLIENTE_ARS ?? 400_000);

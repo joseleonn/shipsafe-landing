@@ -11,7 +11,9 @@ export default function Compare() {
           <h2>
             No vendemos orden: hacemos que registrar <em>cueste menos que no registrar.</em>
           </h2>
-          <p className="lede">{COMPARE_LEDE}</p>
+          <p className="lede">
+            {COMPARE_LEDE.pain} <b>{COMPARE_LEDE.hit}</b>
+          </p>
         </div>
         <div className="cmp">
           <div role="table" aria-label="Comparación entre la vieja forma y la nueva">
@@ -30,7 +32,8 @@ export default function Compare() {
           </div>
         </div>
         <p className="cmp-note">
-          <b>La última fila es la que importa.</b> Todas las demás son consecuencias suyas. No es un problema de disciplina ni de capacitación: es aritmética.
+          <b>La última fila es la que importa:</b> todas las demás son consecuencias suyas. No es
+          un problema de disciplina ni de capacitación, es aritmética.
         </p>
       </div>
     </section>

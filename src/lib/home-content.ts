@@ -53,7 +53,7 @@ export const HERO = {
   h1: "Toda la gestión SST de tu operación,",
   h1Accent: "bajo control y lista para demostrar.",
   lede:
-    "Inspecciones, EPP, capacitaciones, permisos, accidentes y vencimientos en una sola plataforma, con los informes listos cuando un cliente, una auditoría o la gerencia los pide.",
+    "Inspecciones, EPP, capacitaciones, permisos, accidentes y vencimientos en una sola plataforma. Con los informes listos cuando alguien los pide.",
   secondary: "Probalo por tu cuenta",
   /** Duración del VSL que se reproduce en el marco del hero. */
   videoDuration: "1:30",
@@ -122,7 +122,7 @@ export const ROLES = [
     label: "Operario",
     icon: "hat",
     title: "Escanea el QR y registra en el lugar, en dos minutos",
-    text: "El checklist de la empresa, no uno genérico. Con foto y firma. Sin app que instalar ni cuenta que crear en cada teléfono.",
+    text: "El checklist de la empresa, no uno genérico. Sin app que instalar ni cuenta que crear en cada teléfono.",
     bullets: [
       "Preuso y postuso de vehículos, matafuegos, tableros, máquinas",
       "Si algo está NO OK, el desvío nace solo, con prioridad y plazo",
@@ -135,7 +135,7 @@ export const ROLES = [
     label: "Mantenimiento",
     icon: "wrench",
     title: "Recibe el desvío con dueño y fecha. Lo cierra con la foto.",
-    text: "Nadie lo persigue por WhatsApp. El desvío llega asignado, con prioridad y fecha límite, y queda cerrado con evidencia e historial.",
+    text: "Nadie lo persigue por WhatsApp: el desvío llega asignado, con prioridad y fecha límite.",
     bullets: [
       "Desvíos asignados, con historial de cambios y comentarios",
       "Permisos de trabajo de alto riesgo: se piden y se firman a distancia",
@@ -148,7 +148,7 @@ export const ROLES = [
     label: "Supervisor de SST",
     icon: "shield",
     title: "Ve qué se hizo y qué no, en todos los frentes",
-    text: "Desvíos por estado y sucursal, EPP por reponer, mediciones contra límites legales, capacitaciones vencidas, permisos pendientes. Todo con dueño, fecha y evidencia.",
+    text: "Desvíos, EPP por reponer, mediciones contra límites legales, capacitaciones vencidas, permisos pendientes. Todo con dueño, fecha y evidencia.",
     bullets: [
       "Vencimientos que avisan antes, no después",
       "Mapa de la organización: lo que las matrices exigen, cruzado con lo hecho",
@@ -161,7 +161,7 @@ export const ROLES = [
     label: "Gerencia",
     icon: "chart",
     title: "Un tablero honesto, sin armar nada a mano",
-    text: "Desvíos por estado y prioridad, equipos por estado, mapa de lesiones, top por sector. Y un resumen mensual que llega solo por mail.",
+    text: "Desvíos, equipos, mapa de lesiones, top por sector. Y un resumen mensual que llega solo por mail.",
     bullets: [
       "KPIs de inspecciones, desvíos y mediciones sin Excel",
       "Varias sucursales o establecimientos, una sola vista",
@@ -327,7 +327,7 @@ export const ESTANDAR = {
   puntos: [
     { title: "La plantilla se arma una vez", text: "Después se usa en todos los establecimientos. Nadie la rehace en cada sucursal ni la interpreta a su manera." },
     { title: "Cada sucursal ve lo suyo", text: "Trabaja con sus equipos y sus desvíos. La gerencia mira las tres juntas en la misma vista." },
-    { title: "Los números se pueden comparar", text: "Cuando las tres miden lo mismo, la diferencia entre ellas significa algo. Cuando cada una arma su propio checklist, no hay con qué comparar." },
+    { title: "Los números se pueden comparar", text: "Cuando las tres miden lo mismo, la diferencia entre ellas significa algo. Si cada una arma su propio checklist, no hay con qué." },
   ],
 };
 
@@ -354,8 +354,10 @@ export const FLOW_STEPS = [
 ] as const;
 
 /** Apertura de "La vieja forma y la nueva": el dolor que antes abría el hero. */
-export const COMPARE_LEDE =
-  "Un cliente te pide tu sistema de gestión para una licitación, una auditoría te pide evidencia, la gerencia te pide estadísticas. Y todo sale de planillas, carpetas y WhatsApp, armado a mano y a las corridas.";
+export const COMPARE_LEDE = {
+  pain: "Un cliente te pide tu sistema para una licitación. Una auditoría te pide evidencia. La gerencia te pide estadísticas.",
+  hit: "Y todo sale de planillas, carpetas y WhatsApp, armado a las corridas.",
+};
 
 export const COMPARE_ROWS = [
   ["Dónde se registra", "En papel, en el frente; se carga después, en la oficina", "En el celular, en el lugar, en el momento"],
@@ -405,7 +407,7 @@ export const TIERS = [
   },
 ] as const;
 
-export const PRICE_NOTES = ["Mensual, sin permanencia", "Pagando por año, entre 15 % y 20 % de descuento", "Precios orientativos en ARS"];
+export const PRICE_NOTES = ["Mensual, sin permanencia", "Pagando por año, entre 15 % y 20 % de descuento", "Precio de lista en ARS; el equivalente en USD es orientativo"];
 
 export const HOME_FAQS = [
   { q: "¿Hay que instalar algo en los celulares?", a: "No. Funciona desde el navegador: el operario escanea el QR y entra directo. No hay app que descargar ni cuentas que crear en cada teléfono." },
@@ -435,7 +437,7 @@ export const CASE = {
   size: "60 empleados, flota y frentes remotos",
   logo: "/clientes/swpetrol.png" as string | null,
   before:
-    "Planillas Excel y un software interno hecho por un supervisor, que no prosperó por falta de tiempo. Necesitaban más control sobre los EPP y un sistema de gestión HSE que respaldara auditorías y licitaciones con sus clientes.",
+    "Planillas Excel y un software interno hecho por un supervisor, que no prosperó. Necesitaban control sobre los EPP y algo que respaldara auditorías y licitaciones.",
   today:
     "Inspecciones de flota, entrega y stock de EPP, y accidentología con imágenes y causa raíz. Estadísticas de accidentes, control documental e informes listos para presentar.",
 };

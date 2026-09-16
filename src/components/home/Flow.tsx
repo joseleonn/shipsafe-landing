@@ -88,7 +88,7 @@ export default function Flow() {
           <h2>
             Un hallazgo recorre toda la operación <em>sin que nadie lo empuje.</em>
           </h2>
-          <p className="lede">Así viaja un NO OK desde la camioneta hasta el tablero de gerencia. Cada paso lo hace la persona que corresponde, desde donde está.</p>
+          <p className="lede">Así viaja un NO OK desde la camioneta hasta el tablero de gerencia. <b>Cinco personas, ninguna reunión.</b></p>
         </div>
         <div className="today"><span className="k">Hoy</span><span>{FLOW_TODAY}</span></div>
         <ol

@@ -22,8 +22,8 @@ export default function Standard({ num = "04" }: { num?: string | null }) {
             El mismo checklist <em>en todas tus sucursales.</em>
           </h2>
           <p className="lede">
-            Cinco sucursales terminan con cinco formas de hacer la misma inspección. Acá la plantilla se arma una vez y baja igual a todas,
-            así lo que mide una significa lo mismo que lo que mide la otra.
+            Cinco sucursales terminan con cinco formas de hacer la misma inspección.{" "}
+            <b>Acá la plantilla se arma una vez y baja igual a todas.</b>
           </p>
         </div>
 

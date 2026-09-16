@@ -32,7 +32,7 @@
 /* ---------- cabecera de documento ---------- */
 .ss-site .doc-head{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid var(--line)}
 .ss-site .doc-head h1{font-size:clamp(34px,4.6vw,54px);line-height:1.02;letter-spacing:-.035em;max-width:22ch;text-wrap:balance}
-.ss-site .doc-head .lede{font-size:19px;margin-top:16px}
+.ss-site .doc-head .lede{font-size:var(--t-lede);margin-top:16px}
 .ss-site .doc-meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .ss-site .doc-meta b{font-weight:500;color:var(--text-2)}
 
@@ -211,7 +211,7 @@
 .ss-site .ag-hero .eyebrow.ok{color:var(--ok);gap:8px}
 .ss-site .ag-hero .eyebrow.ok .ico{width:16px;height:16px}
 .ss-site .ag-hero h1{max-width:16ch;font-size:clamp(34px,4.6vw,56px)}
-.ss-site .ag-hero .lede{margin-top:18px;font-size:18px;color:var(--text-2);max-width:58ch}
+.ss-site .ag-hero .lede{margin-top:18px;font-size:var(--t-lede);color:var(--text-2);max-width:58ch}
 .ss-site .page .ag-video{padding-top:28px}
 .ss-site .ag-frame{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#0B1F3B;border:1px solid var(--line-2);box-shadow:0 24px 60px -30px rgba(11,31,59,.45)}
 .ss-site .ag-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}

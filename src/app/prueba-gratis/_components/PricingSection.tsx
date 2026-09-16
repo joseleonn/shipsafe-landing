@@ -8,6 +8,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import { cn } from "@/lib/utils";
 import CtaButton from "./CtaButton";
 import { PLANS } from "../_data";
+import { equivalenteUsd } from "@/lib/constants";
 
 export default function PricingSection() {
   return (
@@ -47,6 +48,11 @@ export default function PricingSection() {
                   </span>
                   <span className="text-sm text-white/60">{plan.priceDetail}</span>
                 </div>
+                {/* Equivalente en dólares: la venta es a toda Latinoamérica y
+                    un número en ARS no le dice nada al que mira de afuera. */}
+                {equivalenteUsd(plan.price) && (
+                  <div className="mt-1 text-sm text-white/45">{equivalenteUsd(plan.price)}</div>
+                )}
 
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((feature) => {

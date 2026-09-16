@@ -31,7 +31,7 @@ export default function Roles() {
           <h2>
             Cada rol entra por su puerta. <em>Todos ven la misma información.</em>
           </h2>
-          <p className="lede">No es una app de inspecciones para un técnico. Es el lugar donde trabaja toda la operación de SST, y lo que uno carga, el otro lo ve en el momento.</p>
+          <p className="lede">No es una app de inspecciones para un técnico: es donde trabaja toda la operación. <b>Lo que uno carga, el otro lo ve en el momento.</b></p>
         </div>
         <div className="roles-ui">
           <div className="tabs" role="tablist" aria-label="Roles">
@@ -89,7 +89,7 @@ export default function Roles() {
           </div>
         </div>
         <p className="roles-more">
-          También el <b>consultor externo</b>: gestiona varios clientes desde una sola cuenta, con datos separados y reportes mensuales para cada uno.{" "}
+          También el <b>consultor externo</b>: varios clientes desde una sola cuenta, con datos separados.{" "}
           <Link className="link" href="/consultores">
             Programa de consultores <Icon name="arrow" />
           </Link>

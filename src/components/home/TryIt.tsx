@@ -20,7 +20,7 @@ export default function TryIt() {
             <h2>
               Escaneá el QR y hacé una inspección <em>en dos minutos.</em>
             </h2>
-            <p className="lede">Es la misma pantalla que ve tu operario cuando escanea el código pegado en un matafuego. Sin registrarte, sin instalar nada.</p>
+            <p className="lede">Es la misma pantalla que ve tu operario cuando escanea el código pegado en un matafuego. <b>Sin registrarte, sin instalar nada.</b></p>
             <ol className="try-steps">
               <li><span className="n">1</span><span>Apuntá la cámara del celular al código.</span></li>
               <li><span className="n">2</span><span>Respondé el checklist de prueba: OK, NO OK, foto.</span></li>
