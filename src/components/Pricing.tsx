@@ -6,7 +6,7 @@ import { Check } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import AnimatedHeading from "./ui/AnimatedHeading";
 import SpotlightCard from "./ui/SpotlightCard";
-import { PRICING } from "@/lib/constants";
+import { PRICING, equivalenteUsd } from "@/lib/constants";
 import { trackEvent, EVENTS } from "@/lib/analytics";
 
 interface PricingProps {
@@ -67,7 +67,17 @@ export default function Pricing({ page = "home" }: PricingProps) {
                   <p className="mt-2 text-sm text-white/65">{tier.target}</p>
 
                   <div className="mt-6">
-                    <div className="text-3xl font-bold text-white">{tier.price}</div>
+                    <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                      <span className="text-3xl font-bold text-white">{tier.price}</span>
+                      {/* El equivalente en dólares, para quien mira desde
+                          afuera de Argentina y no puede evaluar pesos. Va
+                          secundario: el precio de lista sigue siendo en ARS. */}
+                      {equivalenteUsd(tier.price) && (
+                        <span className="text-base font-medium text-white/45">
+                          {equivalenteUsd(tier.price)}
+                        </span>
+                      )}
+                    </div>
                     <div className="mt-1 text-sm text-white/60">{tier.priceDetail}</div>
                   </div>
 

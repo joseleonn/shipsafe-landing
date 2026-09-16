@@ -260,6 +260,35 @@ export const CASE_STUDIES = [
 // La matriz completa de planes vive en la guía interna de pricing — no
 // publicarla. Enterprise nunca con tarifa de lista. Ajustar semestralmente
 // por inflación (política interna: IPC con tope).
+/**
+ * ARS por USD para mostrar el equivalente al lado del precio.
+ *
+ * El precio de lista sigue siendo en pesos: hoy el 100% del tráfico pago y
+ * prácticamente todo el pipeline es argentino, y a un comprador de acá el
+ * dólar le agrega una cuenta mental en vez de sacársela. El equivalente en
+ * USD está para el visitante de México, Chile o Colombia, que mirando pesos
+ * argentinos no puede evaluar nada.
+ *
+ * Deliberadamente NO se detecta el país por IP: obligaría a renderizar el
+ * sitio dinámico o a cambiar el precio en el cliente (con el parpadeo del
+ * número equivocado), le daría a Google dos precios para una sola URL, y las
+ * IP fallan con VPN y datos móviles. Mostrar las dos monedas a todo el mundo
+ * cuesta una línea y no rompe nada.
+ *
+ * Se actualiza acá y en DASHBOARD_ARS_POR_USD (lib/dashboard/metas.ts).
+ */
+export const ARS_POR_USD = Number(process.env.NEXT_PUBLIC_ARS_POR_USD ?? 1500);
+
+/** "Desde $90.000" → "≈ USD 60". `null` si el precio no es una cifra. */
+export function equivalenteUsd(precio: string): string | null {
+  const digitos = precio.replace(/[^\d.]/g, "").replace(/\./g, "");
+  if (!digitos) return null;
+  const ars = Number(digitos);
+  if (!Number.isFinite(ars) || ars <= 0) return null;
+  const usd = Math.round(ars / ARS_POR_USD);
+  return `≈ USD ${new Intl.NumberFormat("es-AR").format(usd)}`;
+}
+
 export const PRICING = {
   // Copy del bloque de precios de la HOME. A propósito sin cifras: la home es
   // tráfico frío de orgánico que todavía está entendiendo la categoría, y una
@@ -274,7 +303,7 @@ export const PRICING = {
       "Es mensual y te podés dar de baja cuando quieras. Si pagás por año, tenés entre 15% y 20% de descuento.",
   },
   disclaimer:
-    "Precios orientativos en ARS, según equipos a controlar y usuarios activos. Pagando anual obtenés entre 15% y 20% de descuento. Te pasamos la propuesta concreta el mismo día de la demo.",
+    "Precios orientativos en pesos argentinos, según equipos a controlar y usuarios activos. El equivalente en dólares es de referencia, al tipo de cambio del día. Pagando anual obtenés entre 15% y 20% de descuento. Te pasamos la propuesta concreta el mismo día de la demo.",
   tiers: [
     {
       id: "profesional",
