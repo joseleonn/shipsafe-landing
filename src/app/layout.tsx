@@ -6,6 +6,7 @@ import "./pages.css";
 import "./motion.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import MetaPixel from "@/components/MetaPixel";
+import CapturaAtribucion from "@/components/CapturaAtribucion";
 import { SITE } from "@/lib/constants";
 
 // Tipografía del sistema (v3, 4/9/2026): la misma que el producto.
@@ -175,6 +176,7 @@ export default function RootLayout({
       <body className="min-h-full">
         <GoogleAnalytics />
         <MetaPixel />
+        <CapturaAtribucion />
         {children}
       </body>
     </html>
