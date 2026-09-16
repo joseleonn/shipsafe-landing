@@ -164,6 +164,11 @@ export default async function DashboardPage({
               valor={pct(m.ctrEnlace)}
               objetivo={rangoTexto("ctr", "pct")}
               evaluacion={evaluar("ctr", m.ctrEnlace)}
+              nota={
+                m.impresionesConEnlace
+                  ? `Sobre ${nfEntero.format(m.impresionesConEnlace)} impresiones de anuncios con enlace. Los de solo video no cuentan acá.`
+                  : undefined
+              }
             />
             <Tile
               titulo="Conversión de la landing"

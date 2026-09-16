@@ -100,16 +100,25 @@ export function evaluar(clave: string, valor: number | null): Evaluacion {
   }
 
   const dentro =
-    (meta.min === undefined ||
-      (meta.direccion === "mayor_mejor" ? valor >= meta.min : valor >= meta.min)) &&
+    (meta.min === undefined || valor >= meta.min) &&
     (meta.max === undefined ||
       (meta.direccion === "menor_mejor" ? valor <= meta.max : true));
 
-  // Para "mayor mejor", superar el máximo es una buena noticia, no un problema.
-  const superaPorArriba =
-    meta.direccion === "mayor_mejor" && meta.max !== undefined && valor > meta.max;
+  // Superar el objetivo no es un problema, y eso vale en las dos direcciones:
+  // un CTR de 40% con objetivo "1% o más" está buenísimo, y un CPM de USD 1
+  // con objetivo "entre 2 y 6" también. Antes solo se contemplaba el primer
+  // caso, así que un CPM barato se pintaba "Fuera de rango" y encima con el
+  // diagnóstico al revés: "audiencia demasiado angosta o creativo penalizado",
+  // que es justo lo contrario de lo que significa un CPM bajo.
+  const mejorQueElObjetivo =
+    (meta.direccion === "mayor_mejor" && meta.max !== undefined && valor > meta.max) ||
+    (meta.direccion === "menor_mejor" && meta.min !== undefined && valor < meta.min);
 
-  if (dentro || superaPorArriba) {
+  if (mejorQueElObjetivo) {
+    return { estado: "bueno", etiqueta: "Mejor que el objetivo" };
+  }
+
+  if (dentro) {
     return { estado: "bueno", etiqueta: "En objetivo" };
   }
 

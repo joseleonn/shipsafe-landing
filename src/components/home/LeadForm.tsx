@@ -94,34 +94,46 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     } catch {
       /* el pixel puede no estar */
     }
-    let ok = false;
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nombre,
-          email,
-          gestion,
-          rol,
-          empleados,
-          leadMagnet: `${source}-demo`,
-          eventId,
-          fbc: readCookie("_fbc") ?? undefined,
-          fbp: readCookie("_fbp") ?? undefined,
-          attribution: getAttribution(),
-          sourceUrl: window.location.href,
-        }),
-      });
-      ok = res.ok;
-    } catch {
-      ok = false;
-    }
-    if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section });
-    setSaved(ok);
+    // El POST sale y NO se espera.
+    //
+    // /api/lead hace dos viajes externos en paralelo (HubSpot y la API de
+    // conversiones de Meta). Esperarlos antes de abrir la agenda dejaba en
+    // pantalla, durante un segundo largo, la confirmación con su botón de
+    // "Elegí día y horario" —que es el fallback, no un paso— y recién después
+    // montaba Calendly encima. Se leía como un trámite de más.
+    //
+    // `keepalive` es lo que permite soltarlo: el navegador termina el pedido
+    // aunque la pestaña cambie de contexto al abrirse la agenda.
+    const guardado = fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      body: JSON.stringify({
+        nombre,
+        email,
+        gestion,
+        rol,
+        empleados,
+        leadMagnet: `${source}-demo`,
+        eventId,
+        fbc: readCookie("_fbc") ?? undefined,
+        fbp: readCookie("_fbp") ?? undefined,
+        attribution: getAttribution(),
+        sourceUrl: window.location.href,
+      }),
+    }).catch(() => null);
+
     setCalifica(pasa);
     setState("sent");
     if (pasa) agenda(prefill);
+
+    // El resultado llega cuando llega. Solo sirve para el texto de la pantalla
+    // de atrás ("Tus datos quedaron guardados" vs "La agenda se abre igual"),
+    // así que no tiene por qué bloquear nada.
+    const res = await guardado;
+    const ok = Boolean(res?.ok);
+    if (ok) trackEvent(EVENTS.GENERATE_LEAD, { source, section });
+    setSaved(ok);
   }
 
   // Ojo con el diseño de este bloque: comparte la clase `ok` con el cierre del

@@ -28,8 +28,13 @@ export interface DatosMeta {
   clicsEnlace: number;
   /** CPM en la moneda de la cuenta. */
   cpm: number | null;
-  /** CTR de enlace en porcentaje. Es el que compara el playbook, no el CTR total. */
+  /**
+   * CTR de enlace en porcentaje, calculado SOLO sobre los anuncios que llevan
+   * a un enlace. Es el que compara el playbook, no el CTR total.
+   */
   ctrEnlace: number | null;
+  /** Denominador real del CTR: impresiones de los anuncios que sí tienen enlace. */
+  impresionesConEnlace: number | null;
   /**
    * Reproducciones de 3 segundos sobre impresiones, en porcentaje.
    *
@@ -154,6 +159,30 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
     const clicsEnlace = num(t.inline_link_clicks);
     const vistas3s = vistas3sDe(t);
 
+    const anuncios: EntregaAnuncio[] = porAnuncio
+      .map((a) => ({
+        nombre: String(a.ad_name ?? "sin nombre"),
+        gasto: num(a.spend),
+        impresiones: num(a.impressions),
+        clicsEnlace: num(a.inline_link_clicks),
+        vistas3s: vistas3sDe(a),
+      }))
+      .sort((a, b) => b.gasto - a.gasto);
+
+    // El CTR de enlace se calcula solo sobre los anuncios que TIENEN enlace.
+    //
+    // Si no, un conjunto optimizado a ThruPlay —que no lleva a ninguna parte y
+    // aporta miles de impresiones— hunde el número del resto. Pasó: 40 clics
+    // sobre 10.023 impresiones daba 0,4% y disparaba "es el ángulo, no el
+    // presupuesto", cuando el CTR real de los anuncios con enlace era 2,4%.
+    //
+    // "Registró algún clic" alcanza como proxy de "tiene enlace": un anuncio
+    // con enlace y volumen real siempre junta alguno. El sesgo aparece solo con
+    // un anuncio con enlace y cero clics, que a esa altura ya es su propia señal.
+    const conEnlace = anuncios.filter((a) => a.clicsEnlace > 0);
+    const impresionesConEnlace = conEnlace.reduce((acc, a) => acc + a.impresiones, 0);
+    const clicsConEnlace = conEnlace.reduce((acc, a) => acc + a.clicsEnlace, 0);
+
     return {
       datos: {
         moneda: String(t.account_currency ?? "USD"),
@@ -161,18 +190,14 @@ export async function leerMeta(desde: number, hasta: number): Promise<ResultadoM
         impresiones,
         clicsEnlace,
         cpm: t.cpm !== undefined ? num(t.cpm) : null,
-        ctrEnlace: impresiones > 0 ? (clicsEnlace / impresiones) * 100 : null,
+        ctrEnlace:
+          impresionesConEnlace > 0
+            ? (clicsConEnlace / impresionesConEnlace) * 100
+            : null,
+        impresionesConEnlace: impresionesConEnlace || null,
         hookRate:
           vistas3s > 0 && impresiones > 0 ? (vistas3s / impresiones) * 100 : null,
-        porAnuncio: porAnuncio
-          .map((a) => ({
-            nombre: String(a.ad_name ?? "sin nombre"),
-            gasto: num(a.spend),
-            impresiones: num(a.impressions),
-            clicsEnlace: num(a.inline_link_clicks),
-            vistas3s: vistas3sDe(a),
-          }))
-          .sort((a, b) => b.gasto - a.gasto),
+        porAnuncio: anuncios,
         porDia: Object.fromEntries(
           porDia.map((d) => [String(d.date_start ?? ""), num(d.spend)])
         ),

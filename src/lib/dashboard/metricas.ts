@@ -105,6 +105,8 @@ export interface Metricas {
   impresiones: number | null;
   cpmUsd: number | null;
   ctrEnlace: number | null;
+  /** Sobre cuántas impresiones se calculó el CTR (solo anuncios con enlace). */
+  impresionesConEnlace: number | null;
   hookRate: number | null;
   clicsEnlace: number | null;
 
@@ -336,6 +338,7 @@ export async function calcularMetricas(periodo: ClavePeriodo): Promise<Metricas>
     impresiones: meta.datos?.impresiones ?? null,
     cpmUsd: meta.datos?.cpm !== undefined && meta.datos !== null ? aUsd(meta.datos.cpm) : null,
     ctrEnlace: meta.datos?.ctrEnlace ?? null,
+    impresionesConEnlace: meta.datos?.impresionesConEnlace ?? null,
     hookRate: meta.datos?.hookRate ?? null,
     clicsEnlace: meta.datos?.clicsEnlace ?? null,
     embudo,
