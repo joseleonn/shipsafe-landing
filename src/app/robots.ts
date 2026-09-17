@@ -6,9 +6,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // El dashboard y las landings de campaña no se indexan. El middleware ya
-      // las protege; esto evita además que aparezcan en Google.
-      disallow: ["/dashboard", "/dashboard/", "/recurso/"],
+      // El dashboard, el cotizador y las landings de campaña no se indexan. El
+      // middleware ya protege las dos primeras; esto evita además que la URL
+      // aparezca en Google.
+      disallow: ["/dashboard", "/dashboard/", "/interno", "/interno/", "/recurso/"],
     },
     sitemap: `${SITE.url}/sitemap.xml`,
   };
