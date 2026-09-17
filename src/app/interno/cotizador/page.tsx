@@ -30,6 +30,8 @@ function tarifaDelEntorno(): Tarifa {
   };
   return {
     base: num(process.env.COTIZADOR_BASE, TARIFA.base),
+    establecimientoEnterprise: num(process.env.COTIZADOR_ESTABLECIMIENTO_ENTERPRISE, TARIFA.establecimientoEnterprise),
+    equipoEnterprise: num(process.env.COTIZADOR_EQUIPO_ENTERPRISE, TARIFA.equipoEnterprise),
     setupUsuario: num(process.env.COTIZADOR_SETUP_USUARIO, TARIFA.setupUsuario),
     setupEstablecimiento: num(process.env.COTIZADOR_SETUP_ESTABLECIMIENTO, TARIFA.setupEstablecimiento),
     setupEquipo: num(process.env.COTIZADOR_SETUP_EQUIPO, TARIFA.setupEquipo),

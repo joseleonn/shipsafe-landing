@@ -100,12 +100,23 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
   const unidad = e.tipoOperacion === "clientes" ? "clientes" : "establecimientos";
   const tc = e.pesosPorDolar;
 
+  // En Enterprise el equipo es variable de precio, así que el conteo sobre el
+  // que se calculó tiene que viajar con la cotización: es la base del número.
+  const enterprise = r.linea === "Enterprise";
+  const alcance = enterprise
+    ? `${e.usuarios} usuarios, ${e.establecimientos} ${unidad} y ${fmt(e.equipos)} equipos`
+    : `${e.usuarios} usuarios y ${e.establecimientos} ${unidad}`;
+
   const texto = [
-    `Para una operación de ${e.usuarios} usuarios y ${e.establecimientos} ${unidad}:`,
+    `Para una operación de ${alcance}:`,
     "",
     `• Abono mensual: ${usd(r.abono)} (${ars(r.abono, tc)})`,
-    `• Implementación, pago único: ${usd(r.setup)} (${ars(r.setup, tc)})`,
-    `• Pago anual: ${usd(r.abonoAnualMensual)}/mes, ${Math.round(r.descuento * 100)}% de descuento`,
+    e.setupIncluido
+      ? `• Implementación: incluida (valor ${usd(r.concesion)})`
+      : `• Implementación, pago único: ${usd(r.setup)} (${ars(r.setup, tc)})`,
+    enterprise
+      ? `• Total anual: ${usd(r.abonoAnualTotal)} (${ars(r.abonoAnualTotal, tc)})`
+      : `• Pago anual: ${usd(r.abonoAnualMensual)}/mes, ${Math.round(r.descuento * 100)}% de descuento`,
     "",
     "Los operarios no se cuentan ni se cobran: entran con DNI, sin usuario ni mail.",
     ...(r.porCliente !== null ? [`Son ${usd(r.porCliente)} por cliente por mes.`] : []),
@@ -165,17 +176,30 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
             </div>
           </div>
 
-          <label className="flex cursor-pointer items-start gap-3 self-end rounded-lg border border-white/12 p-3">
-            <input
-              type="checkbox"
-              checked={e.requisitosTecnicos}
-              onChange={(ev) => set("requisitosTecnicos", ev.target.checked)}
-              className="mt-0.5 h-4 w-4 flex-none accent-accent"
-            />
-            <span className="text-sm leading-snug text-white/70">
-              Pide SSO, ERP, on-premise, white-label o SLA contractual
-            </span>
-          </label>
+          <div className="space-y-2 self-end">
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-white/12 p-3">
+              <input
+                type="checkbox"
+                checked={e.requisitosTecnicos}
+                onChange={(ev) => set("requisitosTecnicos", ev.target.checked)}
+                className="mt-0.5 h-4 w-4 flex-none accent-accent"
+              />
+              <span className="text-sm leading-snug text-white/70">
+                Pide SSO, ERP, on-premise, white-label o SLA contractual
+              </span>
+            </label>
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-white/12 p-3">
+              <input
+                type="checkbox"
+                checked={e.setupIncluido}
+                onChange={(ev) => set("setupIncluido", ev.target.checked)}
+                className="mt-0.5 h-4 w-4 flex-none accent-accent"
+              />
+              <span className="text-sm leading-snug text-white/70">
+                Implementación incluida en la propuesta
+              </span>
+            </label>
+          </div>
         </div>
 
         <p className="text-xs leading-relaxed text-white/35">
@@ -190,7 +214,9 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
           {r.linea}
         </span>
         <span className="text-sm text-white/45">{r.razon}</span>
-        <span className="text-sm text-white/45">· {Math.round(r.descuento * 100)}% anual</span>
+        {r.descuento > 0 && (
+          <span className="text-sm text-white/45">· {Math.round(r.descuento * 100)}% anual</span>
+        )}
       </div>
 
       {r.avisos.map((a) => (
@@ -204,12 +230,20 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
         <div className="sm:col-span-2">
           <Cifra titulo="Abono mensual" valor={usd(r.abono)} pesos={ars(r.abono, tc)} grande acento />
         </div>
-        <Cifra titulo="Implementación, pago único" valor={usd(r.setup)} pesos={ars(r.setup, tc)} />
+        <Cifra
+          titulo="Implementación, pago único"
+          valor={e.setupIncluido ? "Incluida" : usd(r.setup)}
+          pesos={e.setupIncluido ? `Concesión: ${usd(r.concesion)}` : ars(r.setup, tc)}
+        />
         <Cifra titulo="Primer mes" valor={usd(r.primerMes)} pesos={ars(r.primerMes, tc)} />
         <Cifra
-          titulo={`Anual · ${Math.round(r.descuento * 100)}% off`}
-          valor={`${usd(r.abonoAnualMensual)}/mes`}
-          pesos={`${usd(r.abonoAnualTotal)} el año · ${ars(r.abonoAnualTotal, tc)}`}
+          titulo={r.descuento > 0 ? `Anual · ${Math.round(r.descuento * 100)}% off` : "Anual"}
+          valor={r.descuento > 0 ? `${usd(r.abonoAnualMensual)}/mes` : usd(r.abonoAnualTotal)}
+          pesos={
+            r.descuento > 0
+              ? `${usd(r.abonoAnualTotal)} el año · ${ars(r.abonoAnualTotal, tc)}`
+              : `${ars(r.abonoAnualTotal, tc)} · Enterprise ya se cotiza anual, sin descuento adicional`
+          }
         />
         {r.porCliente !== null && (
           <Cifra titulo="Por cliente gestionado, por mes" valor={usd(r.porCliente)} pesos={ars(r.porCliente, tc)} acento />
@@ -265,7 +299,7 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
 
       {/* Verificación en vivo */}
       <div className={`${caja} ${todoOk ? "" : "border-red-400/40 bg-red-400/10"}`}>
-        <div className={etiqueta}>Comprobación · los dos planes vendidos</div>
+        <div className={etiqueta}>Comprobación · los casos calibrados</div>
         <ul className="mt-2.5 space-y-1.5 text-sm">
           {checks.map((c) => (
             <li key={c.nombre} className="flex flex-wrap items-baseline gap-x-2">
@@ -279,6 +313,11 @@ export default function Cotizador({ tarifa }: { tarifa: Tarifa }) {
             </li>
           ))}
         </ul>
+        <p className="mt-2.5 text-xs leading-relaxed text-white/35">
+          Los dos primeros son ventas cerradas. El tercero es la cotización de Adecoagro, que
+          todavía no compró: si negocia para abajo, hay que recalibrar el precio de establecimiento
+          de Enterprise.
+        </p>
         {!todoOk && (
           <p className="mt-2.5 text-sm text-red-200">
             No coincide con los planes vendidos. Hay un error en la implementación o en los parámetros:
