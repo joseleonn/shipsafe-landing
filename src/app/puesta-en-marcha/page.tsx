@@ -33,7 +33,7 @@ import { join } from "node:path";
  * en Google con las páginas de SEO.
  */
 export const metadata: Metadata = {
-  title: `Te dejamos un proceso andando en media hora | ${SITE.name}`,
+  title: `Elegí el proceso que más te duele | ${SITE.name}`,
   description:
     "Media hora con nosotros y te vas con un proceso de seguridad e higiene funcionando: tus checklists, un frente real cargado y quince días para usarlo con tu gente.",
   alternates: { canonical: "/puesta-en-marcha" },
@@ -143,26 +143,40 @@ export default function Page() {
   const hayFoto = existsSync(join(process.cwd(), "public", ANFITRION.foto.replace(/^\//, "")));
 
   return (
-    <SiteShell minimal ctaLabel="Reservá tu media hora" ctaSection="puesta-nav">
+    <SiteShell minimal ctaLabel="Elegir el mío" ctaSection="puesta-nav">
       <main id="main">
         <section className="page-hero center" id="top">
           <div className="wrap">
-            <div className="eyebrow">Para quien tiene la seguridad a cargo</div>
+            {/* Sin eyebrow a propósito. "Para quien tiene la seguridad a cargo"
+                descalificaba antes de interesar y se llevaba 27 de los 75 clics
+                de la página hacia un texto que no hace nada, además de empujar
+                el botón abajo del pliegue en celular. La lista de procesos de
+                abajo hace el mismo filtro, pero enganchando. */}
             <h1>
-              Te dejamos un proceso <em>andando en media hora.</em>
+              Elegí el proceso <em>que más te duele.</em>
             </h1>
             <p className="lede">
-              No hay nada que descargar y no vamos a recorrer menús. Nos sentamos
-              media hora, configuramos el proceso que hoy más te cuesta con tus
-              datos, y te vas con eso funcionando.
+              En media hora queda andando con tus datos.{" "}
+              <b>Y lo ves en el momento, no el viernes.</b>
             </p>
+            {/* Los tres anuncios de la campaña cuentan el mismo dolor: el dato
+                existe pero llega tarde ("la planilla la ves cuando el vehículo
+                vuelve a base", "lo vas a saber la semana que viene"). El remate
+                de la bajada cierra eso en la primera pantalla. */}
+            <ul className="chips-row" aria-label="Procesos con los que podés empezar">
+              <li>Preuso de vehículos</li>
+              <li>Matafuegos</li>
+              <li>Desvíos</li>
+              <li>Entregas de EPP</li>
+              <li>Capacitaciones</li>
+            </ul>
             <div className="hero-cta">
               <DemoLink section="puesta-hero" className="btn btn-primary btn-lg">
-                Reservá tu media hora
+                Elegir el mío
               </DemoLink>
             </div>
             <p className="fine">
-              30 minutos · No hace falta que prepares nada
+              30 minutos · llego con la mitad hecha · no preparás nada
             </p>
           </div>
         </section>
@@ -303,13 +317,13 @@ export default function Page() {
             </p>
             <div className="hero-cta">
               <DemoLink section="puesta-cierre" className="btn btn-primary btn-lg">
-                Reservá tu media hora
+                Elegir el mío
               </DemoLink>
             </div>
           </div>
         </section>
       </main>
-      <StickyBar heroId="top" closeId="cierre" section="puesta-sticky" label="Reservá tu media hora" />
+      <StickyBar heroId="top" closeId="cierre" section="puesta-sticky" label="Elegir el mío" />
     </SiteShell>
   );
 }

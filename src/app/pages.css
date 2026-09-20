@@ -19,6 +19,12 @@
 .ss-site .page-hero .lede{max-width:56ch}
 .ss-site .page-hero .hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
 .ss-site .page-hero.center .hero-cta{justify-content:center}
+/* La lista de procesos del hero de /puesta-en-marcha. Reusa .chips-row del
+   sitio; acá solo hay que centrarla y apretarla contra el botón, porque en
+   celular cada línea que sobra empuja el CTA abajo del pliegue. */
+.ss-site .page-hero.center .chips-row{justify-content:center;margin-top:18px}
+.ss-site .page-hero .chips-row{max-width:52ch;margin-inline:auto}
+@media (max-width:600px){ .ss-site .page-hero.center .chips-row{gap:8px;margin-top:14px} }
 .ss-site .page-hero .fine{margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
 /* ---------- migas ---------- */
