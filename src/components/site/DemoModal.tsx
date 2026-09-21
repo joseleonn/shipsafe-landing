@@ -52,7 +52,7 @@ export default function DemoModal() {
   const campana = section.startsWith("puesta");
   // Si llegó desde un chip, el modal confirma la elección en vez de volver a
   // preguntarla: es la continuación del "Elegí el proceso" del hero.
-  const titulo = proceso ? `Arrancamos con ${proceso.toLowerCase()}` : campana ? "Reservá tu media hora" : "Agendá una demo";
+  const titulo = proceso ? `Arrancamos con ${proceso.charAt(0).toLowerCase()}${proceso.slice(1)}` : campana ? "Reservá tu media hora" : "Agendá una demo";
   const sub = proceso ? "30 min · llego con la mitad hecha" : campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
 
   return (
