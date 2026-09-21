@@ -17,7 +17,9 @@ const WIDGET_JS = "https://assets.calendly.com/assets/external/widget.js";
 const WIDGET_CSS = "https://assets.calendly.com/assets/external/widget.css";
 const AGENDADO = "/demo/agendado";
 
-type Prefill = { name?: string; email?: string };
+// customAnswers: a1 = primera pregunta del evento en Calendly
+// ("¿Cuál es el proceso que más te está costando hoy?").
+type Prefill = { name?: string; email?: string; customAnswers?: Record<string, string> };
 
 interface CalendlyApi {
   initPopupWidget: (opts: { url: string; prefill?: Prefill }) => void;

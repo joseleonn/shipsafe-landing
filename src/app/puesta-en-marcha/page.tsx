@@ -4,6 +4,7 @@ import { CASE } from "@/lib/home-content";
 import SiteShell from "@/components/site/SiteShell";
 import StickyBar from "@/components/site/StickyBar";
 import DemoLink from "@/components/site/DemoLink";
+import ProcesoChips from "./ProcesoChips";
 import Icon from "@/components/site/Icon";
 import Reveal from "@/components/site/Reveal";
 import Image from "next/image";
@@ -163,13 +164,7 @@ export default function Page() {
                 existe pero llega tarde ("la planilla la ves cuando el vehículo
                 vuelve a base", "lo vas a saber la semana que viene"). El remate
                 de la bajada cierra eso en la primera pantalla. */}
-            <ul className="chips-row" aria-label="Procesos con los que podés empezar">
-              <li>Preuso de vehículos</li>
-              <li>Matafuegos</li>
-              <li>Desvíos</li>
-              <li>Entregas de EPP</li>
-              <li>Capacitaciones</li>
-            </ul>
+            <ProcesoChips />
             <div className="hero-cta">
               <DemoLink section="puesta-hero" className="btn btn-primary btn-lg">
                 Elegir el mío

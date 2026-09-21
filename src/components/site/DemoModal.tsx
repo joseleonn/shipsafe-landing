@@ -18,11 +18,13 @@ import { whatsappUrl } from "@/lib/home-content";
  */
 export default function DemoModal() {
   const [section, setSection] = useState<string | null>(null);
+  const [proceso, setProceso] = useState<string | undefined>(undefined);
   const opener = useRef<HTMLElement | null>(null);
   const open = section !== null;
 
-  useEffect(() => onDemoModal((s) => {
+  useEffect(() => onDemoModal((s, p) => {
     opener.current = document.activeElement as HTMLElement | null;
+    setProceso(p);
     setSection(s);
   }), []);
 
@@ -48,8 +50,10 @@ export default function DemoModal() {
   // `section` llega sin prefijo ("puesta-hero", "puesta-nav"…); el "modal-"
   // se agrega recién al pasárselo al formulario.
   const campana = section.startsWith("puesta");
-  const titulo = campana ? "Reservá tu media hora" : "Agendá una demo";
-  const sub = campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
+  // Si llegó desde un chip, el modal confirma la elección en vez de volver a
+  // preguntarla: es la continuación del "Elegí el proceso" del hero.
+  const titulo = proceso ? `Arrancamos con ${proceso.toLowerCase()}` : campana ? "Reservá tu media hora" : "Agendá una demo";
+  const sub = proceso ? "30 min · llego con la mitad hecha" : campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
 
   return (
     <div className="dm-backdrop" onClick={close}>
@@ -62,7 +66,7 @@ export default function DemoModal() {
           <span>{sub}</span>
         </div>
         <p className="dm-lede">Unos datos y se abre la agenda con tu nombre y email ya cargados.</p>
-        <LeadForm source="home" section={`modal-${section}`} autoFocus />
+        <LeadForm source="home" section={`modal-${section}`} proceso={proceso} autoFocus />
         <div className="wa">
           ¿Preferís WhatsApp?{" "}
           <a href={whatsappUrl("Hola, quiero agendar una demo de SHIPSAFE")} target="_blank" rel="noopener noreferrer">

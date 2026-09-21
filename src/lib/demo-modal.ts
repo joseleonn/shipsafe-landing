@@ -5,12 +5,21 @@
  */
 const EVENT = "ss:demo-modal";
 
-export function openDemoModal(section: string) {
-  window.dispatchEvent(new CustomEvent(EVENT, { detail: { section } }));
+type Detail = { section?: string; proceso?: string };
+
+/**
+ * `proceso` es opcional: lo manda el chip del hero de /puesta-en-marcha
+ * ("Matafuegos", "Desvíos"…) para que el modal abra con esa elección ya hecha.
+ */
+export function openDemoModal(section: string, proceso?: string) {
+  window.dispatchEvent(new CustomEvent<Detail>(EVENT, { detail: { section, proceso } }));
 }
 
-export function onDemoModal(cb: (section: string) => void) {
-  const handler = (e: Event) => cb(String((e as CustomEvent<{ section?: string }>).detail?.section ?? "modal"));
+export function onDemoModal(cb: (section: string, proceso?: string) => void) {
+  const handler = (e: Event) => {
+    const d = (e as CustomEvent<Detail>).detail ?? {};
+    cb(String(d.section ?? "modal"), d.proceso || undefined);
+  };
   window.addEventListener(EVENT, handler);
   return () => window.removeEventListener(EVENT, handler);
 }

@@ -248,3 +248,13 @@
 .ss-site .page-hero{padding-top:calc(var(--nav-space) + 26px)}
 /* /demo/agendado tiene su propia barra en el flujo, no la isla. */
 .ss-site.ss-agendado .page{padding-top:0}
+
+/* Chips tocables del hero de /puesta-en-marcha (ProcesoChips). El <li> ya
+   tiene el look de chip; el botón ocupa todo el chip y hereda la tipografía.
+   Hover/foco con el acento para que se lea como algo que se toca, no como
+   una etiqueta. */
+.ss-site .chips-pick li{padding:0;overflow:hidden;transition:border-color var(--hold) ease,color var(--hold) ease,background var(--hold) ease}
+.ss-site .chips-pick button{all:unset;box-sizing:border-box;display:block;padding:9px 14px;cursor:pointer;font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.ss-site .chips-pick li:hover,.ss-site .chips-pick li:focus-within{border-color:var(--accent);color:var(--accent-ink)}
+.ss-site .chips-pick button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:inherit}
+.ss-site .chips-pick li:active{background:var(--accent-soft, rgba(37,99,235,.08))}

@@ -48,7 +48,7 @@ type State = "idle" | "sending" | "sent";
  * no existe para enseñarle al algoritmo (ver `calificacion.ts`): con USD 15
  * por día el volumen no alcanza para que Meta optimice nada.
  */
-export default function LeadForm({ source = "home", section = "cierre", autoFocus = false }: { source?: string; section?: string; autoFocus?: boolean }) {
+export default function LeadForm({ source = "home", section = "cierre", autoFocus = false, proceso }: { source?: string; section?: string; autoFocus?: boolean; proceso?: string }) {
   const id = useId();
   const [state, setState] = useState<State>("idle");
   const [saved, setSaved] = useState(true);
@@ -64,7 +64,9 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     const url = withContent(buildDemoUrl(window.location.search), section);
     trackEvent(EVENTS.DEMO_CLICK, { section, source });
     void openCalendly(url, {
-      prefill,
+      // Si eligió un proceso en el hero, llega ya contestada la primera
+      // pregunta de Calendly: José ve en la invitación con qué arrancar.
+      prefill: proceso ? { ...prefill, customAnswers: { a1: proceso } } : prefill,
       onScheduled: () => trackEvent(EVENTS.DEMO_SCHEDULED, { section, source }),
     }).then((ok) => {
       if (!ok) window.location.assign(url);
