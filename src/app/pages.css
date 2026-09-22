@@ -258,3 +258,8 @@
 .ss-site .chips-pick li:hover,.ss-site .chips-pick li:focus-within{border-color:var(--accent);color:var(--accent-ink)}
 .ss-site .chips-pick button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:inherit}
 .ss-site .chips-pick li:active{background:var(--accent-soft, rgba(37,99,235,.08))}
+/* El chip del proceso con el que vino la persona (?p=matriz): queda marcado
+   como elegido, para que el hero confirme de dónde viene en vez de pedirle
+   que elija de nuevo. */
+.ss-site .chips-pick li.is-on{border-color:var(--accent);background:var(--accent);color:#fff}
+.ss-site .chips-pick li.is-on button{color:#fff}

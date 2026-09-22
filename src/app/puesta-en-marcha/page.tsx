@@ -4,7 +4,7 @@ import { CASE } from "@/lib/home-content";
 import SiteShell from "@/components/site/SiteShell";
 import StickyBar from "@/components/site/StickyBar";
 import DemoLink from "@/components/site/DemoLink";
-import ProcesoChips from "./ProcesoChips";
+import HeroPuesta from "./HeroPuesta";
 import Icon from "@/components/site/Icon";
 import Reveal from "@/components/site/Reveal";
 import Image from "next/image";
@@ -34,9 +34,9 @@ import { join } from "node:path";
  * en Google con las páginas de SEO.
  */
 export const metadata: Metadata = {
-  title: `Elegí el proceso que más te duele | ${SITE.name}`,
+  title: `Tu proceso de seguridad, andando en media hora | ${SITE.name}`,
   description:
-    "Media hora con nosotros y te vas con un proceso de seguridad e higiene funcionando: tus checklists, un frente real cargado y quince días para usarlo con tu gente.",
+    "Media hora con nosotros y te vas con un proceso de seguridad e higiene funcionando: tus checklists, un frente real cargado y 30 días sin costo para usarlo con tu gente.",
   alternates: { canonical: "/puesta-en-marcha" },
   robots: { index: false, follow: false },
 };
@@ -59,8 +59,8 @@ const LLEVAS = [
   },
   {
     icon: "calendar",
-    title: "Quince días para usarlo",
-    text: "Con tu gente, en tu operación, antes de decidir nada.",
+    title: "30 días sin costo para usarlo",
+    text: "Con tu gente, en tu operación, y con nosotros encima para que sirva. Antes de decidir nada.",
   },
 ];
 
@@ -153,26 +153,7 @@ export default function Page() {
                 de la página hacia un texto que no hace nada, además de empujar
                 el botón abajo del pliegue en celular. La lista de procesos de
                 abajo hace el mismo filtro, pero enganchando. */}
-            <h1>
-              Elegí el proceso <em>que más te duele.</em>
-            </h1>
-            <p className="lede">
-              En media hora queda andando con tus datos.{" "}
-              <b>Y lo ves en el momento, no el viernes.</b>
-            </p>
-            {/* Los tres anuncios de la campaña cuentan el mismo dolor: el dato
-                existe pero llega tarde ("la planilla la ves cuando el vehículo
-                vuelve a base", "lo vas a saber la semana que viene"). El remate
-                de la bajada cierra eso en la primera pantalla. */}
-            <ProcesoChips />
-            <div className="hero-cta">
-              <DemoLink section="puesta-hero" className="btn btn-primary btn-lg">
-                Elegir el mío
-              </DemoLink>
-            </div>
-            <p className="fine">
-              30 minutos · llego con la mitad hecha · no preparás nada
-            </p>
+            <HeroPuesta />
           </div>
         </section>
 
