@@ -1166,3 +1166,25 @@
    ================================================================== */
 @media (max-width:900px){ .ss-site{--sec:96px} }
 @media (max-width:600px){ .ss-site{--sec:80px; --gutter:24px} }
+
+/* ==================================================================
+   CASE STRIP (sección 02): SW Petrol apenas termina el hero
+   ================================================================== */
+.ss-site .case-strip{padding-block:0 var(--sec)}
+.ss-site .cs-card{display:grid;grid-template-columns:1.1fr 1fr;gap:18px 48px;align-items:center;padding:36px 40px;border:1px solid var(--line);border-radius:var(--r-lg,20px);background:var(--bg-2)}
+.ss-site .cs-head h2{margin:0}
+.ss-site .cs-head .eyebrow{margin-bottom:12px}
+.ss-site .cs-client{display:flex;align-items:center;gap:14px}
+.ss-site .cs-logo{height:44px;width:auto;flex:none}
+.ss-site .cs-mark{font-family:var(--display);font-weight:700;font-size:20px;color:var(--navy)}
+.ss-site .cs-meta{display:grid;gap:2px;min-width:0}
+.ss-site .cs-meta b{font-weight:600;color:var(--text);font-size:15px}
+.ss-site .cs-meta span{font-size:var(--t-note);color:var(--muted)}
+.ss-site .cs-facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding-top:18px;border-top:1px solid var(--line)}
+.ss-site .cs-facts li{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);border-radius:var(--r-ctl);padding:5px 10px}
+.ss-site .cs-sum{grid-column:1/-1;margin:0;color:var(--text-2);font-size:var(--t-card);max-width:880px}
+.ss-site .cs-sum b{color:var(--text);font-weight:600}
+.ss-site .cs-more{grid-column:1/-1;font-size:var(--t-note)}
+@media (max-width:900px){
+  .ss-site .cs-card{grid-template-columns:1fr;padding:26px 22px}
+}

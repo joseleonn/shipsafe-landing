@@ -125,7 +125,7 @@ export default function Explorer() {
       <span id="funcionalidades" />
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>02</span>Plataforma</div>
+          <div className="eyebrow num"><span>08</span>Plataforma</div>
           <h2>
             Todo lo que pasa en SST <em>queda conectado.</em>
           </h2>

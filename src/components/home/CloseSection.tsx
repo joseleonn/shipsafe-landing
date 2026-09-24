@@ -16,7 +16,7 @@ export default function CloseSection({ num = "10", source = "home" }: { num?: st
         <div className="close-copy">
           <div className="eyebrow num">{num && <span>{num}</span>}Empecemos</div>
           <h2>
-            Agendá una demo <em>sobre tu operación.</em>
+            Mostranos cómo trabajan hoy <em>y te mostramos cómo quedaría en SHIPSAFE.</em>
           </h2>
           <p className="lede">Treinta minutos, con tus frentes, tu flota y tus vencimientos. <b>No sobre nuestro producto.</b></p>
           <ol className="what">

@@ -49,24 +49,30 @@ export const NAV = [
 ] as const;
 
 export const HERO = {
-  eyebrow: "Software de gestión SST",
-  h1: "Toda la gestión SST de tu operación,",
-  h1Accent: "bajo control y lista para demostrar.",
+  /**
+   * La categoría que viaja (SST) va en el H1; el término local, que es lo que
+   * busca el argentino, va en el eyebrow. HSE y SST por mercado se explican
+   * en la FAQ, no acá.
+   */
+  eyebrow: "Software de seguridad e higiene",
+  h1: "Seguridad y salud en el trabajo bajo control,",
+  h1Accent: "incluso cuando tu operación está dispersa.",
   lede:
-    "Inspecciones, EPP, capacitaciones, permisos, accidentes y vencimientos en una sola plataforma. Con los informes listos cuando alguien los pide.",
-  secondary: "Probalo por tu cuenta",
+    "SHIPSAFE conecta lo que pasa en campo con lo que necesita saber la gestión: inspecciones, desvíos, EPP, capacitaciones, permisos y vencimientos en una sola plataforma. Con evidencia, seguimiento y trazabilidad, lista para demostrar cuando alguien la pide.",
+  secondary: "Hacé una inspección de prueba",
   /** Duración del VSL que se reproduce en el marco del hero. */
   videoDuration: "1:30",
+  /** Escenarios en los que se reconoce el que llega: primero su operación, después el producto. */
   proof: [
-    "En producción con flota y frentes remotos",
-    "Funciona en el navegador, sin instalar nada",
-    "Varias sucursales, una sola cuenta",
-    "Informes y estadísticas listos para presentar",
+    "Flota y vehículos",
+    "Varias sucursales",
+    "Frentes de trabajo",
+    "Operaciones industriales",
   ],
   /** Los "eventos" que rotan sobre el escenario del hero: resumen de lo que el producto hace, no pantallas inventadas. */
   events: [
     { tone: "ok", title: "Inspección registrada", meta: "Camión IVECO · Frente Norte · con foto y firma" },
-    { tone: "warn", title: "Desvío #503 → Mantenimiento", meta: "Prioridad alta · vence en 72 h" },
+    { tone: "warn", title: "Desvío #503 para Mantenimiento", meta: "Prioridad alta · vence en 72 h" },
     { tone: "ok", title: "Permiso de trabajo aprobado", meta: "Trabajo en caliente · firmado a distancia" },
   ] as const,
 };
@@ -215,7 +221,7 @@ const MODULE_GROUPS_BASE: ModuleGroup[] = [
         { label: "", text: "Del problema y de la resolución, con historial de cambios: quién lo abrió, quién lo resolvió, cuándo, y el link a la ejecución que lo originó.", shot: SHOTS.desvioDetalle },
       ] },
       { id: "perm", title: "Permisos de trabajo", steps: [
-        { label: "", text: "Trabajo en caliente, en altura, espacio confinado. Borrador → pendiente → aprobado → en ejecución, con solicitante, ejecutante y autorizante.", shot: SHOTS.permisos },
+        { label: "", text: "Trabajo en caliente, en altura, espacio confinado. Borrador, pendiente, aprobado y en ejecución, con solicitante, ejecutante y autorizante.", shot: SHOTS.permisos },
       ] },
       { id: "firm", title: "Firmas y aprobaciones a distancia", steps: [
         { label: "", text: "Checklist de condiciones, firma del solicitante y del ejecutante, historial de estados. Se revisa y se aprueba desde otra sucursal, sin frenar la tarea.", shot: SHOTS.permisoFirmas },
@@ -343,7 +349,7 @@ export const MODULE_CHIPS = [
 ];
 
 export const FLOW_TODAY =
-  "Planilla en la camioneta → foto por WhatsApp → alguien lo anota el viernes → nadie sabe si se cerró.";
+  "Planilla en la camioneta, foto por WhatsApp, alguien lo anota el viernes y nadie sabe si se cerró.";
 
 export const FLOW_STEPS = [
   { who: "Operario", icon: "hat", title: "Marca NO OK en el extintor de la camioneta", text: "Escaneó el QR, respondió el checklist, sacó la foto y firmó. Dos minutos, en el frente." },
@@ -355,8 +361,8 @@ export const FLOW_STEPS = [
 
 /** Apertura de "La vieja forma y la nueva": el dolor que antes abría el hero. */
 export const COMPARE_LEDE = {
-  pain: "Un cliente te pide tu sistema para una licitación. Una auditoría te pide evidencia. La gerencia te pide estadísticas.",
-  hit: "Y todo sale de planillas, carpetas y WhatsApp, armado a las corridas.",
+  pain: "Cuando la operación crece, la información se dispersa: planillas en la camioneta, fotos por WhatsApp, un Excel por sucursal. Y el día que un cliente pide tu sistema para una licitación, una auditoría pide evidencia o la gerencia pide estadísticas,",
+  hit: "hay que reconstruir todo a las corridas.",
 };
 
 export const COMPARE_ROWS = [
@@ -366,7 +372,7 @@ export const COMPARE_ROWS = [
   ["Qué prueba tenés", "Una carpeta que hay que salir a buscar", "El registro, con foto, fecha y firma"],
   ["Qué pasa con un desvío", "Se reporta y se pierde", "Tiene dueño, fecha y estado hasta que se cierra"],
   ["Qué pasa con un vencimiento", "Alguien se acuerda", "Avisa antes"],
-  ["Costo de registrar", "Más alto que la tarea → no se hace", "Más bajo que la tarea → se hace"],
+  ["Costo de registrar", "Más alto que la tarea: no se hace", "Más bajo que la tarea: se hace"],
 ] as const;
 
 export const TIERS = [
@@ -413,6 +419,7 @@ export const HOME_FAQS = [
   { q: "¿Hay que instalar algo en los celulares?", a: "No. Funciona desde el navegador: el operario escanea el QR y entra directo. No hay app que descargar ni cuentas que crear en cada teléfono." },
   { q: "¿Me sirve para auditorías y licitaciones?", a: "Sí. Cada registro queda con fecha, foto y firma, y los informes, las estadísticas de accidentes y el estado de EPP, capacitaciones y vencimientos salen de la plataforma en PDF, listos para presentar a un cliente, a una auditoría o a la aseguradora." },
   { q: "¿Es solo para inspecciones?", a: "No. Las inspecciones son la puerta de entrada porque las hace el que está en el frente, pero la plataforma cubre desvíos, permisos de trabajo, EPP, capacitaciones, mediciones, accidentes, RGRL, equipamiento y vencimientos, con roles para cada persona de la operación." },
+  { q: "¿Es lo mismo seguridad e higiene, SST y HSE?", a: "Son los nombres que recibe la misma gestión según dónde estés: seguridad e higiene en Argentina, seguridad y salud en el trabajo (SST) en México y buena parte de Latinoamérica, y HSE en empresas internacionales y Oil & Gas. SHIPSAFE es la misma plataforma en todos los casos, y como los checklists los arma cada empresa, se adaptan a su forma de trabajar." },
   { q: "¿Convive con SAP u otro ERP?", a: "Sí. SHIPSAFE no reemplaza al ERP: es la capa del día a día desde el celular. En la línea Enterprise hay integraciones (SAP, Active Directory) y SSO." },
   { q: "¿Puedo traer lo que ya tengo en Excel?", a: "Sí. Importación masiva de equipos, operarios, sectores e históricos. Te acompañamos en la migración para que el primer día ya tengas tu operación cargada." },
   { q: "¿Cuánto tarda en estar andando?", a: "La configuración básica, menos de un día: empresa, establecimientos, sectores y equipos. Importar históricos lleva unos días según el volumen." },
@@ -435,6 +442,10 @@ export const CASE = {
   sector: "Servicios para la industria petrolera",
   what: "Cuadrillas de soldadura, mantenimiento de flota pesada y de equipos de alta presión, pruebas hidráulicas y montaje en yacimiento.",
   size: "60 empleados, flota y frentes remotos",
+  /** Para la franja de arriba (CaseStrip): lo mismo, en pastillas y en una línea. */
+  facts: ["60 empleados", "Flota pesada", "Frentes remotos"],
+  beforeShort: "Excel y un software interno que no prosperó, con la información repartida.",
+  todayShort: "Inspecciones de flota, EPP y accidentología en un mismo lugar, con informes listos para auditorías y licitaciones.",
   logo: "/clientes/swpetrol.png" as string | null,
   before:
     "Planillas Excel y un software interno hecho por un supervisor, que no prosperó. Necesitaban control sobre los EPP y algo que respaldara auditorías y licitaciones.",

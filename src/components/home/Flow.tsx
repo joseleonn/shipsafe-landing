@@ -84,11 +84,11 @@ export default function Flow() {
       <span id="flujo" />
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>03</span>Cómo funciona</div>
+          <div className="eyebrow num"><span>04</span>Cómo funciona</div>
           <h2>
-            Un hallazgo recorre toda la operación <em>sin que nadie lo empuje.</em>
+            Una inspección no debería terminar <em>cuando marcás NO OK.</em>
           </h2>
-          <p className="lede">Así viaja un NO OK desde la camioneta hasta el tablero de gerencia. <b>Cinco personas, ninguna reunión.</b></p>
+          <p className="lede">SHIPSAFE convierte ese hallazgo en un desvío con responsable, fecha, evidencia y seguimiento hasta el cierre. Así viaja desde la camioneta hasta el tablero de gerencia. <b>Cinco personas, ninguna reunión.</b></p>
         </div>
         <div className="today"><span className="k">Hoy</span><span>{FLOW_TODAY}</span></div>
         <ol

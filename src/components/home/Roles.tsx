@@ -27,7 +27,7 @@ export default function Roles() {
       <span id="beneficios" />
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow num"><span>01</span>Roles</div>
+          <div className="eyebrow num"><span>07</span>Roles</div>
           <h2>
             Cada rol entra por su puerta. <em>Todos ven la misma información.</em>
           </h2>

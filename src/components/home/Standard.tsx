@@ -19,11 +19,12 @@ export default function Standard({ num = "04" }: { num?: string | null }) {
         <div className="sec-head">
           <div className="eyebrow num">{num && <span>{num}</span>}Varias sucursales</div>
           <h2>
-            El mismo checklist <em>en todas tus sucursales.</em>
+            Para operaciones que no pasan <em>todas en el mismo lugar.</em>
           </h2>
           <p className="lede">
-            Cinco sucursales terminan con cinco formas de hacer la misma inspección.{" "}
-            <b>Acá la plantilla se arma una vez y baja igual a todas.</b>
+            Con cinco sucursales, 30 vehículos o cuadrillas en distintos frentes, cada lugar termina
+            haciendo la misma inspección a su manera.{" "}
+            <b>Acá la plantilla se arma una vez y baja igual a todos, y quien registra, quien supervisa y quien decide miran lo mismo.</b>
           </p>
         </div>
 
