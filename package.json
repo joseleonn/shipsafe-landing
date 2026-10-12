@@ -16,6 +16,7 @@
     "subir": "bash scripts/subir.sh"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "@remotion/cli": "^4.0.447",
     "@remotion/player": "^4.0.447",
     "framer-motion": "^12.38.0",

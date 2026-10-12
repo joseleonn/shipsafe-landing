@@ -467,6 +467,7 @@ export const FOOTER = {
     { label: "Ingresar", href: APP_URL },
   ],
   recursos: [
+    { label: "Blog", href: "/blog" },
     { label: "Software vs. Excel", href: "/software-seguridad-higiene-vs-excel" },
     { label: "Guía Ley 19.587", href: "/ley-19587-guia-completa" },
     { label: "Inspecciones con QR", href: "/app-inspecciones-seguridad-qr" },

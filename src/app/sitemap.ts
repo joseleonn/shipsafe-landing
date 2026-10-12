@@ -1,7 +1,12 @@
 import type { MetadataRoute } from "next";
 import { SITE, ARTICLES } from "@/lib/constants";
+import { listarPublicados } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Los artículos del blog se suman solos al publicarse.
+export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDAR_BLOG de lib/blog
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const blog = await listarPublicados();
   return [
     {
       url: SITE.url,
@@ -14,6 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(article.dateModified),
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    {
+      url: `${SITE.url}/blog`,
+      lastModified: blog[0] ? new Date(blog[0].actualizado) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...blog.map((a) => ({
+      url: `${SITE.url}/blog/${a.slug}`,
+      lastModified: new Date(a.actualizado),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     {
       url: `${SITE.url}/precios`,

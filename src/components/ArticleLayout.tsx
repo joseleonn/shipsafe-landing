@@ -4,9 +4,35 @@ import SiteShell from "@/components/site/SiteShell";
 import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 
-interface ArticleLayoutProps {
+/** Datos de cabecera de un artículo, venga de ARTICLES o del blog en Supabase. */
+export interface ArticleMeta {
   slug: string;
-  children: React.ReactNode;
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  relatedSlugs?: string[];
+}
+
+/** JSON-LD seguro dentro de un <script>: un "</script>" en un título no puede cortarlo. */
+function jsonLd(dato: unknown): string {
+  return JSON.stringify(dato).replace(/</g, "\\u003c");
+}
+
+interface ArticleLayoutProps {
+  /** Artículo estático: se busca en ARTICLES. */
+  slug?: string;
+  /** Artículo del blog: los datos vienen armados desde Supabase. */
+  meta?: ArticleMeta;
+  /** Ruta pública del artículo. Por defecto `/${slug}`; los del blog viven en `/blog/${slug}`. */
+  path?: string;
+  /** Cuerpo en HTML (blog). Si viene, reemplaza a children. */
+  html?: string;
+  /** Miga intermedia, para los artículos del blog. */
+  parent?: { label: string; href: string };
+  /** Texto del rótulo sobre el título. */
+  eyebrow?: string;
+  children?: React.ReactNode;
   /**
    * FAQs del artículo, para emitir structured data FAQPage. Pasarlas SOLO si
    * las mismas preguntas y respuestas están visibles en el cuerpo del
@@ -21,9 +47,19 @@ interface ArticleLayoutProps {
  * migas, cabecera de documento, prosa (.prose) y cierre con CTA a la demo.
  * El cuerpo de cada artículo es HTML semántico sin clases; .prose lo estiliza.
  */
-export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutProps) {
-  const article = ARTICLES.find((a) => a.slug === slug)!;
-  const related = ARTICLES.filter((a) => article.relatedSlugs.includes(a.slug));
+export default function ArticleLayout({
+  slug,
+  meta,
+  path,
+  html,
+  parent,
+  eyebrow = "Recurso",
+  children,
+  faqs,
+}: ArticleLayoutProps) {
+  const article: ArticleMeta = meta ?? ARTICLES.find((a) => a.slug === slug)!;
+  const url = `${SITE.url}${path ?? `/${article.slug}`}`;
+  const related = ARTICLES.filter((a) => (article.relatedSlugs ?? []).includes(a.slug));
 
   const faqSchema = faqs?.length
     ? {
@@ -46,7 +82,7 @@ export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutPro
     dateModified: article.dateModified,
     author: { "@type": "Organization", name: "Ship Software Team", url: "https://shipsoftware.team" },
     publisher: { "@type": "Organization", name: "Ship Software Team", url: "https://shipsoftware.team" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/${article.slug}` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 
   const breadcrumbSchema = {
@@ -54,7 +90,8 @@ export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutPro
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Inicio", item: SITE.url },
-      { "@type": "ListItem", position: 2, name: article.title, item: `${SITE.url}/${article.slug}` },
+      ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.label, item: `${SITE.url}${parent.href}` }] : []),
+      { "@type": "ListItem", position: parent ? 3 : 2, name: article.title, item: url },
     ],
   };
 
@@ -66,9 +103,9 @@ export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutPro
 
   return (
     <SiteShell>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />}
 
       <main id="main" className="page">
         <div className="narrow">
@@ -77,12 +114,18 @@ export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutPro
               <Icon name="back" />
               Inicio
             </Link>
+            {parent && (
+              <>
+                <span className="sep">/</span>
+                <Link href={parent.href}>{parent.label}</Link>
+              </>
+            )}
             <span className="sep">/</span>
             <span className="here">{article.title}</span>
           </nav>
 
           <header className="doc-head">
-            <div className="eyebrow">Recurso</div>
+            <div className="eyebrow">{eyebrow}</div>
             <h1>{article.title}</h1>
             <p className="lede">{article.description}</p>
             <div className="doc-meta">
@@ -95,7 +138,11 @@ export default function ArticleLayout({ slug, children, faqs }: ArticleLayoutPro
             </div>
           </header>
 
-          <article className="prose">{children}</article>
+          {html !== undefined ? (
+            <article className="prose" dangerouslySetInnerHTML={{ __html: html }} />
+          ) : (
+            <article className="prose">{children}</article>
+          )}
 
           <aside className="article-cta">
             <div className="eyebrow">Siguiente paso</div>
