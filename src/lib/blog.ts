@@ -12,6 +12,7 @@
  */
 
 import { neon } from "@neondatabase/serverless";
+import { SEMILLAS } from "./blog-semillas";
 
 export type EstadoArticulo = "borrador" | "publicado" | "descartado";
 
@@ -54,8 +55,18 @@ export const REVALIDAR_BLOG = 3600;
 
 export const SLUG_VALIDO = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
+/**
+ * La integración de Neon en Vercel arma los nombres como <prefijo>_DATABASE_URL.
+ * Con el prefijo BLOG_DATABASE queda BLOG_DATABASE_DATABASE_URL (la conexión
+ * con pooling, la indicada para serverless).
+ */
 function urlBase(): string | undefined {
-  return process.env.BLOG_DATABASE_URL || process.env.DATABASE_URL;
+  return (
+    process.env.BLOG_DATABASE_URL ||
+    process.env.BLOG_DATABASE_DATABASE_URL ||
+    process.env.BLOG_DATABASE_POSTGRES_URL ||
+    process.env.DATABASE_URL
+  );
 }
 
 export function blogConfigurado(): boolean {
@@ -95,6 +106,24 @@ function asegurarTabla(): Promise<void> {
       actualizado       timestamptz not null default now()
     )`);
     await q.query("create index if not exists articulos_estado_fecha on articulos (estado, fecha_publicacion desc)");
+    // Los primeros borradores vienen en el código (blog-semillas.ts). No pisan nada.
+    for (const b of SEMILLAS) {
+      await q.query(
+        `insert into articulos (slug, titulo, descripcion, contenido_html, faqs, palabra_clave, fuentes, notas_revision, estado)
+         values ($1, $2, $3, $4, $5::jsonb, $6, $7::jsonb, $8, 'borrador')
+         on conflict (slug) do nothing`,
+        [
+          b.slug,
+          b.titulo,
+          b.descripcion,
+          b.contenido_html,
+          JSON.stringify(b.faqs ?? []),
+          b.palabra_clave ?? null,
+          JSON.stringify(b.fuentes ?? []),
+          b.notas_revision ?? null,
+        ],
+      );
+    }
   })().catch((error) => {
     tablaLista = null;
     throw error;

@@ -15,12 +15,16 @@ no requiere deploy.
 ## Configuración (una sola vez)
 
 1. Base de Neon `shipsafe-blog` creada desde Vercel (Storage → Neon), conectada al proyecto `shipsafe-landing` con el prefijo `BLOG_DATABASE`: la integración carga
-   `BLOG_DATABASE_URL` sola en Production y Preview.
+   `BLOG_DATABASE_DATABASE_URL` (y sus variantes) sola en Production y Preview.
 2. La tabla se crea sola la primera vez que la landing se conecta (`asegurarTabla` en `src/lib/blog.ts`). `docs/blog-neon.sql` tiene el mismo esquema por si se quiere crear a mano.
 3. `BLOG_INGEST_SECRET` en Vercel: el secreto del endpoint de borradores. Hace
    falta recién cuando se arme la tarea que escribe los borradores.
 
-El código lee `BLOG_DATABASE_URL` y, si no está, `DATABASE_URL`.
+El código lee, en orden, `BLOG_DATABASE_URL`, `BLOG_DATABASE_DATABASE_URL`,
+`BLOG_DATABASE_POSTGRES_URL` y `DATABASE_URL`.
+
+Los primeros borradores vienen en `src/lib/blog-semillas.ts` y se cargan solos
+cuando se crea la tabla, sin pisar nada que ya exista.
 
 Sin base configurada el sitio sigue andando: `/blog` muestra solo las guías y
 `/interno/blog` avisa qué falta. La base de Neon se apaga sola tras unos
