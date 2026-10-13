@@ -45,6 +45,7 @@ export const NAV = [
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Casos", href: "#caso" },
   { label: "Precios", href: "/precios" },
+  { label: "Blog", href: "/blog" },
   { label: "Consultores", href: "/consultores", quiet: true },
 ] as const;
 
@@ -463,6 +464,7 @@ export const FOOTER = {
     { label: "Casos", href: "#caso" },
     { label: "Probalo", href: "#probalo" },
     { label: "Precios", href: "/precios" },
+  { label: "Blog", href: "/blog" },
     { label: "Programa de consultores", href: "/consultores" },
     { label: "Ingresar", href: APP_URL },
   ],
