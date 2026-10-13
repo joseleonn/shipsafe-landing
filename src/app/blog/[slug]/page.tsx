@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: a.fecha_publicacion ?? undefined,
       modifiedTime: a.actualizado,
     },
+    twitter: { card: "summary_large_image", title: a.titulo, description: a.descripcion },
   };
 }
 

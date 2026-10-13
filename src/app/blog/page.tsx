@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     locale: "es_AR",
     siteName: SITE.name,
   },
+  twitter: { card: "summary_large_image", title: TITULO, description: DESCRIPCION },
 };
 
 function fecha(iso: string | null) {
