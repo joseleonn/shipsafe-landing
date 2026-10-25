@@ -1,26 +1,8 @@
-import Home from "@/components/home/Home";
-import { HOME_FAQS } from "@/lib/home-content";
+import HomeV5 from "@/components/home-v5/HomeV5";
 
-// Solo acá: <Faq /> renderiza estas mismas preguntas, y Google exige que el
-// structured data corresponda a contenido visible en la página.
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: HOME_FAQS.map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.a,
-    },
-  })),
-};
-
+// Home v5 (24/10/2026). La v4 sigue en components/home/Home.tsx: para volver,
+// alcanza con importar Home en lugar de HomeV5 (y reponer el FAQPage, que
+// ahora vive en /plataforma junto con las preguntas frecuentes).
 export default function Page() {
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Home />
-    </>
-  );
+  return <HomeV5 />;
 }

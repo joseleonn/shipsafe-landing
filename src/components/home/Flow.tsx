@@ -86,7 +86,7 @@ export default function Flow() {
         <div className="sec-head">
           <div className="eyebrow num"><span>04</span>Cómo funciona</div>
           <h2>
-            Una inspección no debería terminar <em>cuando marcás NO OK.</em>
+            Una inspección no debería terminar <em>cuando se marca NO OK.</em>
           </h2>
           <p className="lede">SHIPSAFE convierte ese hallazgo en un desvío con responsable, fecha, evidencia y seguimiento hasta el cierre. Así viaja desde la camioneta hasta el tablero de gerencia. <b>Cinco personas, ninguna reunión.</b></p>
         </div>

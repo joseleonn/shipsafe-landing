@@ -16,26 +16,26 @@ export default function CloseSection({ num = "10", source = "home" }: { num?: st
         <div className="close-copy">
           <div className="eyebrow num">{num && <span>{num}</span>}Empecemos</div>
           <h2>
-            Mostranos cómo trabajan hoy <em>y te mostramos cómo quedaría en SHIPSAFE.</em>
+            Muéstranos cómo trabajan hoy <em>y te mostramos cómo quedaría en SHIPSAFE.</em>
           </h2>
           <p className="lede">Treinta minutos, con tus frentes, tu flota y tus vencimientos. <b>No sobre nuestro producto.</b></p>
           <ol className="what">
-            <li><b>Nos contás cómo registran hoy</b> y dónde se pierde: el frente, la flota, el pañol, la otra sucursal.</li>
+            <li><b>Nos cuentas cómo registran hoy</b> y dónde se pierde: el frente, la flota, el pañol, la otra sucursal.</li>
             <li><b>Vemos el flujo completo con un caso tuyo:</b> QR, registro con foto y firma, el desvío que nace y lo que ve la gerencia.</li>
-            <li><b>Te llevás una propuesta concreta</b> y lo que haría falta para arrancar. Si no es para vos, también te lo decimos.</li>
+            <li><b>Te llevas una propuesta concreta</b> y lo que haría falta para arrancar. Si no es para ti, también te lo decimos.</li>
           </ol>
         </div>
         <div className="panel" id="panel">
           <div className="panel-head">
-            <b>Elegí día y horario</b>
+            <b>Elige día y horario</b>
             <span>30 min · sin compromiso</span>
           </div>
           <LeadForm source={source} />
           <div className="wa">
-            ¿Preferís WhatsApp?{" "}
+            ¿Prefieres WhatsApp?{" "}
             <a href={whatsappUrl("Hola, quiero agendar una demo de SHIPSAFE")} target="_blank" rel="noopener noreferrer">
               <Icon name="msg" />
-              Escribinos
+              Escríbenos
             </a>
           </div>
         </div>

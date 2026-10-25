@@ -16,7 +16,7 @@ export default function StickyBar({
   heroId = "top",
   closeId = "demo",
   section = "sticky",
-  label = "Agendá una demo",
+  label = "Agenda una demo",
 }: {
   heroId?: string;
   closeId?: string;
@@ -49,7 +49,7 @@ export default function StickyBar({
         href={whatsappUrl("Hola, quiero agendar una demo de SHIPSAFE")}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Escribinos por WhatsApp"
+        aria-label="Escríbenos por WhatsApp"
         onClick={() => trackEvent(EVENTS.WHATSAPP_CLICK, { section })}
       >
         <Icon name="msg" />

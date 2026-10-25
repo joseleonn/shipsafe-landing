@@ -19,7 +19,7 @@ import { openDemoModal } from "@/lib/demo-modal";
 export default function DemoLink({
   section,
   className = "btn btn-primary",
-  children = "Agendá una demo",
+  children = "Agenda una demo",
 }: {
   section: string;
   className?: string;

@@ -42,8 +42,8 @@ export function whatsappUrl(message: string) {
  */
 export const NAV = [
   { label: "Plataforma", href: "#plataforma" },
-  { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Casos", href: "#caso" },
+  { label: "Clientes", href: "#caso" },
+  { label: "Nosotros", href: "#nosotros" },
   { label: "Precios", href: "/precios" },
   { label: "Blog", href: "/blog" },
   { label: "Consultores", href: "/consultores", quiet: true },
@@ -60,7 +60,7 @@ export const HERO = {
   h1Accent: "incluso cuando tu operación está dispersa.",
   lede:
     "SHIPSAFE conecta lo que pasa en campo con lo que necesita saber la gestión: inspecciones, desvíos, EPP, capacitaciones, permisos y vencimientos en una sola plataforma. Con evidencia, seguimiento y trazabilidad, lista para demostrar cuando alguien la pide.",
-  secondary: "Hacé una inspección de prueba",
+  secondary: "Haz una inspección de prueba",
   /** Duración del VSL que se reproduce en el marco del hero. */
   videoDuration: "1:30",
   /** Escenarios en los que se reconoce el que llega: primero su operación, después el producto. */
@@ -208,7 +208,7 @@ const MODULE_GROUPS_BASE: ModuleGroup[] = [
     name: "Operación",
     items: [
       { id: "insp", title: "Inspecciones y checklists con QR", steps: [
-        { label: "", text: "Los checklists los armás vos, desde cero o partiendo de plantillas listas (extintores, vehículos, andamios, tableros, EPP…). Preuso y postuso, asignados a cada equipo con su código QR.", shot: SHOTS.checklists },
+        { label: "", text: "Los checklists los armas tú, desde cero o partiendo de plantillas listas (extintores, vehículos, andamios, tableros, EPP…). Preuso y postuso, asignados a cada equipo con su código QR.", shot: SHOTS.checklists },
       ] },
       { id: "exec", title: "Ejecución desde el celular", steps: [
         { label: "", text: "El operario escanea el QR, responde OK / NO OK / N/A, adjunta la foto y firma. Desde el navegador: sin app y sin cuenta que crear.", shot: SHOTS.pChecklist },
@@ -242,7 +242,7 @@ const MODULE_GROUPS_BASE: ModuleGroup[] = [
         { label: "", text: "Programa anual, límite por capacitación, duración, asistencia y examen. Las legales, marcadas; las vencidas, a la vista.", shot: SHOTS.capacitaciones },
       ] },
       { id: "equ", title: "Equipamiento con QR y vencimientos", steps: [
-        { label: "", text: "Inventario con código, tipo, sucursal, sector, estado y vencimiento. Exportá los QR, pegalos en cada equipo, y el checklist se abre desde ahí.", shot: SHOTS.equipamiento },
+        { label: "", text: "Inventario con código, tipo, sucursal, sector, estado y vencimiento. Exporta los QR, pégalos en cada equipo, y el checklist se abre desde ahí.", shot: SHOTS.equipamiento },
       ] },
     ],
   },
@@ -369,8 +369,8 @@ export const COMPARE_LEDE = {
 export const COMPARE_ROWS = [
   ["Dónde se registra", "En papel, en el frente; se carga después, en la oficina", "En el celular, en el lugar, en el momento"],
   ["Quién consolida", "Una persona, a mano, los viernes", "Nadie: ya está consolidado"],
-  ["Cuándo te enterás", "Cuando pedís el dato, o cuando pasa algo", "Mientras pasa"],
-  ["Qué prueba tenés", "Una carpeta que hay que salir a buscar", "El registro, con foto, fecha y firma"],
+  ["Cuándo te enteras", "Cuando pides el dato, o cuando pasa algo", "Mientras pasa"],
+  ["Qué prueba tienes", "Una carpeta que hay que salir a buscar", "El registro, con foto, fecha y firma"],
   ["Qué pasa con un desvío", "Se reporta y se pierde", "Tiene dueño, fecha y estado hasta que se cierra"],
   ["Qué pasa con un vencimiento", "Alguien se acuerda", "Avisa antes"],
   ["Costo de registrar", "Más alto que la tarea: no se hace", "Más bajo que la tarea: se hace"],
@@ -399,7 +399,7 @@ export const TIERS = [
       "Acceso de gerencia y resumen mensual automático",
       "Onboarding asistido y soporte por WhatsApp",
     ],
-    cta: { kind: "demo", label: "Agendá una demo" },
+    cta: { kind: "demo", label: "Agenda una demo" },
     hi: true,
   },
   {
@@ -409,7 +409,7 @@ export const TIERS = [
     unit: "",
     who: "Empresas grandes y holdings: miles de equipos, varios establecimientos, requisitos corporativos.",
     inc: ["SSO e integraciones (SAP, Active Directory)", "White-label con tu marca", "SLA 24/7 y account manager"],
-    cta: { kind: "whatsapp", label: "Coordiná una reunión", message: "Hola, quiero coordinar una reunión por la línea Enterprise de SHIPSAFE" },
+    cta: { kind: "whatsapp", label: "Coordina una reunión", message: "Hola, quiero coordinar una reunión por la línea Enterprise de SHIPSAFE" },
     hi: false,
   },
 ] as const;
@@ -455,14 +455,14 @@ export const CASE = {
 };
 
 export const FOOTER = {
-  tag: "Plataforma integral de gestión SST (seguridad y salud en el trabajo) para operaciones dispersas. Un producto de Ship Software Team, Rosario.",
+  tag: "Plataforma de gestión de seguridad y salud en el trabajo para empresas de Latinoamérica. Un producto de Ship Software Team, Argentina.",
   producto: [
-    { label: "Plataforma", href: "#plataforma" },
-    { label: "Roles", href: "#roles" },
-    { label: "Cómo funciona", href: "#como-funciona" },
-    { label: "Varias sucursales", href: "#estandar" },
+    { label: "Plataforma", href: "/plataforma" },
+    { label: "Roles", href: "/plataforma#roles" },
+    { label: "Cómo funciona", href: "/plataforma#como-funciona" },
+    { label: "Varias sucursales", href: "/plataforma#estandar" },
     { label: "Casos", href: "#caso" },
-    { label: "Probalo", href: "#probalo" },
+    { label: "Pruébalo", href: "#probalo" },
     { label: "Precios", href: "/precios" },
   { label: "Blog", href: "/blog" },
     { label: "Programa de consultores", href: "/consultores" },

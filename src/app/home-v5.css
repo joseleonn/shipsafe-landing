@@ -1,0 +1,85 @@
+/* Home v5 (24/10/2026). Usa los tokens y los marcos de site.css; acá solo
+   el layout propio de cada sección. Todo bajo .ss-home5. */
+
+.ss-home5 h2{max-width:16ch}
+.ss-home5 .h5-video{display:block;width:100%;border-radius:var(--r-card);background:var(--navy);box-shadow:var(--shadow-frame);aspect-ratio:16/9;object-fit:cover}
+
+/* hero */
+.ss-home5 .h5-hero{padding-block:120px 72px;background:linear-gradient(180deg,#EEF3FC 0%,#F5F7FB 80%)}
+.ss-home5 .h5-hero .wrap{display:flex;flex-direction:column;align-items:center;gap:56px}
+.ss-home5 .h5-hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:900px}
+.ss-home5 .h5-hero h1{max-width:15ch}
+.ss-home5 .h5-hero .lede{max-width:44ch;margin-inline:auto;margin-top:22px}
+.ss-home5 .h5-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.ss-home5 .h5-hero-media{width:100%;max-width:1040px}
+.ss-home5 .h5-hero-media .stage{margin-top:0}
+.ss-home5 .h5-hero-media figcaption{margin-top:14px;text-align:center;font-size:14px;color:var(--muted)}
+
+/* clientes */
+.ss-home5 .h5-clientes{padding-block:28px;border-block:1px solid var(--line);background:var(--surface)}
+.ss-home5 .h5-clientes .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px}
+.ss-home5 .h5-logos{display:flex;align-items:center;gap:20px;font-size:14px;color:var(--muted)}
+.ss-home5 .h5-logos img{height:40px;width:auto}
+.ss-home5 .h5-clientes p{font-size:14px;color:var(--muted)}
+
+/* plataforma */
+.ss-home5 .h5-plataforma{background:var(--bg)}
+.ss-home5 .h5-plataforma .wrap{display:flex;flex-direction:column;gap:48px}
+.ss-home5 .h5-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ss-home5 .h5-chips li{font-size:15px;font-weight:500;padding:10px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.ss-home5 .h5-chips li.more{padding:0;border:0;background:none}
+.ss-home5 .h5-chips li.more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;background:var(--navy);color:#fff;font-weight:600}
+.ss-home5 .h5-chips li.more .ico{width:16px;height:16px}
+
+/* flujo */
+.ss-home5 .h5-flujo{background:var(--bg-2)}
+.ss-home5 .h5-flujo .wrap{display:flex;flex-direction:column;gap:40px}
+.ss-home5 .h5-flujo .stage{margin-top:0}
+.ss-home5 .h5-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ss-home5 .h5-steps li{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.01em;border-top:3px solid var(--navy);padding-top:16px}
+.ss-home5 .h5-steps li:last-child{border-color:var(--accent)}
+
+/* probalo */
+.ss-home5 .h5-probalo{background:var(--navy);color:#fff}
+.ss-home5 .h5-probalo .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:56px}
+.ss-home5 .h5-probalo-copy{flex:1 1 420px}
+.ss-home5 .h5-probalo .lede{color:rgba(255,255,255,.72)}
+.ss-home5 .h5-qr-row{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:32px}
+.ss-home5 .h5-qr{display:block;background:#fff;border-radius:var(--r-sm);padding:10px}
+.ss-home5 .h5-qr img{width:140px;height:140px}
+.ss-home5 .h5-probalo .btn-secondary{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+.ss-home5 .h5-probalo .phone{width:240px}
+
+/* caso */
+.ss-home5 .h5-caso .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:40px}
+.ss-home5 .h5-caso .h5-video{flex:1 1 440px;max-width:520px;aspect-ratio:4/5}
+.ss-home5 .h5-caso-copy{flex:1 1 440px;display:flex;flex-direction:column;gap:20px;max-width:760px}
+.ss-home5 .h5-caso-logo{height:52px;width:auto}
+.ss-home5 .h5-claim{font-family:var(--display);font-size:clamp(26px,3vw,38px);line-height:1.15;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.ss-home5 .h5-meta{font-size:15px;color:var(--muted)}
+
+/* nosotros */
+.ss-home5 .h5-nosotros{background:var(--bg-2)}
+.ss-home5 .h5-nosotros .wrap{display:flex;flex-direction:column;gap:44px}
+.ss-home5 .h5-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.ss-home5 .h5-team li{display:flex;align-items:center;gap:20px}
+.ss-home5 .h5-photo{flex:none;width:120px;height:150px;border-radius:var(--r-sm);object-fit:cover}
+.ss-home5 .h5-initials{display:flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;font-family:var(--display);font-size:32px;font-weight:700}
+.ss-home5 .h5-team h3{margin-bottom:4px}
+.ss-home5 .h5-team span{font-size:15px;color:var(--muted)}
+
+/* cierre: usa .close de site.css; acá solo se achica */
+.ss-home5 .h5-cierre .close-copy .lede{color:rgba(255,255,255,.72)}
+.ss-home5 .h5-cierre .wa a{display:inline-flex;align-items:center;gap:8px}
+
+@media (max-width:900px){
+  .ss-home5 .h5-hero{padding-block:96px 48px}
+  .ss-home5 .h5-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ss-home5 .h5-team{grid-template-columns:minmax(0,1fr)}
+  .ss-home5 .h5-probalo .phone{margin-inline:auto}
+}
+@media (max-width:600px){
+  .ss-home5 .h5-clientes .wrap{justify-content:flex-start}
+  .ss-home5 .h5-steps li{font-size:18px}
+  .ss-home5 .h5-photo{width:96px;height:120px}
+}

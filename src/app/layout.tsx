@@ -4,6 +4,7 @@ import "./globals.css";
 import "./site.css";
 import "./pages.css";
 import "./motion.css";
+import "./home-v5.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import MetaPixel from "@/components/MetaPixel";
 import CapturaAtribucion from "@/components/CapturaAtribucion";

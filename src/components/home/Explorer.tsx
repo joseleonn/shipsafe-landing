@@ -132,7 +132,7 @@ export default function Explorer() {
           <p className="lede">Lo que se carga en un módulo aparece en el resto. Una inspección con un NO OK deja un desvío con responsable y fecha. Una capacitación que se vence aparece en el tablero del supervisor sin que nadie la copie a ningún lado.</p>
         </div>
 
-        <p className="ex-intro">Dieciséis módulos, uno por cada cosa que hoy vive en una planilla distinta. Elegí uno y mirá el recorrido por dentro.</p>
+        <p className="ex-intro">Dieciséis módulos, uno por cada cosa que hoy vive en una planilla distinta. Elige uno y mira el recorrido por dentro.</p>
         <div className="explorer">
           <div
             ref={listRef}

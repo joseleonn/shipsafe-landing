@@ -101,7 +101,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
     // /api/lead hace dos viajes externos en paralelo (HubSpot y la API de
     // conversiones de Meta). Esperarlos antes de abrir la agenda dejaba en
     // pantalla, durante un segundo largo, la confirmación con su botón de
-    // "Elegí día y horario" —que es el fallback, no un paso— y recién después
+    // "Elige día y horario" —que es el fallback, no un paso— y recién después
     // montaba Calendly encima. Se leía como un trámite de más.
     //
     // `keepalive` es lo que permite soltarlo: el navegador termina el pedido
@@ -151,7 +151,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
         <p>
           No te pedimos que reserves un horario: por lo que nos contaste, la media
           hora de puesta en marcha no es lo que más te va a servir hoy. Si eso
-          cambia, escribinos y la agendamos.
+          cambia, escríbenos y la agendamos.
         </p>
         <a
           className="btn btn-secondary"
@@ -160,7 +160,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
           rel="noopener noreferrer"
         >
           <Icon name="msg" />
-          Escribinos por WhatsApp
+          Escríbenos por WhatsApp
         </a>
       </div>
     );
@@ -171,10 +171,10 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       <div className="ok" role="status">
         <div className="ic"><Icon name="check" /></div>
         <b>{saved ? "Tus datos quedaron guardados." : "La agenda se abre igual."}</b>
-        <p>{saved ? "Si no encontrás un horario, te escribimos en menos de 24 h." : "No pudimos guardar tus datos, pero podés elegir día y horario ahora mismo."}</p>
+        <p>{saved ? "Si no encuentras un horario, te escribimos en menos de 24 h." : "No pudimos guardar tus datos, pero puedes elegir día y horario ahora mismo."}</p>
         <button type="button" className="btn btn-primary" onClick={() => agenda(who)} onMouseEnter={warm}>
           <Icon name="calendar" />
-          Elegí día y horario
+          Elige día y horario
         </button>
       </div>
     );
@@ -193,7 +193,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       <div className="field">
         <label htmlFor={`${id}-rol`}>¿Cuál es tu rol?</label>
         <select id={`${id}-rol`} name="rol" required defaultValue="">
-          <option value="" disabled>Elegí una opción</option>
+          <option value="" disabled>Elige una opción</option>
           {ROL_OPCIONES.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
@@ -202,7 +202,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       <div className="field">
         <label htmlFor={`${id}-emp`}>¿Cuántos son en la empresa?</label>
         <select id={`${id}-emp`} name="empleados" required defaultValue="">
-          <option value="" disabled>Elegí una opción</option>
+          <option value="" disabled>Elige una opción</option>
           {EMPLEADOS_OPCIONES.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
@@ -211,7 +211,7 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       <div className="field">
         <label htmlFor={`${id}-how`}>¿Cómo registran hoy?</label>
         <select id={`${id}-how`} name="gestion" required defaultValue="">
-          <option value="" disabled>Elegí una opción</option>
+          <option value="" disabled>Elige una opción</option>
           {GESTION.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
@@ -219,9 +219,9 @@ export default function LeadForm({ source = "home", section = "cierre", autoFocu
       </div>
       <button className="btn btn-primary btn-lg" type="submit" disabled={state === "sending"} onMouseEnter={warm} onTouchStart={warm}>
         <Icon name="calendar" />
-        {state === "sending" ? "Abriendo la agenda…" : "Elegí día y horario"}
+        {state === "sending" ? "Abriendo la agenda…" : "Elige día y horario"}
       </button>
-      <p className="fine">Con estos datos se abre la agenda ya cargada. Si no encontrás horario, te escribimos en menos de 24 h.</p>
+      <p className="fine">Con estos datos se abre la agenda ya cargada. Si no encuentras horario, te escribimos en menos de 24 h.</p>
     </form>
   );
 }

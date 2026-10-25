@@ -52,7 +52,7 @@ export default function DemoModal() {
   const campana = section.startsWith("puesta");
   // Si llegó desde un chip, el modal confirma la elección en vez de volver a
   // preguntarla: es la continuación del "Elegí el proceso" del hero.
-  const titulo = proceso ? `Arrancamos con ${proceso.charAt(0).toLowerCase()}${proceso.slice(1)}` : campana ? "Reservá tu media hora" : "Agendá una demo";
+  const titulo = proceso ? `Arrancamos con ${proceso.charAt(0).toLowerCase()}${proceso.slice(1)}` : campana ? "Reservá tu media hora" : "Agenda una demo";
   const sub = proceso ? "30 min · llego con la mitad hecha" : campana ? "30 min · te queda un proceso andando" : "30 min · sin compromiso";
 
   return (
@@ -68,10 +68,10 @@ export default function DemoModal() {
         <p className="dm-lede">Unos datos y se abre la agenda con tu nombre y email ya cargados.</p>
         <LeadForm source="home" section={`modal-${section}`} proceso={proceso} autoFocus />
         <div className="wa">
-          ¿Preferís WhatsApp?{" "}
+          ¿Prefieres WhatsApp?{" "}
           <a href={whatsappUrl("Hola, quiero agendar una demo de SHIPSAFE")} target="_blank" rel="noopener noreferrer">
             <Icon name="msg" />
-            Escribinos
+            Escríbenos
           </a>
         </div>
       </div>

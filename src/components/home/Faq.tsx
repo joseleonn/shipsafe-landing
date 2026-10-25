@@ -32,7 +32,7 @@ export default function Faq({
           <p className="more">
             ¿Otra cosa?{" "}
             <a className="link" href={whatsappUrl("Hola, tengo una consulta sobre SHIPSAFE")} target="_blank" rel="noopener noreferrer">
-              Escribinos por WhatsApp
+              Escríbenos por WhatsApp
             </a>
           </p>
         </div>

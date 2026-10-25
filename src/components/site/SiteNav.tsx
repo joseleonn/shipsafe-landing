@@ -30,7 +30,7 @@ import { onDemoModal } from "@/lib/demo-modal";
  */
 export default function SiteNav({
   minimal = false,
-  ctaLabel = "Agendá una demo",
+  ctaLabel = "Agenda una demo",
   ctaSection = "nav",
 }: {
   /** Landings de campaña: solo logo y botón, sin menú ni "Ingresar". */

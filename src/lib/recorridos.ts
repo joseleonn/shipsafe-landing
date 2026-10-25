@@ -47,7 +47,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
     },
     {
       label: "Las preguntas",
-      text: "Adentro está pregunta por pregunta: qué hay que mirar, cuáles exigen foto y cuáles exigen firma. Las armás desde cero o partís de una lista ya hecha.",
+      text: "Adentro está pregunta por pregunta: qué hay que mirar, cuáles exigen foto y cuáles exigen firma. Las armas desde cero o partes de una lista ya hecha.",
       file: "insp-2-preguntas.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/checklists",
@@ -458,7 +458,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
     },
     {
       label: "Por qué pasó",
-      text: "La IA propone el análisis: causa inmediata, causas básicas y factores contribuyentes. Vos lo editás, y queda registrado quién lo editó.",
+      text: "La IA propone el análisis: causa inmediata, causas básicas y factores contribuyentes. Tú lo editas, y queda registrado quién lo editó.",
       file: "acc-3-causa.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/accidentes",
