@@ -132,7 +132,6 @@ function Hero() {
               ) : (
                 <VideoPlaceholder label="José y Walter a cámara · 60 a 90 s · con subtítulos" dark />
               )}
-              <figcaption>Lo que pide el auditor, y cómo tenerlo a mano · 1:33</figcaption>
             </figure>
           ) : (
             <div className="stage">
