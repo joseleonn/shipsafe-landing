@@ -36,7 +36,7 @@ export const MEDIA: {
  * hueco vuelve a mostrar capturas reales y la sección de testimonios se oculta
  * hasta que haya alguno cargado.
  */
-export const SHOW_VIDEO_PLACEHOLDERS = true;
+export const SHOW_VIDEO_PLACEHOLDERS = false;
 
 /**
  * Testimonios en video. Solo con autorización escrita de cada cliente y con
@@ -56,8 +56,8 @@ export const TESTIMONIOS: { video: Video; quote: string; name: string; role: str
  */
 /**
  * Franja de confianza (Confianza.tsx). Solo empresas que lo usan de verdad y
- * que autorizaron mostrar su logo. DLC está en prueba guiada: confirmar con
- * ellos antes de publicar. Lo de la SRT dice solo lo que da el registro
+ * que autorizaron mostrar su logo (DLC lo autorizó, según José el 27/10/2026).
+ * Lo de la SRT dice solo lo que da el registro
  * temporario: la inscripción y el número.
  */
 export const CONFIANZA: { name: string; note: string; logo: string | null; w: number; h: number; href: string | null }[] = [
@@ -80,8 +80,8 @@ export const PROCESOS: {
   // Matriz IPER: pasos provisorios hasta grabar el video; confirmarlos contra lo que se ve.
   { id: "ats", tab: "ATS", steps: ["Cada paso de la tarea, con sus riesgos, controles y EPP", "La IA lo revisa antes de enviarlo; decide el profesional", "Se firma, se aprueba y sale el PDF"], video: { src: "/video/proceso-ats.mp4", webm: "/video/proceso-ats.webm", poster: "/video/proceso-ats.jpg" }, shot: "permisos", phone: null },
   { id: "matriz", tab: "Matriz IPER", steps: ["Se identifican los peligros de cada puesto y tarea", "Se evalúa cada riesgo y se ve en el mapa", "Se definen los controles para bajarlo"], video: null, shot: "mapa", phone: null },
-  { id: "mediciones", tab: "Mediciones", steps: ["Se carga cada medición con su norma y su límite", "Avisa antes de que venza la próxima", "Queda el protocolo en PDF"], video: null, shot: "mediciones", phone: null },
-  { id: "accidentes", tab: "Accidentes", steps: ["Se registra el accidente", "Se investiga la causa raíz", "Se siguen las acciones correctivas"], video: null, shot: "accidentes", phone: null },
+  { id: "mediciones", tab: "Mediciones", steps: ["Protocolos cargados: iluminación, ruido, vibraciones y más", "El instrumento con su certificado; cada punto contra su límite", "Protocolo en PDF y aviso antes del próximo vencimiento"], video: { src: "/video/proceso-mediciones.mp4", webm: "/video/proceso-mediciones.webm", poster: "/video/proceso-mediciones.jpg" }, shot: "mediciones", phone: null },
+  { id: "accidentes", tab: "Accidentes", steps: ["Se registra el accidente, el accidentado y la lesión", "La IA propone la causa raíz con Ishikawa y cinco porqués; decide el profesional", "Acciones correctivas con prioridad e informe en PDF"], video: { src: "/video/proceso-accidentes.mp4", webm: "/video/proceso-accidentes.webm", poster: "/video/proceso-accidentes.jpg" }, shot: "accidentes", phone: null },
   { id: "capacitaciones", tab: "Capacitaciones", steps: ["Calendario anual, con participantes y material de estudio", "Presencial o a distancia: examen y firma desde el celular", "Constancia en PDF, avisos por email y diplomas de proveedores"], video: { src: "/video/proceso-capacitaciones.mp4", webm: "/video/proceso-capacitaciones.webm", poster: "/video/proceso-capacitaciones.jpg" }, shot: "capacitaciones", phone: null },
 ];
 
