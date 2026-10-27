@@ -102,8 +102,9 @@ const P = (file: string, alt: string): PhoneShot => ({
 });
 
 export const SHOTS = {
-  dashboard: B("dashboard.jpg", "app.shipsafe.lat/dashboard", "Dashboard: desvíos activos, vencidos, checklists pendientes, equipos a revisar y permisos"),
-  dashboardCharts: B("dashboard-charts.jpg", "app.shipsafe.lat/dashboard", "Tableros: desvíos por estado y prioridad, equipos por estado, mapa de lesiones"),
+  // Capturas v5 (25/10/2026): interfaz actual de la app, cuenta demo.
+  dashboard: { kind: "browser", src: "/screenshots/v5/dashboard.jpg", url: "app.shipsafe.lat/dashboard", alt: "Dashboard: desvíos activos, vencidos, checklists pendientes, equipos a revisar y permisos", width: 2400, height: 1248 } as BrowserShot,
+  dashboardCharts: { kind: "browser", src: "/screenshots/v5/analytics.jpg", url: "app.shipsafe.lat/analytics", alt: "Análisis: conformidad de inspecciones, desvíos abiertos, incidentes y riesgo por sector", width: 2400, height: 1247 } as BrowserShot,
   desvios: B("desvios.jpg", "app.shipsafe.lat/desvios", "Listado de desvíos con equipo, sucursal, origen y checklist"),
   desvioDetalle: B("desvio-detalle.jpg", "app.shipsafe.lat/desvios/501", "Detalle de un desvío resuelto con historial de cambios"),
   permisos: B("permisos.jpg", "app.shipsafe.lat/permisos-trabajo", "Permisos de trabajo por tipo y estado"),
@@ -111,7 +112,7 @@ export const SHOTS = {
   epp: B("epp.jpg", "app.shipsafe.lat/epp", "Entregas de EPP con estado de firma y constancia"),
   checklists: B("checklists.jpg", "app.shipsafe.lat/checklists", "Plantillas de checklists activas"),
   capacitaciones: B("capacitaciones.jpg", "app.shipsafe.lat/capacitaciones", "Capacitaciones con límite, duración y examen"),
-  accidentes: B("accidentes-2col.jpg", "app.shipsafe.lat/accidentes", "Registro de accidentes con gravedad, estado y alerta de denuncia ART", 1420, 1047),
+  accidentes: B("accidentes-2col.jpg", "app.shipsafe.lat/accidentes", "Registro de accidentes con gravedad, estado y alerta de denuncia", 1420, 1047),
   mediciones: B("mediciones.jpg", "app.shipsafe.lat/mediciones", "Mediciones reglamentarias con norma, unidad y límite"),
   equipamiento: B("equipamiento.jpg", "app.shipsafe.lat/equipamiento", "Inventario de equipos con código, estado y vencimiento"),
   mapa: B("mapa.jpg", "app.shipsafe.lat/mapa", "Mapa de la organización: filtros y plan de control de riesgos", 1568, 1401),
@@ -330,7 +331,7 @@ export const ESTANDAR = {
     { name: "Planta Norte", meta: "58 equipos" },
     { name: "Base Neuquén", meta: "21 equipos" },
   ],
-  cierre: "Los mismos ítems y el mismo criterio para marcar NO OK",
+  cierre: "Los mismos ítems y el mismo criterio en cada sede",
   puntos: [
     { title: "La plantilla se arma una vez", text: "Después se usa en todos los establecimientos. Nadie la rehace en cada sucursal ni la interpreta a su manera." },
     { title: "Cada sucursal ve lo suyo", text: "Trabaja con sus equipos y sus desvíos. La gerencia mira las tres juntas en la misma vista." },
@@ -341,7 +342,6 @@ export const ESTANDAR = {
 export const MODULE_CHIPS = [
   "ATS · análisis de trabajo seguro",
   "Instructivos",
-  "RGRL completo (161 ítems)",
   "Matriz de riesgos y plan de acción",
   "Multi-establecimiento",
   "Resumen mensual por mail",
@@ -419,7 +419,7 @@ export const PRICE_NOTES = ["Mensual, sin permanencia", "Pagando por año, entre
 export const HOME_FAQS = [
   { q: "¿Hay que instalar algo en los celulares?", a: "No. Funciona desde el navegador: el operario escanea el QR y entra directo. No hay app que descargar ni cuentas que crear en cada teléfono." },
   { q: "¿Me sirve para auditorías y licitaciones?", a: "Sí. Cada registro queda con fecha, foto y firma, y los informes, las estadísticas de accidentes y el estado de EPP, capacitaciones y vencimientos salen de la plataforma en PDF, listos para presentar a un cliente, a una auditoría o a la aseguradora." },
-  { q: "¿Es solo para inspecciones?", a: "No. Las inspecciones son la puerta de entrada porque las hace el que está en el frente, pero la plataforma cubre desvíos, permisos de trabajo, EPP, capacitaciones, mediciones, accidentes, RGRL, equipamiento y vencimientos, con roles para cada persona de la operación." },
+  { q: "¿Es solo para inspecciones?", a: "No. Las inspecciones son la puerta de entrada porque las hace el que está en el frente, pero la plataforma cubre desvíos, permisos de trabajo, EPP, capacitaciones, mediciones, accidentes, equipamiento y vencimientos, con roles para cada persona de la operación." },
   { q: "¿Es lo mismo seguridad e higiene, SST y HSE?", a: "Son los nombres que recibe la misma gestión según dónde estés: seguridad e higiene en Argentina, seguridad y salud en el trabajo (SST) en México y buena parte de Latinoamérica, y HSE en empresas internacionales y Oil & Gas. SHIPSAFE es la misma plataforma en todos los casos, y como los checklists los arma cada empresa, se adaptan a su forma de trabajar." },
   { q: "¿Convive con SAP u otro ERP?", a: "Sí. SHIPSAFE no reemplaza al ERP: es la capa del día a día desde el celular. En la línea Enterprise hay integraciones (SAP, Active Directory) y SSO." },
   { q: "¿Puedo traer lo que ya tengo en Excel?", a: "Sí. Importación masiva de equipos, operarios, sectores e históricos. Te acompañamos en la migración para que el primer día ya tengas tu operación cargada." },
@@ -454,15 +454,25 @@ export const CASE = {
     "Inspecciones de flota, entrega y stock de EPP, y accidentología con imágenes y causa raíz. Estadísticas de accidentes, control documental e informes listos para presentar.",
 };
 
+/**
+ * Redes de SHIPSAFE. Cada una aparece en el pie solo si tiene URL.
+ * TikTok y YouTube quedan en null hasta tener la cuenta.
+ */
+export const SOCIAL: { id: "linkedin" | "instagram" | "tiktok" | "youtube"; label: string; href: string | null }[] = [
+  { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/shipsafeslat" },
+  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/ship.safe/" },
+  { id: "tiktok", label: "TikTok", href: null },
+  { id: "youtube", label: "YouTube", href: null },
+];
+
 export const FOOTER = {
   tag: "Plataforma de gestión de seguridad y salud en el trabajo para empresas de Latinoamérica. Un producto de Ship Software Team, Argentina.",
   producto: [
     { label: "Plataforma", href: "/plataforma" },
-    { label: "Roles", href: "/plataforma#roles" },
-    { label: "Cómo funciona", href: "/plataforma#como-funciona" },
-    { label: "Varias sucursales", href: "/plataforma#estandar" },
-    { label: "Casos", href: "#caso" },
-    { label: "Pruébalo", href: "#probalo" },
+    { label: "Cómo funciona", href: "/#como-funciona" },
+    { label: "Integraciones", href: "/plataforma#integraciones" },
+    { label: "Casos", href: "/#caso" },
+    { label: "Pruébalo", href: "/#probalo" },
     { label: "Precios", href: "/precios" },
   { label: "Blog", href: "/blog" },
     { label: "Programa de consultores", href: "/consultores" },

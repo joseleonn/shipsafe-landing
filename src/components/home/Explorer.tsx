@@ -33,7 +33,7 @@ const NUMBERED = (() => {
  * dibuja el recorrido completo: eso lo hace la sección 03 (Flow). Tenerlo dos
  * veces se leía como la misma cosa repetida.
  */
-export default function Explorer() {
+export default function Explorer({ head }: { head?: React.ReactNode } = {}) {
   const flat = useMemo(() => MODULE_GROUPS.flatMap((g) => g.items.map((it) => ({ ...it, group: g.name }))), []);
 
   // Módulo y paso viven en un solo estado: al cambiar de módulo el paso vuelve
@@ -124,6 +124,7 @@ export default function Explorer() {
     <section className="modules" id="plataforma">
       <span id="funcionalidades" />
       <div className="wrap">
+        {head ?? (<>
         <div className="sec-head">
           <div className="eyebrow num"><span>08</span>Plataforma</div>
           <h2>
@@ -133,6 +134,7 @@ export default function Explorer() {
         </div>
 
         <p className="ex-intro">Dieciséis módulos, uno por cada cosa que hoy vive en una planilla distinta. Elige uno y mira el recorrido por dentro.</p>
+        </>)}
         <div className="explorer">
           <div
             ref={listRef}

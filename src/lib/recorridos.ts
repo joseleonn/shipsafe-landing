@@ -39,7 +39,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
   insp: [
     {
       label: "Las plantillas",
-      text: "Las plantillas de la empresa, no un checklist genérico. Cada una con su norma: extintores según IRAM 3517, andamios según Decreto 911/96 y Res. SRT 3067/14, escaleras, tableros, vehículos.",
+      text: "Las plantillas de la empresa, no un checklist genérico: extintores, andamios, escaleras, tableros, vehículos. Cada una se arma con los ítems que tu operación necesita revisar.",
       file: "insp-1-plantillas.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/checklists",
@@ -87,7 +87,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
     },
     {
       label: "Saca la foto",
-      text: "Cuando algo da NO OK, la foto y la observación quedan pegadas a esa respuesta. Esa es la evidencia que después nadie tiene que salir a buscar.",
+      text: "Cuando algo no está bien, la foto y la observación quedan pegadas a esa respuesta. Esa es la evidencia que después nadie tiene que salir a buscar.",
       file: "exec-3-foto.jpg",
       kind: "phone",
       alt: "Ítem en NO OK con foto y observación",
@@ -103,7 +103,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
   desv: [
     {
       label: "El listado",
-      text: "Cada NO OK aparece acá como un desvío numerado, con el equipo, la sucursal, el sector y el checklist que lo originó.",
+      text: "Cada hallazgo aparece aquí como un desvío numerado, con el equipo, la sucursal, el sector y el checklist que lo originó.",
       file: "desv-1-listado.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/desvios",
@@ -408,7 +408,7 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
   med: [
     {
       label: "Cada una con su norma",
-      text: "Puesta a tierra en ohm por la Res. SRT 900/2015, ruido en dB(A) por la 85/2012, iluminación en lux por la 84/2012, carga térmica en TGBH por la 30/2023. Cada medición trae su resolución, su unidad y su límite.",
+      text: "Puesta a tierra, ruido, iluminación, carga térmica y el resto de las mediciones de tu operación. Cada una con su unidad, su límite y su próximo vencimiento.",
       file: "med-1-catalogo.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/mediciones",
@@ -442,19 +442,19 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
   acc: [
     {
       label: "El registro",
-      text: "Accidentes y enfermedades con su gravedad, su tipo y el estado de la investigación, con el aviso de los plazos de denuncia a la ART antes de que se pasen.",
+      text: "Accidentes y enfermedades con su gravedad, su tipo y el estado de la investigación, con el aviso de los plazos de denuncia antes de que se pasen.",
       file: "acc-1-listado.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/accidentes",
-      alt: "Registro de accidentes con gravedad, estado y alerta de denuncia ART",
+      alt: "Registro de accidentes con gravedad, estado y alerta de denuncia",
     },
     {
       label: "Qué pasó",
-      text: "El relato del hecho, la fecha, el sector, los datos del accidentado y su antigüedad, y la denuncia a la ART con su fecha.",
+      text: "El relato del hecho, la fecha, el sector, los datos del accidentado y su antigüedad, y la denuncia a la aseguradora con su fecha.",
       file: "acc-2-detalle.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/accidentes",
-      alt: "Detalle de un accidente con el relato y la denuncia ART",
+      alt: "Detalle de un accidente con el relato y la denuncia",
     },
     {
       label: "Por qué pasó",
@@ -546,11 +546,11 @@ export const RECORRIDOS: Record<string, PasoDef[]> = {
     },
     {
       label: "Inspecciones",
-      text: "Cuántas se hicieron, cuántas dieron NO OK y en qué equipos se repite.",
+      text: "Cuántas se hicieron, cuántas tuvieron hallazgos y en qué equipos se repite.",
       file: "kpi-3-inspecciones.jpg",
       kind: "browser",
       url: "app.shipsafe.lat/analytics",
-      alt: "Indicadores de inspecciones y tasa de NO OK",
+      alt: "Indicadores de inspecciones y tasa de hallazgos",
     },
     {
       label: "Accidentes",

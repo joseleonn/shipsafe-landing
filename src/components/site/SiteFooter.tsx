@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Wordmark from "./Wordmark";
-import { FOOTER, whatsappUrl } from "@/lib/home-content";
+import { FOOTER, SOCIAL, whatsappUrl } from "@/lib/home-content";
+import SocialIcon from "./SocialIcon";
 import { PROVEEDOR, PROVEEDOR_IDENTIFICADO } from "@/lib/constants";
 
 export default function SiteFooter({ minimal = false }: { minimal?: boolean }) {
@@ -40,6 +41,17 @@ export default function SiteFooter({ minimal = false }: { minimal?: boolean }) {
               <Wordmark />
             </Link>
             <p className="tag">{FOOTER.tag}</p>
+            {SOCIAL.some((r) => r.href) && (
+              <ul className="social" aria-label="Redes de SHIPSAFE">
+                {SOCIAL.filter((r) => r.href).map((r) => (
+                  <li key={r.id}>
+                    <a href={r.href!} target="_blank" rel="noopener noreferrer" aria-label={`SHIPSAFE en ${r.label}`}>
+                      <SocialIcon id={r.id} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <div className="col">
             <h4>Producto</h4>
@@ -82,7 +94,7 @@ export default function SiteFooter({ minimal = false }: { minimal?: boolean }) {
                   WhatsApp
                 </a>
               </li>
-              <li>Rosario, Santa Fe</li>
+              <li>Argentina</li>
             </ul>
           </div>
         </div>

@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/constants";
 import { HOME_FAQS } from "@/lib/home-content";
-import SiteShell from "@/components/site/SiteShell";
-import DemoLink from "@/components/site/DemoLink";
-import Explorer from "@/components/home/Explorer";
-import Flow from "@/components/home/Flow";
-import Standard from "@/components/home/Standard";
-import Roles from "@/components/home/Roles";
-import Compare from "@/components/home/Compare";
-import Faq from "@/components/home/Faq";
-import CloseSection from "@/components/home/CloseSection";
+import PlataformaV5 from "@/components/plataforma-v5/PlataformaV5";
 
 /**
- * /plataforma (24/10/2026): el detalle que salió de la home v5. Reutiliza
- * tal cual las secciones de la home v4 (módulos con capturas, flujo, varias
- * sedes, roles, comparación) y las preguntas frecuentes, con su FAQPage:
- * Google exige que el structured data corresponda a contenido visible en la
- * misma página, y las preguntas ahora se ven acá y no en la home.
+ * /plataforma (v5, 25/10/2026). El FAQPage vive acá porque las preguntas
+ * frecuentes se ven en esta página (Google pide que el structured data
+ * corresponda a contenido visible).
  */
 export const metadata: Metadata = {
   title: `Plataforma | ${SITE.name}: todos los módulos de gestión SST`,
@@ -45,26 +35,9 @@ const faqSchema = {
 
 export default function Page() {
   return (
-    <SiteShell className="ss-home" ctaLabel="Agenda 30 minutos">
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <main id="main">
-        <section className="page-hero center" id="top">
-          <div className="wrap">
-            <h1>La plataforma, módulo por módulo.</h1>
-            <p className="lede">Capturas reales de cada parte de SHIPSAFE.</p>
-            <div className="hero-cta">
-              <DemoLink section="plataforma-hero">Agenda 30 minutos</DemoLink>
-            </div>
-          </div>
-        </section>
-        <Explorer />
-        <Flow />
-        <Standard num={null} />
-        <Roles />
-        <Compare />
-        <Faq num={null} />
-        <CloseSection num={null} source="plataforma" />
-      </main>
-    </SiteShell>
+      <PlataformaV5 />
+    </>
   );
 }

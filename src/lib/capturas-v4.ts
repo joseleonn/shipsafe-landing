@@ -5,7 +5,6 @@ export const CAPTURAS_V4: Record<string, [number, number]> = {
   "acc-2-detalle.jpg": [2880, 1800],
   "acc-3-causa.jpg": [2880, 1800],
   "acc-4-supuestos.jpg": [2880, 1800],
-  "acc-5-acciones.jpg": [2000, 1047],
   "cap-1-listado.jpg": [2880, 1800],
   "cap-2-calendario.jpg": [2880, 1800],
   "cap-3-adentro.jpg": [2880, 1800],
@@ -22,7 +21,6 @@ export const CAPTURAS_V4: Record<string, [number, number]> = {
   "desv-4-plazo.jpg": [2880, 1800],
   "desvm-1-origen.jpg": [2880, 1800],
   "desvm-2-resolucion.jpg": [2878, 1798],
-  "desvm-3-historial.jpg": [2000, 1047],
   "desvm-4-auditoria.jpg": [2880, 1800],
   "epp-1-entregas.jpg": [2880, 1800],
   "epp-2-nueva.jpg": [2880, 1800],
@@ -31,10 +29,8 @@ export const CAPTURAS_V4: Record<string, [number, number]> = {
   "epp-5-stock.jpg": [2880, 1800],
   "eppm-1-entrega.jpg": [780, 1688],
   "eppm-2-firma.jpg": [780, 1688],
-  "eppm-3-constancia.jpg": [720, 1560],
   "equ-1-inventario.jpg": [2880, 1800],
   "equ-2-alta.jpg": [2880, 1800],
-  "equ-3-qr.jpg": [2000, 1047],
   "equ-4-vencidos.jpg": [2880, 1800],
   "exec-1-escaneo.jpg": [780, 1688],
   "exec-2-checklist.jpg": [780, 1688],
@@ -42,7 +38,6 @@ export const CAPTURAS_V4: Record<string, [number, number]> = {
   "exec-4-firma.jpg": [780, 1688],
   "firm-1-pendiente.jpg": [2880, 1800],
   "firm-2-firmas.jpg": [2880, 1800],
-  "firm-3-aprobado.jpg": [2000, 1047],
   "firm-4-pdf.jpg": [2880, 1800],
   "insp-1-plantillas.jpg": [2880, 1800],
   "insp-2-preguntas.jpg": [2880, 1800],
@@ -73,9 +68,5 @@ export const CAPTURAS_V4: Record<string, [number, number]> = {
 // Imágenes de relleno (scripts/placeholders.mjs). Se ven en `npm run dev`
 // para poder revisar el recorrido, y NUNCA en el sitio publicado.
 export const RELLENOS: ReadonlySet<string> = new Set([
-  "acc-5-acciones.jpg",
-  "desvm-3-historial.jpg",
-  "eppm-3-constancia.jpg",
-  "equ-3-qr.jpg",
-  "firm-3-aprobado.jpg",
+
 ]);

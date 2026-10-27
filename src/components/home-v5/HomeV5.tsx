@@ -1,13 +1,22 @@
+import { Fragment, type CSSProperties } from "react";
 import Image from "next/image";
+import SocialIcon from "@/components/site/SocialIcon";
+import Confianza from "./Confianza";
+import PlataformaSpot from "./PlataformaSpot";
 import Link from "next/link";
 import SiteShell from "@/components/site/SiteShell";
 import StickyBar from "@/components/site/StickyBar";
+import MotionCues from "@/components/site/MotionCues";
 import DemoLink from "@/components/site/DemoLink";
 import Icon from "@/components/site/Icon";
 import { BrowserFrame, PhoneFrame } from "@/components/site/Frames";
 import LeadForm from "@/components/home/LeadForm";
 import { CASE, SHOTS, whatsappUrl } from "@/lib/home-content";
-import { HOME5, MEDIA, type Video } from "@/lib/home-v5";
+import Procesos from "./Procesos";
+import Expandable from "./Expandable";
+import HashScroll from "./HashScroll";
+import { HeroTilt, Item, Parallax, Rise, ScrollProgress, Stagger, Tilt, Words } from "./Motion5";
+import { HOME5, MEDIA, SHOW_VIDEO_PLACEHOLDERS, TESTIMONIOS, type Video } from "@/lib/home-v5";
 
 /**
  * Home v5 (24/10/2026). Poco texto, personas y producto real.
@@ -20,26 +29,69 @@ import { HOME5, MEDIA, type Video } from "@/lib/home-v5";
 export default function HomeV5() {
   return (
     <SiteShell className="ss-home ss-home5" ctaLabel={HOME5.cta} ctaSection="nav">
+      <ScrollProgress />
+      <HashScroll />
       <main id="main">
         <Hero />
-        <Clientes />
-        <Plataforma />
-        <Flujo />
+        <Confianza />
+        <PlataformaSpot />
+        <Procesos />
         <Probalo />
         <Caso />
+        <Testimonios />
         <Nosotros />
         <Cierre />
       </main>
       <StickyBar label={HOME5.cta} />
+      <MotionCues />
     </SiteShell>
   );
 }
 
-function VideoPlayer({ video, label, loop = false }: { video: NonNullable<Video>; label: string; loop?: boolean }) {
+function VideoPlayer(props: { video: NonNullable<Video>; label: string; loop?: boolean }) {
+  return (
+    <Expandable media={{ kind: "video", src: props.video.src, webm: props.video.webm, poster: props.video.poster, label: props.label }}>
+      <VideoTag {...props} />
+    </Expandable>
+  );
+}
+
+function VideoTag({ video, label, loop = false }: { video: NonNullable<Video>; label: string; loop?: boolean }) {
   return loop ? (
     <video className="h5-video" src={video.src} poster={video.poster} autoPlay muted loop playsInline preload="metadata" aria-label={label} />
   ) : (
-    <video className="h5-video" src={video.src} poster={video.poster} controls playsInline preload="none" aria-label={label} />
+    <video className="h5-video" poster={video.poster} controls playsInline preload="none" aria-label={label}>
+      {video.webm && <source src={video.webm} type="video/webm" />}
+      <source src={video.src} type="video/mp4" />
+    </video>
+  );
+}
+
+/** Recuadro de vista previa para un video que todavía no existe. */
+export function VideoPlaceholder({ label, ratio = "16/9", dark = false }: { label: string; ratio?: string; dark?: boolean }) {
+  return (
+    <div className={`h5-vph ${dark ? "dark" : ""}`} style={{ aspectRatio: ratio }} role="img" aria-label={`Lugar reservado: ${label}`}>
+      <span className="h5-vph-badge">Video pendiente</span>
+      <span className="h5-vph-play" aria-hidden="true">
+        <Icon name="play" />
+      </span>
+      <span className="h5-vph-label">{label}</span>
+    </div>
+  );
+}
+
+/** Palabras del h1 con entrada escalonada por CSS (no depende de JavaScript). */
+function HeroWords({ text, offset = 0 }: { text: string; offset?: number }) {
+  return (
+    <>
+      {text.split(" ").map((w, i) => (
+        <Fragment key={i}>
+          <span className="hw" style={{ "--i": i + offset } as CSSProperties}>
+            {w}
+          </span>{" "}
+        </Fragment>
+      ))}
+    </>
   );
 }
 
@@ -47,9 +99,19 @@ function Hero() {
   return (
     <section className="h5-hero" id="top">
       <span id="inicio" />
+      <div className="hero-bg" aria-hidden="true">
+        <span className="orb orb-1" />
+        <span className="orb orb-2" />
+        <span className="orb orb-3" />
+      </div>
       <div className="wrap">
         <div className="h5-hero-copy">
-          <h1>{HOME5.hero.h1}</h1>
+          <h1>
+            <HeroWords text={HOME5.hero.h1} />
+            <em>
+              <HeroWords text={HOME5.hero.h1Accent} offset={HOME5.hero.h1.split(" ").length} />
+            </em>
+          </h1>
           <p className="lede">{HOME5.hero.lede}</p>
           <div className="h5-cta">
             <DemoLink section="hero" className="btn btn-primary btn-lg">
@@ -62,83 +124,24 @@ function Hero() {
           </div>
         </div>
         <div className="h5-hero-media">
-          {MEDIA.founderVideo ? (
+          <HeroTilt>
+          {MEDIA.founderVideo || SHOW_VIDEO_PLACEHOLDERS ? (
             <figure>
-              <VideoPlayer video={MEDIA.founderVideo} label="Presentación de SHIPSAFE por José Cáceres y Walter Rodríguez" />
-              <figcaption>José Cáceres y Walter Rodríguez, fundadores</figcaption>
+              {MEDIA.founderVideo ? (
+                <VideoPlayer video={MEDIA.founderVideo} label="Video de SHIPSAFE: lo que pide el auditor del cliente y cómo tenerlo a mano" />
+              ) : (
+                <VideoPlaceholder label="José y Walter a cámara · 60 a 90 s · con subtítulos" dark />
+              )}
+              <figcaption>Lo que pide el auditor, y cómo tenerlo a mano · 1:33</figcaption>
             </figure>
           ) : (
             <div className="stage">
-              <BrowserFrame shot={SHOTS.dashboard} sizes="(max-width: 900px) 100vw, 1040px" priority live />
+              <Expandable media={{ kind: "image", src: SHOTS.dashboard.src, alt: SHOTS.dashboard.alt, width: SHOTS.dashboard.width, height: SHOTS.dashboard.height }}><BrowserFrame shot={SHOTS.dashboard} sizes="(max-width: 900px) 100vw, 1040px" priority live /></Expandable>
               <PhoneFrame shot={SHOTS.pChecklist} sizes="250px" priority />
             </div>
           )}
+          </HeroTilt>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Clientes() {
-  return (
-    <section className="h5-clientes" aria-label="Clientes">
-      <div className="wrap">
-        <div className="h5-logos">
-          <span>Ya lo usan</span>
-          {CASE.logo ? (
-            <Image src={CASE.logo} alt={`Logo de ${CASE.name}`} width={245} height={124} unoptimized />
-          ) : (
-            <b>{CASE.name}</b>
-          )}
-        </div>
-        <p>{HOME5.region}</p>
-      </div>
-    </section>
-  );
-}
-
-function Plataforma() {
-  return (
-    <section className="h5-plataforma" id="plataforma">
-      <span id="funcionalidades" />
-      <div className="wrap">
-        <h2>{HOME5.plataforma.h2}</h2>
-        <BrowserFrame shot={SHOTS.dashboardCharts} sizes="(max-width: 1200px) 100vw, 1160px" className="h5-wide" />
-        <ul className="h5-chips">
-          {HOME5.plataforma.modules.map((m) => (
-            <li key={m}>{m}</li>
-          ))}
-          <li className="more">
-            <Link href="/plataforma">
-              {HOME5.plataforma.more}
-              <Icon name="arrow" />
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-function Flujo() {
-  return (
-    <section className="h5-flujo" id="como-funciona">
-      <span id="flujo" />
-      <div className="wrap">
-        <h2>{HOME5.flujo.h2}</h2>
-        {MEDIA.flowVideo ? (
-          <VideoPlayer video={MEDIA.flowVideo} label="Recorrido de un desvío en SHIPSAFE" loop />
-        ) : (
-          <div className="stage">
-            <BrowserFrame shot={SHOTS.desvioDetalle} sizes="(max-width: 900px) 100vw, 980px" />
-            <PhoneFrame shot={SHOTS.mDesvioDetalle} sizes="250px" />
-          </div>
-        )}
-        <ol className="h5-steps">
-          {HOME5.flujo.steps.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ol>
       </div>
     </section>
   );
@@ -149,7 +152,9 @@ function Probalo() {
     <section className="h5-probalo" id="probalo">
       <div className="wrap">
         <div className="h5-probalo-copy">
-          <h2>{HOME5.probalo.h2}</h2>
+          <h2>
+          <Words text={HOME5.probalo.h2} accent={HOME5.probalo.h2Accent} />
+        </h2>
           <p className="lede">{HOME5.probalo.lede}</p>
           <div className="h5-qr-row">
             <Link className="h5-qr" href="/probalo?utm_source=landing&utm_medium=qr&utm_campaign=probalo" aria-label="Abrir la inspección de prueba">
@@ -161,7 +166,9 @@ function Probalo() {
             </Link>
           </div>
         </div>
-        <PhoneFrame shot={SHOTS.pChecklist} sizes="260px" />
+        <Parallax className="h5-probalo-phone" speed={70}>
+          <PhoneFrame shot={SHOTS.pChecklist} sizes="260px" />
+        </Parallax>
       </div>
     </section>
   );
@@ -171,23 +178,74 @@ function Caso() {
   return (
     <section className="h5-caso" id="caso">
       <div className="wrap">
-        {MEDIA.testimonialVideo && (
-          <VideoPlayer video={MEDIA.testimonialVideo} label={`Testimonio de ${CASE.name}`} />
-        )}
-        <div className="h5-caso-copy">
-          {CASE.logo ? (
-            <Image src={CASE.logo} alt={`Logo de ${CASE.name}`} width={245} height={124} unoptimized className="h5-caso-logo" />
-          ) : (
-            <b>{CASE.name}</b>
-          )}
-          <p className="h5-claim">{HOME5.caso.claim}</p>
-          <p className="h5-meta">
-            {HOME5.caso.meta} ·{" "}
-            <a className="link" href={CASE.url} target="_blank" rel="noopener noreferrer">
-              {CASE.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-            </a>
-          </p>
-        </div>
+        <Rise className="h5-caso-card">
+          <div className="h5-caso-copy">
+            <span className="h5-tag">Caso real</span>
+            {CASE.logo ? (
+              <Image src={CASE.logo} alt={`Logo de ${CASE.name}`} width={245} height={124} unoptimized className="h5-caso-logo" />
+            ) : (
+              <b>{CASE.name}</b>
+            )}
+            <p className="h5-claim">
+              De Excel a <em>flota, EPP y accidentes</em> en una misma plataforma.
+            </p>
+            <Stagger className="h5-caso-facts">
+              {CASE.facts.map((f) => (
+                <Item key={f}>{f}</Item>
+              ))}
+            </Stagger>
+            <p className="h5-meta">
+              {HOME5.caso.meta} ·{" "}
+              <a className="link" href={CASE.url} target="_blank" rel="noopener noreferrer">
+                {CASE.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+              </a>
+            </p>
+          </div>
+          <div className="h5-caso-media">
+            {MEDIA.testimonialVideo ? (
+              <VideoPlayer video={MEDIA.testimonialVideo} label={`Testimonio de ${CASE.name}`} />
+            ) : SHOW_VIDEO_PLACEHOLDERS ? (
+              <VideoPlaceholder label="Responsable de HSE de SW Petrol · cómo registraban antes y qué usan hoy · 60 s" dark />
+            ) : (
+              <div className="stage">
+                <Expandable media={{ kind: "image", src: SHOTS.accidentes.src, alt: SHOTS.accidentes.alt, width: SHOTS.accidentes.width, height: SHOTS.accidentes.height }}><BrowserFrame shot={SHOTS.accidentes} sizes="(max-width: 900px) 100vw, 640px" /></Expandable>
+                <PhoneFrame shot={SHOTS.mEpp} sizes="200px" />
+              </div>
+            )}
+          </div>
+        </Rise>
+      </div>
+    </section>
+  );
+}
+
+function Testimonios() {
+  const items = SHOW_VIDEO_PLACEHOLDERS ? TESTIMONIOS : TESTIMONIOS.filter((t) => t.video);
+  if (items.length === 0) return null;
+  return (
+    <section className="h5-testimonios" id="testimonios">
+      <div className="wrap">
+        <h2>
+          <Words text={HOME5.testimonios.h2} accent={HOME5.testimonios.h2Accent} />
+        </h2>
+        <Stagger className="h5-testi-grid" gap={0.12}>
+          {items.map((t, i) => (
+            <Item key={i} className="h5-testi">
+              {t.video ? (
+                <VideoPlayer video={t.video} label={`Testimonio de ${t.name}, ${t.company}`} />
+              ) : (
+                <VideoPlaceholder label={`${t.company} · 40 a 60 s`} ratio="4/5" dark />
+              )}
+              <blockquote>{t.quote}</blockquote>
+              <div className="h5-testi-who">
+                <b>{t.name}</b>
+                <span>
+                  {t.role} · {t.company}
+                </span>
+              </div>
+            </Item>
+          ))}
+        </Stagger>
       </div>
     </section>
   );
@@ -197,12 +255,14 @@ function Nosotros() {
   return (
     <section className="h5-nosotros" id="nosotros">
       <div className="wrap">
-        <h2>{HOME5.nosotros.h2}</h2>
-        <ul className="h5-team">
+        <h2>
+          <Words text={HOME5.nosotros.h2} accent={HOME5.nosotros.h2Accent} />
+        </h2>
+        <Stagger className="h5-team" gap={0.15}>
           {HOME5.nosotros.team.map((p) => (
-            <li key={p.name}>
+            <Item key={p.name}>
               {p.photo ? (
-                <Image src={p.photo} alt={`Foto de ${p.name}`} width={240} height={300} className="h5-photo" />
+                <Image src={p.photo} alt={`Foto de ${p.name}`} width={240} height={240} className="h5-photo" />
               ) : (
                 <span className="h5-photo h5-initials" aria-hidden="true">
                   {p.initials}
@@ -211,22 +271,31 @@ function Nosotros() {
               <div>
                 <h3>{p.name}</h3>
                 <span>{p.role}</span>
+                <b className="h5-bio">{p.bio}</b>
+                {p.linkedin && (
+                  <a className="h5-in" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${p.name}`}>
+                    <SocialIcon id="linkedin" size={16} />
+                    LinkedIn
+                  </a>
+                )}
               </div>
-            </li>
+            </Item>
           ))}
-        </ul>
+        </Stagger>
       </div>
     </section>
   );
 }
 
-function Cierre() {
+export function Cierre() {
   return (
     <section className="close h5-cierre" id="demo">
       <span id="contacto" />
       <div className="wrap">
         <div className="close-copy">
-          <h2>{HOME5.cierre.h2}</h2>
+          <h2>
+          <Words text={HOME5.cierre.h2} accent={HOME5.cierre.h2Accent} />
+        </h2>
           <p className="lede">{HOME5.cierre.lede}</p>
         </div>
         <div className="panel" id="panel">
