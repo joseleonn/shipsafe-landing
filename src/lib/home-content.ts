@@ -448,6 +448,12 @@ export const CASE = {
   beforeShort: "Excel y un software interno que no prosperó, con la información repartida.",
   todayShort: "Inspecciones de flota, EPP y accidentología en un mismo lugar, con informes listos para auditorías y licitaciones.",
   logo: "/clientes/swpetrol.png" as string | null,
+  /** Quién habla en el video del caso (MEDIA.testimonialVideo). */
+  voz: {
+    name: "Ramiro Márquez",
+    role: "Licenciado y coordinador de Seguridad e Higiene",
+    linkedin: "https://www.linkedin.com/in/lic-ramiromarquez/",
+  },
   before:
     "Planillas Excel y un software interno hecho por un supervisor, que no prosperó. Necesitaban control sobre los EPP y algo que respaldara auditorías y licitaciones.",
   today:

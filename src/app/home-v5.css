@@ -117,6 +117,8 @@
 .ss-home5 .h5-caso-media .stage{margin-top:0;padding-bottom:40px}
 .ss-home5 .h5-caso-media .stage .phone{width:170px}
 .ss-home5 .h5-caso-media .h5-video{aspect-ratio:16/9}
+.ss-home5 .h5-caso-voz{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
+.ss-home5 .h5-caso-voz b{color:var(--navy);font-weight:600}
 
 /* nosotros */
 .ss-home5 .h5-nosotros{background:var(--bg-2)}

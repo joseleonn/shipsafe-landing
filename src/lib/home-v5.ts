@@ -21,12 +21,14 @@ export type Video = { src: string; poster: string; webm?: string } | null;
 export const MEDIA: {
   /** Hero: José y Walter a cámara, 60 a 90 s, con subtítulos quemados. */
   founderVideo: Video;
-  /** Testimonio del responsable de HSE de SW Petrol. Solo con autorización escrita. */
+  /** Testimonio de SW Petrol (Ramiro Márquez, coordinador de SyH). */
   testimonialVideo: Video;
 } = {
   // VSL de 93 s (26/10/2026): motion graphics con la voz clonada de José. Las partes a cámara se reemplazan cuando estén grabadas.
   founderVideo: { src: "/video/vsl.mp4?v=7", webm: "/video/vsl.webm?v=7", poster: "/video/vsl.jpg?v=7" },
-  testimonialVideo: null,
+  // Testimonio de Ramiro Márquez (29/10/2026): audio de la entrevista, sin cámara, con pantallas reales.
+  // Lo aceptó en la reunión grabada; José decidió publicarlo el mismo día.
+  testimonialVideo: { src: "/video/testimonio-swp.mp4?v=1", webm: "/video/testimonio-swp.webm?v=1", poster: "/video/testimonio-swp.jpg?v=1" },
 };
 
 /**

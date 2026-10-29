@@ -202,7 +202,15 @@ function Caso() {
           </div>
           <div className="h5-caso-media">
             {MEDIA.testimonialVideo ? (
-              <VideoPlayer video={MEDIA.testimonialVideo} label={`Testimonio de ${CASE.name}`} />
+              <>
+                <VideoPlayer video={MEDIA.testimonialVideo} label={`Testimonio de ${CASE.voz.name}, ${CASE.voz.role} de ${CASE.name}`} />
+                <p className="h5-caso-voz">
+                  <b>{CASE.voz.name}</b> · {CASE.voz.role} de {CASE.name} ·{" "}
+                  <a className="link" href={CASE.voz.linkedin} target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </p>
+              </>
             ) : SHOW_VIDEO_PLACEHOLDERS ? (
               <VideoPlaceholder label="Responsable de HSE de SW Petrol · cómo registraban antes y qué usan hoy · 60 s" dark />
             ) : (
