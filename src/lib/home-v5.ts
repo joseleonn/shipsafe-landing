@@ -175,9 +175,10 @@ export const HOME5 = {
     team: [
       // linkedin: URL completa del perfil. Si queda en null, no se muestra el botón.
       { name: "José León Cáceres", role: "Fundador · Rosario, Santa Fe", bio: "+6 años en software y producto", photo: "/equipo/jose.jpg" as string | null, initials: "JC", linkedin: "https://www.linkedin.com/in/joseleoncaceresmusso" as string | null },
-      { name: "Walter Rodríguez", role: "Fundador · La Plata", bio: "+13 años de experiencia en SST", photo: "/equipo/walter.jpg" as string | null, initials: "WR", linkedin: "https://www.linkedin.com/in/walter-dario-rodriguez-69b468213" as string | null },
+      { name: "Walter Rodríguez", role: "Director técnico de SST · La Plata", bio: "Lic. en Seguridad e Higiene · +13 años en SST", photo: "/equipo/walter.jpg" as string | null, initials: "WR", linkedin: "https://www.linkedin.com/in/walter-dario-rodriguez-69b468213" as string | null },
     ],
-    // Partners comerciales, en un bloque aparte de los fundadores. Se dice "partner", no
+    // Walter va como director técnico, no como fundador, hasta que haya acuerdo de socios (2/11/2026).
+    // Partners comerciales, en un bloque aparte del equipo. Se dice "partner", no
     // "representante oficial": eso va solo con acuerdo firmado (claude/partners-shipsafe).
     partnerLabel: "Partner en México",
     partners: [
