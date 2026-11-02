@@ -59,12 +59,17 @@ export const TESTIMONIOS: { video: Video; quote: string; name: string; role: str
 /**
  * Franja de confianza (Confianza.tsx). Solo empresas que lo usan de verdad y
  * que autorizaron mostrar su logo (DLC lo autorizó, según José el 27/10/2026).
+ * Lemniscus entra por decisión de José (2/11/2026) con la nota "Partner ·
+ * México": tiene la cuenta de partner y todavía no lo usa en trabajo real.
+ * Cuando lo use en su operación, la nota pasa a ser solo "Jalisco, México".
+ * Su logo es solo el símbolo, sin nombre: por eso `showName`.
  * Lo de la SRT dice solo lo que da el registro
  * temporario: la inscripción y el número.
  */
-export const CONFIANZA: { name: string; note: string; logo: string | null; w: number; h: number; href: string | null }[] = [
+export const CONFIANZA: { name: string; note: string; logo: string | null; w: number; h: number; href: string | null; showName?: boolean }[] = [
   { name: "SW Petrol", note: "Neuquén, Argentina", logo: "/clientes/swpetrol.png", w: 245, h: 124, href: "#caso" },
   { name: "Corporación DLC", note: "Guatemala", logo: "/clientes/dlc.png", w: 270, h: 114, href: null },
+  { name: "Lemniscus", note: "Partner · México", logo: "/clientes/lemniscus.png", w: 296, h: 118, href: null, showName: true },
   { name: "Prestador Integral 4.0", note: "Registro de la SRT · PR-005-PI", logo: null, w: 0, h: 0, href: "https://www.argentina.gob.ar/srt/prevencion/registro-de-prestadores-40" },
 ];
 

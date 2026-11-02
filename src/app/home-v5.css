@@ -299,9 +299,13 @@
 .ss-home5 .h5-tr-seal{display:inline-flex;align-items:center;gap:8px;font:700 17px/1 var(--display,inherit);letter-spacing:-.01em;color:var(--navy);opacity:.75;transition:opacity .35s,color .35s}
 .ss-home5 .h5-tr-seal svg{color:var(--accent)}
 .ss-home5 .h5-tr-note{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.ss-home5 .h5-tr-mark{display:inline-flex;align-items:center;gap:10px}
+.ss-home5 .h5-tr-logo.is-symbol{height:30px;opacity:.6}
+.ss-home5 .h5-tr-name{font:700 18px/1 var(--display,inherit);letter-spacing:-.01em;color:var(--navy);opacity:.75;transition:opacity .35s}
+.ss-home5 .h5-tr-item:hover .h5-tr-name{opacity:1}
 .ss-home5 .h5-tr-item:hover .h5-tr-logo{filter:none;opacity:1}
 .ss-home5 .h5-tr-item:hover .h5-tr-seal{opacity:1;color:var(--accent-ink)}
-@media (max-width:640px){.ss-home5 .h5-tr-item{padding:6px 26px;gap:10px}.ss-home5 .h5-tr-logo{height:30px}.ss-home5 .h5-tr-note{font-size:10.5px}}
+@media (max-width:640px){.ss-home5 .h5-tr-item{padding:6px 26px;gap:10px}.ss-home5 .h5-tr-logo{height:30px}.ss-home5 .h5-tr-logo.is-symbol{height:24px}.ss-home5 .h5-tr-name{font-size:15px}.ss-home5 .h5-tr-note{font-size:10.5px}}
 
 /* Plataforma: captura fija con foco que recorre zonas al scrollear */
 .ss-home5 .h5-plat-head{padding-bottom:8px}

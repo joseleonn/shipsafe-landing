@@ -34,7 +34,14 @@ function Items() {
         const inner = (
           <>
             {it.logo ? (
-              <Image src={it.logo} alt={it.name} width={it.w} height={it.h} className="h5-tr-logo" unoptimized />
+              it.showName ? (
+                <span className="h5-tr-mark">
+                  <Image src={it.logo} alt="" width={it.w} height={it.h} className="h5-tr-logo is-symbol" unoptimized />
+                  <span className="h5-tr-name">{it.name}</span>
+                </span>
+              ) : (
+                <Image src={it.logo} alt={it.name} width={it.w} height={it.h} className="h5-tr-logo" unoptimized />
+              )
             ) : (
               <span className="h5-tr-seal" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
