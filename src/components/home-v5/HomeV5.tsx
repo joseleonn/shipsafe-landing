@@ -267,30 +267,46 @@ function Nosotros() {
         </h2>
         <Stagger className="h5-team" gap={0.15}>
           {HOME5.nosotros.team.map((p) => (
-            <Item key={p.name}>
-              {p.photo ? (
-                <Image src={p.photo} alt={`Foto de ${p.name}`} width={240} height={240} className="h5-photo" />
-              ) : (
-                <span className="h5-photo h5-initials" aria-hidden="true">
-                  {p.initials}
-                </span>
-              )}
-              <div>
-                <h3>{p.name}</h3>
-                <span>{p.role}</span>
-                <b className="h5-bio">{p.bio}</b>
-                {p.linkedin && (
-                  <a className="h5-in" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${p.name}`}>
-                    <SocialIcon id="linkedin" size={16} />
-                    LinkedIn
-                  </a>
-                )}
-              </div>
-            </Item>
+            <TeamCard key={p.name} p={p} />
           ))}
         </Stagger>
+        {HOME5.nosotros.partners.length > 0 && (
+          <div className="h5-partners">
+            <span className="h5-tag">{HOME5.nosotros.partnerLabel}</span>
+            <Stagger className="h5-team" gap={0.15}>
+              {HOME5.nosotros.partners.map((p) => (
+                <TeamCard key={p.name} p={p} />
+              ))}
+            </Stagger>
+          </div>
+        )}
       </div>
     </section>
+  );
+}
+
+function TeamCard({ p }: { p: (typeof HOME5.nosotros.team)[number] }) {
+  return (
+    <Item>
+      {p.photo ? (
+        <Image src={p.photo} alt={`Foto de ${p.name}`} width={240} height={240} className="h5-photo" />
+      ) : (
+        <span className="h5-photo h5-initials" aria-hidden="true">
+          {p.initials}
+        </span>
+      )}
+      <div>
+        <h3>{p.name}</h3>
+        <span>{p.role}</span>
+        <b className="h5-bio">{p.bio}</b>
+        {p.linkedin && (
+          <a className="h5-in" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${p.name}`}>
+            <SocialIcon id="linkedin" size={16} />
+            LinkedIn
+          </a>
+        )}
+      </div>
+    </Item>
   );
 }
 

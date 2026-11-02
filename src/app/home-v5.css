@@ -132,6 +132,8 @@
 .ss-home5 .h5-in{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
 .ss-home5 .h5-in:hover{background:var(--accent);color:#fff}
 .ss-home5 .h5-bio{display:block;margin-top:8px;font-size:16px;font-weight:600;color:var(--accent-ink)}
+.ss-home5 .h5-partners{display:flex;flex-direction:column;align-items:flex-start;gap:24px;padding-top:40px;border-top:1px solid rgba(11,31,59,.1)}
+.ss-home5 .h5-partners .h5-team{width:100%}
 
 /* cierre: usa .close de site.css; acá solo se achica */
 .ss-home5 .h5-cierre .close-copy .lede{color:rgba(255,255,255,.72)}

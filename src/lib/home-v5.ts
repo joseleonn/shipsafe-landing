@@ -177,6 +177,12 @@ export const HOME5 = {
       { name: "José León Cáceres", role: "Fundador · Rosario, Santa Fe", bio: "+6 años en software y producto", photo: "/equipo/jose.jpg" as string | null, initials: "JC", linkedin: "https://www.linkedin.com/in/joseleoncaceresmusso" as string | null },
       { name: "Walter Rodríguez", role: "Fundador · La Plata", bio: "+13 años de experiencia en SST", photo: "/equipo/walter.jpg" as string | null, initials: "WR", linkedin: "https://www.linkedin.com/in/walter-dario-rodriguez-69b468213" as string | null },
     ],
+    // Partners comerciales, en un bloque aparte de los fundadores. Se dice "partner", no
+    // "representante oficial": eso va solo con acuerdo firmado (claude/partners-shipsafe).
+    partnerLabel: "Partner en México",
+    partners: [
+      { name: "Jorge Hugo Ayón", role: "Lemniscus · Jalisco, México", bio: "Mantenimiento industrial y capacitación en seguridad", photo: "/equipo/hugo.jpg" as string | null, initials: "HA", linkedin: "https://www.linkedin.com/in/jorge-hugo-ay%C3%B3n-30925189/" as string | null },
+    ],
   },
   cierre: {
     h2: "Veámoslo",
