@@ -89,7 +89,7 @@ const ANFITRION = {
   foto: "/equipo/jose.jpg",
   // El socio no está en todas las reuniones, así que no va como segundo
   // anfitrión: va como refuerzo, que es lo que realmente pasa.
-  suma: `Si tu caso lo pide se suma Walter Rodríguez, mi socio: licenciado en higiene y seguridad, +${ANIOS.walter} años en el rubro.`,
+  suma: `Si tu caso lo pide se suma Walter Darío Rodríguez, Head of HSE de SHIPSAFE: licenciado en higiene y seguridad, +${ANIOS.walter} años en el rubro.`,
 };
 
 const PASOS = [
