@@ -120,6 +120,18 @@
 .ss-home5 .h5-caso-voz{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
 .ss-home5 .h5-caso-voz b{color:var(--navy);font-weight:600}
 
+/* /mx: rótulo del hero y contacto en México */
+.ss-home5 .h5-hero-eyebrow{justify-content:center;margin-bottom:22px}
+.ss-home5 .h5-mx-contacto .wrap{display:flex;flex-direction:column;gap:40px}
+.ss-home5 .h5-mx-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:48px;align-items:center;padding:48px 56px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-frame)}
+.ss-home5 .h5-mx-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 6px #fff,0 0 0 7px var(--line),0 18px 40px -16px rgba(11,31,59,.4)}
+.ss-home5 .h5-mx-copy{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:60ch}
+.ss-home5 .h5-mx-copy h3{font-size:clamp(26px,2.6vw,34px);letter-spacing:-.02em;margin:4px 0 0}
+.ss-home5 .h5-mx-empresa{font-size:16px;font-weight:600;color:var(--accent-ink)}
+.ss-home5 .h5-mx-copy p{margin-top:8px;font-size:17px;line-height:1.55;color:var(--muted)}
+.ss-home5 .h5-mx-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px}
+.ss-home5 .h5-mx-actions .h5-in{margin-top:0}
+
 /* nosotros */
 .ss-home5 .h5-nosotros{background:var(--bg-2)}
 .ss-home5 .h5-nosotros .wrap{display:flex;flex-direction:column;gap:44px}
@@ -153,6 +165,10 @@
   .ss-home5 .h5-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter)}
   .ss-home5 .h5-tabs button{flex:none}
   .ss-home5 .h5-team{grid-template-columns:minmax(0,1fr)}
+  .ss-home5 .h5-mx-card{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;padding:32px 24px;gap:24px}
+  .ss-home5 .h5-mx-copy{align-items:center}
+  .ss-home5 .h5-mx-actions{justify-content:center}
+  .ss-home5 .h5-mx-photo{width:150px;height:150px}
   .ss-home5 .h5-probalo .phone{margin-inline:auto}
 }
 @media (max-width:600px){

@@ -8,7 +8,7 @@ import SiteShell from "@/components/site/SiteShell";
 import StickyBar from "@/components/site/StickyBar";
 import MotionCues from "@/components/site/MotionCues";
 import DemoLink from "@/components/site/DemoLink";
-import Icon from "@/components/site/Icon";
+import Icon, { type IconName } from "@/components/site/Icon";
 import { BrowserFrame, PhoneFrame } from "@/components/site/Frames";
 import LeadForm from "@/components/home/LeadForm";
 import { CASE, SHOTS, whatsappUrl } from "@/lib/home-content";
@@ -95,7 +95,19 @@ function HeroWords({ text, offset = 0 }: { text: string; offset?: number }) {
   );
 }
 
-function Hero() {
+/**
+ * Hero de la home. /mx lo reutiliza con un rótulo arriba, su propia bajada y
+ * otro botón secundario; sin props queda exactamente como en la home.
+ */
+export function Hero({
+  eyebrow,
+  lede = HOME5.hero.lede,
+  secondary = { href: "#probalo", label: HOME5.hero.secondary, icon: "scan" },
+}: {
+  eyebrow?: string;
+  lede?: string;
+  secondary?: { href: string; label: string; icon: IconName };
+} = {}) {
   return (
     <section className="h5-hero" id="top">
       <span id="inicio" />
@@ -106,20 +118,21 @@ function Hero() {
       </div>
       <div className="wrap">
         <div className="h5-hero-copy">
+          {eyebrow && <span className="eyebrow h5-hero-eyebrow">{eyebrow}</span>}
           <h1>
             <HeroWords text={HOME5.hero.h1} />
             <em>
               <HeroWords text={HOME5.hero.h1Accent} offset={HOME5.hero.h1.split(" ").length} />
             </em>
           </h1>
-          <p className="lede">{HOME5.hero.lede}</p>
+          <p className="lede">{lede}</p>
           <div className="h5-cta">
             <DemoLink section="hero" className="btn btn-primary btn-lg">
               {HOME5.cta}
             </DemoLink>
-            <a className="btn btn-secondary btn-lg" href="#probalo">
-              <Icon name="scan" />
-              {HOME5.hero.secondary}
+            <a className="btn btn-secondary btn-lg" href={secondary.href}>
+              <Icon name={secondary.icon} />
+              {secondary.label}
             </a>
           </div>
         </div>
@@ -173,7 +186,7 @@ function Probalo() {
   );
 }
 
-function Caso() {
+export function Caso() {
   return (
     <section className="h5-caso" id="caso">
       <div className="wrap">
@@ -258,7 +271,7 @@ function Testimonios() {
   );
 }
 
-function Nosotros() {
+export function Nosotros({ partners = true }: { partners?: boolean } = {}) {
   return (
     <section className="h5-nosotros" id="nosotros">
       <div className="wrap">
@@ -270,7 +283,7 @@ function Nosotros() {
             <TeamCard key={p.name} p={p} />
           ))}
         </Stagger>
-        {HOME5.nosotros.partners.length > 0 && (
+        {partners && HOME5.nosotros.partners.length > 0 && (
           <div className="h5-partners">
             <span className="h5-tag">{HOME5.nosotros.partnerLabel}</span>
             <Stagger className="h5-team" gap={0.15}>
@@ -310,7 +323,7 @@ function TeamCard({ p }: { p: (typeof HOME5.nosotros.team)[number] }) {
   );
 }
 
-export function Cierre() {
+export function Cierre({ source = "home" }: { source?: string } = {}) {
   return (
     <section className="close h5-cierre" id="demo">
       <span id="contacto" />
@@ -322,7 +335,7 @@ export function Cierre() {
           <p className="lede">{HOME5.cierre.lede}</p>
         </div>
         <div className="panel" id="panel">
-          <LeadForm source="home" section="cierre" />
+          <LeadForm source={source} section="cierre" />
           <div className="wa">
             <a href={whatsappUrl("Hola, quiero agendar una reunión con SHIPSAFE")} target="_blank" rel="noopener noreferrer">
               <Icon name="msg" />
