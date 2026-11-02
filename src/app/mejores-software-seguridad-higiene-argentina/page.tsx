@@ -33,7 +33,7 @@ const ARTICLE_FAQS = [
   {
     question: "¿Cuánto cuesta un software de seguridad e higiene en Argentina?",
     answer:
-      "La mayoría no publica precios y trabaja a presupuesto. SHIPSAFE es una de las excepciones: desde $90.000 por mes para consultores con hasta 3 empresas-cliente y desde $400.000 por mes para empresas, según cantidad de equipos a controlar y usuarios activos. Como referencia general, el precio se define por esas dos variables más la cantidad de establecimientos.",
+      "Varias opciones trabajan a presupuesto. Entre las que publican precios están Genesis Broker (desde $37.500 por mes por usuario, más impuestos) y SHIPSAFE: desde $90.000 por mes para consultores con hasta 3 empresas-cliente y desde $400.000 por mes para empresas, según cantidad de equipos a controlar y usuarios activos. Como referencia general, el precio se define por esas dos variables más la cantidad de establecimientos.",
   },
   {
     question: "¿Un software reemplaza al técnico de seguridad e higiene?",
@@ -126,8 +126,8 @@ export default function Page() {
               <strong>Genesis Broker</strong>
             </td>
             <td>Argentina</td>
-            <td>Consultores y brokers con muchas empresas-cliente</td>
-            <td>No, a presupuesto</td>
+            <td>Profesionales, consultoras y organizaciones con uno o varios establecimientos</td>
+            <td>Sí, desde $37.500/mes por usuario</td>
           </tr>
           <tr>
             <td>
@@ -178,7 +178,7 @@ export default function Page() {
         la SRT, e incluye el RGRL completo de 161 ítems.
       </p>
       <p>
-        Es de los pocos que publica precios: desde $90.000 por mes la línea para
+        Publica precios: desde $90.000 por mes la línea para
         consultores y desde $400.000 la línea para empresas, según equipos a
         controlar y usuarios activos. Ver{" "}
         <Link href="/precios">precios y planes</Link>.
@@ -248,14 +248,17 @@ export default function Page() {
 
       <h3>6. Genesis Broker</h3>
       <p>
-        Argentino, pensado para gestionar la prevención de riesgos laborales de
-        múltiples empresas, centros de trabajo y trabajadores desde una sola
-        cuenta. Es la lógica del consultor o el broker que administra varias
-        carteras.
+        Argentino, para profesionales independientes, consultoras y
+        organizaciones, tanto con un establecimiento como con varios. Permite
+        gestionar empresas, centros de trabajo y trabajadores desde una sola
+        cuenta, con programa de gestión anual, matriz de riesgos, investigación
+        de accidentes, planes de acción e indicadores.
       </p>
       <p>
-        <strong>A tener en cuenta:</strong> si sos una sola empresa gestionando
-        tu propia operación, el modelo multi-cliente te queda grande.
+        <strong>A tener en cuenta:</strong> publica sus planes y precios en su
+        web. Se cobran por usuario, desde $37.500 por mes más impuestos, y
+        varían según la cantidad de empresas que se gestionan (precios
+        consultados en noviembre de 2026).
       </p>
 
       <h3>7. SGO Suite</h3>
