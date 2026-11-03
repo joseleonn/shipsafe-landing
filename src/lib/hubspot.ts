@@ -16,6 +16,8 @@
  *   ss_gestion_actual       Dropdown  excel / papel / otra_plataforma / nada
  *   ss_calificacion         Dropdown  califica / no_califica
  *   ss_lead_magnet          Texto     slug del recurso descargado
+ *   ss_como_nos_conocio     Dropdown  tiktok / instagram / linkedin / google /
+ *                                     recomendacion / otro
  *   ss_utm_source           Texto
  *   ss_utm_medium           Texto
  *   ss_utm_campaign         Texto
@@ -41,6 +43,8 @@ export interface LeadProperties {
   ss_gestion_actual?: string;
   ss_calificacion?: "califica" | "no_califica";
   ss_lead_magnet?: string;
+  /** Canal que declaró la persona. Valores en src/lib/como-nos-conocio.ts */
+  ss_como_nos_conocio?: string;
   ss_utm_source?: string;
   ss_utm_medium?: string;
   ss_utm_campaign?: string;

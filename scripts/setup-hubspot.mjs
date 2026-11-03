@@ -148,6 +148,13 @@ const fail = (m, d) => console.log(`  ✗ ${m} — ${d}`);
 const opciones = (pares) =>
   pares.map(([value, label], i) => ({ label, value, displayOrder: i, hidden: false }));
 
+// Tienen que coincidir con las opciones de la pregunta "¿Cómo nos conociste?"
+// en Calendly y con src/lib/como-nos-conocio.ts.
+const OPCIONES_CANAL = opciones([
+  ["tiktok", "TikTok"], ["instagram", "Instagram"], ["linkedin", "LinkedIn"],
+  ["google", "Google"], ["recomendacion", "Recomendación de alguien"], ["otro", "Otro"],
+]);
+
 const PROPIEDADES_CONTACTO = [
   {
     name: "ss_cantidad_empleados", label: "Cantidad de empleados",
@@ -194,6 +201,12 @@ const PROPIEDADES_CONTACTO = [
     options: opciones([["califica", "Califica"], ["no_califica", "No califica"]]),
   },
   { name: "ss_lead_magnet", label: "Recurso descargado", type: "string", fieldType: "text" },
+  {
+    name: "ss_como_nos_conocio", label: "Cómo nos conoció",
+    type: "enumeration", fieldType: "select",
+    options: OPCIONES_CANAL,
+    description: "Lo que contestó la persona en Calendly, o lo que se cargó a mano si llegó por un chat. Guarda el primer canal: no se pisa si ya tiene valor.",
+  },
   { name: "ss_utm_source", label: "UTM source", type: "string", fieldType: "text" },
   { name: "ss_utm_medium", label: "UTM medium", type: "string", fieldType: "text" },
   { name: "ss_utm_campaign", label: "UTM campaign", type: "string", fieldType: "text" },
@@ -239,6 +252,12 @@ const PROPIEDADES_NEGOCIO = [
   { name: "ss_utm_campaign", label: "UTM campaign", type: "string", fieldType: "text" },
   { name: "ss_utm_content", label: "UTM content (ángulo del anuncio)", type: "string", fieldType: "text" },
   { name: "ss_lead_magnet", label: "Recurso descargado", type: "string", fieldType: "text" },
+  {
+    name: "ss_como_nos_conocio", label: "Cómo nos conoció",
+    type: "enumeration", fieldType: "select",
+    options: OPCIONES_CANAL,
+    description: "Copia del canal del contacto, para armar informes de negocios por canal.",
+  },
   {
     name: "ss_meta_eventos", label: "Eventos ya enviados a Meta",
     type: "string", fieldType: "text",

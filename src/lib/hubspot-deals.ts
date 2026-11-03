@@ -153,6 +153,7 @@ export interface DatosNegocio {
   utmCampaign?: string;
   utmContent?: string;
   leadMagnet?: string;
+  comoNosConocio?: string;
 }
 
 export interface ResultadoNegocio {
@@ -227,6 +228,7 @@ export async function crearNegocioSiNoExiste(datos: DatosNegocio): Promise<Resul
     if (datos.utmCampaign) properties.ss_utm_campaign = datos.utmCampaign;
     if (datos.utmContent) properties.ss_utm_content = datos.utmContent;
     if (datos.leadMagnet) properties.ss_lead_magnet = datos.leadMagnet;
+    if (datos.comoNosConocio) properties.ss_como_nos_conocio = datos.comoNosConocio;
 
     const res = await request("/crm/v3/objects/deals", {
       method: "POST",

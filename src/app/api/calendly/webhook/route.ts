@@ -31,6 +31,7 @@ import { sendMetaEvent, buildFbc } from "@/lib/meta-capi";
 import { findContactByEmail, upsertContact } from "@/lib/hubspot";
 import { crearNegocioSiNoExiste, type ResultadoNegocio } from "@/lib/hubspot-deals";
 import { enviarPlantilla, formatearFechaAR } from "@/lib/whatsapp";
+import { canalDeCalendly } from "@/lib/como-nos-conocio";
 import { SITE } from "@/lib/constants";
 
 export const runtime = "nodejs";
@@ -151,7 +152,7 @@ export async function POST(request: Request) {
   const tracking = invitee.tracking ?? {};
   const contacto = await findContactByEmail(email, [
     "ss_utm_source", "ss_utm_campaign", "ss_utm_content", "ss_fbclid",
-    "ss_lead_magnet", "firstname", "lastname", "phone", "company",
+    "ss_lead_magnet", "ss_como_nos_conocio", "firstname", "lastname", "phone", "company",
   ]);
   const guardado = contacto.properties ?? {};
 
@@ -159,6 +160,10 @@ export async function POST(request: Request) {
   const utmCampaign = tracking.utm_campaign ?? guardado.ss_utm_campaign ?? undefined;
   const utmContent = tracking.utm_content ?? guardado.ss_utm_content ?? undefined;
   const fbclid = guardado.ss_fbclid ?? undefined;
+
+  // El primer canal manda: si el contacto ya lo tiene cargado, no se pisa.
+  const comoNosConocio =
+    guardado.ss_como_nos_conocio ?? canalDeCalendly(invitee.questions_and_answers);
 
   const [nombre, ...resto] = (invitee.name ?? "").trim().split(" ");
   const firstName = invitee.first_name ?? nombre ?? guardado.firstname ?? undefined;
@@ -180,6 +185,7 @@ export async function POST(request: Request) {
     ss_utm_source: utmSource,
     ss_utm_campaign: utmCampaign,
     ss_utm_content: utmContent,
+    ss_como_nos_conocio: comoNosConocio,
   });
 
   const contactId = contactoActualizado.contactId ?? contacto.contactId;
@@ -214,6 +220,7 @@ export async function POST(request: Request) {
           utmCampaign,
           utmContent,
           leadMagnet: guardado.ss_lead_magnet ?? undefined,
+          comoNosConocio,
         })
       : Promise.resolve<ResultadoNegocio>({ ok: false, error: "sin_contact_id" }),
   ]);
