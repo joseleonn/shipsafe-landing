@@ -113,4 +113,34 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["estandares-minimos-sg-sst-resolucion-0312", "checklist-vehicular-preuso"],
   },
+  "ats-analisis-de-trabajo-seguro-argentina": {
+    pais: "AR",
+    tituloSeo: "ATS en Argentina: qué exige la SRT y plantilla",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["matriz-de-riesgos-iperc-plantilla-excel", "checklist-vehicular-preuso"],
+  },
+  "ats-analisis-de-trabajo-seguro-peru": {
+    pais: "PE",
+    tituloSeo: "ATS en Perú: qué piden el DS 024-2016-EM y el 011-2019-TR",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["matriz-de-riesgos-iperc-plantilla-excel"],
+  },
+  "ats-analisis-de-trabajo-seguro-colombia": {
+    pais: "CO",
+    tituloSeo: "ATS en Colombia: Resolución 4272 de 2021 y plantilla",
+    recursos: ["software-sg-sst", "app-inspecciones-seguridad-qr"],
+    blog: ["estandares-minimos-sg-sst-resolucion-0312", "matriz-de-riesgos-iperc-plantilla-excel"],
+  },
+  "ast-analisis-de-seguridad-en-el-trabajo-mexico": {
+    pais: "MX",
+    tituloSeo: "AST en México: análisis de riesgos (NOM-031-STPS)",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["revision-mensual-extintores-nom-002-stps", "nom-035-stps-2018-que-pide-segun-trabajadores"],
+  },
+  "ast-analisis-seguro-de-trabajo-chile": {
+    pais: "CL",
+    tituloSeo: "AST en Chile: análisis seguro de trabajo y DS 44",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["matriz-de-riesgos-iperc-plantilla-excel"],
+  },
 };
