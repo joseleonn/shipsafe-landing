@@ -13,15 +13,36 @@
  * Un artículo que no está acá funciona igual, con su título completo y sin
  * relacionados.
  */
-/** País al que apunta el artículo. "LATAM" = sirve para cualquiera. */
-export type PaisBlog = "AR" | "MX" | "CO" | "LATAM";
-
-export const NOMBRE_PAIS: Record<PaisBlog, string> = {
+/** Países de Latinoamérica para el filtro de /blog (código ISO, como lo manda Vercel). */
+export const PAISES = {
   AR: "Argentina",
-  MX: "México",
+  BO: "Bolivia",
+  CL: "Chile",
   CO: "Colombia",
-  LATAM: "Latinoamérica",
-};
+  CR: "Costa Rica",
+  EC: "Ecuador",
+  SV: "El Salvador",
+  GT: "Guatemala",
+  HN: "Honduras",
+  MX: "México",
+  NI: "Nicaragua",
+  PA: "Panamá",
+  PY: "Paraguay",
+  PE: "Perú",
+  DO: "República Dominicana",
+  UY: "Uruguay",
+  VE: "Venezuela",
+} as const;
+
+export type CodigoPais = keyof typeof PAISES;
+
+/** País al que apunta el artículo. "LATAM" = sirve para cualquiera. */
+export type PaisBlog = CodigoPais | "LATAM";
+
+export const NOMBRE_PAIS: Record<PaisBlog, string> = { ...PAISES, LATAM: "Latinoamérica" };
+
+export const esCodigoPais = (v: string | null | undefined): v is CodigoPais =>
+  typeof v === "string" && Object.prototype.hasOwnProperty.call(PAISES, v);
 
 export interface AjusteSeo {
   pais?: PaisBlog;

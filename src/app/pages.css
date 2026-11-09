@@ -96,9 +96,10 @@
 /* ---------- relacionados / listas de tarjetas ---------- */
 .ss-site .related{margin-top:64px}
 .ss-site .related h2{font-size:24px;margin-bottom:20px;max-width:none}
-.ss-site .blog-filtro{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 18px}
-.ss-site .blog-filtro button{min-height:40px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--text-2);background:#fff;border:1px solid var(--line);cursor:pointer;transition:background-color var(--fast),color var(--fast),border-color var(--fast)}
-.ss-site .blog-filtro button[aria-pressed="true"]{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.ss-site .blog-filtro{display:flex;align-items:center;gap:10px;margin:-6px 0 18px}
+.ss-site .blog-filtro label{font-size:14px;font-weight:600;color:var(--text-2)}
+.ss-site .blog-filtro select{min-height:44px;padding:8px 36px 8px 14px;border-radius:12px;font:inherit;font-size:15px;color:var(--text);background:#fff;border:1px solid var(--line);cursor:pointer}
+.ss-site .blog-pronto{margin:0 0 18px;font-size:15px;color:var(--text-2)}
 .ss-site .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .ss-site .card{display:block;padding:20px 22px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow-card);transition:border-color var(--fast),transform var(--fast),box-shadow var(--fast)}
 .ss-site a.card:hover{border-color:var(--line-3);transform:translateY(-2px);box-shadow:0 14px 34px -22px rgba(11,31,59,.28)}
