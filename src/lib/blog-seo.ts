@@ -72,7 +72,7 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   },
   "checklist-control-extintores": {
     pais: "AR",
-    tituloSeo: "Checklist de control de extintores (IRAM 3517-2)",
+    tituloSeo: "Checklist de control de extintores: qué revisar y normativa",
     recursos: ["app-inspecciones-seguridad-qr", "como-digitalizar-inspecciones-planta"],
     blog: ["revision-mensual-extintores-nom-002-stps", "checklist-vehicular-preuso"],
   },
