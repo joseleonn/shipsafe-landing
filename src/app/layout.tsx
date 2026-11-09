@@ -109,6 +109,9 @@ export const metadata: Metadata = {
   // facebook-domain-verification=<el mismo código>, que cubre también los
   // subdominios y no depende de que esta página se renderice.
   verification: {
+    // Google Search Console. El código se carga como variable de entorno en
+    // Vercel (GOOGLE_SITE_VERIFICATION) para no tener que tocar el código.
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
     other: {
       "facebook-domain-verification": "m68q3sdlfaq6eejsup5pfltqr4jpmv",
     },

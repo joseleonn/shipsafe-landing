@@ -40,6 +40,8 @@ interface ArticleLayoutProps {
    * visible en la página.
    */
   faqs?: { question: string; answer: string }[];
+  /** Otros artículos del blog a enlazar al final, además de los recursos fijos. */
+  relatedBlog?: { slug: string; title: string; description: string }[];
 }
 
 /**
@@ -56,10 +58,19 @@ export default function ArticleLayout({
   eyebrow = "Recurso",
   children,
   faqs,
+  relatedBlog = [],
 }: ArticleLayoutProps) {
   const article: ArticleMeta = meta ?? ARTICLES.find((a) => a.slug === slug)!;
   const url = `${SITE.url}${path ?? `/${article.slug}`}`;
-  const related = ARTICLES.filter((a) => (article.relatedSlugs ?? []).includes(a.slug));
+  const related = [
+    ...ARTICLES.filter((a) => (article.relatedSlugs ?? []).includes(a.slug)).map((a) => ({
+      href: `/${a.slug}`,
+      k: "Recurso",
+      title: a.title,
+      description: a.description,
+    })),
+    ...relatedBlog.map((a) => ({ href: `/blog/${a.slug}`, k: "Blog", title: a.title, description: a.description })),
+  ];
 
   const faqSchema = faqs?.length
     ? {
@@ -163,8 +174,8 @@ export default function ArticleLayout({
               <h2 id="related-h">Artículos relacionados</h2>
               <div className="cards">
                 {related.map((r) => (
-                  <Link key={r.slug} href={`/${r.slug}`} className="card">
-                    <div className="k">Recurso</div>
+                  <Link key={r.href} href={r.href} className="card">
+                    <div className="k">{r.k}</div>
                     <h3>{r.title}</h3>
                     <p>{r.description}</p>
                   </Link>
