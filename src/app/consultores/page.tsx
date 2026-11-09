@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE, CONSULTORES } from "@/lib/constants";
+import { SITE, CONSULTORES, OG_IMAGE } from "@/lib/constants";
 import SiteShell from "@/components/site/SiteShell";
 import Icon from "@/components/site/Icon";
 import Reveal from "@/components/site/Reveal";
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: SITE.name,
+    images: [OG_IMAGE],
   },
 };
 

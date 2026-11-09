@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE, ARTICLES } from "@/lib/constants";
+import { SITE, ARTICLES, OG_IMAGE } from "@/lib/constants";
 import ArticleLayout from "@/components/ArticleLayout";
 
 const article = ARTICLES.find((a) => a.slug === "software-sg-sst")!;
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     type: "article",
     locale: "es_AR",
     siteName: SITE.name,
+    images: [OG_IMAGE],
   },
 };
 

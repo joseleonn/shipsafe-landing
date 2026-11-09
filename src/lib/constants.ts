@@ -519,6 +519,18 @@ export const FAQS = [
   },
 ];
 
+/**
+ * Imagen para compartir por defecto. Va en el openGraph de cada página: el
+ * openGraph de una página reemplaza entero al del layout, así que si no se
+ * repite acá, LinkedIn y WhatsApp muestran el link sin foto.
+ */
+export const OG_IMAGE = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: "SHIPSAFE, software de gestión SST (seguridad e higiene laboral)",
+};
+
 export const ARTICLES = [
   {
     slug: "software-seguridad-higiene-vs-excel",
@@ -572,7 +584,7 @@ export const ARTICLES = [
     slug: "mejores-software-seguridad-higiene-argentina",
     title: "Mejores Software de Seguridad e Higiene en Argentina (2026)",
     description:
-      "Comparativa de 10 software de seguridad e higiene laboral en Argentina: SHIPSAFE, Previnnova, GuardianSST, Persat, ZYGHT y más. Precios, para quién sirve cada uno y qué mirar antes de elegir.",
+      "Comparativa de 10 software de seguridad e higiene en Argentina: para quién sirve cada uno, precios y qué mirar antes de elegir.",
     datePublished: "2026-06-10",
     dateModified: "2026-08-06",
     relatedSlugs: ["software-seguridad-higiene-vs-excel", "software-sg-sst"],

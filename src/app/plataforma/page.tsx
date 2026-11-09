@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "@/lib/constants";
+import { SITE, OG_IMAGE } from "@/lib/constants";
 import { HOME_FAQS } from "@/lib/home-content";
 import PlataformaV5 from "@/components/plataforma-v5/PlataformaV5";
 
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: SITE.name,
+    images: [OG_IMAGE],
   },
 };
 

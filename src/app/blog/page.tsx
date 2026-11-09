@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE, ARTICLES } from "@/lib/constants";
+import { SITE, ARTICLES, OG_IMAGE } from "@/lib/constants";
 import { listarPublicados } from "@/lib/blog";
 import SiteShell from "@/components/site/SiteShell";
 import Icon from "@/components/site/Icon";
@@ -11,7 +11,7 @@ export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDA
 
 const TITULO = "Blog de seguridad y salud en el trabajo";
 const DESCRIPCION =
-  "Normativa de seguridad y salud en el trabajo de Argentina, México, Colombia y el resto de Latinoamérica, explicada para quien la aplica en la operación: EPP, extintores, inspecciones, permisos de trabajo y SG-SST.";
+  "Normativa de seguridad y salud en el trabajo de Argentina, México, Colombia y Latinoamérica, explicada para quien la aplica: EPP, extintores, inspecciones y SG-SST.";
 
 export const metadata: Metadata = {
   title: `${TITULO} | ${SITE.name}`,
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: SITE.name,
+    images: [OG_IMAGE],
   },
   twitter: { card: "summary_large_image", title: TITULO, description: DESCRIPCION },
 };
