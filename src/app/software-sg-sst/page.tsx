@@ -6,7 +6,7 @@ import ArticleLayout from "@/components/ArticleLayout";
 const article = ARTICLES.find((a) => a.slug === "software-sg-sst")!;
 
 export const metadata: Metadata = {
-  title: `${article.title} | ${SITE.name}`,
+  title: `${article.seoTitle ?? article.title} | ${SITE.name}`,
   description: article.description,
   alternates: { canonical: `/${article.slug}` },
   openGraph: {

@@ -8,7 +8,7 @@ const article = ARTICLES.find(
 )!;
 
 export const metadata: Metadata = {
-  title: `${article.title} | ${SITE.name}`,
+  title: `${article.seoTitle ?? article.title} | ${SITE.name}`,
   description: article.description,
   alternates: { canonical: `/${article.slug}` },
   openGraph: {

@@ -550,8 +550,11 @@ export const ARTICLES = [
   {
     slug: "que-es-srt-argentina",
     title: "¿Qué es la SRT? Guía de Cumplimiento para Empresas en Argentina",
+    // Búsquedas reales (Search Console, ago-nov 2026): "que es srt", "srt argentina",
+    // "superintendencia de riesgos del trabajo", "que significa srt".
+    seoTitle: "Qué es la SRT (Superintendencia de Riesgos del Trabajo)",
     description:
-      "Qué es la Superintendencia de Riesgos del Trabajo, qué exige a las empresas argentinas y cómo cumplir con sus resoluciones sin complicaciones.",
+      "Qué es la Superintendencia de Riesgos del Trabajo (SRT), qué controla, qué les exige a las empresas en Argentina y cómo cumplir con sus resoluciones.",
     datePublished: "2026-04-13",
     dateModified: "2026-04-13",
     relatedSlugs: ["ley-19587-guia-completa", "software-seguridad-higiene-vs-excel"],
@@ -586,8 +589,10 @@ export const ARTICLES = [
   {
     slug: "app-inspecciones-seguridad-qr",
     title: "App de Inspecciones de Seguridad con QR para Planta Industrial",
+    // Búsquedas reales: "app inspectores seguridad e higiene", "software inspectores seguridad e higiene".
+    seoTitle: "App de inspecciones de seguridad e higiene con QR",
     description:
-      "Cómo funciona una app de inspecciones de seguridad con códigos QR en planta: registro desde el celular, sin instalación, con trazabilidad y reportes automáticos.",
+      "Cómo se inspeccionan equipos, vehículos y sectores con QR desde el celular: se escanea, se completa el checklist y lo que está mal queda como desvío con responsable.",
     datePublished: "2026-06-10",
     dateModified: "2026-06-10",
     relatedSlugs: ["como-digitalizar-inspecciones-planta", "gestion-desvios-seguridad-industrial"],

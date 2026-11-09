@@ -49,6 +49,8 @@ export interface AjusteSeo {
   /** Imagen para compartir (og:image), ruta dentro de /public. Sin esto se usa /og-image.png. */
   imagen?: { url: string; width: number; height: number };
   tituloSeo?: string;
+  /** meta description para Google, si conviene distinta de la bajada del artículo. */
+  descripcionSeo?: string;
   recursos?: string[];
   blog?: string[];
 }
@@ -56,7 +58,9 @@ export interface AjusteSeo {
 export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "constancia-entrega-epp-res-srt-299-11": {
     pais: "AR",
-    tituloSeo: "Constancia de entrega de EPP (Res. SRT 299/11) en digital",
+    tituloSeo: "Constancia de entrega de EPP: formulario Res. SRT 299/11",
+    descripcionSeo:
+      "Qué datos lleva la constancia de entrega de ropa de trabajo y EPP de la Res. SRT 299/11, cómo registrar cada entrega y qué pide la SRT para llevarla en digital.",
     recursos: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
     blog: ["checklist-control-extintores"],
   },

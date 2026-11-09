@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!a) return { title: `No encontrado | ${SITE.name}`, robots: { index: false } };
   return {
     title: `${AJUSTES_SEO[a.slug]?.tituloSeo ?? a.titulo} | ${SITE.name}`,
-    description: a.descripcion,
+    description: AJUSTES_SEO[a.slug]?.descripcionSeo ?? a.descripcion,
     keywords: a.palabra_clave ? [a.palabra_clave] : undefined,
     alternates: { canonical: `/blog/${a.slug}` },
     openGraph: {
