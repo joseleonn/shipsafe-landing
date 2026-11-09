@@ -72,6 +72,7 @@
 .ss-site .prose tr:last-child td{border-bottom:0}
 .ss-site .prose td strong{white-space:nowrap}
 .ss-site .prose figure{margin-top:1.6em}
+.ss-site .prose img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
 .ss-site .prose figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
 .ss-site .prose .note{margin-top:1.4em;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;background:var(--bg-2);font-size:15.5px}
 

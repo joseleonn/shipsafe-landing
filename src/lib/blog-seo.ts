@@ -46,6 +46,8 @@ export const esCodigoPais = (v: string | null | undefined): v is CodigoPais =>
 
 export interface AjusteSeo {
   pais?: PaisBlog;
+  /** Imagen para compartir (og:image), ruta dentro de /public. Sin esto se usa /og-image.png. */
+  imagen?: { url: string; width: number; height: number };
   tituloSeo?: string;
   recursos?: string[];
   blog?: string[];
@@ -99,5 +101,12 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     tituloSeo: "NOM-035-STPS-2018: qué pide según el número de trabajadores",
     recursos: ["gestion-desvios-seguridad-industrial"],
     blog: ["revision-mensual-extintores-nom-002-stps"],
+  },
+  "matriz-de-riesgos-iperc-plantilla-excel": {
+    pais: "LATAM",
+    tituloSeo: "Matriz de riesgos (IPERC): guía y plantilla en Excel",
+    imagen: { url: "/blog/matriz-de-riesgos/mapa.webp", width: 1200, height: 731 },
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["estandares-minimos-sg-sst-resolucion-0312", "checklist-vehicular-preuso"],
   },
 };

@@ -37,9 +37,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: a.actualizado,
       // El openGraph de la página reemplaza al del layout entero, así que la
       // imagen se repite acá; sin esto LinkedIn y WhatsApp lo muestran sin foto.
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: a.titulo }],
+      images: [{ ...(AJUSTES_SEO[a.slug]?.imagen ?? { url: "/og-image.png", width: 1200, height: 630 }), alt: a.titulo }],
     },
-    twitter: { card: "summary_large_image", title: a.titulo, description: a.descripcion, images: ["/og-image.png"] },
+    twitter: {
+      card: "summary_large_image",
+      title: a.titulo,
+      description: a.descripcion,
+      images: [AJUSTES_SEO[a.slug]?.imagen?.url ?? "/og-image.png"],
+    },
   };
 }
 
