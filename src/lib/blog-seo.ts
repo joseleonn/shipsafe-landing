@@ -48,4 +48,14 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     recursos: ["mejores-software-seguridad-higiene-argentina", "software-sg-sst"],
     blog: ["como-justificar-compra-software-seguridad-higiene"],
   },
+  "estandares-minimos-sg-sst-resolucion-0312": {
+    tituloSeo: "Estándares mínimos del SG-SST (Resolución 0312 de 2019)",
+    recursos: ["software-sg-sst", "app-inspecciones-seguridad-qr"],
+    blog: ["checklist-vehicular-preuso"],
+  },
+  "nom-035-stps-2018-que-pide-segun-trabajadores": {
+    tituloSeo: "NOM-035-STPS-2018: qué pide según el número de trabajadores",
+    recursos: ["gestion-desvios-seguridad-industrial"],
+    blog: ["revision-mensual-extintores-nom-002-stps"],
+  },
 };
