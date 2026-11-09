@@ -143,4 +143,10 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["matriz-de-riesgos-iperc-plantilla-excel"],
   },
+  "permiso-de-trabajo-formato-tipos-y-normativa": {
+    pais: "LATAM",
+    tituloSeo: "Permiso de trabajo: formato, tipos y normativa por país",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["ats-analisis-de-trabajo-seguro-argentina", "ats-analisis-de-trabajo-seguro-colombia"],
+  },
 };
