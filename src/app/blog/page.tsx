@@ -4,6 +4,8 @@ import { SITE, ARTICLES } from "@/lib/constants";
 import { listarPublicados } from "@/lib/blog";
 import SiteShell from "@/components/site/SiteShell";
 import Icon from "@/components/site/Icon";
+import BlogLista from "@/components/site/BlogLista";
+import { AJUSTES_SEO } from "@/lib/blog-seo";
 
 export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDAR_BLOG de lib/blog
 
@@ -56,15 +58,15 @@ export default async function BlogPage() {
           {articulos.length > 0 && (
             <section className="related" aria-labelledby="ultimos-h">
               <h2 id="ultimos-h">Últimos artículos</h2>
-              <div className="cards">
-                {articulos.map((a) => (
-                  <Link key={a.slug} href={`/blog/${a.slug}`} className="card">
-                    <div className="k">{fecha(a.fecha_publicacion)}</div>
-                    <h3>{a.titulo}</h3>
-                    <p>{a.descripcion}</p>
-                  </Link>
-                ))}
-              </div>
+              <BlogLista
+                items={articulos.map((a) => ({
+                  slug: a.slug,
+                  titulo: a.titulo,
+                  descripcion: a.descripcion,
+                  fecha: fecha(a.fecha_publicacion),
+                  pais: AJUSTES_SEO[a.slug]?.pais ?? "LATAM",
+                }))}
+              />
             </section>
           )}
 
