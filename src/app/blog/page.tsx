@@ -7,9 +7,9 @@ import Icon from "@/components/site/Icon";
 
 export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDAR_BLOG de lib/blog
 
-const TITULO = "Blog de seguridad e higiene";
+const TITULO = "Blog de seguridad y salud en el trabajo";
 const DESCRIPCION =
-  "Normativa argentina de seguridad e higiene explicada para quien la aplica en la operación: EPP, RGRL, permisos de trabajo, inspecciones y SRT.";
+  "Normativa de seguridad y salud en el trabajo de Argentina, México, Colombia y el resto de Latinoamérica, explicada para quien la aplica en la operación: EPP, extintores, inspecciones, permisos de trabajo y SG-SST.";
 
 export const metadata: Metadata = {
   title: `${TITULO} | ${SITE.name}`,
