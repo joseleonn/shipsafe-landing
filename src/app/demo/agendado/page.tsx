@@ -5,7 +5,8 @@ import Wordmark from "@/components/site/Wordmark";
 import Icon from "@/components/site/Icon";
 import AgendadoClient from "./AgendadoClient";
 import { NURTURING } from "./_data";
-import { whatsappUrl } from "@/lib/home-content";
+import { whatsappUrl, CASE } from "@/lib/home-content";
+import { MEDIA } from "@/lib/home-v5";
 
 export const metadata: Metadata = {
   title: "Reunión confirmada | SHIPSAFE",
@@ -24,9 +25,16 @@ export const metadata: Metadata = {
  * concreto, que conviene que esté quien decide) acá no se vuelve a desarrollar.
  * La página confirma, presenta el video y resume las dos cosas que hacen falta.
  *
- * Lo que NO va acá, a propósito: funcionalidades, beneficios, testimonios,
- * precios ni otro CTA de demo. La persona ya convirtió. Ahora se prepara la
- * reunión. Por eso la barra de arriba trae solo el logo, sin menú ni botones.
+ * Lo que NO va acá, a propósito: funcionalidades, beneficios, precios ni otro
+ * CTA de demo. La persona ya convirtió. Ahora se prepara la reunión. Por eso
+ * la barra de arriba trae solo el logo, sin menú ni botones.
+ *
+ * Testimonios (10/11/2026): José decidió sumar prueba de clientes reales,
+ * siguiendo la idea de que esta página tiene que dar razones para presentarse.
+ * Va después de los requisitos, para no competir con el video. Solo clientes
+ * con autorización escrita y frase aprobada por ellos (hoy, Ramiro de SW
+ * Petrol). Las frases de otros clientes se suman en TESTIMONIOS cuando las
+ * autoricen.
  *
  * Usa el sistema visual del sitio (site.css / pages.css, bajo .ss-site). Vive
  * bajo el layout de /demo, que pinta un fondo oscuro fijo detrás: el
@@ -36,11 +44,11 @@ export const metadata: Metadata = {
 const REQUISITOS = [
   {
     titulo: "Un problema real",
-    texto: "Traé el problema que hoy más te cuesta resolver en la gestión SST. Queremos trabajar sobre algo concreto de tu operación.",
+    texto: "Trae el problema que hoy más te cuesta resolver en la gestión SST. Queremos trabajar sobre algo concreto de tu operación.",
   },
   {
     titulo: "La persona que toma la decisión",
-    texto: "Si es posible, sumá a quien también participa de la decisión. Así podemos tener la conversación completa desde el principio.",
+    texto: "Si es posible, suma a quien también participa de la decisión. Así podemos tener la conversación completa desde el principio.",
   },
 ];
 
@@ -69,7 +77,7 @@ export default function AgendadoPage() {
             <h1>
               Gracias por agendar. <em>Nos vemos en la reunión.</em>
             </h1>
-            <p className="lede">Te llega la invitación por mail. Antes de la reunión, mirá este video de {NURTURING.duracion}: cómo vamos a trabajar y qué necesitamos de tu lado para aprovechar esos 30 minutos.</p>
+            <p className="lede">Te llega la invitación por mail. Antes de la reunión, mira este video de {NURTURING.duracion}: cómo vamos a trabajar y qué necesitamos de tu lado para aprovechar esos 30 minutos.</p>
           </div>
         </section>
 
@@ -105,11 +113,38 @@ export default function AgendadoPage() {
               ))}
             </ol>
             <blockquote className="ag-quote">No es una demo genérica. La idea es que esos 30 minutos sean sobre tu operación: entender un problema concreto y mostrarte cómo podríamos resolverlo.</blockquote>
+          </div>
+        </section>
+
+        {MEDIA.testimonialVideo && (
+          <section className="ag-proof">
+            <div className="narrow">
+              <h2>
+                Lo que cuenta <em>un cliente.</em>
+              </h2>
+              <p className="ag-proof-lede">
+                {CASE.name} hace servicios para la industria petrolera en {CASE.where}. Su responsable de seguridad e higiene cuenta cómo registraban antes y qué usan hoy.
+              </p>
+              <div className="ag-frame">
+                <video poster={MEDIA.testimonialVideo.poster} controls playsInline preload="none" aria-label={`Testimonio de ${CASE.voz.name}, ${CASE.voz.role} de ${CASE.name}`}>
+                  {MEDIA.testimonialVideo.webm && <source src={MEDIA.testimonialVideo.webm} type="video/webm" />}
+                  <source src={MEDIA.testimonialVideo.src} type="video/mp4" />
+                </video>
+              </div>
+              <p className="ag-proof-voz">
+                <b>{CASE.voz.name}</b> · {CASE.voz.role} de {CASE.name}
+              </p>
+            </div>
+          </section>
+        )}
+
+        <section className="ag-end">
+          <div className="narrow">
             <p className="ag-help">
               ¿Te quedó alguna pregunta antes de la reunión?{" "}
-              <a href={whatsappUrl("Hola, agendé una demo de SHIPSAFE y quería consultar algo")} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappUrl("Hola, agendé una reunión con SHIPSAFE y quería consultar algo")} target="_blank" rel="noopener noreferrer">
                 <Icon name="msg" />
-                Escribinos por WhatsApp
+                Escríbenos por WhatsApp
               </a>
             </p>
           </div>
@@ -118,7 +153,7 @@ export default function AgendadoPage() {
 
       <footer className="ag-foot">
         <div className="wrap">
-          <span>SHIPSAFE · Un producto de Ship Software Team, Rosario</span>
+          <span>SHIPSAFE · Un producto de Ship Software Team, Argentina</span>
           <a href="mailto:hello@shipsafe.lat">hello@shipsafe.lat</a>
         </div>
       </footer>

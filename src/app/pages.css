@@ -238,6 +238,13 @@
 .ss-site .ag-help{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--text-2)}
 .ss-site .ag-help a{display:inline-flex;align-items:center;gap:6px;color:var(--accent-ink);font-weight:600}
 .ss-site .ag-help a .ico{width:16px;height:16px}
+.ss-site .page .ag-proof{padding-top:56px;padding-bottom:8px}
+.ss-site .ag-proof h2{font-size:clamp(26px,3.2vw,36px);max-width:20ch}
+.ss-site .ag-proof-lede{margin-top:14px;margin-bottom:22px;font-size:16.5px;line-height:1.55;color:var(--text-2);max-width:58ch}
+.ss-site .ag-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0B1F3B}
+.ss-site .ag-proof-voz{margin-top:12px;font-size:14.5px;color:var(--text-2)}
+.ss-site .ag-proof-voz b{color:var(--text);font-weight:600}
+.ss-site .page .ag-end{padding-top:8px;padding-bottom:56px}
 .ss-site .ag-foot{border-top:1px solid var(--line);padding:22px 0;font-size:13.5px;color:var(--muted)}
 .ss-site .ag-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
 .ss-site .ag-foot a{color:var(--text-2)}
