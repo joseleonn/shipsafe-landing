@@ -8,7 +8,18 @@
  * Un valor que no está en las opciones de HubSpot hace fallar toda la escritura
  * del contacto, así que lo que no se reconoce cae siempre en "otro".
  */
-export type Canal = "tiktok" | "instagram" | "linkedin" | "google" | "recomendacion" | "otro";
+export type Canal =
+  | "tiktok"
+  | "instagram"
+  | "linkedin"
+  | "google"
+  | "recomendacion"
+  | "whatsapp"
+  | "youtube"
+  | "ia"
+  | "mail"
+  | "partner"
+  | "otro";
 
 interface Respuesta {
   question: string;
@@ -29,5 +40,10 @@ export function canalDeCalendly(respuestas?: Respuesta[]): Canal | undefined {
   if (texto.includes("linkedin")) return "linkedin";
   if (texto.includes("google")) return "google";
   if (texto.includes("recomend")) return "recomendacion";
+  if (texto.includes("whatsapp")) return "whatsapp";
+  if (texto.includes("youtube")) return "youtube";
+  if (/chatgpt|gemini|claude|perplexity|copilot|\bia\b|inteligencia artificial/.test(texto)) return "ia";
+  if (/\bmail\b|correo|email/.test(texto)) return "mail";
+  if (texto.includes("partner") || texto.includes("consultor")) return "partner";
   return "otro";
 }
