@@ -539,7 +539,7 @@ export const ARTICLES = [
       "Descubrí por qué las plantas industriales en Argentina están dejando Excel para gestionar seguridad e higiene. Comparativa real de funcionalidades, riesgos y costos.",
     datePublished: "2026-04-13",
     dateModified: "2026-04-13",
-    relatedSlugs: ["como-digitalizar-inspecciones-planta", "gestion-desvios-seguridad-industrial"],
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
   },
   {
     slug: "ley-19587-guia-completa",
@@ -549,15 +549,6 @@ export const ARTICLES = [
     datePublished: "2026-04-13",
     dateModified: "2026-04-13",
     relatedSlugs: ["que-es-srt-argentina", "software-seguridad-higiene-vs-excel"],
-  },
-  {
-    slug: "como-digitalizar-inspecciones-planta",
-    title: "Cómo Digitalizar Inspecciones de Seguridad en Planta Industrial",
-    description:
-      "Guía paso a paso para pasar de inspecciones en papel o Excel a un sistema digital. Beneficios, proceso de implementación y resultados reales.",
-    datePublished: "2026-04-13",
-    dateModified: "2026-04-13",
-    relatedSlugs: ["software-seguridad-higiene-vs-excel", "gestion-desvios-seguridad-industrial"],
   },
   {
     slug: "que-es-srt-argentina",
@@ -578,7 +569,7 @@ export const ARTICLES = [
       "Cómo implementar un sistema efectivo de reporte y gestión de desvíos de seguridad en plantas industriales. Del reporte al cierre.",
     datePublished: "2026-04-13",
     dateModified: "2026-04-13",
-    relatedSlugs: ["como-digitalizar-inspecciones-planta", "que-es-srt-argentina"],
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "que-es-srt-argentina"],
   },
   {
     slug: "mejores-software-seguridad-higiene-argentina",
@@ -591,12 +582,14 @@ export const ARTICLES = [
   },
   {
     slug: "software-sg-sst",
-    title: "Software SG-SST: Qué es y Cómo Elegirlo en Argentina",
+    // 13/11/2026: pasó a ser la página de Colombia (antes hablaba de Argentina con un término colombiano).
+    title: "Software SG-SST para empresas en Colombia",
+    seoTitle: "Software SG-SST en Colombia: Decreto 1072 y Resolución 0312",
     description:
-      "Qué es un software SG-SST (Sistema de Gestión de Seguridad y Salud en el Trabajo), cómo se relaciona con la normativa argentina e ISO 45001, y qué funciones necesita.",
+      "Qué tiene que resolver un software SG-SST según el Decreto 1072 de 2015 y la Resolución 0312 de 2019, y cómo se lleva la gestión desde el celular en operaciones con varias sedes.",
     datePublished: "2026-06-10",
-    dateModified: "2026-06-10",
-    relatedSlugs: ["mejores-software-seguridad-higiene-argentina", "ley-19587-guia-completa"],
+    dateModified: "2026-11-13",
+    relatedSlugs: ["software-seguridad-industrial-mexico", "app-inspecciones-seguridad-qr"],
   },
   {
     slug: "app-inspecciones-seguridad-qr",
@@ -606,8 +599,8 @@ export const ARTICLES = [
     description:
       "Cómo se inspeccionan equipos, vehículos y sectores con QR desde el celular: se escanea, se completa el checklist y lo que está mal queda como desvío con responsable.",
     datePublished: "2026-06-10",
-    dateModified: "2026-06-10",
-    relatedSlugs: ["como-digitalizar-inspecciones-planta", "gestion-desvios-seguridad-industrial"],
+    dateModified: "2026-11-13",
+    relatedSlugs: ["gestion-desvios-seguridad-industrial", "software-seguridad-higiene-paraguay"],
   },
   {
     slug: "software-seguridad-higiene-industria-alimenticia",
@@ -636,6 +629,36 @@ export const ARTICLES = [
     dateModified: "2026-06-10",
     relatedSlugs: ["app-inspecciones-seguridad-qr", "que-es-srt-argentina"],
   },
+  {
+    slug: "software-seguridad-industrial-mexico",
+    title: "Software de seguridad industrial para empresas en México",
+    seoTitle: "Software de seguridad industrial en México (NOM-030 y NOM-019)",
+    description:
+      "Qué piden la NOM-030-STPS-2009 y la NOM-019-STPS-2011, qué registros tiene que sostener un software de seguridad industrial y cómo se resuelve en operaciones con varios centros de trabajo.",
+    datePublished: "2026-11-13",
+    dateModified: "2026-11-13",
+    relatedSlugs: ["software-sg-sst", "app-inspecciones-seguridad-qr"],
+  },
+  {
+    slug: "software-seguridad-ocupacional-guatemala",
+    title: "Software de salud y seguridad ocupacional para empresas en Guatemala",
+    seoTitle: "Software de seguridad ocupacional en Guatemala (Acuerdo 229-2014)",
+    description:
+      "Qué pide el Reglamento de Salud y Seguridad Ocupacional (Acuerdo Gubernativo 229-2014) en registros, revisiones y equipo de protección, y cómo se lleva desde el celular.",
+    datePublished: "2026-11-13",
+    dateModified: "2026-11-13",
+    relatedSlugs: ["software-seguridad-higiene-paraguay", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "software-seguridad-higiene-paraguay",
+    title: "Software de seguridad e higiene para empresas en Paraguay",
+    seoTitle: "Software de seguridad e higiene en Paraguay, en español",
+    description:
+      "Para empresas paraguayas con sucursales, flota o acopios: cómo se ordenan las inspecciones, las entregas de EPP y los desvíos en un solo sistema, con un proveedor de la región.",
+    datePublished: "2026-11-13",
+    dateModified: "2026-11-13",
+    relatedSlugs: ["software-seguridad-ocupacional-guatemala", "app-inspecciones-seguridad-qr"],
+  },
 ];
 
 export const FOOTER_LINKS = {
@@ -648,11 +671,10 @@ export const FOOTER_LINKS = {
   ],
   recursos: [
     { label: "Mejores software de seguridad e higiene", href: "/mejores-software-seguridad-higiene-argentina" },
-    { label: "Qué es un software SG-SST", href: "/software-sg-sst" },
+    { label: "Software SG-SST (Colombia)", href: "/software-sg-sst" },
     { label: "App de inspecciones con QR", href: "/app-inspecciones-seguridad-qr" },
     { label: "Software vs Excel", href: "/software-seguridad-higiene-vs-excel" },
     { label: "Guía Ley 19.587", href: "/ley-19587-guia-completa" },
-    { label: "Digitalizar inspecciones", href: "/como-digitalizar-inspecciones-planta" },
     { label: "¿Qué es la SRT?", href: "/que-es-srt-argentina" },
     { label: "Gestión de desvíos", href: "/gestion-desvios-seguridad-industrial" },
   ],

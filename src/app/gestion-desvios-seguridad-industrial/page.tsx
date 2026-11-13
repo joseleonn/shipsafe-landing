@@ -153,7 +153,7 @@ export default function Page() {
           comparativa entre software y Excel
         </Link>{" "}
         para entender qué cambia al{" "}
-        <Link href="/como-digitalizar-inspecciones-planta">
+        <Link href="/app-inspecciones-seguridad-qr">
           digitalizar la operación
         </Link>.
       </p>

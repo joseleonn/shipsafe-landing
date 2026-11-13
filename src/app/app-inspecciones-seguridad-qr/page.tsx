@@ -80,15 +80,32 @@ export default function Page() {
         </Link>{" "}
         integrada con las inspecciones.
       </p>
+      <h2>Cómo se pasa del papel al QR, paso a paso</h2>
+      <h3>1. Relevar los formularios actuales</h3>
       <p>
-        Si querés ver el proceso completo de pasar del papel a un sistema digital,
-        leé{" "}
-        <Link href="/como-digitalizar-inspecciones-planta">
-          cómo digitalizar las inspecciones de tu planta
-        </Link>
-        . SHIPSAFE incluye inspecciones con QR de fábrica, accesibles desde
-        cualquier celular sin instalación. <Link href="/#contacto">Agendá una demo</Link>{" "}
-        y lo probás con tus propios equipos.
+        Antes de cambiar nada, revisá qué formularios se usan hoy: checklists de
+        equipos, recorridas generales, entregas de EPP, mediciones. Cada uno pasa a
+        una lista digital equivalente.
+      </p>
+      <h3>2. Cargar la estructura de la empresa</h3>
+      <p>
+        Plantas o sucursales, sectores, puestos y equipos. Si ya están en Excel, se
+        importan.
+      </p>
+      <h3>3. Pegar los QR</h3>
+      <p>
+        Cada equipo o sector recibe su código, que se imprime y se pega en el lugar.
+        Al escanearlo se abre la inspección que le corresponde, sin instalar nada.
+      </p>
+      <h3>4. Empezar por una inspección</h3>
+      <p>
+        No hace falta migrar todo de golpe. Se puede arrancar por extintores o por
+        los equipos críticos y sumar el resto después.
+      </p>
+      <p>
+        SHIPSAFE incluye inspecciones con QR, accesibles desde cualquier celular sin
+        instalación. <Link href="/#contacto">Agendá una demo</Link> y lo probás con
+        tus propios equipos.
       </p>
     </ArticleLayout>
   );

@@ -144,7 +144,7 @@ export default function ArticleLayout({
                 Publicado el <b><time dateTime={article.datePublished}>{published}</time></b>
               </span>
               <span>
-                Por <b>Ship Software Team</b>
+                Por <b><Link href="/equipo">Ship Software Team</Link></b>
               </span>
             </div>
           </header>

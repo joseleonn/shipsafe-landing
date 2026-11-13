@@ -491,6 +491,15 @@ export const FOOTER = {
     { label: "Inspecciones con QR", href: "/app-inspecciones-seguridad-qr" },
     { label: "Gestión de desvíos", href: "/gestion-desvios-seguridad-industrial" },
     { label: "Mejores software de SyH", href: "/mejores-software-seguridad-higiene-argentina" },
+    { label: "Quiénes somos", href: "/equipo" },
+  ],
+  // Páginas por país (13/11/2026): Transagro llegó buscando en Google un proveedor en español.
+  paises: [
+    { label: "Argentina", href: "/mejores-software-seguridad-higiene-argentina" },
+    { label: "México", href: "/software-seguridad-industrial-mexico" },
+    { label: "Colombia", href: "/software-sg-sst" },
+    { label: "Paraguay", href: "/software-seguridad-higiene-paraguay" },
+    { label: "Guatemala", href: "/software-seguridad-ocupacional-guatemala" },
   ],
   legal: [
     { label: "Términos y condiciones", href: "/terminos" },

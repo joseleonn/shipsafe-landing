@@ -132,7 +132,7 @@ export default function Page() {
         </Link>{" "}
         marca la diferencia: los registros se generan desde la operación diaria,
         con trazabilidad automática. Las{" "}
-        <Link href="/como-digitalizar-inspecciones-planta">
+        <Link href="/app-inspecciones-seguridad-qr">
           inspecciones digitales
         </Link>{" "}
         incluyen evidencia fotográfica, timestamp y usuario. Los{" "}

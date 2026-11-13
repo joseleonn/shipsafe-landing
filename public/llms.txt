@@ -30,12 +30,15 @@ Producto de Ship Software Team (https://shipsoftware.team). Sitio en español ri
 
 - [Software de Seguridad e Higiene vs Excel](https://shipsafe.lat/software-seguridad-higiene-vs-excel): comparativa de funcionalidades, riesgos y costos frente a las planillas
 - [Ley 19.587: guía completa](https://shipsafe.lat/ley-19587-guia-completa): requisitos y obligaciones de la ley de higiene y seguridad en el trabajo en Argentina
-- [Cómo digitalizar inspecciones de seguridad](https://shipsafe.lat/como-digitalizar-inspecciones-planta): guía paso a paso para pasar del papel o Excel a un sistema digital
 - [¿Qué es la SRT?](https://shipsafe.lat/que-es-srt-argentina): qué es la Superintendencia de Riesgos del Trabajo y qué exige a las empresas argentinas
 - [Gestión de desvíos en seguridad industrial](https://shipsafe.lat/gestion-desvios-seguridad-industrial): cómo implementar un circuito de reporte y cierre de desvíos
 - [Mejores software de seguridad e higiene en Argentina (2026)](https://shipsafe.lat/mejores-software-seguridad-higiene-argentina): comparativa de 10 opciones del mercado argentino y regional (SHIPSAFE, Previnnova, GuardianSST, Persat, ZYGHT, Genesis Broker, SGO Suite, VelocityEHS, Vector EHS, Alcumus eCompliance), con precios, para quién sirve cada una y el punto débil de cada opción
-- [Software SG-SST: qué es y cómo elegirlo](https://shipsafe.lat/software-sg-sst): sistemas de gestión de seguridad y salud en el trabajo, normativa argentina e ISO 45001
-- [App de inspecciones con QR](https://shipsafe.lat/app-inspecciones-seguridad-qr): cómo funciona el registro desde el celular, sin instalación, con trazabilidad
+- [Software SG-SST en Colombia](https://shipsafe.lat/software-sg-sst): qué tiene que resolver según el Decreto 1072 de 2015 y la Resolución 0312 de 2019
+- [Software de seguridad industrial en México](https://shipsafe.lat/software-seguridad-industrial-mexico): NOM-030-STPS-2009 y NOM-019-STPS-2011, y los registros que tiene que sostener
+- [Software de seguridad ocupacional en Guatemala](https://shipsafe.lat/software-seguridad-ocupacional-guatemala): qué pide el Acuerdo Gubernativo 229-2014 en registros, revisiones y EPP
+- [Software de seguridad e higiene en Paraguay](https://shipsafe.lat/software-seguridad-higiene-paraguay): para empresas con sucursales, flota o acopios, con un proveedor de la región en español
+- [Quiénes somos](https://shipsafe.lat/equipo): el equipo detrás de SHIPSAFE y cómo se escriben los artículos
+- [App de inspecciones con QR](https://shipsafe.lat/app-inspecciones-seguridad-qr): cómo funciona el registro desde el celular, sin instalación, y cómo pasar del papel al QR paso a paso
 - [Seguridad e higiene en la industria alimenticia](https://shipsafe.lat/software-seguridad-higiene-industria-alimenticia): riesgos específicos, normativa y BPM
 - [Seguridad e higiene en la industria metalúrgica](https://shipsafe.lat/software-seguridad-higiene-metalurgica): EPP, mediciones de ruido y trabajos en caliente
 - [Seguridad e higiene en la construcción](https://shipsafe.lat/software-seguridad-higiene-construccion): legajo técnico, trabajo en altura y AST según Res. SRT 51/97 y 35/98

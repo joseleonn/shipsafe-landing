@@ -73,13 +73,13 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "checklist-control-extintores": {
     pais: "AR",
     tituloSeo: "Checklist de control de extintores: qué revisar y normativa",
-    recursos: ["app-inspecciones-seguridad-qr", "como-digitalizar-inspecciones-planta"],
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["revision-mensual-extintores-nom-002-stps", "checklist-vehicular-preuso"],
   },
   "revision-mensual-extintores-nom-002-stps": {
     pais: "MX",
     tituloSeo: "Revisión mensual de extintores: NOM-002-STPS-2010",
-    recursos: ["app-inspecciones-seguridad-qr", "como-digitalizar-inspecciones-planta"],
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["checklist-control-extintores"],
   },
   "checklist-vehicular-preuso": {

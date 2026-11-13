@@ -276,7 +276,7 @@
 .ss-site .close .panel.sent form, .ss-site .close .panel.sent .or, .ss-site .close .panel.sent>.btn{display:none}
 .ss-site .close .panel.sent .ok{display:block}
 .ss-site .footer{background:#05070B;border-top:1px solid var(--line);color:var(--text-2);padding:64px 0 32px;font-size:14px}
-.ss-site .footer .top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:32px}
+.ss-site .footer .top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr 1fr;gap:28px}
 .ss-site .footer .brand{color:var(--text)}
 .ss-site .footer .tag{margin-top:14px;max-width:34ch;color:var(--muted);font-size:14px}
 .ss-site .footer .social{display:flex;gap:10px;margin-top:18px;padding:0;list-style:none}

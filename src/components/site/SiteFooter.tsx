@@ -74,6 +74,16 @@ export default function SiteFooter({ minimal = false }: { minimal?: boolean }) {
             </ul>
           </div>
           <div className="col">
+            <h4>Por país</h4>
+            <ul>
+              {FOOTER.paises.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col">
             <h4>Legal</h4>
             <ul>
               {FOOTER.legal.map((l) => (

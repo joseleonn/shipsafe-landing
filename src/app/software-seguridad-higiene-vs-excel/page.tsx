@@ -141,7 +141,7 @@ export default function Page() {
       <h2>La transición no tiene que ser traumática</h2>
       <p>
         Con SHIPSAFE, la implementación básica lleva menos de un día. Podés{" "}
-        <Link href="/como-digitalizar-inspecciones-planta">
+        <Link href="/app-inspecciones-seguridad-qr">
           digitalizar las inspecciones
         </Link>{" "}
         progresivamente sin frenar la operación. Se importan datos desde Excel,
