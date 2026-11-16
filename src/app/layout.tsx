@@ -114,6 +114,9 @@ export const metadata: Metadata = {
     google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
     other: {
       "facebook-domain-verification": "m68q3sdlfaq6eejsup5pfltqr4jpmv",
+      // Bing Webmaster Tools (16/11/2026). ChatGPT y Copilot buscan con Bing.
+      // No sacarlo: Bing lo revisa para mantener la verificación.
+      "msvalidate.01": "C412AC37F1C0351ECCBBD0D51000AB54",
     },
   },
 };
