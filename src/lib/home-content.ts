@@ -498,6 +498,8 @@ export const FOOTER = {
     { label: "Argentina", href: "/mejores-software-seguridad-higiene-argentina" },
     { label: "México", href: "/software-seguridad-industrial-mexico" },
     { label: "Colombia", href: "/software-sg-sst" },
+    { label: "Chile", href: "/software-prevencion-de-riesgos-chile" },
+    { label: "Perú", href: "/software-sst-peru" },
     { label: "Paraguay", href: "/software-seguridad-higiene-paraguay" },
     { label: "Guatemala", href: "/software-seguridad-ocupacional-guatemala" },
   ],

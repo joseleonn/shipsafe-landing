@@ -659,6 +659,26 @@ export const ARTICLES = [
     dateModified: "2026-11-16",
     relatedSlugs: ["software-seguridad-ocupacional-guatemala", "app-inspecciones-seguridad-qr"],
   },
+  {
+    slug: "software-prevencion-de-riesgos-chile",
+    title: "Software de prevención de riesgos para empresas en Chile",
+    seoTitle: "Software de prevención de riesgos en Chile (DS 44)",
+    description:
+      "Qué pide el DS 44 sobre matriz de peligros, información antes de empezar a trabajar y derecho a interrumpir, y cómo se lleva la prevención desde el celular en operaciones con varias faenas.",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    relatedSlugs: ["software-sst-peru", "app-inspecciones-seguridad-qr"],
+  },
+  {
+    slug: "software-sst-peru",
+    title: "Software de seguridad y salud en el trabajo para empresas en Perú",
+    seoTitle: "Software SST en Perú: IPERC, ATS y Ley 29783",
+    description:
+      "Qué piden el reglamento de la Ley 29783 y los reglamentos de minería y construcción sobre IPERC y ATS, y cómo se registran en campo desde el celular.",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    relatedSlugs: ["software-prevencion-de-riesgos-chile", "gestion-desvios-seguridad-industrial"],
+  },
 ];
 
 export const FOOTER_LINKS = {

@@ -35,6 +35,8 @@ Producto de Ship Software Team (https://shipsoftware.team). Sitio en español ri
 - [Mejores software de seguridad e higiene en Argentina (2026)](https://shipsafe.lat/mejores-software-seguridad-higiene-argentina): comparativa de 10 opciones del mercado argentino y regional (SHIPSAFE, Previnnova, GuardianSST, Persat, ZYGHT, Genesis Broker, SGO Suite, VelocityEHS, Vector EHS, Alcumus eCompliance), con precios, para quién sirve cada una y el punto débil de cada opción
 - [Software SG-SST en Colombia](https://shipsafe.lat/software-sg-sst): qué tiene que resolver según el Decreto 1072 de 2015 y la Resolución 0312 de 2019
 - [Software de seguridad industrial en México](https://shipsafe.lat/software-seguridad-industrial-mexico): NOM-030-STPS-2009 y NOM-019-STPS-2011, y los registros que tiene que sostener
+- [Software de prevención de riesgos en Chile](https://shipsafe.lat/software-prevencion-de-riesgos-chile): qué pide el DS 44 (matriz de peligros, información previa, derecho a interrumpir)
+- [Software SST en Perú](https://shipsafe.lat/software-sst-peru): IPERC según el reglamento de la Ley 29783 y ATS en minería y construcción
 - [Software de seguridad ocupacional en Guatemala](https://shipsafe.lat/software-seguridad-ocupacional-guatemala): qué pide el Acuerdo Gubernativo 229-2014 en registros, revisiones y EPP
 - [Software de seguridad e higiene en Paraguay](https://shipsafe.lat/software-seguridad-higiene-paraguay): qué pide la Ley 5.804 y cómo se lleva en empresas con sucursales, flota o acopios
 - [Quiénes somos](https://shipsafe.lat/equipo): el equipo detrás de SHIPSAFE y cómo se escriben los artículos
