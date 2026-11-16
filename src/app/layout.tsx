@@ -6,6 +6,7 @@ import "./pages.css";
 import "./motion.css";
 import "./home-v5.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Analytics } from "@vercel/analytics/next";
 import MetaPixel from "@/components/MetaPixel";
 import CapturaAtribucion from "@/components/CapturaAtribucion";
 import { SITE } from "@/lib/constants";
@@ -185,6 +186,8 @@ export default function RootLayout({
         <MetaPixel />
         <CapturaAtribucion />
         {children}
+        {/* Vercel Web Analytics (16/11/2026): visitas, países y referentes sin depender de GA. */}
+        <Analytics />
       </body>
     </html>
   );
