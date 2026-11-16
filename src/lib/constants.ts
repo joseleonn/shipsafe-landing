@@ -654,9 +654,9 @@ export const ARTICLES = [
     title: "Software de seguridad e higiene para empresas en Paraguay",
     seoTitle: "Software de seguridad e higiene en Paraguay, en español",
     description:
-      "Para empresas paraguayas con sucursales, flota o acopios: cómo se ordenan las inspecciones, las entregas de EPP y los desvíos en un solo sistema, con un proveedor de la región.",
+      "Qué pide la Ley 5.804 a las empresas paraguayas y cómo se ordenan las inspecciones, las entregas de EPP y los desvíos en operaciones con sucursales, flota o acopios.",
     datePublished: "2026-11-13",
-    dateModified: "2026-11-13",
+    dateModified: "2026-11-16",
     relatedSlugs: ["software-seguridad-ocupacional-guatemala", "app-inspecciones-seguridad-qr"],
   },
 ];

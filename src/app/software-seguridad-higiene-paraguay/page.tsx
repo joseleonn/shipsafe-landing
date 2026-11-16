@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE, ARTICLES, OG_IMAGE } from "@/lib/constants";
 import ArticleLayout from "@/components/ArticleLayout";
+import AvisoNormativa from "@/components/AvisoNormativa";
 
 const SLUG = "software-seguridad-higiene-paraguay";
 const article = ARTICLES.find((a) => a.slug === SLUG)!;
 
 /**
- * Página de Paraguay (13/11/2026). El texto oficial del Decreto 14.390/92 no
- * se pudo leer el 13/11, así que la página nombra las normas y no cita
- * artículos (regla del 09/11). Cuando se lea el texto, se puede sumar una
- * tabla como la de Guatemala.
+ * Página de Paraguay (13/11/2026). El 16/11 se sumó la Ley 5.804/17, leída en
+ * la Biblioteca y Archivo Central del Congreso (bacn.gov.py): arts. 1, 14, 16,
+ * 17, 31 num. 9 y 37. El Decreto 14.390/92 se nombra pero no se cita: su texto
+ * oficial no se pudo leer (regla del 09/11).
  */
 const FAQS = [
   {
@@ -55,10 +56,60 @@ export default function Page() {
         lo que pasa en todas sin esperar a que alguien pase la planilla.
       </p>
       <p>
-        El marco general está en el Código del Trabajo (Ley 213/93) y en el Reglamento General
-        Técnico de Seguridad, Higiene y Medicina en el Trabajo aprobado por el Decreto 14.390/92.
-        Qué le aplica a cada empresa lo define su profesional de seguridad e higiene; acá nos
-        concentramos en cómo se registra y se sigue el trabajo diario.
+        El marco general está en el Código del Trabajo (Ley 213/93), en el Reglamento General
+        Técnico de Seguridad, Higiene y Medicina en el Trabajo aprobado por el Decreto 14.390/92 y
+        en la <strong>Ley 5.804/17, que establece el Sistema Nacional de Prevención de Riesgos
+        Laborales</strong>. Según su artículo 1, esa ley reglamenta la aplicación de lo previsto en
+        el Código del Trabajo.
+      </p>
+
+      <h2>Qué pide la Ley 5.804 a la empresa</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Artículo</th>
+            <th>Qué dice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>14</td>
+            <td>La prevención de riesgos profesionales es responsabilidad de los empleadores.</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Todas las empresas tienen que llevar las estadísticas de los accidentes de trabajo y las enfermedades profesionales.</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>
+              El empleador informa a sus trabajadores los riesgos a los que pueden estar expuestos, y
+              todo accidente de trabajo o enfermedad profesional lo informa a la entidad que administra
+              los riesgos profesionales, en los plazos que fije la reglamentación.
+            </td>
+          </tr>
+          <tr>
+            <td>31, num. 9</td>
+            <td>Tiene que haber personal responsable de la seguridad y salud en el trabajo, en la figura del asesor de seguridad.</td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>
+              El empleador elabora y conserva a disposición de la autoridad laboral el plan de
+              prevención, las evaluaciones de riesgos con los resultados de los controles periódicos,
+              la planificación de la actividad preventiva con las medidas y el equipo de protección,
+              los controles de salud y la relación de accidentes y enfermedades profesionales con más
+              de un día de incapacidad.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        El artículo 37 es el que más se nota en una operación con sucursales: los controles
+        periódicos y la relación de accidentes salen de lo que pasa en cada sede, y tienen que
+        estar disponibles cuando la autoridad los pida. Qué le aplica a cada empresa lo define su
+        asesor o profesional de seguridad; acá nos concentramos en cómo se registra y se sigue el
+        trabajo diario.
       </p>
 
       <h2>Dónde se traba en una operación con sucursales</h2>
@@ -118,14 +169,7 @@ export default function Page() {
         </div>
       ))}
 
-      <p>
-        <em>
-          Esta página tiene fines informativos. Los requisitos de seguridad e higiene de cada
-          empresa dependen de su actividad y de la normativa vigente en Paraguay; conviene
-          verificarlos en la fuente oficial y con el profesional de seguridad e higiene de la
-          empresa.
-        </em>
-      </p>
+      <AvisoNormativa />
     </ArticleLayout>
   );
 }
