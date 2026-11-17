@@ -172,4 +172,16 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     recursos: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
     blog: ["constancia-entrega-epp-res-srt-299-11", "matriz-de-riesgos-iperc-plantilla-excel"],
   },
+  "espacio-confinado-permiso-de-ingreso": {
+    pais: "LATAM",
+    tituloSeo: "Espacio confinado: permiso de ingreso y normativa (MX y CO)",
+    recursos: ["software-seguridad-industrial-mexico", "software-sg-sst"],
+    blog: ["permiso-de-trabajo-formato-tipos-y-normativa", "bloqueo-y-etiquetado-loto-procedimiento"],
+  },
+  "bloqueo-y-etiquetado-loto-procedimiento": {
+    pais: "LATAM",
+    tituloSeo: "Bloqueo y etiquetado (LOTO): pasos y registro en Excel",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["permiso-de-trabajo-formato-tipos-y-normativa", "espacio-confinado-permiso-de-ingreso"],
+  },
 };
