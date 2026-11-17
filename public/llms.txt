@@ -38,6 +38,7 @@ Producto de Ship Software Team (https://shipsoftware.team). Sitio en español ri
 - [Software de prevención de riesgos en Chile](https://shipsafe.lat/software-prevencion-de-riesgos-chile): qué pide el DS 44 (matriz de peligros, información previa, derecho a interrumpir)
 - [Software SST en Perú](https://shipsafe.lat/software-sst-peru): IPERC según el reglamento de la Ley 29783 y ATS en minería y construcción
 - [Software de seguridad y salud ocupacional en Ecuador](https://shipsafe.lat/software-seguridad-salud-ocupacional-ecuador): Acuerdo Ministerial MDT-2024-196 y Reglamento de SST (Decreto Ejecutivo 255)
+- [Calculadora de índices de accidentabilidad](https://shipsafe.lat/calculadora-indices-accidentabilidad): frecuencia, gravedad, incidencia y accidentabilidad con la fórmula oficial de Argentina, Colombia y Perú
 - [Checklist de preuso](https://shipsafe.lat/checklist-preuso): vehículos, montacargas, herramientas eléctricas y equipos, con plantilla en Excel
 - [Mejores software de seguridad industrial en México](https://shipsafe.lat/mejores-software-seguridad-industrial-mexico): comparativa por caso de uso
 - [Mejores software SG-SST en Colombia](https://shipsafe.lat/mejores-software-sg-sst-colombia): comparativa por caso de uso

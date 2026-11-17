@@ -123,7 +123,7 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "estandares-minimos-sg-sst-resolucion-0312": {
     pais: "CO",
     tituloSeo: "Estándares mínimos SG-SST (Res. 0312): tabla y Excel",
-    recursos: ["software-sg-sst", "mejores-software-sg-sst-colombia"],
+    recursos: ["calculadora-indices-accidentabilidad", "software-sg-sst", "mejores-software-sg-sst-colombia"],
     blog: ["checklist-vehicular-preuso"],
     descargas: {
       texto:
@@ -219,7 +219,7 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "matriz-iperc-peru-formato-rm-050-2013-tr": {
     pais: "PE",
     tituloSeo: "Matriz IPERC Perú: formato RM 050-2013-TR en Excel",
-    recursos: ["mejores-software-sst-peru", "gestion-desvios-seguridad-industrial"],
+    recursos: ["calculadora-indices-accidentabilidad", "mejores-software-sst-peru", "gestion-desvios-seguridad-industrial"],
     blog: ["matriz-de-riesgos-iperc-plantilla-excel", "ats-analisis-de-trabajo-seguro-peru"],
   },
 };

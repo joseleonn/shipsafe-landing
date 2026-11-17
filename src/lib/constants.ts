@@ -691,6 +691,16 @@ export const ARTICLES = [
     relatedSlugs: ["gestion-desvios-seguridad-industrial", "software-sst-peru", "app-inspecciones-seguridad-qr"],
   },
   {
+    slug: "calculadora-indices-accidentabilidad",
+    title: "Calculadora de índices de accidentabilidad (Argentina, Colombia y Perú)",
+    seoTitle: "Calculadora de índices de accidentabilidad y frecuencia",
+    description:
+      "Calcula el índice de frecuencia, gravedad, incidencia y accidentabilidad con la fórmula oficial de Argentina (SRT), Colombia (Res. 0312) y Perú (RM 050-2013-TR).",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["gestion-desvios-seguridad-industrial", "software-sg-sst", "software-sst-peru"],
+  },
+  {
     slug: "checklist-preuso",
     title: "Checklist de preuso: vehículos, montacargas y herramientas",
     seoTitle: "Checklist de preuso: vehículos, montacargas y herramientas",
