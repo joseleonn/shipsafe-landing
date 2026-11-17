@@ -50,6 +50,7 @@ export const PAGINA_PAIS: Partial<Record<CodigoPais, string>> = {
   PE: "software-sst-peru",
   PY: "software-seguridad-higiene-paraguay",
   GT: "software-seguridad-ocupacional-guatemala",
+  EC: "software-seguridad-salud-ocupacional-ecuador",
 };
 
 export const esCodigoPais = (v: string | null | undefined): v is CodigoPais =>
@@ -64,6 +65,12 @@ export interface AjusteSeo {
   descripcionSeo?: string;
   recursos?: string[];
   blog?: string[];
+  /**
+   * Descargas que se muestran arriba del artículo (17/11/2026). Sirve para sumar
+   * la plantilla a un artículo ya publicado sin tocar su texto en la base.
+   * Los archivos van en public/recursos/.
+   */
+  descargas?: { texto: string; archivos: { label: string; href: string }[] };
 }
 
 export const AJUSTES_SEO: Record<string, AjusteSeo> = {
@@ -71,9 +78,17 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     pais: "AR",
     tituloSeo: "Constancia de entrega de EPP: formulario Res. SRT 299/11",
     descripcionSeo:
-      "Qué datos lleva la constancia de entrega de ropa de trabajo y EPP de la Res. SRT 299/11, cómo registrar cada entrega y qué pide la SRT para llevarla en digital.",
+      "Formulario de constancia de entrega de ropa de trabajo y EPP de la Res. SRT 299/11 para descargar en Excel y PDF, qué datos lleva y cómo llevarla en digital.",
     recursos: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
     blog: ["checklist-control-extintores"],
+    descargas: {
+      texto:
+        "Formulario de constancia de entrega de ropa de trabajo y elementos de protección personal, con los 18 campos del instructivo de la Res. SRT 299/11:",
+      archivos: [
+        { label: "Descargar en Excel", href: "/recursos/constancia-entrega-epp-res-299-11-shipsafe.xlsx" },
+        { label: "Descargar en PDF para imprimir", href: "/recursos/constancia-entrega-epp-res-299-11-shipsafe.pdf" },
+      ],
+    },
   },
   "como-justificar-compra-software-seguridad-higiene": {
     pais: "LATAM",
@@ -107,9 +122,14 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   },
   "estandares-minimos-sg-sst-resolucion-0312": {
     pais: "CO",
-    tituloSeo: "Estándares mínimos del SG-SST (Resolución 0312 de 2019)",
-    recursos: ["software-sg-sst", "app-inspecciones-seguridad-qr"],
+    tituloSeo: "Estándares mínimos SG-SST (Res. 0312): tabla y Excel",
+    recursos: ["software-sg-sst", "mejores-software-sg-sst-colombia"],
     blog: ["checklist-vehicular-preuso"],
+    descargas: {
+      texto:
+        "Planilla en Excel para revisar los 7 o los 21 estándares de los artículos 3 y 9, con estado, evidencia y responsable de cada uno:",
+      archivos: [{ label: "Descargar en Excel", href: "/recursos/estandares-minimos-0312-shipsafe.xlsx" }],
+    },
   },
   "nom-035-stps-2018-que-pide-segun-trabajadores": {
     pais: "MX",

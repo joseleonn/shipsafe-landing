@@ -590,7 +590,7 @@ export const ARTICLES = [
       "Qué tiene que resolver un software SG-SST según el Decreto 1072 de 2015 y la Resolución 0312 de 2019, y cómo se lleva la gestión desde el celular en operaciones con varias sedes.",
     datePublished: "2026-06-10",
     dateModified: "2026-11-13",
-    relatedSlugs: ["software-seguridad-industrial-mexico", "app-inspecciones-seguridad-qr"],
+    relatedSlugs: ["mejores-software-sg-sst-colombia", "software-seguridad-industrial-mexico", "app-inspecciones-seguridad-qr"],
   },
   {
     slug: "app-inspecciones-seguridad-qr",
@@ -638,7 +638,7 @@ export const ARTICLES = [
       "Qué piden la NOM-030-STPS-2009 y la NOM-019-STPS-2011, qué registros tiene que sostener un software de seguridad industrial y cómo se resuelve en operaciones con varios centros de trabajo.",
     datePublished: "2026-11-13",
     dateModified: "2026-11-13",
-    relatedSlugs: ["software-sg-sst", "app-inspecciones-seguridad-qr"],
+    relatedSlugs: ["mejores-software-seguridad-industrial-mexico", "software-sg-sst", "app-inspecciones-seguridad-qr"],
   },
   {
     slug: "software-seguridad-ocupacional-guatemala",
@@ -668,7 +668,7 @@ export const ARTICLES = [
       "Qué pide el DS 44 sobre matriz de peligros, información antes de empezar a trabajar y derecho a interrumpir, y cómo se llevan la prevención de riesgos y la higiene y seguridad desde el celular en operaciones con varias faenas.",
     datePublished: "2026-11-16",
     dateModified: "2026-11-17",
-    relatedSlugs: ["software-sst-peru", "app-inspecciones-seguridad-qr"],
+    relatedSlugs: ["mejores-software-prevencion-de-riesgos-chile", "software-sst-peru", "app-inspecciones-seguridad-qr"],
   },
   {
     slug: "software-sst-peru",
@@ -678,7 +678,57 @@ export const ARTICLES = [
       "Qué piden el reglamento de la Ley 29783 y los reglamentos de minería y construcción sobre IPERC y ATS, y cómo se registran en campo desde el celular.",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    relatedSlugs: ["mejores-software-sst-peru", "software-prevencion-de-riesgos-chile", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "software-seguridad-salud-ocupacional-ecuador",
+    title: "Software de seguridad y salud ocupacional para empresas en Ecuador",
+    seoTitle: "Software de seguridad industrial y salud ocupacional en Ecuador",
+    description:
+      "Qué pide el Acuerdo Ministerial MDT-2024-196 sobre accidentes, EPP, archivo y registros, y cómo se lleva la seguridad industrial y la salud ocupacional desde el celular.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["gestion-desvios-seguridad-industrial", "software-sst-peru", "app-inspecciones-seguridad-qr"],
+  },
+  {
+    slug: "mejores-software-seguridad-industrial-mexico",
+    title: "Mejores software de seguridad industrial en México (2026)",
+    seoTitle: "Mejores software de seguridad industrial en México (2026)",
+    description:
+      "Comparativa de software de seguridad industrial y seguridad e higiene en México: para quién sirve cada uno, precios públicos y qué mirar antes de elegir.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["software-seguridad-industrial-mexico", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "mejores-software-sg-sst-colombia",
+    title: "Mejores software SG-SST en Colombia (2026)",
+    seoTitle: "Mejores software SG-SST en Colombia (2026): comparativa",
+    description:
+      "Comparativa de software para el SG-SST en Colombia: para quién sirve cada uno, precios públicos y qué mirar antes de elegir según la Resolución 0312.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["software-sg-sst", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "mejores-software-prevencion-de-riesgos-chile",
+    title: "Mejores software de prevención de riesgos en Chile (2026)",
+    seoTitle: "Mejores software de prevención de riesgos en Chile (2026)",
+    description:
+      "Comparativa de software de prevención de riesgos e higiene y seguridad en Chile: para quién sirve cada uno, precios públicos y qué mirar con el DS 44.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
     relatedSlugs: ["software-prevencion-de-riesgos-chile", "gestion-desvios-seguridad-industrial"],
+  },
+  {
+    slug: "mejores-software-sst-peru",
+    title: "Mejores software SST en Perú (2026)",
+    seoTitle: "Mejores software SST en Perú (2026): comparativa",
+    description:
+      "Comparativa de software de seguridad y salud en el trabajo en Perú: para quién sirve cada uno, precios públicos y qué mirar para IPERC, ATS y Ley 29783.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["software-sst-peru", "gestion-desvios-seguridad-industrial"],
   },
 ];
 

@@ -37,6 +37,11 @@ Producto de Ship Software Team (https://shipsoftware.team). Sitio en español ri
 - [Software de seguridad industrial en México](https://shipsafe.lat/software-seguridad-industrial-mexico): NOM-030-STPS-2009 y NOM-019-STPS-2011, y los registros que tiene que sostener
 - [Software de prevención de riesgos en Chile](https://shipsafe.lat/software-prevencion-de-riesgos-chile): qué pide el DS 44 (matriz de peligros, información previa, derecho a interrumpir)
 - [Software SST en Perú](https://shipsafe.lat/software-sst-peru): IPERC según el reglamento de la Ley 29783 y ATS en minería y construcción
+- [Software de seguridad y salud ocupacional en Ecuador](https://shipsafe.lat/software-seguridad-salud-ocupacional-ecuador): Acuerdo Ministerial MDT-2024-196 y Reglamento de SST (Decreto Ejecutivo 255)
+- [Mejores software de seguridad industrial en México](https://shipsafe.lat/mejores-software-seguridad-industrial-mexico): comparativa por caso de uso
+- [Mejores software SG-SST en Colombia](https://shipsafe.lat/mejores-software-sg-sst-colombia): comparativa por caso de uso
+- [Mejores software de prevención de riesgos en Chile](https://shipsafe.lat/mejores-software-prevencion-de-riesgos-chile): comparativa por caso de uso
+- [Mejores software SST en Perú](https://shipsafe.lat/mejores-software-sst-peru): comparativa por caso de uso
 - [Software de seguridad ocupacional en Guatemala](https://shipsafe.lat/software-seguridad-ocupacional-guatemala): qué pide el Acuerdo Gubernativo 229-2014 en registros, revisiones y EPP
 - [Software de seguridad e higiene en Paraguay](https://shipsafe.lat/software-seguridad-higiene-paraguay): qué pide la Ley 5.804 y cómo se lleva en empresas con sucursales, flota o acopios
 - [Quiénes somos](https://shipsafe.lat/equipo): el equipo detrás de SHIPSAFE y cómo se escriben los artículos

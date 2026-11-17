@@ -502,6 +502,7 @@ export const FOOTER = {
     { label: "Perú", href: "/software-sst-peru" },
     { label: "Paraguay", href: "/software-seguridad-higiene-paraguay" },
     { label: "Guatemala", href: "/software-seguridad-ocupacional-guatemala" },
+    { label: "Ecuador", href: "/software-seguridad-salud-ocupacional-ecuador" },
   ],
   legal: [
     { label: "Términos y condiciones", href: "/terminos" },

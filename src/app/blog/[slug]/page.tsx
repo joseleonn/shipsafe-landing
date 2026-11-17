@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { SITE } from "@/lib/constants";
 import { cuerpoConFaqs, listarPublicados, obtenerPublicado } from "@/lib/blog";
 import ArticleLayout from "@/components/ArticleLayout";
-import { AJUSTES_SEO, PAGINA_PAIS } from "@/lib/blog-seo";
+import { AJUSTES_SEO, PAGINA_PAIS, type AjusteSeo } from "@/lib/blog-seo";
 
 // Se regenera sola cada hora, y al instante cuando se publica desde /interno/blog.
 export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDAR_BLOG de lib/blog
@@ -16,6 +16,13 @@ export async function generateStaticParams() {
 }
 
 type Props = { params: Promise<{ slug: string }> };
+
+/** Bloque de descargas arriba del artículo. Los textos vienen de blog-seo.ts (código propio, no de la base). */
+function htmlDescargas(d: AjusteSeo["descargas"]): string {
+  if (!d) return "";
+  const links = d.archivos.map((a) => `<a href="${a.href}" download>${a.label}</a>`).join(" · ");
+  return `<p><strong>${d.texto}</strong> ${links}</p>`;
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -77,7 +84,7 @@ export default async function ArticuloBlog({ params }: Props) {
       path={`/blog/${a.slug}`}
       parent={{ label: "Blog", href: "/blog" }}
       eyebrow="Blog"
-      html={cuerpoConFaqs(a)}
+      html={htmlDescargas(ajuste?.descargas) + cuerpoConFaqs(a)}
       faqs={a.faqs.map((f) => ({ question: f.pregunta, answer: f.respuesta }))}
       relatedBlog={relatedBlog}
     />
