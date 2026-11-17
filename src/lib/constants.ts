@@ -642,22 +642,22 @@ export const ARTICLES = [
   },
   {
     slug: "software-seguridad-ocupacional-guatemala",
-    title: "Software de salud y seguridad ocupacional para empresas en Guatemala",
-    seoTitle: "Software de seguridad ocupacional en Guatemala (Acuerdo 229-2014)",
+    title: "Software de seguridad industrial y ocupacional para empresas en Guatemala",
+    seoTitle: "Software de seguridad industrial y ocupacional en Guatemala",
     description:
-      "Qué pide el Reglamento de Salud y Seguridad Ocupacional (Acuerdo Gubernativo 229-2014) en registros, revisiones y equipo de protección, y cómo se lleva desde el celular.",
+      "Qué pide el Reglamento de Salud y Seguridad Ocupacional (Acuerdo Gubernativo 229-2014) en registros, revisiones y equipo de protección, y cómo se lleva la seguridad industrial desde el celular.",
     datePublished: "2026-11-13",
-    dateModified: "2026-11-13",
+    dateModified: "2026-11-17",
     relatedSlugs: ["software-seguridad-higiene-paraguay", "gestion-desvios-seguridad-industrial"],
   },
   {
     slug: "software-seguridad-higiene-paraguay",
-    title: "Software de seguridad e higiene para empresas en Paraguay",
-    seoTitle: "Software de seguridad e higiene en Paraguay, en español",
+    title: "Software de seguridad industrial y salud ocupacional para empresas en Paraguay",
+    seoTitle: "Software de seguridad industrial en Paraguay, en español",
     description:
-      "Qué pide la Ley 5.804 a las empresas paraguayas y cómo se ordenan las inspecciones, las entregas de EPP y los desvíos en operaciones con sucursales, flota o acopios.",
+      "Qué pide la Ley 5.804 a las empresas paraguayas y cómo se ordenan las inspecciones de seguridad industrial, las entregas de EPP y los desvíos en operaciones con sucursales, flota o acopios.",
     datePublished: "2026-11-13",
-    dateModified: "2026-11-16",
+    dateModified: "2026-11-17",
     relatedSlugs: ["software-seguridad-ocupacional-guatemala", "app-inspecciones-seguridad-qr"],
   },
   {
@@ -665,9 +665,9 @@ export const ARTICLES = [
     title: "Software de prevención de riesgos para empresas en Chile",
     seoTitle: "Software de prevención de riesgos en Chile (DS 44)",
     description:
-      "Qué pide el DS 44 sobre matriz de peligros, información antes de empezar a trabajar y derecho a interrumpir, y cómo se lleva la prevención desde el celular en operaciones con varias faenas.",
+      "Qué pide el DS 44 sobre matriz de peligros, información antes de empezar a trabajar y derecho a interrumpir, y cómo se llevan la prevención de riesgos y la higiene y seguridad desde el celular en operaciones con varias faenas.",
     datePublished: "2026-11-16",
-    dateModified: "2026-11-16",
+    dateModified: "2026-11-17",
     relatedSlugs: ["software-sst-peru", "app-inspecciones-seguridad-qr"],
   },
   {

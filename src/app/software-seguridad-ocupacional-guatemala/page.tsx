@@ -56,7 +56,7 @@ export default function Page() {
         <strong>Reglamento de Salud y Seguridad Ocupacional, Acuerdo Gubernativo 229-2014</strong>
         , que tuvo reformas posteriores (entre ellas, los Acuerdos Gubernativos 33-2016 y
         57-2022). Según su artículo 3, es de observancia general en toda la República. Esta
-        página es para empresas con varias sedes, flota o personal en campo que necesitan que
+        página es para áreas de seguridad industrial y ocupacional de empresas con varias sedes, flota o personal en campo que necesitan que
         lo que se revisa en cada lugar quede registrado en el momento.
       </p>
 

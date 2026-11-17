@@ -52,7 +52,7 @@ export default function Page() {
       <p>
         Esta página es para empresas paraguayas con operación repartida: sucursales, acopios,
         flota propia, estaciones de servicio o depósitos. En ese tipo de operación la
-        seguridad e higiene se juega en cada sede, y el área de seguridad necesita enterarse de
+        seguridad industrial y la salud ocupacional se juegan en cada sede, y el área de seguridad necesita enterarse de
         lo que pasa en todas sin esperar a que alguien pase la planilla.
       </p>
       <p>
@@ -136,7 +136,7 @@ export default function Page() {
         </li>
       </ul>
 
-      <h2>Qué tiene que resolver un software de seguridad e higiene</h2>
+      <h2>Qué tiene que resolver un software de seguridad industrial</h2>
       <ul>
         <li>Inspecciones desde el celular en el momento, con foto, hora y quién la hizo.</li>
         <li>Las mismas listas de inspección en todas las sucursales.</li>
