@@ -111,7 +111,7 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "checklist-vehicular-preuso": {
     pais: "LATAM",
     tituloSeo: "Checklist vehicular de preuso: qué revisar y cómo registrarlo",
-    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    recursos: ["checklist-preuso", "app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["checklist-control-extintores"],
   },
   "safetyculture-mitti-alternativas": {
@@ -183,7 +183,7 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
   "checklist-montacargas-autoelevador-preuso": {
     pais: "LATAM",
     tituloSeo: "Checklist de montacargas (autoelevador): preuso y plantilla",
-    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    recursos: ["checklist-preuso", "app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["checklist-vehicular-preuso", "checklist-control-extintores"],
   },
   "matriz-de-epp-plantilla-excel": {
@@ -215,5 +215,11 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     tituloSeo: "Inspección de botiquín: checklist en Excel",
     recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["plan-de-emergencia-plantilla-excel", "checklist-montacargas-autoelevador-preuso"],
+  },
+  "matriz-iperc-peru-formato-rm-050-2013-tr": {
+    pais: "PE",
+    tituloSeo: "Matriz IPERC Perú: formato RM 050-2013-TR en Excel",
+    recursos: ["mejores-software-sst-peru", "gestion-desvios-seguridad-industrial"],
+    blog: ["matriz-de-riesgos-iperc-plantilla-excel", "ats-analisis-de-trabajo-seguro-peru"],
   },
 };

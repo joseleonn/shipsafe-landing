@@ -691,6 +691,16 @@ export const ARTICLES = [
     relatedSlugs: ["gestion-desvios-seguridad-industrial", "software-sst-peru", "app-inspecciones-seguridad-qr"],
   },
   {
+    slug: "checklist-preuso",
+    title: "Checklist de preuso: vehículos, montacargas y herramientas",
+    seoTitle: "Checklist de preuso: vehículos, montacargas y herramientas",
+    description:
+      "Qué controlar en el preuso de vehículos, montacargas, herramientas eléctricas y equipos, qué hacer con cada No OK y plantilla de checklist de preuso en Excel.",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+  },
+  {
     slug: "mejores-software-seguridad-industrial-mexico",
     title: "Mejores software de seguridad industrial en México (2026)",
     seoTitle: "Mejores software de seguridad industrial en México (2026)",
