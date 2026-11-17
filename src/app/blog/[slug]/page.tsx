@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { SITE } from "@/lib/constants";
 import { cuerpoConFaqs, listarPublicados, obtenerPublicado } from "@/lib/blog";
 import ArticleLayout from "@/components/ArticleLayout";
-import { AJUSTES_SEO } from "@/lib/blog-seo";
+import { AJUSTES_SEO, PAGINA_PAIS } from "@/lib/blog-seo";
 
 // Se regenera sola cada hora, y al instante cuando se publica desde /interno/blog.
 export const revalidate = 3600; // literal obligatorio en Next; igual a REVALIDAR_BLOG de lib/blog
@@ -68,7 +68,11 @@ export default async function ArticuloBlog({ params }: Props) {
         description: a.descripcion,
         datePublished: a.fecha_publicacion ?? a.creado,
         dateModified: a.actualizado,
-        relatedSlugs: ajuste?.recursos,
+        // Primero la página del país del artículo (link interno a la página de categoría).
+        relatedSlugs: [
+          ...(ajuste?.pais && ajuste.pais !== "LATAM" && PAGINA_PAIS[ajuste.pais] ? [PAGINA_PAIS[ajuste.pais]!] : []),
+          ...(ajuste?.recursos ?? []),
+        ],
       }}
       path={`/blog/${a.slug}`}
       parent={{ label: "Blog", href: "/blog" }}

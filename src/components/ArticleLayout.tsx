@@ -63,7 +63,11 @@ export default function ArticleLayout({
   const article: ArticleMeta = meta ?? ARTICLES.find((a) => a.slug === slug)!;
   const url = `${SITE.url}${path ?? `/${article.slug}`}`;
   const related = [
-    ...ARTICLES.filter((a) => (article.relatedSlugs ?? []).includes(a.slug)).map((a) => ({
+    // En el orden de relatedSlugs (el primero es el más importante) y sin repetidos.
+    ...[...new Set(article.relatedSlugs ?? [])]
+      .map((s) => ARTICLES.find((a) => a.slug === s))
+      .filter((a): a is (typeof ARTICLES)[number] => Boolean(a))
+      .map((a) => ({
       href: `/${a.slug}`,
       k: "Recurso",
       title: a.title,

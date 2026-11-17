@@ -41,6 +41,17 @@ export type PaisBlog = CodigoPais | "LATAM";
 
 export const NOMBRE_PAIS: Record<PaisBlog, string> = { ...PAISES, LATAM: "Latinoamérica" };
 
+/** Página de categoría de cada país (ARTICLES). Cada artículo del blog de ese país la enlaza primero. */
+export const PAGINA_PAIS: Partial<Record<CodigoPais, string>> = {
+  AR: "mejores-software-seguridad-higiene-argentina",
+  MX: "software-seguridad-industrial-mexico",
+  CO: "software-sg-sst",
+  CL: "software-prevencion-de-riesgos-chile",
+  PE: "software-sst-peru",
+  PY: "software-seguridad-higiene-paraguay",
+  GT: "software-seguridad-ocupacional-guatemala",
+};
+
 export const esCodigoPais = (v: string | null | undefined): v is CodigoPais =>
   typeof v === "string" && Object.prototype.hasOwnProperty.call(PAISES, v);
 
@@ -148,5 +159,17 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     tituloSeo: "Permiso de trabajo: formato, tipos y normativa por país",
     recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["ats-analisis-de-trabajo-seguro-argentina", "ats-analisis-de-trabajo-seguro-colombia"],
+  },
+  "checklist-montacargas-autoelevador-preuso": {
+    pais: "LATAM",
+    tituloSeo: "Checklist de montacargas (autoelevador): preuso y plantilla",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["checklist-vehicular-preuso", "checklist-control-extintores"],
+  },
+  "matriz-de-epp-plantilla-excel": {
+    pais: "LATAM",
+    tituloSeo: "Matriz de EPP por puesto: cómo armarla y plantilla Excel",
+    recursos: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
+    blog: ["constancia-entrega-epp-res-srt-299-11", "matriz-de-riesgos-iperc-plantilla-excel"],
   },
 };
