@@ -15,6 +15,11 @@ const article = ARTICLES.find((a) => a.slug === SLUG)!;
  */
 const FAQS = [
   {
+    question: "¿Qué hace un software de seguridad e higiene en México?",
+    answer:
+      "Ordena lo que piden la NOM-030 y la NOM-019 en el piso: recorridos de verificación, condiciones inseguras con responsable y fecha, entregas de EPP con firma, capacitaciones y accidentes, en todos los centros de trabajo. Es el mismo tipo de herramienta que en otras empresas se llama software de seguridad industrial o software EHS.",
+  },
+  {
     question: "¿La NOM-030 aplica a todas las empresas?",
     answer:
       "Sí. Según su numeral 2, rige en todo el territorio nacional y aplica en todos los centros de trabajo.",

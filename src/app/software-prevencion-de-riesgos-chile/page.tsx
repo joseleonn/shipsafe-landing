@@ -13,6 +13,11 @@ const article = ARTICLES.find((a) => a.slug === SLUG)!;
  */
 const FAQS = [
   {
+    question: "¿Qué hace un software de prevención de riesgos laborales?",
+    answer:
+      "Ordena lo que el área de prevención hace en terreno: inspecciones desde el celular, condiciones inseguras con responsable y fecha, la información de riesgos firmada por cada trabajador, entregas de EPP, accidentes y la matriz de peligros. Las decisiones siguen siendo del experto en prevención de riesgos.",
+  },
+  {
     question: "¿Cada cuánto se revisa la matriz de peligros según el DS 44?",
     answer:
       "Según su artículo 7, al menos una vez al año y cuando cambian las condiciones de trabajo, después de un accidente del trabajo o de una enfermedad profesional, o ante un riesgo grave e inminente.",

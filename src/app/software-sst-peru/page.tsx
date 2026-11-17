@@ -14,6 +14,11 @@ const article = ARTICLES.find((a) => a.slug === SLUG)!;
  */
 const FAQS = [
   {
+    question: "¿Qué hace un software de seguridad y salud en el trabajo en Perú?",
+    answer:
+      "Ordena el sistema de gestión de SST en campo: IPERC por puesto, ATS y PETAR firmados en el frente, inspecciones con foto y hora, observaciones con responsable y fecha, entregas de EPP y accidentes, con la misma información en todas las unidades.",
+  },
+  {
     question: "¿Cada cuánto se actualiza el IPERC?",
     answer:
       "Según el artículo 77 del reglamento de la Ley 29783, la evaluación se elabora y actualiza periódicamente, sin exceder el plazo de un año, en cada puesto de trabajo.",

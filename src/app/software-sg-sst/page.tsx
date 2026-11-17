@@ -14,6 +14,11 @@ const article = ARTICLES.find((a) => a.slug === "software-sg-sst")!;
  */
 const FAQS = [
   {
+    question: "¿Qué hace un software de SST para una empresa en Colombia?",
+    answer:
+      "Un software de seguridad y salud en el trabajo ordena el registro y el seguimiento del SG-SST: inspecciones, condiciones inseguras con responsable y fecha, entregas de EPP con firma, capacitaciones, accidentes y la evidencia de cada estándar. La autoevaluación y las decisiones siguen siendo del responsable del SG-SST.",
+  },
+  {
     question: "¿Qué estándares mínimos le aplican a mi empresa?",
     answer:
       "Depende de la cantidad de trabajadores y la clase de riesgo. Hasta 10 trabajadores en riesgo I, II o III: 7 estándares (artículo 3 de la Resolución 0312 de 2019). De 11 a 50 en riesgo I, II o III: 21 estándares (artículo 9). Más de 50, o cualquier tamaño en riesgo IV o V: 60 estándares (artículos 8, 15 y 16).",

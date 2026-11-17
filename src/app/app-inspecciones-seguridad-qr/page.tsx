@@ -35,6 +35,10 @@ export default function Page() {
         intermedio: el registro se hace en el momento, directamente desde el
         celular.
       </p>
+      <p>
+        Está pensada para los inspectores y técnicos de seguridad e higiene que recorren una o
+        varias plantas, y para los operarios que hacen el control antes de usar un equipo.
+      </p>
 
       <h2>Cómo funciona el QR en planta</h2>
       <ol>

@@ -27,6 +27,11 @@ export const metadata: Metadata = {
 // visible.
 const ARTICLE_FAQS = [
   {
+    question: "¿Es lo mismo un software de higiene y seguridad que uno de seguridad e higiene?",
+    answer:
+      "Sí. Son dos formas de nombrar lo mismo, y en algunas empresas se dice software de SST o de HSE. Lo que importa es qué resuelve: inspecciones, desvíos, entregas de EPP, capacitaciones y la evidencia para auditorías.",
+  },
+  {
     question: "¿Cuál es el mejor software de seguridad e higiene en Argentina?",
     answer:
       "No hay uno mejor en abstracto. Para una PyME o un consultor que necesita que el operario registre desde el celular, SHIPSAFE y Previnnova son las opciones locales más directas. Para una corporación con operaciones internacionales, VelocityEHS o Vector EHS. Para certificar ISO 45001, SGO Suite. El criterio decisivo es cuál va a usar tu equipo todos los días: un sistema que el operario no abre termina siendo un Excel más caro.",
