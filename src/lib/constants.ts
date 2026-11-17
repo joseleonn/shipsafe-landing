@@ -564,12 +564,13 @@ export const ARTICLES = [
   },
   {
     slug: "gestion-desvios-seguridad-industrial",
-    title: "Gestión de Desvíos en Seguridad Industrial: Guía Práctica",
+    title: "Gestión de desvíos de seguridad: los 6 estados, quién cierra y planilla",
+    seoTitle: "Gestión de desvíos de seguridad: 6 estados y planilla Excel",
     description:
-      "Cómo implementar un sistema efectivo de reporte y gestión de desvíos de seguridad en plantas industriales. Del reporte al cierre.",
+      "Cómo seguir un desvío de seguridad desde que se detecta hasta que se cierra: los seis estados, por qué el que lo arregla no lo cierra, qué medir y una planilla de registro de desvíos en Excel.",
     datePublished: "2026-04-13",
-    dateModified: "2026-04-13",
-    relatedSlugs: ["app-inspecciones-seguridad-qr", "que-es-srt-argentina"],
+    dateModified: "2026-11-17",
+    relatedSlugs: ["app-inspecciones-seguridad-qr", "software-seguridad-higiene-vs-excel"],
   },
   {
     slug: "mejores-software-seguridad-higiene-argentina",

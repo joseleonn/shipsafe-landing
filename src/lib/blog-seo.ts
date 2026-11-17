@@ -184,4 +184,16 @@ export const AJUSTES_SEO: Record<string, AjusteSeo> = {
     recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
     blog: ["permiso-de-trabajo-formato-tipos-y-normativa", "espacio-confinado-permiso-de-ingreso"],
   },
+  "plan-de-emergencia-plantilla-excel": {
+    pais: "LATAM",
+    tituloSeo: "Plan de emergencia: qué incluir y plantilla en Excel",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["inspeccion-de-botiquin-checklist", "matriz-de-riesgos-iperc-plantilla-excel"],
+  },
+  "inspeccion-de-botiquin-checklist": {
+    pais: "LATAM",
+    tituloSeo: "Inspección de botiquín: checklist en Excel",
+    recursos: ["app-inspecciones-seguridad-qr", "gestion-desvios-seguridad-industrial"],
+    blog: ["plan-de-emergencia-plantilla-excel", "checklist-montacargas-autoelevador-preuso"],
+  },
 };
